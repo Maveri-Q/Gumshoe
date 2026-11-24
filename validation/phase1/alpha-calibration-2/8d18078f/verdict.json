@@ -1,0 +1,53 @@
+{
+  "sha": "8d18078f5c719166c30eb373312c130664a56ffe",
+  "subject": "fix: Box selection of arrows (#10451)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 15,
+  "totalSeconds": 235,
+  "credits": 46.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 25.790467500000002,
+      "seconds": 113,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HCA8XJ2RKM4ZFEYYPWN2M/dashboard/share/US_TJ8FEYCW4VFWRAKV1RPW94KR0YL2N5CQHXUH1PVL7SQHA0QI87SO4QC1HCR3RJLG?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 20.9939545,
+      "seconds": 107,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HFRRE1G2KZEJCVNCHTJB7/dashboard/share/US_BUENOSXM7M7XVTPQTAIBPFTEDXCYGFLQ4ZX8M4I3DJHQVAY46KXVAC9HS13FQO0B?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

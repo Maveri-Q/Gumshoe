@@ -1,0 +1,53 @@
+{
+  "sha": "a70417f23f5985e3ed2a678c3cd25bffb23b1cff",
+  "subject": "feat(editor): visualize binding midpoints + support for simple arrows (#10611)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 15,
+  "totalSeconds": 243,
+  "credits": 42.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 22.7765675,
+      "seconds": 125,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HKGHJD1WW293T83KC2R9P/dashboard/share/US_M22756X0CKGF7TSZQQ7V5T8ALGCH7DMZ0V0G2X4QTQVK37U9ZRMRGCJ25RUI6IPH?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 20.132792499999997,
+      "seconds": 103,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HQAEDXJET1YAGVJC4A346/dashboard/share/US_VR27KLA0RY4ZIEODCAKP04XBZ3PRIS11JMYOMPLKWFHXD2OLJ14I1PF64KAM5MQW?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}
