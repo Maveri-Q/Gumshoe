@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T05:14:46.799Z",
+  "sha": "e42ed6808eb00e5daaf72de34d8f24f94028ff9b",
+  "subject": "Split escapecss into two platforms (#9475)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 14,
+  "totalSeconds": 407,
+  "credits": 67.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nConfirmed that the settings list was visible, then navigated to the TiddlyWiki settings section.\nScrolled to the bottom of the settings list so the Toolbar Button Style heading, its description, and the dropdown were visible.\nWaited as requested and left the Toolbar Button Style dropdown closed and unchanged.",
+      "credits": 31.825073499999995,
+      "seconds": 170
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nA second row of settings tabs was available, so the TiddlyWiki tab was selected.\nScrolled to the bottom of the settings list until the Toolbar Button Style heading, its description, and its dropdown were visible.\nWaited 2 seconds and left the Toolbar Button Style dropdown closed without changing any settings.",
+      "credits": 35.5146595,
+      "seconds": 222
+    }
+  ]
+}

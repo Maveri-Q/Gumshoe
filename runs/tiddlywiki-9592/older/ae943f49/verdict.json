@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:03:13.896Z",
+  "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "subject": "Version number update for 5.3.8",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 394,
+  "credits": 88.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded and saved the requested “Jump to spot” link and “Landing place” text.\nConfirmed that the new tiddler displayed both the link and the landing text.\nClicked “Jump to spot,” which navigated to the specified page anchor.",
+      "credits": 45.8287495,
+      "seconds": 187,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85YKR32GQAG0AY0RF45KAGQ/dashboard/share/US_RC7ONTUCRGDXPK3AOIRCHE04JKJDPM064YOQMMBUAQ8A535N06HAW56MHSXWKU9U?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler titled “New Tiddler” with the requested “Jump to spot” link and “Landing place” text.\nConfirmed that the new tiddler was visible with both requested pieces of content.\nClicked “Jump to spot,” which navigated to the specified spot on the page.",
+      "credits": 42.5034165,
+      "seconds": 203,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85YSFBKCH09WTC44A3ETBQR/dashboard/share/US_TNM1I6E5SRL234TZZ3H47Q9O3BL8M7B77SDNT5DMZ5QGXPF69TXU7X27T494V4IC?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

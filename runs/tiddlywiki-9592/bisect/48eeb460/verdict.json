@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-24T05:22:00.054Z",
+  "sha": "48eeb4603a88c5bcde55fd40f004778d388211b1",
+  "subject": "Deprecate and simplify some utility functions (#9251)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 666,
+  "credits": 99.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler as requested and kept its title as “New Tiddler.”\nEntered the requested link and landing text, then saved the tiddler.\nConfirmed that “New Tiddler” displayed both the “Jump to spot” link and “Landing place” text.\nClicked “Jump to spot”; the page finished at the link’s target location.",
+      "credits": 33.24379449999999,
+      "seconds": 214,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85ZDVJ71Z7J41Y4Y2QEK22Z/dashboard/share/US_W1A7AWKP5HCGX3J9XAKG0I2DUXA3U0GRUHSPCIR2N0Z1JQ9EC5IJ0JJF8JJ68LF1?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler from the right sidebar.\nKept the title as “New Tiddler” and added the requested “Jump to spot” link and “Landing place” text.\nConfirmed the tiddler and verified that its content was visible.\nClicked “Jump to spot”; the page finished at the linked location.",
+      "credits": 33.5618995,
+      "seconds": 223,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85ZME2XYWS7BT9PMKKACNKE/dashboard/share/US_CNGJMIE46TMCO543JVRK2AS9MI34ADQJILA4ZR3BARSJG5VPN9X4Q32ZJDQB9DRM?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the new tiddler was visible with the requested content.\nClicked “Jump to spot,” and the page navigated to the “#my-spot” location.",
+      "credits": 32.315619999999996,
+      "seconds": 226,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85ZV9BB0R4RNG1WPMY27MHZ/dashboard/share/US_YCU04UZ7V923EGA3RR4X5W9JU6O7YUZLGC8S7QNAB38HP2V0KQM151YLLIP0A08Q?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

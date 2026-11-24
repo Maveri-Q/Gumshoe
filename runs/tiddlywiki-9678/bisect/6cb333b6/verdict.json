@@ -1,0 +1,60 @@
+{
+  "finishedAt": "2026-11-24T05:07:57.182Z",
+  "sha": "6cb333b65b145ca9c41cb6349fc227396948c3bc",
+  "subject": "Merge branch 'tiddlywiki-com'",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 571,
+  "credits": 103.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the TiddlyWiki section within Settings after its additional tab row appeared.\nConfirmed that the Settings tab was active and that its settings list was displayed.\nScrolled to the bottom of the settings list so the Toolbar Button Style heading, its description, and the closed dropdown were visible.\nWaited 2 seconds without changing any settings or opening the dropdown.",
+      "credits": 31.1486135,
+      "seconds": 193
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the TiddlyWiki settings section when it appeared.\nScrolled to the bottom of the settings list until the Toolbar Button Style section and its dropdown were visible.\nWaited briefly and left the dropdown closed without changing any settings.",
+      "credits": 32.244181,
+      "seconds": 174
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki section within Settings because it was available.\nScrolled to the bottom of the settings list and paused with the Toolbar Button Style options and its dropdown visible.\nLeft the dropdown closed and did not change any settings.",
+      "credits": 40.065523,
+      "seconds": 200
+    }
+  ]
+}

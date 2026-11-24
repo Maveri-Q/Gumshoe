@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-24T05:26:23.581Z",
+  "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "subject": "Version number update for 5.3.8",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 854,
+  "credits": 151.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing using its top-right menu because the pencil button was not shown.\nConfirmed that the HelloThere editor was open and that the formatting toolbar was visible directly above the large text area.\nPositioned the editor toolbar near the top of the page, opened the additional formatting-buttons menu using the down arrow immediately to the left of preview, and left that menu open after waiting 2 seconds.",
+      "credits": 59.79209449999999,
+      "seconds": 291,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85ZG4SFSZRCR6T4QCJFYGYN/dashboard/share/US_MOXYHELFZB2MUWBVICDQWGUTLPHPTSCY0N57IA8DTJCQY2LYW4IBJU2WO1J3LG23?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "You asked to open the HelloThere tiddler for editing and reveal the additional formatting controls.\nThe HelloThere tiddler was opened in edit mode, with its content text box and formatting toolbar visible.\nThe toolbar was positioned near the top of the page, and the down-arrow menu immediately to the left of the preview eye icon was opened and left open.\nThe requested interaction was completed on the HelloThere page.",
+      "credits": 38.522212,
+      "seconds": 241,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85ZS2W8D0A7QSBKQK6BHEBM/dashboard/share/US_KREMUEK3I3VAHN5N3USAIVX6D4PWQCH6PTW6KKN07P7Y256WFP54GCCYALBGXFEQ?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and used its visible pencil button to enter editing.\nConfirmed that the HelloThere editor showed its large content box with the formatting toolbar directly above it.\nPositioned the editor area as needed, opened the additional formatting buttons using the down arrow just left of the preview eye, and left that menu open after waiting 2 seconds.",
+      "credits": 53.17086750000001,
+      "seconds": 319,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8600FXF5951HXACW7CY3R9F/dashboard/share/US_EJYMXRMDDF9Y8IWXHDXAH82KNMHO6J9XQ6BGHK9536CLAST8ZSFKXDCACARBN4LM?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

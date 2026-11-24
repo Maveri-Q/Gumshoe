@@ -1,0 +1,19 @@
+{
+  "repo": "excalidraw/excalidraw",
+  "clone": "work/excalidraw",
+  "src": "work2/excalidraw",
+  "dist": "work2/dist",
+  "about": "Excalidraw, a whiteboard drawing app. The main menu is the three-lines button at the top left; it has a Canvas background row of colour squares. The drawing toolbar is at the top middle.",
+  "build": [
+    "node",
+    "--max-old-space-size=3500",
+    "work2/node_modules/vite/bin/vite.js",
+    "build",
+    "-c",
+    "work2/cfg/vite.config.mjs"
+  ],
+  "env": {
+    "VITE_APP_ENABLE_TRACKING": "false"
+  },
+  "versionTag": "v{version}"
+}

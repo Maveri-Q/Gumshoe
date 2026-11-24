@@ -1,3 +1,24 @@
 2026-11-24T04:58:25.880Z COMMIT 6cb333b6 Merge branch 'tiddlywiki-com'
 2026-11-24T04:58:29.469Z   built in 4s
 2026-11-24T05:01:42.819Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 31.1 credits 193s
+2026-11-24T05:04:37.088Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 32.2 credits 174s
+2026-11-24T05:07:57.181Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 40.1 credits 200s
+2026-11-24T05:07:57.184Z   => GOOD  103.5 credits, 571s
+2026-11-24T05:08:00.050Z COMMIT e42ed680 Split escapecss into two platforms (#9475)
+2026-11-24T05:08:14.230Z   built in 14s
+2026-11-24T05:11:04.358Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 31.8 credits 170s
+2026-11-24T05:14:46.792Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.5 credits 222s
+2026-11-24T05:14:46.801Z   => GOOD  67.3 credits, 407s
+2026-11-24T05:14:50.322Z COMMIT 0673426f fix: remove fn wrappers and unneeded comments (#9637)
+2026-11-24T05:14:57.719Z   built in 7s
+2026-11-24T05:18:11.722Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.4 credits 194s
+2026-11-24T05:21:41.651Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 26.5 credits 210s
+2026-11-24T05:21:41.654Z   => GOOD  61.9 credits, 411s
+2026-11-24T05:21:43.908Z COMMIT 64ee20ed Further MVV fixes (#9645)
+2026-11-24T05:21:50.559Z   built in 7s
+2026-11-24T05:25:14.731Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.5 credits 204s
+2026-11-24T05:29:10.214Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 36.8 credits 235s
+2026-11-24T05:32:42.638Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 32.3 credits 212s
+2026-11-24T05:32:42.642Z   => GOOD  103.5 credits, 659s
+2026-11-24T05:32:45.229Z COMMIT 71462143 Fix BackgroundActions example
+2026-11-24T05:32:54.588Z   built in 9s

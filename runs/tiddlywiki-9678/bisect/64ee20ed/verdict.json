@@ -1,0 +1,60 @@
+{
+  "finishedAt": "2026-11-24T05:32:42.641Z",
+  "sha": "64ee20edd2ea1e2674b0118143ad1a93764d0983",
+  "subject": "Further MVV fixes (#9645)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 7,
+  "totalSeconds": 659,
+  "credits": 103.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the nested TiddlyWiki settings section, where the settings list was visible.\nScrolled to the bottom of the settings list so the Toolbar Button Style heading, its description, and the dropdown were fully visible.\nWaited briefly and left the Toolbar Button Style dropdown closed without changing any settings.",
+      "credits": 34.466510500000005,
+      "seconds": 204
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki section within Settings when the additional tab row appeared.\nScrolled to the bottom of the settings list and left the Toolbar Button Style dropdown closed and unchanged.\nFinished after waiting briefly, with the Settings list still displayed.",
+      "credits": 36.786182999999994,
+      "seconds": 235
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nConfirmed that the settings list was visible, including the TiddlyWiki settings area.\nScrolled to the bottom of the settings list and waited, without changing any settings or opening the toolbar-style dropdown.\nFinished on the Control Panel settings page.",
+      "credits": 32.2953375,
+      "seconds": 212
+    }
+  ]
+}

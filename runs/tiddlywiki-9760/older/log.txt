@@ -1,0 +1,6 @@
+2026-11-24T05:12:09.944Z COMMIT ae943f49 Version number update for 5.3.8
+2026-11-24T05:12:13.285Z   built in 3s
+2026-11-24T05:17:04.329Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 59.8 credits 291s
+2026-11-24T05:21:04.885Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 38.5 credits 241s
+2026-11-24T05:26:23.580Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 53.2 credits 319s
+2026-11-24T05:26:23.582Z   => GOOD  151.5 credits, 854s

@@ -1,0 +1,18 @@
+2026-11-24T05:03:17.612Z COMMIT 19177964 Improve switcher (UI) accessibility (#9347)
+2026-11-24T05:03:25.638Z   built in 8s
+2026-11-24T05:06:54.394Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.4 credits 209s
+2026-11-24T05:10:51.809Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.2 credits 237s
+2026-11-24T05:10:51.810Z   => GOOD  66.6 credits, 454s
+2026-11-24T05:10:54.006Z COMMIT 48eeb460 Deprecate and simplify some utility functions (#9251)
+2026-11-24T05:10:57.268Z   built in 3s
+2026-11-24T05:14:31.568Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=true 33.2 credits 214s
+2026-11-24T05:18:14.542Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 33.6 credits 223s
+2026-11-24T05:22:00.051Z   try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 32.3 credits 226s
+2026-11-24T05:22:00.057Z   => BAD  99.1 credits, 666s
+2026-11-24T05:22:02.591Z COMMIT 30e9b4f3 Add change notes as requested in #9406 (#9435)
+2026-11-24T05:22:12.251Z   built in 10s
+2026-11-24T05:25:57.284Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.9 credits 225s
+2026-11-24T05:29:51.621Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.3 credits 234s
+2026-11-24T05:29:51.632Z   => GOOD  69.2 credits, 469s
+2026-11-24T05:29:54.142Z COMMIT 52d73eb1 Fix accidentally committed change to default tiddlers from #8972
+2026-11-24T05:30:02.049Z   built in 8s

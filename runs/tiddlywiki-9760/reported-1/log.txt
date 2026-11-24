@@ -1,0 +1,5 @@
+2026-11-24T05:03:15.095Z COMMIT 962692c9 FIX: restore mhchem require for \ce and \pu macro support (#9756)
+2026-11-24T05:03:21.461Z   built in 6s
+2026-11-24T05:07:59.719Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 54.8 credits 278s
+2026-11-24T05:12:08.280Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 40.1 credits 249s
+2026-11-24T05:12:08.283Z   => BAD  94.8 credits, 533s

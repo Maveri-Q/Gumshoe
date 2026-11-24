@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:10:51.809Z",
+  "sha": "19177964c8297d6ca12b66ebdc6add4608d4f05f",
+  "subject": "Improve switcher (UI) accessibility (#9347)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 8,
+  "totalSeconds": 454,
+  "credits": 66.6,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title as “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nOpened the “Jump to spot” link; the page ended at the specified in-page location.\nConfirmed that “New Tiddler,” the link, and the landing text were visible.",
+      "credits": 33.358508,
+      "seconds": 209,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85Z055T362XMW0Y1WKXZ07K/dashboard/share/US_X9F89QX4XK98K9G2P6KJWX5Z48XDDSSR9LULMMXR1FLJ09DJY49UVX7DSI31PZWA?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler as requested, keeping the title “New Tiddler.”\nEntered the requested link and landing-place text, then saved the tiddler.\nVerified that “New Tiddler,” the “Jump to spot” link, and “Landing place” were visible.\nClicked “Jump to spot”; the page finished at the requested anchor location.",
+      "credits": 33.23464249999999,
+      "seconds": 237,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85Z6DJNBY18F79VB83Z05NJ/dashboard/share/US_NG2PDN1ADZUMLM9WJGJTYV1CZT61I7MNHYABUCC5XLTL0E0TXR1EJYEQA0U8NQ6I?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

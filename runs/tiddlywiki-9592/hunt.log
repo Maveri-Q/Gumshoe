@@ -4,3 +4,5 @@
 2026-11-24T04:49:20.033Z   on the reported version: unsure
 2026-11-24T04:49:48.791Z DRAFT 2: Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler.
 2026-11-24T04:56:38.908Z   on the reported version: bad
+2026-11-24T05:03:13.986Z OLDER ae943f49 2025-08-07: good
+2026-11-24T05:03:14.112Z BISECT ae943f49..be84dee2, 168 commits

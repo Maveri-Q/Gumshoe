@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T05:21:41.652Z",
+  "sha": "0673426f5a640d82c672579088a4336894f9fb6d",
+  "subject": "fix: remove fn wrappers and unneeded comments (#9637)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 7,
+  "totalSeconds": 411,
+  "credits": 61.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nConfirmed that the settings list was visible, then navigated to the bottom of the settings list where the Toolbar Button Style section and its dropdown were visible.\nWaited briefly and left the Toolbar Button Style dropdown closed without changing any settings.",
+      "credits": 35.37672849999999,
+      "seconds": 194
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nA secondary set of Settings tabs was available, so the TiddlyWiki tab was selected.\nConfirmed that the Settings list was displayed, then scrolled to its bottom to the Toolbar Button Style section.\nWaited as requested and left the toolbar-button-style dropdown closed and unchanged.",
+      "credits": 26.527310500000002,
+      "seconds": 210
+    }
+  ]
+}

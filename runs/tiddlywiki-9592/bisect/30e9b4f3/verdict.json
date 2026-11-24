@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:29:51.630Z",
+  "sha": "30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d",
+  "subject": "Add change notes as requested in #9406 (#9435)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 10,
+  "totalSeconds": 469,
+  "credits": 69.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title as “New Tiddler.”\nEntered the requested one-line content, then saved it so the tiddler displayed the “Jump to spot” link and “Landing place” text.\nOpened the “Jump to spot” link and waited; the page finished at the target location.",
+      "credits": 35.8608775,
+      "seconds": 225,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8602FRHM83QSZWP57TDCN6N/dashboard/share/US_NQLMJMAKW54AYA5F2Q24OTCJELDKPHO239LO7VG4BL2YLFXD6BI2WASL2C2O0HIQ?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping its title as “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the saved tiddler displayed both the link and the landing text.\nClicked “Jump to spot” and waited; the page finished at the requested spot.",
+      "credits": 33.331191499999996,
+      "seconds": 234,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M860997MKFZJ9TQE5JD8ES8B/dashboard/share/US_W971QCK0YPPR1MYNWU2NV58BKUG4YQR0Z6KJEB9ICQRV6ZITCJB5YUM6A5M2D6I9?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

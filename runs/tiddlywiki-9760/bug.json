@@ -1,0 +1,28 @@
+{
+  "id": "tiddlywiki-9760",
+  "sentence": "After opening the more dropdown in the text editor toolbar, each button listed in it has a text label next to its icon.",
+  "path": "/#HelloThere",
+  "setup": "1. Find the tiddler titled 'HelloThere' and click the edit button (pencil icon) at its top right. If the pencil is not visible, click the small down arrow at the tiddler's top right and choose 'edit' in the menu. 2. Wait until the tiddler is in edit mode, with a large text box for its content. 3. Scroll the page if needed so that the row of formatting icons (bold, italic and others) directly above the large text box is near the top of the screen, with plenty of empty space below it.",
+  "ready": "The tiddler HelloThere is in edit mode, and a row of formatting icons such as bold and italic is visible directly above its large text box.",
+  "action": "In the row of formatting icons directly above the large text box, click the down arrow icon that opens more toolbar buttons. It is near the right end of the row, just to the left of the eye (preview) icon. Do not click the arrow to the right of the eye icon. A dropdown opens and must stay open; do not click anything else. Wait 2 seconds.",
+  "broken": "The dropdown opened from the editor toolbar is visible and lists buttons with only icons, with no descriptive words beside the icons.",
+  "working": "The dropdown opened from the editor toolbar is visible and lists buttons that each have an icon with descriptive words beside it saying what the button does.",
+  "goodVersion": null,
+  "witness": {
+    "reader": true
+  },
+  "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9760",
+  "repo": "clones/hunt-tiddlywiki-9760",
+  "build": [
+    "node",
+    "{src}/tiddlywiki.js",
+    "{src}/editions/tw5.com",
+    "--output",
+    "{dist}",
+    "--build",
+    "index"
+  ],
+  "dist": "dist/tiddlywiki-9760",
+  "env": {},
+  "port": 4313
+}

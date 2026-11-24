@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:12:08.282Z",
+  "sha": "962692c90ce4f7f1a9a1464215551a9373dc17af",
+  "subject": "FIX: restore mhchem require for \\ce and \\pu macro support (#9756)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 533,
+  "credits": 94.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing.\nConfirmed that the editor showed the formatting toolbar directly above the large text box and positioned it near the top of the page.\nOpened the additional formatting controls using the down-arrow immediately to the left of the preview (eye) icon, leaving the dropdown open.",
+      "credits": 54.76573699999999,
+      "seconds": 278,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85Z002TAH3X10105YB4QK8N/dashboard/share/US_709TXKCOBHIEQRK7ZR4U0AY47A7MWFCEXTPQ2OECKPV7DD7ZQPXWA8KUKYLV8W0E?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and switched it into edit mode.\nPositioned the editor so the formatting toolbar above the large text area was visible near the top of the page.\nOpened the additional formatting-options menu using the down-arrow immediately to the left of the preview (eye) icon, and left the menu open.\nThe requested editor state and visible formatting toolbar were confirmed.",
+      "credits": 40.0590385,
+      "seconds": 249,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85Z8G50NWD3KYNW3F4H0QJ0/dashboard/share/US_86X4UDUFRBFJTY2DCRT3ICMFLP0JBSDYK24BGJKMTLI42MVQGP7QYQ1C683JJ36C?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}
