@@ -91,7 +91,12 @@ if (!good) done({ outcome: "found no older version where it works", bad });
 try { git("bisect", "reset"); } catch {}
 const range = Number(git("rev-list", "--count", "--first-parent", `${good}..${knownBad}`));
 log(`BISECT ${good!.slice(0, 8)}..${knownBad.slice(0, 8)}, ${range} commits`);
-writeFileSync(join(dir, "frozen-check.sha256"), execFileSync("git", ["hash-object", join(root, bugFile)], { encoding: "utf8" }));
+const frozenFile = join(dir, "frozen-check.sha256"), frozen = execFileSync("git", ["hash-object", join(root, bugFile)], { encoding: "utf8" });
+if (existsSync(frozenFile)) {
+  if (readFileSync(frozenFile, "utf8") !== frozen) throw new Error("the check changed since the bisect began");
+  process.env.GUMSHOE_RESUME = "1"; log("Picking up after a stop, with the same frozen check");
+}
+writeFileSync(frozenFile, frozen);
 git("bisect", "start", "--first-parent", knownBad, good!);
 const b = spawnSync("git", ["bisect", "run", "node", join(root, "tools/step.mjs").replace(/\\/g, "/"), bugFile, `${run}/bisect`], { cwd: src, encoding: "utf8", maxBuffer: 1e8 });
 writeFileSync(join(dir, "bisect.out.txt"), (b.stdout ?? "") + (b.stderr ?? ""));

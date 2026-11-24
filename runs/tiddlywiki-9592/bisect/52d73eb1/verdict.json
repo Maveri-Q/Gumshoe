@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:38:28.916Z",
+  "sha": "52d73eb1a879ee4fd57c91ce7471d17020fa860d",
+  "subject": "Fix accidentally committed change to default tiddlers from #8972",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 8,
+  "totalSeconds": 515,
+  "credits": 70.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nEntered the requested one-line content, including the “Jump to spot” link and “Landing place” text, then saved it.\nVerified that the new tiddler was visible with the requested link and text.\nClicked “Jump to spot” and waited; the page ended at the requested anchor location.",
+      "credits": 34.344353,
+      "seconds": 247,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M860GT5HZQFH70WV0152F173/dashboard/share/US_QUGR48TSYADR23JGAQVF4THIT1I17XDWSWH8VOEHVIVOLWIK6873ZC0D4Q826K7S?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler as requested, keeping the title “New Tiddler.”\nEntered the requested one-line link and landing text, then saved the tiddler.\nVerified that “Jump to spot” and “Landing place” were visible in the saved tiddler.\nClicked “Jump to spot” and waited 2 seconds; the page URL updated to the target anchor.",
+      "credits": 36.463894,
+      "seconds": 260,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M860RB9Y2RPWG3SA4BEW2G4W/dashboard/share/US_D2L2L34ZP1GD00LXZ0XDBLY49LLI4EJ7GJ5D8WVLMCC5NZZ4CXT5NS78WG7LYVIK?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

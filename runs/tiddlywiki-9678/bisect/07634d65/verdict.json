@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T05:46:13.178Z",
+  "sha": "07634d65955735a12fe6b0ffe447917b5d2a8c2e",
+  "subject": "Merge branch 'tiddlywiki-com'",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 364,
+  "credits": 72.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the nested TiddlyWiki tab after it appeared.\nScrolled to the bottom of the settings list, where the Toolbar Button Style heading, its instruction text, and its dropdown were visible.\nWaited for 2 seconds and left the dropdown closed without changing any settings.",
+      "credits": 35.98305700000001,
+      "seconds": 183
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki section within Settings, where the settings list was displayed.\nScrolled to the bottom of the settings list and left the Toolbar Button Style dropdown closed and unchanged.\nWaited briefly and finished without changing any settings.",
+      "credits": 36.1623805,
+      "seconds": 174
+    }
+  ]
+}

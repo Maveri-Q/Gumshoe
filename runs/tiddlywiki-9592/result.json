@@ -1,0 +1,98 @@
+{
+  "id": "tiddlywiki-9592",
+  "issue": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9592",
+  "title": "[Report] HTML anchor links opens new tiddler",
+  "issueCreatedAt": "2026-01-18T03:41:09Z",
+  "sentence": "Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler.",
+  "outcome": "the bisect could not name one commit",
+  "range": 168,
+  "good": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "bad": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+  "tries": 18,
+  "refused": 3,
+  "credits": 635.8,
+  "minutes": 70.3,
+  "finishedAt": "2026-11-24T05:49:16.077Z",
+  "steps": [
+    {
+      "part": "reported-1",
+      "sha": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+      "subject": "Allow unused variables in function headers and caught exceptions (#9588)",
+      "verdict": "unsure",
+      "credits": 95.8,
+      "seconds": 585,
+      "date": "2026-01-17T17:51:51Z",
+      "finished": "2026-11-24T04:49:19.837Z"
+    },
+    {
+      "part": "reported-2",
+      "sha": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+      "subject": "Allow unused variables in function headers and caught exceptions (#9588)",
+      "verdict": "bad",
+      "credits": 74.9,
+      "seconds": 409,
+      "date": "2026-01-17T17:51:51Z",
+      "finished": "2026-11-24T04:56:38.891Z"
+    },
+    {
+      "part": "older",
+      "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+      "subject": "Version number update for 5.3.8",
+      "verdict": "good",
+      "credits": 88.3,
+      "seconds": 394,
+      "date": "2025-08-07T09:01:06+01:00",
+      "finished": "2026-11-24T05:03:13.896Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "19177964c8297d6ca12b66ebdc6add4608d4f05f",
+      "subject": "Improve switcher (UI) accessibility (#9347)",
+      "verdict": "good",
+      "credits": 66.6,
+      "seconds": 454,
+      "date": "2025-11-01T13:06:19Z",
+      "finished": "2026-11-24T05:10:51.809Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "48eeb4603a88c5bcde55fd40f004778d388211b1",
+      "subject": "Deprecate and simplify some utility functions (#9251)",
+      "verdict": "bad",
+      "credits": 99.1,
+      "seconds": 666,
+      "date": "2025-12-17T14:40:47Z",
+      "finished": "2026-11-24T05:22:00.054Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d",
+      "subject": "Add change notes as requested in #9406 (#9435)",
+      "verdict": "good",
+      "credits": 69.2,
+      "seconds": 469,
+      "date": "2025-11-12T21:41:29Z",
+      "finished": "2026-11-24T05:29:51.630Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "52d73eb1a879ee4fd57c91ce7471d17020fa860d",
+      "subject": "Fix accidentally committed change to default tiddlers from #8972",
+      "verdict": "good",
+      "credits": 70.8,
+      "seconds": 515,
+      "date": "2025-11-22T12:59:38Z",
+      "finished": "2026-11-24T05:38:28.916Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "87d9754a4e5f00faa9a96152e63005ea381a4c32",
+      "subject": "github-linguist improvements (#9384)",
+      "verdict": "good",
+      "credits": 71.1,
+      "seconds": 421,
+      "date": "2025-12-13T09:31:55Z",
+      "finished": "2026-11-24T05:45:32.454Z"
+    }
+  ]
+}

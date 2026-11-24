@@ -22,3 +22,14 @@
 2026-11-24T05:32:42.642Z   => GOOD  103.5 credits, 659s
 2026-11-24T05:32:45.229Z COMMIT 71462143 Fix BackgroundActions example
 2026-11-24T05:32:54.588Z   built in 9s
+2026-11-24T05:36:49.593Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.1 credits 235s
+2026-11-24T05:40:08.208Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 25.2 credits 199s
+2026-11-24T05:40:08.210Z   => GOOD  60.4 credits, 443s
+2026-11-24T05:40:09.525Z COMMIT 07634d65 Merge branch 'tiddlywiki-com'
+2026-11-24T05:40:15.473Z   built in 6s
+2026-11-24T05:43:18.741Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 36.0 credits 183s
+2026-11-24T05:46:13.177Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 36.2 credits 174s
+2026-11-24T05:46:13.179Z   => BAD  72.1 credits, 364s
+2026-11-24T05:46:15.921Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T05:46:21.339Z   built in 5s
+2026-11-24T10:04:54.833Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[null,null] screenSaysBroken=true 34.0 credits 15513s

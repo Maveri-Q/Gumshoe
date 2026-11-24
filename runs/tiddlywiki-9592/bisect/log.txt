@@ -16,3 +16,17 @@
 2026-11-24T05:29:51.632Z   => GOOD  69.2 credits, 469s
 2026-11-24T05:29:54.142Z COMMIT 52d73eb1 Fix accidentally committed change to default tiddlers from #8972
 2026-11-24T05:30:02.049Z   built in 8s
+2026-11-24T05:34:08.892Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.3 credits 247s
+2026-11-24T05:38:28.915Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 36.5 credits 260s
+2026-11-24T05:38:28.917Z   => GOOD  70.8 credits, 515s
+2026-11-24T05:38:31.484Z COMMIT 87d9754a github-linguist improvements (#9384)
+2026-11-24T05:38:37.061Z   built in 6s
+2026-11-24T05:42:08.094Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.7 credits 211s
+2026-11-24T05:45:32.446Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 36.4 credits 204s
+2026-11-24T05:45:32.455Z   => GOOD  71.1 credits, 421s
+2026-11-24T05:45:34.842Z COMMIT 846ac9a0 Add issue types (#9490)
+2026-11-24T05:45:40.523Z   built in 6s
+2026-11-24T05:48:59.537Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.5 credits 199s
+2026-11-24T05:49:15.185Z   Kane gave no result at all (exit 2). Stopping the bisect.
+2026-11-24T10:05:22.599Z COMMIT 846ac9a0 Add issue types (#9490)
+2026-11-24T10:05:28.586Z   built in 6s

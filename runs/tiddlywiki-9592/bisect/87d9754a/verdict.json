@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T05:45:32.454Z",
+  "sha": "87d9754a4e5f00faa9a96152e63005ea381a4c32",
+  "subject": "github-linguist improvements (#9384)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 421,
+  "credits": 71.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the default title, “New Tiddler.”\nEntered the requested link and landing text, then saved the tiddler.\nConfirmed that “New Tiddler” displayed both “Jump to spot” and “Landing place.”\nClicked “Jump to spot”; the page finished at the specified anchor location.",
+      "credits": 34.6545915,
+      "seconds": 211,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8610GD17Q9EQ8G0AZEREQB8/dashboard/share/US_PHYI3XOJMXSEM6U7MYGRHORZSBDUEZHQ48IJVQUI97ARO82SWS3EZI46FEB7OO7E?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while leaving its title as “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the new tiddler displayed the requested link and text.\nClicked “Jump to spot,” which navigated to the target location on the page.",
+      "credits": 36.444956999999995,
+      "seconds": 204,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8616Y4M3ZY8KKSTYYQSFFA2/dashboard/share/US_S4MQXXAALYG5ESM7NYGVLI0JRVPEC4B1LONHP7SOCXLV2Y80DVGM313SBI9BYTSI?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

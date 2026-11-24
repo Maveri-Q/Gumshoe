@@ -1,3 +1,10 @@
 2026-11-24T05:26:26.613Z COMMIT 86d61e09 Edit-text widget: rows parameter takes precedence, CM accepts rows now (#9454)
 2026-11-24T05:26:36.591Z   built in 10s
 2026-11-24T05:31:09.190Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 25.5 credits 273s
+2026-11-24T05:36:40.096Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 56.8 credits 331s
+2026-11-24T05:41:09.834Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 50.6 credits 270s
+2026-11-24T05:41:09.836Z   => GOOD  132.9 credits, 883s
+2026-11-24T05:41:12.513Z COMMIT dc764b3a Replace fill rules in tw5.com edition (#9624)
+2026-11-24T05:41:17.877Z   built in 5s
+2026-11-24T05:44:55.716Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 42.3 credits 218s
+2026-11-24T10:04:56.759Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[null,null] screenSaysBroken=false 50.6 credits 15601s

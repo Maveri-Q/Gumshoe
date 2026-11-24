@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T05:40:08.209Z",
+  "sha": "71462143bfd8951476620da2cb26a23d997eeb5f",
+  "subject": "Fix BackgroundActions example",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 9,
+  "totalSeconds": 443,
+  "credits": 60.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nA second row of settings tabs was available, so the TiddlyWiki tab was selected.\nScrolled to the bottom of the settings list until the Toolbar Button Style section and its closed dropdown were visible.\nWaited 2 seconds and left all settings unchanged, with the dropdown still closed.",
+      "credits": 35.13169,
+      "seconds": 235
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the nested TiddlyWiki settings section, where the settings list was displayed.\nScrolled to the bottom of the settings list and left the Toolbar Button Style dropdown visible, closed, and unchanged.\nWaited briefly and completed the requested view without changing any settings.",
+      "credits": 25.226803000000004,
+      "seconds": 199
+    }
+  ]
+}

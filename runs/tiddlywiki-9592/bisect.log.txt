@@ -1,0 +1,13 @@
+# bad: [be84dee26b66395218e0c075ba5dcf31397ad1e1] Allow unused variables in function headers and caught exceptions (#9588)
+# good: [ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7] Version number update for 5.3.8
+git bisect start '--first-parent' 'be84dee26b66395218e0c075ba5dcf31397ad1e1' 'ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7'
+# good: [19177964c8297d6ca12b66ebdc6add4608d4f05f] Improve switcher (UI) accessibility (#9347)
+git bisect good 19177964c8297d6ca12b66ebdc6add4608d4f05f
+# bad: [48eeb4603a88c5bcde55fd40f004778d388211b1] Deprecate and simplify some utility functions (#9251)
+git bisect bad 48eeb4603a88c5bcde55fd40f004778d388211b1
+# good: [30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d] Add change notes as requested in #9406 (#9435)
+git bisect good 30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d
+# good: [52d73eb1a879ee4fd57c91ce7471d17020fa860d] Fix accidentally committed change to default tiddlers from #8972
+git bisect good 52d73eb1a879ee4fd57c91ce7471d17020fa860d
+# good: [87d9754a4e5f00faa9a96152e63005ea381a4c32] github-linguist improvements (#9384)
+git bisect good 87d9754a4e5f00faa9a96152e63005ea381a4c32
