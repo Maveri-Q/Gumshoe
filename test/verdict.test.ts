@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { tryVerdict, combine, bisectCode } from "../tools/verdict.ts";
+import { tryVerdict, combine, bisectCode, pixelSaysBroken } from "../tools/verdict.ts";
 
 test("a try only counts when the app was ready", () => assert.equal(tryVerdict({ ready: "no", look: [false, true], witness: false }).verdict, "unsure"));
 test("yes and no map to bad and good", () => {
@@ -23,3 +23,8 @@ test("two tries must agree", () => {
 });
 test("git bisect exit codes", () => assert.deepEqual([bisectCode("good"), bisectCode("bad"), bisectCode("unsure")], [0, 1, 125]));
 test("Kane contradicting itself is unsure", () => assert.equal(tryVerdict({ ready: "yes", look: [true, true], witness: true }).verdict, "unsure"));
+test("pixel check", () => {
+  assert.equal(pixelSaysBroken([255, 127, 127], [255, 127, 127]), false);
+  assert.equal(pixelSaysBroken([255, 255, 255], [255, 127, 127]), true);
+  assert.equal(pixelSaysBroken(undefined, [255, 127, 127]), undefined);
+});

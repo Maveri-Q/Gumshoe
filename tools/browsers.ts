@@ -78,3 +78,14 @@ export async function reload(b: RoleBrowser): Promise<void> {
   await withPage(b, async send => { await send("Page.reload", { ignoreCache: true }); });
   await new Promise(r => setTimeout(r, 3000));
 }
+
+/** The colour on screen at a point, read from a real screenshot (not from the app's own data). */
+export async function readPixel(b: RoleBrowser, [x, y]: [number, number]): Promise<number[] | undefined> {
+  return withPage(b, async send => {
+    const shot = await send("Page.captureScreenshot", { format: "png", clip: { x, y, width: 1, height: 1, scale: 1 } });
+    if (!shot?.data) return undefined;
+    const expression = `(async () => { const i = new Image(); i.src = "data:image/png;base64,${shot.data}"; await i.decode(); const c = document.createElement("canvas"); c.width = c.height = 1; const g = c.getContext("2d"); g.drawImage(i, 0, 0); return JSON.stringify([...g.getImageData(0, 0, 1, 1).data.slice(0, 3)]); })()`;
+    const r = await send("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
+    try { return JSON.parse(r.result.value); } catch { return undefined; }
+  });
+}

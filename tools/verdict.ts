@@ -28,3 +28,7 @@ export function combine(tries: Verdict[]): Verdict | undefined {
 
 /** git bisect run: 0 good, 1 bad, 125 skip. */
 export const bisectCode = (v: Verdict) => (v === "good" ? 0 : v === "bad" ? 1 : 125);
+
+/** Broken when the colour on screen is not close to the colour it should be. */
+export const pixelSaysBroken = (px: number[] | undefined, working: number[]) =>
+  px ? px.some((v, i) => Math.abs(v - working[i]) > 12) : undefined;

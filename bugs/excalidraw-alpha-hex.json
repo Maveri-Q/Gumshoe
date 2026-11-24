@@ -1,0 +1,39 @@
+{
+  "id": "excalidraw-alpha-hex",
+  "sentence": "Typing the transparent colour code ff000080 as the canvas background turns the canvas pink.",
+  "setup": "Click the main menu button (three lines, top left). In the menu, under Canvas background, click the last colour square on the right (the one after the thin divider) so the colour picker opens. It has a Hex code text box.",
+  "ready": "a colour picker with a Hex code text box is open",
+  "action": "Click into the Hex code text box, select everything in it, and type ff000080 (no # sign). Press Tab. Then wait 2 seconds. Do not click any colour square.",
+  "broken": "The large drawing canvas area that fills the page has a white or black background.",
+  "working": "The large drawing canvas area that fills the page has a pink or light red background.",
+  "witness": {
+    "pixel": [
+      1300,
+      800
+    ],
+    "workingRgb": [
+      255,
+      127,
+      127
+    ]
+  },
+  "source": "https://github.com/excalidraw/excalidraw/issues/10772",
+  "maintainersCulprit": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+  "maintainersCulpritPr": "https://github.com/excalidraw/excalidraw/pull/10578",
+  "good": "8d18078f",
+  "bad": "a70417f2",
+  "repo": "work2/excalidraw",
+  "build": [
+    "node",
+    "--max-old-space-size=3500",
+    "work2/node_modules/vite/bin/vite.js",
+    "build",
+    "-c",
+    "work2/cfg/vite.config.mjs"
+  ],
+  "env": {
+    "VITE_APP_ENABLE_TRACKING": "false"
+  },
+  "dist": "work2/dist",
+  "port": 4301
+}
