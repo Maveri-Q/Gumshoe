@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gumshoe: which commit broke it?</title>
+<meta name="description" content="Give Gumshoe a bug report. Kane checks old versions of the app in a real browser until one commit is left.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 2h14v3H1z' fill='%23e0a63a'/%3E%3Cpath d='M4 6.5h8v3H4z' fill='%23e0a63a'/%3E%3Cpath d='M7 11h2v4H7z' fill='%23c81e45'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&display=swap">
+<style>
+:root{--ink:#1b2559;--bg:#fafbff;--panel:#eef1fb;--line:#cfd6ee;--soft:#5b6488;--gum:#e0a63a;--bad:#c81e45;--good:#0b7a55;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif}
+main,header,footer{max-width:1180px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gum);outline-offset:2px}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.05;text-wrap:balance;margin:0;font-weight:800}
+h1{font-size:clamp(38px,6vw,76px);letter-spacing:-.025em;max-width:14ch}
+h2{font-size:clamp(28px,3.4vw,42px);letter-spacing:-.015em;margin-bottom:14px}
+h3{font-size:24px}
+header{padding-top:28px}
+header nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:48px}
+.name{font:800 24px "Bricolage Grotesque",sans-serif}
+.lead{font-size:20px;max-width:58ch;margin:20px 0 0;text-wrap:pretty}
+section{padding:64px 0 0}
+.cases{display:flex;flex-wrap:wrap;gap:8px;margin:36px 0 22px}
+.cases button{font:inherit;font-size:15px;padding:8px 14px;min-height:44px;border:1.5px solid var(--line);background:none;color:inherit;border-radius:8px;cursor:pointer}
+.cases button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+.sentence{font:500 clamp(21px,2.2vw,27px)/1.3 "Bricolage Grotesque",sans-serif;margin:0 0 4px;text-wrap:pretty}
+.from{color:var(--soft);margin:0 0 20px;font-size:15px}
+.funnel{display:grid;gap:3px}
+.funnel button{display:grid;grid-template-columns:minmax(0,1fr) 124px;gap:12px;align-items:center;border:0;background:none;padding:4px 8px;font:inherit;font-size:15px;text-align:left;color:inherit;border-radius:6px;cursor:pointer;min-height:38px}
+.funnel button:hover,.funnel button[aria-pressed=true]{background:var(--panel)}
+.track{position:relative;height:22px;background:repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 7px)}
+.left{position:absolute;top:0;bottom:0;background:var(--gum);min-width:5px;border-radius:2px}
+.last .left{background:var(--bad)}
+.dot{position:absolute;top:-3px;width:5px;height:28px;border-radius:2px;margin-left:-2px;box-shadow:0 0 0 2px var(--bg);background:var(--soft)}
+.good .dot,.v.good{background:var(--good)}.bad .dot,.v.bad{background:var(--bad)}.v.unsure{background:var(--soft)}
+.num{font-variant-numeric:tabular-nums}
+.verdict{margin:20px 0 0;padding:20px 22px;background:var(--bad);color:#fff;border-radius:8px}
+.verdict .sha{font:800 34px/1.1 "Bricolage Grotesque",sans-serif}
+.verdict p{margin:6px 0 0}
+.shot{margin:0;position:sticky;top:20px}
+.shot img{width:100%;display:block;border:1.5px solid var(--line);border-radius:6px;aspect-ratio:16/9;object-fit:cover;background:var(--panel)}
+.shot figcaption{padding-top:12px}
+.v{color:#fff;border-radius:5px;padding:2px 9px;font-weight:700;margin-right:8px}
+.tries{list-style:none;padding:0;margin:8px 0;font-size:15px;color:var(--soft)}
+details{margin-top:14px}summary{cursor:pointer;font-weight:700}
+pre{background:var(--ink);color:#e7ebff;padding:16px;border-radius:6px;overflow:auto;max-height:420px;font:13px/1.5 ui-monospace,Consolas,monospace}
+pre .a{color:#7be0b4}pre .d{color:#ff9db1}
+.fix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;margin-top:34px;padding:26px;background:#e3f4ec;border-radius:10px}
+.fix img{width:100%;border-radius:6px;border:1.5px solid #a9d8c3;display:block}.fix h3{color:var(--good)}
+.scroll{overflow-x:auto;margin-top:18px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:1120px}
+th,td{text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}
+thead th{font-size:14px;color:var(--soft);font-weight:400;vertical-align:bottom}
+tbody th{font-weight:700;min-width:230px;max-width:270px}tbody th span{display:block;font-weight:400;color:var(--soft);font-size:14px}
+code{font:14px ui-monospace,Consolas,monospace;overflow-wrap:anywhere}small{color:var(--soft)}
+.yes{color:var(--good)}.no{color:var(--bad)}.na{color:var(--soft)}
+ul{padding-left:22px;max-width:70ch}li{margin:8px 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}.cols p{margin:0;max-width:60ch}
+footer{padding:56px 24px 48px;color:var(--soft);font-size:15px}
+@media(max-width:820px){
+.case,.fix,.cols{grid-template-columns:minmax(0,1fr);gap:24px}.shot{position:static}header nav{margin-bottom:30px}
+main,header,footer{padding-left:16px;padding-right:16px}.fix{padding:18px}.funnel button{grid-template-columns:minmax(0,1fr) 118px}}
+</style></head><body>
+<header><nav><span class="name">Gumshoe</span><a href="#board">Scoreboard</a></nav>
+<h1>Which commit broke it?</h1>
+<p class="lead">Give Gumshoe a bug report. It turns the report into one sentence. Kane checks that sentence in a real browser on older versions of the app. About half the suspects go each time, until one commit is left.</p></header>
+<main>
+<div class="cases" role="group" aria-label="Pick a real bug"></div>
+<div class="case"><div><p class="sentence"></p><p class="from"></p><div class="funnel"></div><div class="verdict" aria-live="polite"></div><div class="diff"></div></div>
+<figure class="shot"><img alt=""><figcaption></figcaption></figure></div>
+<div class="fixbox"></div>
+<section id="board"><h2>Every bug we tried</h2>
+<p class="lead">2 of 3 hunts ended on one commit. Where the maintainers named a commit, Gumshoe named the same one in 2 of 2. All bugs are real and public. None were planted.</p>
+<div class="scroll" tabindex="0" role="region" aria-label="Scoreboard"><table><thead><tr><th>Bug report</th><th>Gumshoe says</th><th>Maintainers say</th><th>Match</th><th>Commits searched</th><th>Kane tries</th><th>Time</th><th>Kane credits</th><th>Maintainers took</th><th>Check written</th><th>Fix</th></tr></thead><tbody><tr>
+<th scope="row"><a href="https://github.com/excalidraw/excalidraw/pull/12053">Excalidraw 12053</a><span>After opening the main menu, clicking an empty part of the canvas closes the menu.</span></th>
+<td><code>e1bb9ff8</code></td>
+<td><code>e1bb9ff8</code></td>
+<td><b class="yes">Same</b></td>
+<td>70</td><td>18</td><td>35 min</td><td>356</td>
+<td>Not known</td>
+<td>By hand</td>
+<td>Not tried</td></tr>
+<tr>
+<th scope="row"><a href="https://github.com/excalidraw/excalidraw/issues/10772">Excalidraw 10772</a><span>Typing the transparent colour code ff000080 as the canvas background turns the canvas pink.</span></th>
+<td><code>63e11482</code></td>
+<td><code>63e11482</code></td>
+<td><b class="yes">Same</b></td>
+<td>56</td><td>17 <small>(1 refused)</small></td><td>35 min</td><td>369</td>
+<td>Not known</td>
+<td>By hand</td>
+<td>Not tried</td></tr>
+<tr>
+<th scope="row"><a href="https://github.com/TiddlyWiki/TiddlyWiki5/issues/9592">TiddlyWiki5 9592</a><span>[Report] HTML anchor links opens new tiddler</span></th>
+<td>the bisect could not name one commit</td>
+<td>No commit named</td>
+<td><b class="no">Not found</b></td>
+<td>168</td><td>18 <small>(3 refused)</small></td><td>65 min</td><td>636</td>
+<td>Not known</td>
+<td>By Gumshoe</td>
+<td>Not tried</td></tr></tbody></table></div></section>
+<section class="cols"><div><h2>Why one sentence</h2><p>A test that looks for a button by its code name breaks when the code changes. A bug hunt goes back through months of changes. “The menu closes” still means the same thing on an old version.</p></div>
+<div><h2>How it avoids wrong answers</h2><p>Kane does the steps. A second Kane run only looks, and judges two opposite statements. A second reader judges the saved screen. All must agree, in two tries, or the commit is skipped. 4 of 53 tries were refused.</p></div></section>
+<section><h2>What it can't do yet</h2><ul>
+<li>Old versions must still build. If one doesn't, that commit is skipped.</li>
+<li>The report must say clearly what should happen. A vague report gives a vague check.</li>
+<li>Kane can misread a screen, and so can the second reader. If both misread it the same way twice, the answer is wrong.</li>
+<li>It names the commit where the behaviour changed. That is not always the real cause.</li>
+<li>2 bugs with a known answer is a small sample, from 2 apps.</li>
+<li>Each app needs a short build file, written once by a person.</li></ul></section>
+</main>
+<footer>Every picture and number here comes from a recorded run. <code>npm run replay</code> rebuilds this page from those recordings. Built for the KaneCLI online hackathon.</footer>
+<script>
+const D=[{"app":"Excalidraw","no":"12053","issue":"https://github.com/excalidraw/excalidraw/pull/12053","title":"After opening the main menu, clicking an empty part of the canvas closes the menu.","sentence":"After opening the main menu, clicking an empty part of the canvas closes the menu.","range":70,"culprit":"e1bb9ff8","subject":"feat(packages/excalidraw): support rendering into another document (#11974)","commitUrl":"https://github.com/excalidraw/excalidraw/commit/e1bb9ff8f8931e783c11d104abb8967ac6605c9a","same":true,"who":"the maintainers","minutes":35,"credits":356,"n":70,"rows":[{"sha":"f1a79b73","subject":"perf(editor): stop inverting the interactive canvas via CSS filter in dark mode (#12050)","verdict":"bad","at":69,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85F63B80W4XAKHFWC7ZAS8B/dashboard/share/US_7K09EBBZJ4LLI6BC9EIR96TK11QTEJY7H1E7CJUM0TA9KX7RXYBL8QIXR9UE359L?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-e-f1a79b73.jpg","what":"reported","lo":-1,"hi":69},{"sha":"cd514d72","subject":"feat(editor): LaserPointer based freedraw (#11507)","verdict":"good","at":-1,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EYQ0XVPTCQNRBT1303HC7/dashboard/share/US_VMSRUV0KJ1C8ZQT87KJDM6UT7Q9FJVOZ7XXKW0WFT0W6LHEOJX0ZXS44N1EEUU8O?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-e-cd514d72.jpg","what":"older","lo":-1,"hi":69},{"sha":"5cf54765","subject":"fix(editor): make Help button tooltip consistent with toolbar (#11681)","verdict":"good","at":34,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FDQAJ40W6V1YFM6FM6ZW4/dashboard/share/US_ZEV0IWAZIWMB30ZSFNNLIEGBIFGER00VW9T26UUZ98WZ03JLRZCYOQME0DSAYCNV?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-5cf54765.jpg","lo":34,"hi":69},{"sha":"46c42a6c","subject":"fix(editor): initialize selectedLinearElement after pasting arrows (#11803)","verdict":"good","at":51,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FNBRZSP07FZ1K6QXQ9FH3/dashboard/share/US_X5XBPXIPB3CGJI2N541EHBKIWL3TPN9JZFTL64EH2VFK9E0L1K38L7TM2OCQAOV1?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-46c42a6c.jpg","lo":51,"hi":69},{"sha":"4872083c","subject":"feat(editor): bucketfill cursor + eyedropper support (#11849)","verdict":"good","at":60,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FW9RDCAXKFWSMGCT2WY1S/dashboard/share/US_YGDMRKY6XFIGL9GOJKNMVSX5GA4MQEAWQBZBJTH1SD55S82XLYED19C2CWLV28CW?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-4872083c.jpg","lo":60,"hi":69},{"sha":"884225b1","subject":"fix(app): localize hardcoded \"Sign up\"/\"Sign in\" menu labels (#11893)","verdict":"good","at":64,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85G3SYF91KDAM146ENH44P5/dashboard/share/US_AYQJ6MEEYX955NX900ZTSZOKF4FLONMAQZNQJAPV3JSZWHMPRHGIRRTTZLHURZ1W?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-884225b1.jpg","lo":64,"hi":69},{"sha":"4a6f4e7a","subject":"feat(app): d2c streaming (#11960)","verdict":"good","at":66,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GAGG0EN3YK0J5WHZRMX8C/dashboard/share/US_Q2ZS2P39B0NX8U9C285GU99N0HH6QWR5UFIG6FKJ81FHYD2KSIW0F9OOBLA3WQV8?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-4a6f4e7a.jpg","lo":66,"hi":69},{"sha":"214cd6e6","subject":"feat(editor): allow for dragging bound text along an arrow's path (#10947)","verdict":"bad","at":68,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GH3FCY0CRBC6K1P3GWEC3/dashboard/share/US_NYIANI2X1F72T0AH90NH9OPPFGFXDSOH2PNS9WD8QZ616IR2QDFUI7EDZQ0GQ2AM?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-214cd6e6.jpg","lo":66,"hi":68},{"sha":"e1bb9ff8","subject":"feat(packages/excalidraw): support rendering into another document (#11974)","verdict":"bad","at":67,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GQTHDTFJZVQFXP6T4T6QE/dashboard/share/US_QAP75VNDLLON1QZ6ZDXABX786ELGU2OWDSUI8IVIL3LJ39WKPQMWKRCHJY0BHFU5?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-menu-b-e1bb9ff8.jpg","lo":66,"hi":67}]},{"app":"Excalidraw","no":"10772","issue":"https://github.com/excalidraw/excalidraw/issues/10772","title":"Typing the transparent colour code ff000080 as the canvas background turns the canvas pink.","sentence":"Typing the transparent colour code ff000080 as the canvas background turns the canvas pink.","range":56,"culprit":"63e11482","subject":"feat: stop using CSS filters for dark mode (static canvas) (#10578)","commitUrl":"https://github.com/excalidraw/excalidraw/commit/63e1148280163a36326b7efb5fdfeefebabdb3e4","same":true,"who":"the maintainers","minutes":35,"credits":369,"n":56,"rows":[{"sha":"a70417f2","subject":"feat(editor): visualize binding midpoints + support for simple arrows (#10611)","verdict":"bad","at":55,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HQAEDXJET1YAGVJC4A346/dashboard/share/US_VR27KLA0RY4ZIEODCAKP04XBZ3PRIS11JMYOMPLKWFHXD2OLJ14I1PF64KAM5MQW?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-e-a70417f2.jpg","what":"reported","lo":-1,"hi":55},{"sha":"8d18078f","subject":"fix: Box selection of arrows (#10451)","verdict":"good","at":-1,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HFRRE1G2KZEJCVNCHTJB7/dashboard/share/US_BUENOSXM7M7XVTPQTAIBPFTEDXCYGFLQ4ZX8M4I3DJHQVAY46KXVAC9HS13FQO0B?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-e-8d18078f.jpg","what":"older","lo":-1,"hi":55},{"sha":"9ba0f5db","subject":"fix: Arrow drag start in bindable area  jumps across bindable (#10676)","verdict":"bad","at":27,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HYEYCCC4BN39YC3GGZ6EB/dashboard/share/US_03DFC7Q1NBJ9VICSG4HBE0XL2G7DZ2NR6S56N6DMSZB260RE6MFSS461IC4MXT91?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-9ba0f5db.jpg","lo":-1,"hi":27},{"sha":"87faa5d3","subject":"fix: sentry CI worfklow (#10610)","verdict":"bad","at":13,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85J63KK0WDJKW2KD8S1A4WE/dashboard/share/US_5XVTK7JTTXUUV51L6QYOHM9E5TDKBAL19HQDK5739UICF4HVWK6F66YELFR4DZ5D?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-87faa5d3.jpg","lo":-1,"hi":13},{"sha":"d87620b2","subject":"fix: Circular reference (#10544)","verdict":"good","at":6,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JDSFCWHFVEFGJQ07RTNZC/dashboard/share/US_VLR2SUI0A9VWBRJ4JCBYSP3QVW8NMWXVWGWTBU7NDL87CWL1C4XVU9G40FADG0MX?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-d87620b2.jpg","lo":6,"hi":13},{"sha":"6c908553","subject":"fix: reconciliation of server updates & refactor restore (#10597)","verdict":"good","at":9,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"unsure","why":"Kane contradicted itself"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JRVK11JR04RFB5MR042AB/dashboard/share/US_CT2WE7D14AK0266C2ZYG1Z4X66S7XP8KWY0HZCOPDTKX4ER6JDFVMZDCE5ITQQ32?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-6c908553.jpg","lo":9,"hi":13},{"sha":"63e11482","subject":"feat: stop using CSS filters for dark mode (static canvas) (#10578)","verdict":"bad","at":11,"tries":[{"v":"bad","why":"Kane and the saved screen agree"},{"v":"bad","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85K17F6CFF0FFRCJ2JH2GT5/dashboard/share/US_TNX3VPXBVTNJ33XPGNMU3U8YUXTH03A9W2SY8WXIPJPMN8FVY3MMYGLRRI8FZ8IZ?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-63e11482.jpg","lo":9,"hi":11},{"sha":"b5fc8733","subject":"chore: Update translations from Crowdin (#10453)","verdict":"good","at":10,"tries":[{"v":"good","why":"Kane and the saved screen agree"},{"v":"good","why":"Kane and the saved screen agree"}],"link":"https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85K9J1V5BTPKFV051HHJ0FB/dashboard/share/US_ZAQQFM3DZPMYVYNQ69DST7FUSRTTI0S3UIJ6SXRQ1FBGXHXXQ8VN0OQ4LTCK66VU?type=summary&agentView=true&fqdn=summary-page","img":"img/excalidraw-alpha-hex-b-b5fc8733.jpg","lo":10,"hi":11}]}];
+const $=s=>document.querySelector(s),e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const V={good:"Works",bad:"Broken",unsure:"Skipped"};
+const diff=d=>"<pre>"+d.split("\n").map(l=>l[0]=="+"?"<span class=a>"+e(l)+"</span>":l[0]=="-"?"<span class=d>"+e(l)+"</span>":e(l)).join("\n")+"</pre>";
+let cur;const pick=$(".cases");
+D.forEach((c,i)=>{const b=document.createElement("button");b.textContent=c.app+" "+c.no;b.onclick=()=>show(i);pick.append(b)});
+function show(i){
+  cur=D[i];[...pick.children].forEach((b,j)=>b.setAttribute("aria-pressed",i==j));
+  $(".sentence").textContent=cur.sentence;$(".from").innerHTML='From <a href="'+e(cur.issue)+'">this report</a>: '+e(cur.title);
+  const f=$(".funnel");f.innerHTML="";
+  cur.rows.forEach((r,k)=>{
+    const b=document.createElement("button"),n=cur.n,left=r.hi-r.lo;b.className=r.verdict+(left==1?" last":"");
+    const label=r.what=="older"?"Older: works":r.what=="reported"?"Report: broken":left==1?"1 suspect":left+" suspects";
+    b.innerHTML='<span class=track><span class=left style="left:'+100*(r.lo+1)/n+"%;width:"+100*left/n+'%"></span><span class=dot style="left:'+Math.max(0,Math.min(99.5,100*(r.at+.5)/n))+'%"></span></span><span class=num>'+label+"</span>";
+    b.setAttribute("aria-label",(r.what?label:"Commit "+r.sha+": "+V[r.verdict]+", "+left+" left"));b.onclick=()=>look(k);f.append(b)});
+  $(".verdict").innerHTML="<div class=sha>"+e(cur.culprit)+"</div><p>"+e(cur.subject)+"</p><p>"+(cur.same===true?"Same commit as "+e(cur.who||"the maintainers")+". ":cur.same===false?"The maintainers named a different commit. ":e(cur.note||"The maintainers named no commit.")+" ")+'<a href="'+e(cur.commitUrl)+'">See the commit</a></p><p>'+cur.range+" commits searched in "+cur.minutes+" minutes, for "+cur.credits+" Kane credits.</p>";
+  $(".diff").innerHTML=cur.diff?"<details><summary>What that commit changed</summary>"+diff(cur.diff)+"</details>":"";
+  const x=cur.fix,a=x&&x.attempts.at(-1);
+  $(".fixbox").innerHTML=x?"<div class=fix><div><h3>"+(x.outcome=="fixed"?"Then the coding agent fixed it":"The fix: "+e(x.outcome))+"</h3><p>"+x.attempts.map(t=>"Attempt "+t.n+": "+(V[t.verdict]||e(t.verdict)).toLowerCase()).join(". ")+".</p>"+(a&&a.said?"<p>"+e(a.said)+"</p>":"")+(x.file?"<p>The sentence is now a Kane test, <code>"+e(x.file)+"</code>. On the fix it "+e(x.green)+". On the broken version it "+e(x.red)+".</p>":"")+(a&&a.diff?"<details><summary>The fix</summary>"+diff(a.diff)+"</details>":"")+"</div>"+(a&&a.img?'<div><img src="'+a.img+'" alt="The app after the fix, as Kane left it"></div>':"")+"</div>":"";
+  look(cur.rows.length-1);
+}
+function look(k){
+  const r=cur.rows[k];[...$(".funnel").children].forEach((b,j)=>b.setAttribute("aria-pressed",k==j));
+  const im=$(".shot img");im.src=r.img;im.alt="The app at commit "+r.sha+", as Kane left it";
+  $(".shot figcaption").innerHTML='<span class="v '+r.verdict+'">'+V[r.verdict]+"</span><code>"+e(r.sha)+"</code> "+e(r.subject)+"<ul class=tries>"+r.tries.map((t,i)=>"<li>Try "+(i+1)+": "+(t.v=="unsure"?"refused":V[t.v].toLowerCase())+". "+e(t.why)+".</li>").join("")+"</ul>"+(r.link?'<a href="'+e(r.link)+'">Kane’s own record of this run</a>':"");
+}
+show(0);
+</script></body></html>

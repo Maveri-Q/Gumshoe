@@ -1,7 +1,4 @@
-{"type":"stream_start","cli_version":"0.10.6","surface":"run","pid":8812,"v":1,"ts":"2026-11-24T05:48:08.011Z"}
-{"type":"recording_state","enabled":true,"session_id":"02487a5b-6cbf-4da9-8198-d8dee103b254","persist":false,"v":1,"ts":"2026-11-24T05:48:08.073Z"}
-{"type":"update_available","current":"0.10.6","latest":"0.10.8","severity":"patch","v":1,"ts":"2026-11-24T05:48:09.052Z"}
-{"type":"skill_update_available","current":null,"latest":"0.1.4","install_cmd":"kane-cli install skill","v":1,"ts":"2026-11-24T05:48:09.058Z"}
-{"step":1,"status":"done","remark":"Checking for the missing my-spot tiddler in the main area: value: 'false' -> 'false'; equals 'true' -> FAIL","v":1,"ts":"2026-11-24T05:48:46.608Z"}
-{"step":2,"status":"done","remark":"Checking the Landing place main-area state: value: 'true' -> 'true'; equals 'true' -> PASS","v":1,"ts":"2026-11-24T05:48:46.610Z"}
-{"type":"run_end","status":"passed","run_id":"run-0","duration":29.02,"condition_results":[false,true],"condition_reasons":["Checking for the missing my-spot tiddler in the main area: value: 'false' -> 'false'; equals 'true' -> FAIL","Checking the Landing place main-area state: value: 'true' -> 'true'; equals 'true' -> PASS"],"condition_sub_checks":[{"description":"A separate tiddler whose title contains 'my-spot' (such as '#my-spot') is shown in the main area, with a message that this tiddler is missing.","extracted_value":"false","expected_value":"true","operator":"equals","transforms":[],"json_path":null},{"description":"The text 'Landing place' is shown in the main area, and no tiddler whose title contains 'my-spot' and no missing tiddler message is shown.","extracted_value":"true","expected_value":"true","operator":"equals","transforms":[],"json_path":null}],"credits_consumed":5.03425,"v":1,"ts":"2026-11-24T05:48:47.104Z"}
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","pid":4016,"v":1,"ts":"2026-11-24T10:08:31.228Z"}
+{"type":"recording_state","enabled":true,"session_id":"1d970905-a667-44ba-a804-293184c598f8","persist":false,"v":1,"ts":"2026-11-24T10:08:31.283Z"}
+{"type":"update_available","current":"0.10.6","latest":"0.10.8","severity":"patch","v":1,"ts":"2026-11-24T10:08:32.301Z"}
+{"type":"skill_update_available","current":null,"latest":"0.1.4","install_cmd":"kane-cli install skill","v":1,"ts":"2026-11-24T10:08:32.304Z"}

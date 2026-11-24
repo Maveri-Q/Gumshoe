@@ -1,1 +1,13 @@
-{ "name": "gumshoe-cli", "version": "0.0.1", "private": true, "type": "module", "license": "MIT", "scripts": { "test": "node --test test/*.test.ts" } }
+{
+  "name": "gumshoe-cli",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/*.test.ts",
+    "replay": "node tools/replay.ts",
+    "hunt": "node tools/hunt.ts",
+    "fix": "node tools/fix.ts"
+  }
+}
