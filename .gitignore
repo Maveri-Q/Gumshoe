@@ -1,0 +1,6 @@
+work/
+node_modules/
+.env*
+!.env.example
+.kane-profiles/
+dist/
