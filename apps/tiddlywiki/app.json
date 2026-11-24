@@ -1,0 +1,15 @@
+{
+  "repo": "TiddlyWiki/TiddlyWiki5",
+  "clone": "clones/tiddlywiki",
+  "about": "TiddlyWiki, a notebook made of small pages called tiddlers. The site that opens is the TiddlyWiki documentation wiki, built from the commit being checked. A tiddler opens with a path like /#HelloThere (spaces as %20). Tiddlers have edit, info and close buttons at their top right. Control panel is the tiddler $:/ControlPanel.",
+  "build": [
+    "node",
+    "{src}/tiddlywiki.js",
+    "{src}/editions/tw5.com",
+    "--output",
+    "{dist}",
+    "--build",
+    "index"
+  ],
+  "versionTag": "v{version}"
+}

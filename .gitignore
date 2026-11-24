@@ -5,3 +5,5 @@ node_modules/
 .kane-profiles/
 dist/
 work2/
+.scout/
+clones/

@@ -1,0 +1,17 @@
+{
+  "repo": "1j01/jspaint",
+  "clone": "clones/jspaint",
+  "about": "JS Paint, a copy of the classic MS Paint program, as a web page.",
+  "build": [
+    "git",
+    "-C",
+    "{src}",
+    "archive",
+    "--format=tar",
+    "-o",
+    "{dist}/app.tar",
+    "HEAD"
+  ],
+  "unpack": "app.tar",
+  "versionTag": "v{version}"
+}

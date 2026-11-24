@@ -16,7 +16,7 @@ export function tryVerdict(t: Try): { verdict: Verdict; why: string } {
   if (t.look[0] === t.look[1]) return { verdict: "unsure", why: "Kane contradicted itself" };
   const b = t.look[0];
   if (t.witness === undefined) return { verdict: "unsure", why: "no saved screen to compare with" };
-  if (t.witness !== b) return { verdict: "unsure", why: `Kane said broken=${b}, the saved screen says ${t.witness ? "yes" : "no"}` };
+  if (t.witness !== b) return { verdict: "unsure", why: `Kane said broken=${b}, the second look at the saved screen says broken=${t.witness}` };
   return { verdict: b ? "bad" : "good", why: "Kane and the saved screen agree" };
 }
 
