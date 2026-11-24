@@ -1,0 +1,9 @@
+2026-11-24T00:56:21.458Z COMMIT 8d18078f fix: Box selection of arrows (#10451)
+2026-11-24T00:56:38.881Z   built in 17s
+2026-11-24T00:58:32.787Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 28.9 credits 114s
+2026-11-24T00:59:53.403Z   try 2: unsure (Kane did not get the app ready) ready= look[broken,working]=[true,false] screenSaysBroken=true 12.6 credits 81s
+2026-11-24T01:01:07.653Z COMMIT a70417f2 feat(editor): visualize binding midpoints + support for simple arrows (#10611)
+2026-11-24T01:01:24.848Z   built in 17s
+2026-11-24T01:03:13.229Z   try 1: bad (Kane and the saved screen agree) ready=true look[broken,working]=[true,false] screenSaysBroken=true 20.7 credits 108s
+2026-11-24T01:04:56.077Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 19.8 credits 103s
+2026-11-24T01:04:56.080Z   => BAD  40.5 credits, 228s

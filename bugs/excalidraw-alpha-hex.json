@@ -3,7 +3,7 @@
   "sentence": "Typing the transparent colour code ff000080 as the canvas background turns the canvas pink.",
   "setup": "Click the main menu button (three lines, top left). In the menu, under Canvas background, click the last colour square on the right (the one after the thin divider) so the colour picker opens. It has a Hex code text box.",
   "ready": "a colour picker with a Hex code text box is open",
-  "action": "Click into the Hex code text box, select everything in it, and type ff000080 (no # sign). Press Tab. Then wait 2 seconds. Do not click any colour square.",
+  "action": "Click into the Hex code text box, select everything in it, and type ff000080 (no # sign). Press Tab. Then wait 2 seconds. Once the picker is open, do not click any more colour squares.",
   "broken": "The large drawing canvas area that fills the page has a white or black background.",
   "working": "The large drawing canvas area that fills the page has a pink or light red background.",
   "witness": {
