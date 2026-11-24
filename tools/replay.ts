@@ -60,7 +60,7 @@ for (const [bugName, bisect, cal] of [["excalidraw-menu", "excalidraw-bisect", "
   const all = [...ends, ...judged];
   hunts.push({ id: bugName, by: "hand", app: "Excalidraw", issue: b.source, title: b.title, sentence: b.sentence, outcome: "found", culprit: c?.sha, culpritSubject: c?.subject, range: commits.length, commits, judged, ends,
     credits: sum(all, "credits"), minutes: sum(all, "totalSeconds") / 60, tries: all.flatMap(x => x.tries).length, refused: all.flatMap(x => x.tries).filter((t: any) => t.verdict === "unsure").length,
-    truth: { culprit: b.maintainersCulprit, who: "the maintainers", source: b.source } });
+    truth: { culprit: b.maintainersCulprit, who: "the maintainers", source: b.source, took: b.took } });
 }
 for (const id of existsSync(join(root, "runs")) ? readdirSync(join(root, "runs")).sort() : []) {
   const base = join(root, "runs", id);

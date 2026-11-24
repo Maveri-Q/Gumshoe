@@ -1,0 +1,10 @@
+c305eb01eb23029b4709cac53cf2d3dd4b98a754
+Jeremy Ruston
+2026-02-19T12:11:39+01:00
+Fix passing a filtered attribute as a MVV (#9663)
+
+
+ core/modules/widgets/transclude.js                                                       |  2 +-
+ core/modules/widgets/widget.js                                                           |  3 ++-
+ editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid | 19 +++++++++++++++++++
+ 3 files changed, 22 insertions(+), 2 deletions(-)

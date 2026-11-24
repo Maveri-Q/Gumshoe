@@ -18,16 +18,23 @@ Bisecting: 1 revision left to test after this (roughly 1 step)
 [08f2b8bdf416d2cad977827efcd59ffa80fe9782] Fixes variable enumeration in widgets (#9648)
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
 COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
-  built in 8s
-  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 38.6 credits 250s
-  Kane gave no result at all (exit 1). Stopping the bisect.
-Kane gave nothing. Waiting 60 seconds, then trying this commit again.
-COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
-  built in 6s
-  Kane gave no result at all (exit 2). Stopping the bisect.
-Kane gave nothing. Waiting 60 seconds, then trying this commit again.
-COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
-  built in 4s
-  Kane gave no result at all (exit 2). Stopping the bisect.
-No verdict for this commit, so the bisect stops: ENOENT: no such file or directory, open 'C:\Users\admin\Downloads\gumshoe\runs\tiddlywiki-9678\bisect\08f2b8bd\verdict.json'
-error: bisect run failed: exit code 200 from 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect' is < 0 or >= 128
+  built in 9s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.1 credits 267s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 41.3 credits 255s
+  => BAD  98.4 credits, 531s
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+c305eb01eb23029b4709cac53cf2d3dd4b98a754 is the first 'bad' commit
+commit c305eb01eb23029b4709cac53cf2d3dd4b98a754
+Author: Jeremy Ruston <jeremy@jermolene.com>
+Date:   Thu Feb 19 11:11:39 2026 +0000
+
+    Fix passing a filtered attribute as a MVV (#9663)
+
+ core/modules/widgets/transclude.js                    |  2 +-
+ core/modules/widgets/widget.js                        |  3 ++-
+ .../TranscludeParameterDirectly.tid                   | 19 +++++++++++++++++++
+ 3 files changed, 22 insertions(+), 2 deletions(-)
+ create mode 100644 editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid
+bisect found first 'bad' commit

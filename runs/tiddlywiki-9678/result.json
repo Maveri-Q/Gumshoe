@@ -1,0 +1,141 @@
+{
+  "id": "tiddlywiki-9678",
+  "issue": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9678",
+  "title": "[regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style",
+  "issueCreatedAt": "2026-02-22T16:03:49Z",
+  "sentence": "In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.",
+  "outcome": "found",
+  "culprit": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+  "culpritSubject": "Fix passing a filtered attribute as a MVV (#9663)",
+  "culpritDate": "2026-02-19T12:11:39+01:00",
+  "range": 234,
+  "good": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "bad": "431b7fa3bfe71c6100134aa7d0a9c7fc517b2876",
+  "tries": 27,
+  "refused": 4,
+  "credits": 971.9,
+  "minutes": 9.1,
+  "finishedAt": "2026-11-24T23:11:47.423Z",
+  "steps": [
+    {
+      "part": "reported-1",
+      "sha": "431b7fa3bfe71c6100134aa7d0a9c7fc517b2876",
+      "subject": "Update ImportListing.tid (#9674)",
+      "verdict": "unsure",
+      "credits": 105.5,
+      "seconds": 581,
+      "date": "2026-02-21T17:37:37Z",
+      "finished": "2026-11-24T04:46:06.005Z"
+    },
+    {
+      "part": "reported-2",
+      "sha": "431b7fa3bfe71c6100134aa7d0a9c7fc517b2876",
+      "subject": "Update ImportListing.tid (#9674)",
+      "verdict": "bad",
+      "credits": 81.7,
+      "seconds": 367,
+      "date": "2026-02-21T17:37:37Z",
+      "finished": "2026-11-24T04:52:27.236Z"
+    },
+    {
+      "part": "older",
+      "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+      "subject": "Version number update for 5.3.8",
+      "verdict": "good",
+      "credits": 79.3,
+      "seconds": 349,
+      "date": "2025-08-07T09:01:06+01:00",
+      "finished": "2026-11-24T04:58:22.708Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "6cb333b65b145ca9c41cb6349fc227396948c3bc",
+      "subject": "Merge branch 'tiddlywiki-com'",
+      "verdict": "good",
+      "credits": 103.5,
+      "seconds": 571,
+      "date": "2025-11-22T17:48:43Z",
+      "finished": "2026-11-24T05:07:57.182Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "e42ed6808eb00e5daaf72de34d8f24f94028ff9b",
+      "subject": "Split escapecss into two platforms (#9475)",
+      "verdict": "good",
+      "credits": 67.3,
+      "seconds": 407,
+      "date": "2026-01-20T12:13:48+01:00",
+      "finished": "2026-11-24T05:14:46.799Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "0673426f5a640d82c672579088a4336894f9fb6d",
+      "subject": "fix: remove fn wrappers and unneeded comments (#9637)",
+      "verdict": "good",
+      "credits": 61.9,
+      "seconds": 411,
+      "date": "2026-02-05T17:06:32+01:00",
+      "finished": "2026-11-24T05:21:41.652Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "64ee20edd2ea1e2674b0118143ad1a93764d0983",
+      "subject": "Further MVV fixes (#9645)",
+      "verdict": "good",
+      "credits": 103.5,
+      "seconds": 659,
+      "date": "2026-02-10T12:16:20+01:00",
+      "finished": "2026-11-24T05:32:42.641Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "71462143bfd8951476620da2cb26a23d997eeb5f",
+      "subject": "Fix BackgroundActions example",
+      "verdict": "good",
+      "credits": 60.4,
+      "seconds": 443,
+      "date": "2026-02-16T18:16:45Z",
+      "finished": "2026-11-24T05:40:08.209Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "07634d65955735a12fe6b0ffe447917b5d2a8c2e",
+      "subject": "Merge branch 'tiddlywiki-com'",
+      "verdict": "bad",
+      "credits": 72.1,
+      "seconds": 364,
+      "date": "2026-02-20T09:28:07Z",
+      "finished": "2026-11-24T05:46:13.178Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "785086e0a5d60d13c76a6f7527639eefcbb052b8",
+      "subject": "Fixes ESLint errors (#9668)",
+      "verdict": "bad",
+      "credits": 69.3,
+      "seconds": 457,
+      "date": "2026-02-20T08:38:42Z",
+      "finished": "2026-11-24T10:19:36.567Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+      "subject": "Fix passing a filtered attribute as a MVV (#9663)",
+      "verdict": "bad",
+      "credits": 69,
+      "seconds": 454,
+      "date": "2026-02-19T12:11:39+01:00",
+      "finished": "2026-11-24T10:28:38.086Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "08f2b8bdf416d2cad977827efcd59ffa80fe9782",
+      "subject": "Fixes variable enumeration in widgets (#9648)",
+      "verdict": "bad",
+      "credits": 98.4,
+      "seconds": 531,
+      "date": "2026-02-19T11:14:19Z",
+      "finished": "2026-11-24T23:11:44.272Z"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T23:11:44.272Z",
+  "sha": "08f2b8bdf416d2cad977827efcd59ffa80fe9782",
+  "subject": "Fixes variable enumeration in widgets (#9648)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 9,
+  "totalSeconds": 531,
+  "credits": 98.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the TiddlyWiki tab within the Settings section after it appeared.\nScrolled to the bottom of the settings list, where the Toolbar Button Style heading, its instruction text, and the closed dropdown were visible.\nDid not change any settings or open the dropdown.",
+      "credits": 57.09700749999999,
+      "seconds": 267
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the TiddlyWiki section within Settings after it appeared.\nScrolled to the bottom of the settings list, where the Toolbar Button Style heading, its description, and the closed style dropdown were visible.\nWaited briefly and left the dropdown closed without changing any settings.",
+      "credits": 41.28472549999999,
+      "seconds": 255
+    }
+  ]
+}

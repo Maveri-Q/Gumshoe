@@ -63,3 +63,5 @@
 2026-11-24T23:02:52.801Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
 2026-11-24T23:03:01.810Z   built in 9s
 2026-11-24T23:07:29.338Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.1 credits 267s
+2026-11-24T23:11:44.270Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 41.3 credits 255s
+2026-11-24T23:11:44.274Z   => BAD  98.4 credits, 531s

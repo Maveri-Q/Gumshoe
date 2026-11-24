@@ -1,1 +1,7 @@
-{ "culprit": "63e1148280163a36326b7efb5fdfeefebabdb3e4", "who": "named in the issue title (#10578)", "source": "https://github.com/excalidraw/excalidraw/issues/10772" }
+{
+ "culprit": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+ "who": "named in the issue title (#10578)",
+ "source": "https://github.com/excalidraw/excalidraw/issues/10772",
+ "took": "Named in the report itself",
+ "note": "The issue title names #10578, and the title is part of what Gumshoe read. The bisect never sees it."
+}

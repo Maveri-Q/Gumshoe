@@ -1,1 +1,1 @@
-{ "culprit": null, "note": "Maintainer saqimtiaz: 'more than likely due to #9675', fixed in #9682. No commit named. To be compared with what #9682 changed.", "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9678" }
+{ "culprit": "c305eb01eb23029b4709cac53cf2d3dd4b98a754", "who": "the maintainers: they put 9678 down to #9675, and traced #9675 to #9663", "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9675", "took": "Same day, through a report already traced", "note": "No commit was named in 9678 itself. The link runs 9678, then 9675, then 9663." }

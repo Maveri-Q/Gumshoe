@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/excalidraw/excalidraw/issues/10772",
+  "repo": "excalidraw/excalidraw",
+  "number": 10772,
+  "title": "Regression: Hex colors with Alpha broken since #10578",
+  "body": "@dwelle \n\nregression from #10578\n\n<img width=\"773\" height=\"797\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e2c97112-28f3-46eb-94fa-1284c35e228f\" />",
+  "createdAt": "2026-02-12T20:16:47Z"
+}

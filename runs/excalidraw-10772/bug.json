@@ -1,0 +1,30 @@
+{
+  "id": "excalidraw-10772",
+  "sentence": "When an 8-digit hex colour that includes transparency is typed without a leading # into the canvas background colour field, the canvas takes that semi-transparent colour.",
+  "path": "/",
+  "setup": "1. Click the three-lines menu button at the top left. 2. In the open menu, find the row of colour squares under 'Canvas background' near the bottom. Click the last square at the right end of that row, the one after the thin divider line that shows the current colour. A colour picker popup opens. 3. In the popup, find the text field under 'Hex code', next to the # sign. Click in it and press Ctrl+A to select its text. Do not type anything yet, and leave the popup open.",
+  "ready": "A colour picker popup is open with a Hex code text field next to a # sign, and the canvas is still white.",
+  "action": "In the Hex code text field, replace the selected text by typing ff000080 (eight characters, with no # sign). Wait 2 seconds. Do not press Enter and do not click anything else. The popup must stay open.",
+  "broken": "The Hex code field shows ff000080, but the large empty canvas area outside the menu and popup is not pink or light red. It is black, white or another colour.",
+  "working": "The Hex code field shows ff000080, and the large empty canvas area outside the menu and popup is filled with pink or light red.",
+  "goodVersion": null,
+  "witness": {
+    "reader": true
+  },
+  "lookAgain": true,
+  "source": "https://github.com/excalidraw/excalidraw/issues/10772",
+  "repo": "work2/excalidraw",
+  "build": [
+    "node",
+    "--max-old-space-size=3500",
+    "work2/node_modules/vite/bin/vite.js",
+    "build",
+    "-c",
+    "work2/cfg/vite.config.mjs"
+  ],
+  "dist": "work2/dist",
+  "env": {
+    "VITE_APP_ENABLE_TRACKING": "false"
+  },
+  "port": 4314
+}

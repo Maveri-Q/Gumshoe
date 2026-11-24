@@ -1,0 +1,20 @@
+diff --git a/boot/boot.js b/boot/boot.js
+index a268478..145aab0 100644
+--- a/boot/boot.js
++++ b/boot/boot.js
+@@ -316,8 +316,13 @@ $tw.utils.htmlDecode = function(s) {
+ 	return s.toString().replace(/&lt;/mg,"<").replace(/&nbsp;/mg,"\xA0").replace(/&gt;/mg,">").replace(/&quot;/mg,"\"").replace(/&amp;/mg,"&");
+ };
+ 
+-/** @deprecated Use window.location.hash instead.  */
+-$tw.utils.getLocationHash = () => window.location.hash;
++/*
++Get the browser location.hash, ignoring hashes that themselves start with a # (used for HTML anchor links)
++*/
++$tw.utils.getLocationHash = () => {
++	const hash = window.location.hash;
++	return hash === "" || /^#(?:#|%23)/.test(hash) ? "#" : hash;
++};
+ 
+ /** @deprecated Pad a string to a given length with "0"s. Length defaults to 2 */
+ $tw.utils.pad = function(value,length = 2) {

@@ -35,3 +35,5 @@
 2026-11-24T23:02:45.123Z OLDER ae943f49 2025-08-07: good
 2026-11-24T23:02:46.696Z BISECT ae943f49..431b7fa3, 234 commits
 2026-11-24T23:02:46.786Z Picking up after a stop, with the same frozen check
+2026-11-24T23:11:45.713Z CULPRIT c305eb01 Fix passing a filtered attribute as a MVV (#9663)
+2026-11-24T23:11:47.425Z DONE found 971.9 credits, 9.1 min

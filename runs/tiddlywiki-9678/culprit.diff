@@ -1,0 +1,59 @@
+diff --git a/core/modules/widgets/transclude.js b/core/modules/widgets/transclude.js
+index 0b6a5a149..d11ac4ad6 100755
+--- a/core/modules/widgets/transclude.js
++++ b/core/modules/widgets/transclude.js
+@@ -25,7 +25,7 @@ Render this widget into the DOM
+ */
+ TranscludeWidget.prototype.render = function(parent,nextSibling) {
+ 	this.parentDomNode = parent;
+-	this.computeAttributes();
++	this.computeAttributes({asList: true});
+ 	this.execute();
+ 	try {
+ 		this.renderChildren(parent,nextSibling);
+diff --git a/core/modules/widgets/widget.js b/core/modules/widgets/widget.js
+index dfa9b6be5..864dbd514 100755
+--- a/core/modules/widgets/widget.js
++++ b/core/modules/widgets/widget.js
+@@ -377,6 +377,7 @@ Widget.prototype.makeFakeWidgetWithVariables = function(variables) {
+ Compute the current values of the attributes of the widget. Returns a hashmap of the names of the attributes that have changed.
+ Options include:
+ filterFn: only include attributes where filterFn(name) returns true
++asList: boolean if true returns results as an array instead of a single value
+ */
+ Widget.prototype.computeAttributes = function(options) {
+ 	options = options || {};
+@@ -389,7 +390,7 @@ Widget.prototype.computeAttributes = function(options) {
+ 				return;
+ 			}
+ 		}
+-		var value = self.computeAttribute(attribute),
++		var value = self.computeAttribute(attribute,options),
+ 			multiValue = null;
+ 		if($tw.utils.isArray(value)) {
+ 			multiValue = value;
+diff --git a/editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid b/editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid
+new file mode 100644
+index 000000000..2eb5133e1
+--- /dev/null
++++ b/editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid
+@@ -0,0 +1,19 @@
++title: MultiValuedVariables/TranscludeParameterDirectly
++description: Multi-valued variable passed as procedure parameter via {{{filter}}} syntax
++type: text/vnd.tiddlywiki-multiple
++tags: [[$:/tags/wiki-test-spec]]
++
++title: Output
++
++\whitespace trim
++\procedure showItems(itemList)
++<$text text={{{ [(itemList)join[-]] }}}/>
++\end
++
++<$transclude $variable="showItems" itemList={{{ [all[tiddlers]sort[]] }}}/>
+++
++title: ExpectedResult
++
++<p>$:/core-ExpectedResult-Output</p>
+++
++

@@ -13,3 +13,8 @@ git bisect good 64ee20edd2ea1e2674b0118143ad1a93764d0983
 git bisect good 71462143bfd8951476620da2cb26a23d997eeb5f
 # bad: [07634d65955735a12fe6b0ffe447917b5d2a8c2e] Merge branch 'tiddlywiki-com'
 git bisect bad 07634d65955735a12fe6b0ffe447917b5d2a8c2e
+# bad: [08f2b8bdf416d2cad977827efcd59ffa80fe9782] Fixes variable enumeration in widgets (#9648)
+git bisect bad 08f2b8bdf416d2cad977827efcd59ffa80fe9782
+# bad: [c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)
+git bisect bad c305eb01eb23029b4709cac53cf2d3dd4b98a754
+# first 'bad' commit: [c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)

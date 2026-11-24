@@ -27,5 +27,6 @@
     "VITE_APP_ENABLE_TRACKING": "false"
   },
   "dist": "work/dist",
-  "title": "fix(editor): dismiss dropdown menus on outside clicks"
+  "title": "fix(editor): dismiss dropdown menus on outside clicks",
+  "took": "Not known, no separate issue"
 }

@@ -1,0 +1,4 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","pid":18492,"v":1,"ts":"2026-11-24T23:15:34.647Z"}
+{"type":"recording_state","enabled":true,"session_id":"0caaf4cf-b0b5-4fe7-bb07-0cfec19624d6","persist":false,"v":1,"ts":"2026-11-24T23:15:34.703Z"}
+{"type":"update_available","current":"0.10.6","latest":"0.10.9","severity":"patch","v":1,"ts":"2026-11-24T23:15:36.235Z"}
+{"type":"skill_update_available","current":null,"latest":"0.1.4","install_cmd":"kane-cli install skill","v":1,"ts":"2026-11-24T23:15:36.242Z"}

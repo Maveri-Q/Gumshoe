@@ -1,0 +1,3 @@
+2026-11-24T23:14:18.633Z ISSUE excalidraw/excalidraw#10772 Regression: Hex colors with Alpha broken since #10578
+2026-11-24T23:14:19.032Z REPORTED VERSION a70417f2 2026-02-11 feat(editor): visualize binding midpoints + support for simple arrows (#10611)
+2026-11-24T23:14:40.137Z DRAFT 1: When an 8-digit hex colour that includes transparency is typed without a leading # into the canvas background colour field, the canvas takes that semi-transparent colour.
