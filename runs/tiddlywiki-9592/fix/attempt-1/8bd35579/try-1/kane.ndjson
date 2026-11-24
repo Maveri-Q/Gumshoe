@@ -10,3 +10,11 @@
 {"step":4,"status":"running","remark":"Step 3","v":1,"ts":"2026-11-24T23:15:13.861Z"}
 {"step":4,"status":"done","remark":"type: Typing the tiddler text into the editor","v":1,"ts":"2026-11-24T23:15:23.558Z"}
 {"step":5,"status":"running","remark":"Step 4","v":1,"ts":"2026-11-24T23:15:32.620Z"}
+{"step":5,"status":"done","remark":"click: Clicking the confirm changes (checkmark) button","v":1,"ts":"2026-11-24T23:15:39.909Z"}
+{"step":6,"status":"running","remark":"Step 5","v":1,"ts":"2026-11-24T23:15:43.349Z"}
+{"step":6,"status":"done","remark":"analyze: the tiddler titled 'New Tiddler' is not in view","v":1,"ts":"2026-11-24T23:16:03.618Z"}
+{"step":7,"status":"running","remark":"Step 6","v":1,"ts":"2026-11-24T23:16:06.884Z"}
+{"step":8,"status":"running","remark":"Step 7","v":1,"ts":"2026-11-24T23:16:10.719Z"}
+{"step":2,"status":"running","remark":"Step 1","child_id":"9245ddbb","v":1,"ts":"2026-11-24T23:16:13.566Z"}
+{"step":2,"status":"done","remark":"analyze: the literal \"yes\" is stored as {{ready}}","child_id":"9245ddbb","v":1,"ts":"2026-11-24T23:16:21.657Z"}
+{"step":3,"status":"running","remark":"Step 2","child_id":"9245ddbb","v":1,"ts":"2026-11-24T23:16:25.506Z"}
