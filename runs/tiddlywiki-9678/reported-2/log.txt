@@ -1,0 +1,5 @@
+2026-11-24T04:46:20.381Z COMMIT 431b7fa3 Update ImportListing.tid (#9674)
+2026-11-24T04:46:25.750Z   built in 5s
+2026-11-24T04:49:16.819Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 43.4 credits 171s
+2026-11-24T04:52:27.234Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 38.3 credits 190s
+2026-11-24T04:52:27.237Z   => BAD  81.7 credits, 367s

@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T04:56:38.891Z",
+  "sha": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+  "subject": "Allow unused variables in function headers and caught exceptions (#9588)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 409,
+  "credits": 74.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the default title, “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nVerified that the new tiddler and its content were visible.\nClicked “Jump to spot,” which navigated to the in-page destination.",
+      "credits": 40.2203495,
+      "seconds": 210,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85Y7C8GMNT66YTZ7AMZCDRE/dashboard/share/US_DAVMAOR1Q6W4V3PX3OM1CHAMCABEFFY9560W0AKGFWV15NFRX8C7VDNAND590CF9?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler titled “New Tiddler” and added the requested Jump to spot link and Landing place text.\nConfirmed the tiddler changes; the new tiddler was visible with both the link and the Landing place text.\nClicked “Jump to spot” once and waited as requested; the page finished at the link target.",
+      "credits": 34.686529,
+      "seconds": 193,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85YDQQX3R3FRP7SFRDAJQV1/dashboard/share/US_0RVPASHJLT84MHNBV18NMGFUIWS8W95LWIB0EXP1AL38XJUI5TMRGN269YS1WY57?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

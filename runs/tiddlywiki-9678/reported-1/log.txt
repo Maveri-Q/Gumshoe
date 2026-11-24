@@ -1,0 +1,6 @@
+2026-11-24T04:36:25.447Z COMMIT 431b7fa3 Update ImportListing.tid (#9674)
+2026-11-24T04:36:29.492Z   built in 4s
+2026-11-24T04:39:59.232Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 40.3 credits 210s
+2026-11-24T04:42:54.898Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=true 34.3 credits 176s
+2026-11-24T04:46:06.004Z   try 3: unsure (Kane said broken=false, the second look at the saved screen says broken=true) ready=yes look[broken,working]=[false,true] screenSaysBroken=true 30.8 credits 191s
+2026-11-24T04:46:06.006Z   => UNSURE  105.5 credits, 581s

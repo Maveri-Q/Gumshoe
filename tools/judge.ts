@@ -55,7 +55,7 @@ await new Promise<void>((r, x) => { server.once("error", x); server.listen(port,
 const objective = [
   `Do these steps in order.`,
   `1. ${bug.setup}`,
-  `2. Is this true right now: "${bug.ready}"? Store exactly yes or no as 'ready'.`,
+  `2. Is this true right now: "${bug.ready}"? If it is true, store the word yes as 'ready'. If it is not true, store the word no as 'ready'.`,
   `3. ${bug.action}`,
   `Then stop.`,
 ].join("\n");

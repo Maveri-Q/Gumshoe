@@ -1,0 +1,10 @@
+{
+  "sentence": "In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.",
+  "path": "/#%24%3A%2FControlPanel",
+  "setup": "Wait until the tiddler titled '$:/ControlPanel' or 'Control Panel' is visible in the main column. In the row of tabs at the top of that tiddler, click the tab that says 'Settings'. If a second set of tabs appears inside the Settings tab and one of them says 'TiddlyWiki', click that 'TiddlyWiki' tab. Do not change any setting.",
+  "ready": "The Settings tab of the control panel is selected and a list of settings is visible below the tabs.",
+  "action": "Scroll down the main page to the very bottom of the settings list, until the last heading 'Toolbar Button Style', the line 'Choose the style for toolbar buttons:' and the small dropdown box with a down arrow right below that line are all fully visible. Leave the dropdown closed and unchanged. Wait 2 seconds.",
+  "broken": "Directly below the line 'Choose the style for toolbar buttons:', the dropdown is a tiny, roughly square box that contains only a down arrow, and the word 'Borderless' is not written inside it.",
+  "working": "Directly below the line 'Choose the style for toolbar buttons:', the dropdown is a wider box with the word 'Borderless' written inside it to the left of the down arrow.",
+  "goodVersion": null
+}

@@ -1,0 +1,8 @@
+2026-11-24T04:35:58.500Z ISSUE TiddlyWiki/TiddlyWiki5#9678 [regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style
+2026-11-24T04:36:08.714Z REPORTED VERSION 431b7fa3 2026-02-21 Update ImportListing.tid (#9674)
+2026-11-24T04:36:24.735Z DRAFT 1: In the control panel settings, the Toolbar Button Style dropdown shows the name of the currently selected style, such as Borderless.
+2026-11-24T04:46:06.040Z   on the reported version: unsure
+2026-11-24T04:46:19.713Z DRAFT 2: In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.
+2026-11-24T04:52:27.270Z   on the reported version: bad
+2026-11-24T04:58:22.788Z OLDER ae943f49 2025-08-07: good
+2026-11-24T04:58:22.917Z BISECT ae943f49..431b7fa3, 234 commits

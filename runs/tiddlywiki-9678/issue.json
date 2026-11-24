@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9678",
+  "repo": "TiddlyWiki/TiddlyWiki5",
+  "number": 9678,
+  "title": "[regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style",
+  "body": "@saqimtiaz \n\nTo reproduce: \n\n- Open, Prerelease v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style\n- The value is empty and the dropdown too.\n- See screenshot\n\n<img width=\"1221\" height=\"226\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/945fff57-2ca7-4983-81c7-377fb9356c42\" />",
+  "createdAt": "2026-02-22T16:03:49Z"
+}

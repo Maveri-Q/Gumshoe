@@ -1,0 +1,5 @@
+Do these steps in order.
+1. Wait until the tiddler titled '$:/ControlPanel' or 'Control Panel' is visible in the main column. In the row of tabs at the top of that tiddler, click the tab that says 'Settings'. If a second set of tabs appears inside the Settings tab and one of them says 'TiddlyWiki', click that 'TiddlyWiki' tab. Do not change any setting.
+2. Is this true right now: "The Settings tab of the control panel is selected and a list of settings is visible below the tabs."? Store exactly yes or no as 'ready'.
+3. Scroll down the page until the heading 'Toolbar Button Style' and the dropdown box directly below it are both in the middle of the screen. Do not click the dropdown and do not change it. Wait 2 seconds.
+Then stop.

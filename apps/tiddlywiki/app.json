@@ -11,5 +11,14 @@
     "--build",
     "index"
   ],
-  "versionTag": "v{version}"
+  "versionTag": "v{version}",
+  "test": [
+    "node",
+    "./tiddlywiki.js",
+    "./editions/test",
+    "--verbose",
+    "--version",
+    "--build",
+    "index"
+  ]
 }

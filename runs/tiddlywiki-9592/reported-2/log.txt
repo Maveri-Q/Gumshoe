@@ -1,0 +1,5 @@
+2026-11-24T04:49:49.560Z COMMIT be84dee2 Allow unused variables in function headers and caught exceptions (#9588)
+2026-11-24T04:49:55.873Z   built in 6s
+2026-11-24T04:53:26.245Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 40.2 credits 210s
+2026-11-24T04:56:38.890Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 34.7 credits 193s
+2026-11-24T04:56:38.892Z   => BAD  74.9 credits, 409s

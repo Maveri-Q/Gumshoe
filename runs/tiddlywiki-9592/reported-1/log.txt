@@ -1,0 +1,6 @@
+2026-11-24T04:39:34.835Z COMMIT be84dee2 Allow unused variables in function headers and caught exceptions (#9588)
+2026-11-24T04:39:38.058Z   built in 3s
+2026-11-24T04:42:51.894Z   try 1: unsure (Kane did not get the app ready) ready=yes or no look[broken,working]=[true,false] screenSaysBroken=true 36.1 credits 194s
+2026-11-24T04:45:51.095Z   try 2: unsure (Kane did not get the app ready) ready=yes or no look[broken,working]=[true,false] screenSaysBroken=true 25.7 credits 179s
+2026-11-24T04:49:19.817Z   try 3: bad (Kane and the saved screen agree) ready=true look[broken,working]=[true,false] screenSaysBroken=true 33.9 credits 209s
+2026-11-24T04:49:19.866Z   => UNSURE  95.8 credits, 585s

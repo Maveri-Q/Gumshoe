@@ -1,0 +1,175 @@
+TiddlyWiki v5.3.8
+a non-linear personal web notebook
+
+ContentsOpenRecentToolsMore
+
+Learning
+Working with TiddlyWiki
+Customise TiddlyWiki
+Features
+Filters
+Languages
+Editions
+Plugins
+Platforms
+Reference
+Community
+About
+Welcome
+HelloThere
+Quick Start
+Find Out More
+TiddlyWiki on the Web
+Testimonials and Reviews
+GettingStarted
+Community
+
+$:/ControlPanel
+
+InfoAppearanceSettingsSavingPluginsKeyboard Shortcuts
+
+TiddlyWikiTour
+
+These settings let you customise the behaviour of TiddlyWiki.
+
+Camel Case Wiki Links
+
+You can globally disable automatic linking of CamelCase phrases. Requires reload to take effect
+
+Enable automatic CamelCase linking
+
+Default More Sidebar Tab
+
+Specify which More sidebar tab is displayed by default
+
+All
+Recent
+Tags
+Missing
+Drafts
+Orphans
+Types
+System
+Shadows
+Explorer
+Plugins
+
+Default Sidebar Tab
+
+Specify which sidebar tab is displayed by default
+
+Contents
+Open
+Recent
+Tools
+More
+
+Default Tiddler Info Tab
+
+Specify which tab is displayed by default when tiddler info panel is opened
+
+Tools
+Backlinks
+Tagging
+List
+Listed
+Fields
+Advanced
+Sources
+
+Editor Toolbar
+
+Enable or disable the editor toolbar:
+
+Show editor toolbar
+
+Tiddler Info Panel Mode
+
+Control when the tiddler info panel closes:
+
+Tiddler info panel closes automatically
+
+Tiddler info panel stays open until explicitly closed
+
+Tiddler Opening Behaviour
+
+Navigation from within the story river
+
+Open above the current tiddler
+Open below the current tiddler
+Open at the top of the story river
+Open at the bottom of the story river
+
+Navigation from outside the story river
+
+Open at the top of the story river
+Open at the bottom of the story river
+
+Wiki Links
+
+Choose whether to link to tiddlers that do not exist yet
+
+Enable links to missing tiddlers
+
+Navigation Address Bar
+
+Behaviour of the browser address bar when navigating to a tiddler:
+
+Include the target tiddler and the current story sequence
+
+Include the target tiddler
+
+Do not update the address bar
+
+Navigation History
+
+Update browser history when navigating to a tiddler:
+
+Update history
+
+Do not update history
+
+Permalink/permaview Mode
+
+Choose how permalink/permaview is handled:
+
+Copy permalink/permaview URL to clipboard
+
+Update address bar with permalink/permaview URL
+
+Performance Instrumentation
+
+Displays performance statistics in the browser developer console. Requires reload to take effect
+
+Enable performance instrumentation
+
+Recent Tab Limit
+
+Maximum number of tiddlers to be displayed under the sidebar "Recent" tab
+
+Recent Tab Limit	
+Tiddler Titles
+
+Optionally display tiddler titles as links
+
+Display tiddler titles as links
+
+Do not display tiddler titles as links
+
+Toolbar Buttons
+
+Default toolbar button appearance:
+
+Include icon
+
+Include text
+
+Toolbar Button Style
+
+Choose the style for toolbar buttons:
+
+Borderless
+Boxed
+Rounded
+
+ Sites  GettingStarted Contents  

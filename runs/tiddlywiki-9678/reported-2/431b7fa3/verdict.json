@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T04:52:27.236Z",
+  "sha": "431b7fa3bfe71c6100134aa7d0a9c7fc517b2876",
+  "subject": "Update ImportListing.tid (#9674)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 5,
+  "totalSeconds": 367,
+  "credits": 81.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nViewed the TiddlyWiki settings section and scrolled to the bottom of the settings list.\nLeft the Toolbar Button Style dropdown closed and did not change any settings.\nFinished on the Control Panel settings page.",
+      "credits": 43.4314375,
+      "seconds": 171
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki section within Settings, where the settings list was displayed.\nScrolled to the bottom of the settings list and left the Toolbar Button Style dropdown closed and unchanged.\nWaited briefly with the requested settings view in place.",
+      "credits": 38.307212500000006,
+      "seconds": 190
+    }
+  ]
+}

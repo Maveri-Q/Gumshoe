@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9760",
+  "repo": "TiddlyWiki/TiddlyWiki5",
+  "number": 9760,
+  "title": "[5.4.0-prerelease] More button in editor misses button text",
+  "body": "@Jermolene \n\nMore button in editor misses button text\n\n<img width=\"1336\" height=\"326\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/16dc5639-1102-453c-946e-f63c63d135dc\" />\n\nNeed to investigate further. Just created an issue so we do not miss it",
+  "createdAt": "2026-03-20T08:00:50Z"
+}

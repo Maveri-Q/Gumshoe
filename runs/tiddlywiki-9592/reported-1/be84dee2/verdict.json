@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-24T04:49:19.837Z",
+  "sha": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+  "subject": "Allow unused variables in function headers and caught exceptions (#9588)",
+  "verdict": "unsure",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 585,
+  "credits": 95.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane did not get the app ready",
+      "ready": "yes or no",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while leaving its title as “New Tiddler.”\nEntered the requested one-line content with a “Jump to spot” link and a “Landing place” target, then saved the tiddler.\nClicked “Jump to spot”; the saved tiddler remained displayed and the page URL updated to the target location.\nThe requested task completed successfully.",
+      "credits": 36.14676,
+      "seconds": 194,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85XMGCEMQVBRQPGDVN4BNS0/dashboard/share/US_5GN2M8AV8X0JXUNC6RYNUY9MX2NKTO5TJV4CEDIJ00B51X9P78Y4YMR2TAWO10GG?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane did not get the app ready",
+      "ready": "yes or no",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping its default title, “New Tiddler.”\nEntered the requested HTML containing the “Jump to spot” link and the “Landing place” target, then saved the tiddler.\nOpened the “Jump to spot” link; the page finished at the linked location.\nConfirmed that the new tiddler was displayed in saved form with the requested link and text.",
+      "credits": 25.745377499999993,
+      "seconds": 179,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85XTDEW02FDY7HA7VRPBYYX/dashboard/share/US_9JK57AX7UVJVJVN4YPC01SBVEE2JH84QJDO7SQHFABG0V82Y2Q0SH56GKSQGF3QR?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title as “New Tiddler.”\nEntered the requested one-line content containing the “Jump to spot” link and “Landing place” text, then saved it.\nConfirmed that the saved tiddler was displayed normally with the requested link and text; the stored result was “yes.”\nClicked “Jump to spot” and waited 2 seconds, ending at the linked spot.",
+      "credits": 33.858284999999995,
+      "seconds": 209,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85XZVY081Y6A42G4M08GNQP/dashboard/share/US_2UAD4TRNWONPZ4PM6D7CO41H5VM4J3WNJNB5RS9JJQRJ1NGIHA4QHVYNE89CQI8B?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

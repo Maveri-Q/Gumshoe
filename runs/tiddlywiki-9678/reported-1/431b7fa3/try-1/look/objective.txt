@@ -1,0 +1,3 @@
+LOOK ONLY
+Under the heading 'Toolbar Button Style', the dropdown box is empty: no style name is written in it.
+Under the heading 'Toolbar Button Style', the dropdown box shows a style name written in it, such as 'Borderless', 'Boxed' or 'Pill'.

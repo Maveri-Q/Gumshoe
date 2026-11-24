@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T04:58:22.708Z",
+  "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "subject": "Version number update for 5.3.8",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 5,
+  "totalSeconds": 349,
+  "credits": 79.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nSelected the TiddlyWiki section shown within Settings, then confirmed that the settings list was displayed.\nScrolled to the bottom of the settings list so the Toolbar Button Style heading, its description, and its dropdown were visible.\nWaited for 2 seconds and left the Toolbar Button Style dropdown closed and all settings unchanged.",
+      "credits": 40.64592000000001,
+      "seconds": 188
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nA second row of settings tabs was available, so the TiddlyWiki tab was selected.\nConfirmed that the Settings page and its settings list were visible.\nScrolled to the bottom of the settings list and left the Toolbar Button Style dropdown closed and unchanged after waiting briefly.\nCompleted the requested view of the Control Panel settings without changing any settings.",
+      "credits": 38.6324925,
+      "seconds": 156
+    }
+  ]
+}

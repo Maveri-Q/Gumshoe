@@ -11,7 +11,7 @@ export interface KaneResult {
 
 /** On Windows `kane-cli` is a .cmd shim that Node can't spawn without a shell, and a shell
  *  would mangle a multi-line objective. So run Kane's JS entry with Node directly. */
-function kaneCommand(): { cmd: string; pre: string[] } {
+export function kaneCommand(): { cmd: string; pre: string[] } {
   if (process.env.KANE_CLI_ENTRY) return { cmd: process.execPath, pre: [process.env.KANE_CLI_ENTRY] };
   if (process.platform === "win32") {
     const entry = join(process.env.APPDATA ?? "", "npm", "node_modules", "@testmuai", "kane-cli", "bin", "kane-cli.cjs");
