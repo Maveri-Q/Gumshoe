@@ -1,1 +1,1 @@
-{ "culprit": "c305eb01e", "who": "maintainer pmario, by their own git bisect", "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9760", "tracedAfter": "2026-03-20T09:20:09Z" }
+{ "culprit": "c305eb01eb23029b4709cac53cf2d3dd4b98a754", "who": "maintainer pmario, by their own git bisect", "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9760", "took": "1 hour 20 minutes, with a script", "reported": "2026-03-20T08:00:50Z", "named": "2026-03-20T09:20:09Z" }

@@ -17,3 +17,7 @@
 {"step":3,"status":"running","remark":"Step 2","child_id":"f4edeb7c","v":1,"ts":"2026-11-24T23:09:27.666Z"}
 {"step":7,"status":"running","remark":"Step 6","v":1,"ts":"2026-11-24T23:09:34.300Z"}
 {"step":2,"status":"running","remark":"Step 1","child_id":"67f962f6","v":1,"ts":"2026-11-24T23:09:38.120Z"}
+{"step":2,"status":"done","remark":"analyze: the literal \"yes\" is stored as {{ready}}","child_id":"67f962f6","v":1,"ts":"2026-11-24T23:09:45.492Z"}
+{"step":3,"status":"running","remark":"Step 2","child_id":"67f962f6","v":1,"ts":"2026-11-24T23:09:49.884Z"}
+{"step":3,"status":"done","remark":"wait: Waiting after checkpoint verification","child_id":"67f962f6","v":1,"ts":"2026-11-24T23:09:52.932Z"}
+{"step":8,"status":"running","remark":"Step 7","v":1,"ts":"2026-11-24T23:10:00.585Z"}
