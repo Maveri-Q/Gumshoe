@@ -1,0 +1,53 @@
+{
+  "sha": "87faa5d3da055ea22c6bce261ee88087bf4cca0e",
+  "subject": "fix: sentry CI worfklow (#10610)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 17,
+  "totalSeconds": 250,
+  "credits": 45.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 23.919552,
+      "seconds": 121,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85J2DYVZ9RQNP88DFHRD6XH/dashboard/share/US_9X84SSG3SCJUEE834I7R5KB2AHL899U6Q34NU83TM11AJV3LTXPWOJ00RGKXEAY8?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 21.252195,
+      "seconds": 113,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85J63KK0WDJKW2KD8S1A4WE/dashboard/share/US_5XVTK7JTTXUUV51L6QYOHM9E5TDKBAL19HQDK5739UICF4HVWK6F66YELFR4DZ5D?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

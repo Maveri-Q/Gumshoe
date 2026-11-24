@@ -1,0 +1,3 @@
+LOOK ONLY
+The large drawing canvas area that fills the page has a white or black background.
+The large drawing canvas area that fills the page has a pink or light red background.

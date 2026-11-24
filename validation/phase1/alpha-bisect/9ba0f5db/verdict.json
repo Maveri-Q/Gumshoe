@@ -1,0 +1,53 @@
+{
+  "sha": "9ba0f5dbc9d551aad9277341a82449e04043c5ae",
+  "subject": "fix: Arrow drag start in bindable area  jumps across bindable (#10676)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 18,
+  "totalSeconds": 237,
+  "credits": 42.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 19.984712,
+      "seconds": 109,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HV4EYGTR03NJDWJ7W8ERY/dashboard/share/US_6QH3CY1EKAWA39OMWHL58GGZLGPRIDD95LI9J27YL7VI342TZMI0BR42SVE4SS3U?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 22.214382499999996,
+      "seconds": 110,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85HYEYCCC4BN39YC3GGZ6EB/dashboard/share/US_03DFC7Q1NBJ9VICSG4HBE0XL2G7DZ2NR6S56N6DMSZB260RE6MFSS461IC4MXT91?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+2026-11-24T01:13:15.772Z COMMIT 9ba0f5db fix: Arrow drag start in bindable area  jumps across bindable (#10676)
+2026-11-24T01:13:33.735Z   built in 18s
+2026-11-24T01:15:22.949Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 20.0 credits 109s
+2026-11-24T01:17:13.227Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 22.2 credits 110s
+2026-11-24T01:17:13.229Z   => BAD  42.2 credits, 237s
+2026-11-24T01:17:15.924Z COMMIT 87faa5d3 fix: sentry CI worfklow (#10610)
+2026-11-24T01:17:32.925Z   built in 17s
+2026-11-24T01:19:33.547Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 23.9 credits 121s
+2026-11-24T01:21:26.194Z   try 2: bad (Kane and the saved screen agree) ready=true look[broken,working]=[true,false] screenSaysBroken=true 21.3 credits 113s
+2026-11-24T01:21:26.196Z   => BAD  45.2 credits, 250s
+2026-11-24T01:21:28.457Z COMMIT d87620b2 fix: Circular reference (#10544)
+2026-11-24T01:21:45.592Z   built in 17s
+2026-11-24T01:23:45.264Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 21.4 credits 120s
+2026-11-24T01:25:37.449Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 23.2 credits 112s
+2026-11-24T01:25:37.452Z   => GOOD  44.6 credits, 249s
+2026-11-24T01:25:39.763Z COMMIT 6c908553 fix: reconciliation of server updates & refactor restore (#10597)
+2026-11-24T01:25:57.279Z   built in 18s
+2026-11-24T01:27:46.633Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 21.6 credits 109s
+2026-11-24T01:29:47.509Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 22.6 credits 121s
+2026-11-24T01:31:58.104Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 16.0 credits 131s
+2026-11-24T01:31:58.107Z   => GOOD  60.2 credits, 378s
+2026-11-24T01:31:58.610Z COMMIT 63e11482 feat: stop using CSS filters for dark mode (static canvas) (#10578)
+2026-11-24T01:32:27.593Z   built in 29s
+2026-11-24T01:34:22.042Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 21.2 credits 114s
+2026-11-24T01:36:25.400Z   try 2: bad (Kane and the saved screen agree) ready=true look[broken,working]=[true,false] screenSaysBroken=true 24.0 credits 123s
+2026-11-24T01:36:25.403Z   => BAD  45.2 credits, 267s
+2026-11-24T01:36:25.920Z COMMIT b5fc8733 chore: Update translations from Crowdin (#10453)
+2026-11-24T01:36:54.997Z   built in 29s
+2026-11-24T01:38:55.007Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.8 credits 120s
+2026-11-24T01:40:44.906Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.5 credits 110s
+2026-11-24T01:40:44.909Z   => GOOD  41.4 credits, 259s

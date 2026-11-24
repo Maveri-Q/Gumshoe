@@ -1,0 +1,53 @@
+{
+  "sha": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+  "subject": "feat: stop using CSS filters for dark mode (static canvas) (#10578)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 29,
+  "totalSeconds": 267,
+  "credits": 45.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 21.205384499999997,
+      "seconds": 114,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JXQYQVRWQZ3K53QPXTJ5H/dashboard/share/US_S54XPGKNX0ZZY8Y2FEJHWKAYMCU140JYRYSIBMZ23OVRYY1IV209FRF4NQB4PJKN?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "pixel": [
+        0,
+        0,
+        0
+      ],
+      "kaneStatus": "passed",
+      "credits": 23.956718,
+      "seconds": 123,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85K17F6CFF0FFRCJ2JH2GT5/dashboard/share/US_TNX3VPXBVTNJ33XPGNMU3U8YUXTH03A9W2SY8WXIPJPMN8FVY3MMYGLRRI8FZ8IZ?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

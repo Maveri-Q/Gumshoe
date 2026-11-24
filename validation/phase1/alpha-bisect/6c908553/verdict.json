@@ -1,0 +1,74 @@
+{
+  "sha": "6c908553a9cbd2e50bfabc49bc6045c5ba97d702",
+  "subject": "fix: reconciliation of server updates & refactor restore (#10597)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 18,
+  "totalSeconds": 378,
+  "credits": 60.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 21.557104499999998,
+      "seconds": 109,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JHTG4ZACKVABKKH4ECHQA/dashboard/share/US_J5H586QANAUN45FTE2ZSQ04WCD7LUL3B6LDQCU5JA5WBABMLXPC4ZRFU3TE51WE2?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 22.636514499999997,
+      "seconds": 121,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JN6T2K20WBXSB4TDEQ9XW/dashboard/share/US_H05FAHZV1GW33AXBB2K1GCUZVT2L7X3C4IKHQ1BC1TGFQOB9153SL151ZUNDQPZR?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 15.956994999999997,
+      "seconds": 131,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JRVK11JR04RFB5MR042AB/dashboard/share/US_CT2WE7D14AK0266C2ZYG1Z4X66S7XP8KWY0HZCOPDTKX4ER6JDFVMZDCE5ITQQ32?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

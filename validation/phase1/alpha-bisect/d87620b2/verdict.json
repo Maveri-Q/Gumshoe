@@ -1,0 +1,53 @@
+{
+  "sha": "d87620b23907cef9a119c758124569b5f44991a4",
+  "subject": "fix: Circular reference (#10544)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 17,
+  "totalSeconds": 249,
+  "credits": 44.6,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 21.394522,
+      "seconds": 120,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JA58E467BR6V7YD6X1NW4/dashboard/share/US_3D2K1ADZIIPYAPZQXFFU9SA7ZVU6I1YF1SKEDCYQH99EY1IBFKQMREUFLPN2CHRR?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "pixel": [
+        255,
+        127,
+        127
+      ],
+      "kaneStatus": "passed",
+      "credits": 23.249122000000003,
+      "seconds": 112,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85JDSFCWHFVEFGJQ07RTNZC/dashboard/share/US_VLR2SUI0A9VWBRJ4JCBYSP3QVW8NMWXVWGWTBU7NDL87CWL1C4XVU9G40FADG0MX?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

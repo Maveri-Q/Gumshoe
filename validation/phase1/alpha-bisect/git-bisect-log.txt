@@ -1,0 +1,16 @@
+# bad: [a70417f23f5985e3ed2a678c3cd25bffb23b1cff] feat(editor): visualize binding midpoints + support for simple arrows (#10611)
+# good: [8d18078f5c719166c30eb373312c130664a56ffe] fix: Box selection of arrows (#10451)
+git bisect start 'a70417f2' '8d18078f'
+# bad: [9ba0f5dbc9d551aad9277341a82449e04043c5ae] fix: Arrow drag start in bindable area  jumps across bindable (#10676)
+git bisect bad 9ba0f5dbc9d551aad9277341a82449e04043c5ae
+# bad: [87faa5d3da055ea22c6bce261ee88087bf4cca0e] fix: sentry CI worfklow (#10610)
+git bisect bad 87faa5d3da055ea22c6bce261ee88087bf4cca0e
+# good: [d87620b23907cef9a119c758124569b5f44991a4] fix: Circular reference (#10544)
+git bisect good d87620b23907cef9a119c758124569b5f44991a4
+# good: [6c908553a9cbd2e50bfabc49bc6045c5ba97d702] fix: reconciliation of server updates & refactor restore (#10597)
+git bisect good 6c908553a9cbd2e50bfabc49bc6045c5ba97d702
+# bad: [63e1148280163a36326b7efb5fdfeefebabdb3e4] feat: stop using CSS filters for dark mode (static canvas) (#10578)
+git bisect bad 63e1148280163a36326b7efb5fdfeefebabdb3e4
+# good: [b5fc873323e16f181860a4e731c731b4e40badd1] chore: Update translations from Crowdin (#10453)
+git bisect good b5fc873323e16f181860a4e731c731b4e40badd1
+# first 'bad' commit: [63e1148280163a36326b7efb5fdfeefebabdb3e4] feat: stop using CSS filters for dark mode (static canvas) (#10578)
