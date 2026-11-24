@@ -1,0 +1,43 @@
+{
+  "sha": "46c42a6cb0bfc8c096ac4f232d427e10c2d943d1",
+  "subject": "fix(editor): initialize selectedLinearElement after pasting arrows (#11803)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 19,
+  "totalSeconds": 228,
+  "credits": 40.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 20.156785,
+      "seconds": 106,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FJ50PCR6Q19SM0NWXZJZH/dashboard/share/US_0ONQQ7QENK59TIWKMXIGJO2ZETZ2UYYG96YQ1DHKZD8VUK23HR8BTFVV5OSMGY6F?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 19.9165295,
+      "seconds": 103,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FNBRZSP07FZ1K6QXQ9FH3/dashboard/share/US_X5XBPXIPB3CGJI2N541EHBKIWL3TPN9JZFTL64EH2VFK9E0L1K38L7TM2OCQAOV1?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+2026-11-24T00:29:01.932Z COMMIT 5cf54765 fix(editor): make Help button tooltip consistent with toolbar (#11681)
+2026-11-24T00:29:20.294Z   built in 18s
+2026-11-24T00:31:16.915Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 18.3 credits 117s
+2026-11-24T00:33:19.509Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 21.4 credits 123s
+2026-11-24T00:33:19.512Z   => GOOD  39.8 credits, 258s
+2026-11-24T00:33:22.686Z COMMIT 46c42a6c fix(editor): initialize selectedLinearElement after pasting arrows (#11803)
+2026-11-24T00:33:41.902Z   built in 19s
+2026-11-24T00:35:27.564Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.2 credits 106s
+2026-11-24T00:37:10.249Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.9 credits 103s
+2026-11-24T00:37:10.250Z   => GOOD  40.1 credits, 228s
+2026-11-24T00:37:12.912Z COMMIT 4872083c feat(editor): bucketfill cursor + eyedropper support (#11849)
+2026-11-24T00:37:32.072Z   built in 19s
+2026-11-24T00:39:14.874Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.8 credits 103s
+2026-11-24T00:41:14.683Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 26.3 credits 120s
+2026-11-24T00:41:14.687Z   => GOOD  46.1 credits, 242s
+2026-11-24T00:41:16.603Z COMMIT 884225b1 fix(app): localize hardcoded "Sign up"/"Sign in" menu labels (#11893)
+2026-11-24T00:41:34.887Z   built in 18s
+2026-11-24T00:43:20.814Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.3 credits 106s
+2026-11-24T00:45:00.232Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.0 credits 99s
+2026-11-24T00:45:00.235Z   => GOOD  39.4 credits, 224s
+2026-11-24T00:45:02.609Z COMMIT 4a6f4e7a feat(app): d2c streaming (#11960)
+2026-11-24T00:45:20.965Z   built in 18s
+2026-11-24T00:47:00.551Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 18.8 credits 100s
+2026-11-24T00:48:44.243Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.2 credits 104s
+2026-11-24T00:48:44.245Z   => GOOD  38 credits, 222s
+2026-11-24T00:48:44.703Z COMMIT 214cd6e6 feat(editor): allow for dragging bound text along an arrow's path (#10947)
+2026-11-24T00:49:03.492Z   built in 19s
+2026-11-24T00:50:36.559Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 17.8 credits 93s
+2026-11-24T00:52:14.625Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 17.6 credits 98s
+2026-11-24T00:52:14.629Z   => BAD  35.4 credits, 210s
+2026-11-24T00:52:17.130Z COMMIT e1bb9ff8 feat(packages/excalidraw): support rendering into another document (#11974)
+2026-11-24T00:52:36.947Z   built in 20s
+2026-11-24T00:54:16.887Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 18.0 credits 100s
+2026-11-24T00:55:54.300Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 12.4 credits 97s
+2026-11-24T00:55:54.303Z   => BAD  30.3 credits, 217s

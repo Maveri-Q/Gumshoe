@@ -1,0 +1,98 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 5cf54765 fix(editor): make Help button tooltip consistent with toolbar (#11681)
+  built in 18s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 18.3 credits 117s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 21.4 credits 123s
+  => GOOD  39.8 credits, 258s
+Bisecting: 17 revisions left to test after this (roughly 4 steps)
+[46c42a6cb0bfc8c096ac4f232d427e10c2d943d1] fix(editor): initialize selectedLinearElement after pasting arrows (#11803)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 46c42a6c fix(editor): initialize selectedLinearElement after pasting arrows (#11803)
+  built in 19s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.2 credits 106s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.9 credits 103s
+  => GOOD  40.1 credits, 228s
+Bisecting: 8 revisions left to test after this (roughly 3 steps)
+[4872083c044491b6d5c96ae134a75464f96d6831] feat(editor): bucketfill cursor + eyedropper support (#11849)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 4872083c feat(editor): bucketfill cursor + eyedropper support (#11849)
+  built in 19s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.8 credits 103s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 26.3 credits 120s
+  => GOOD  46.1 credits, 242s
+Bisecting: 4 revisions left to test after this (roughly 2 steps)
+[884225b1c7ba08d2cd506e487f5f699a52bd821b] fix(app): localize hardcoded "Sign up"/"Sign in" menu labels (#11893)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 884225b1 fix(app): localize hardcoded "Sign up"/"Sign in" menu labels (#11893)
+  built in 18s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 20.3 credits 106s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.0 credits 99s
+  => GOOD  39.4 credits, 224s
+Bisecting: 2 revisions left to test after this (roughly 1 step)
+[4a6f4e7a32ce3d3360d4d209d14105acc144d8c7] feat(app): d2c streaming (#11960)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 4a6f4e7a feat(app): d2c streaming (#11960)
+  built in 18s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 18.8 credits 100s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 19.2 credits 104s
+  => GOOD  38 credits, 222s
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[214cd6e6e8ac3ad6b68486aa7aa7241abdf9445f] feat(editor): allow for dragging bound text along an arrow's path (#10947)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT 214cd6e6 feat(editor): allow for dragging bound text along an arrow's path (#10947)
+  built in 19s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 17.8 credits 93s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 17.6 credits 98s
+  => BAD  35.4 credits, 210s
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[e1bb9ff8f8931e783c11d104abb8967ac6605c9a] feat(packages/excalidraw): support rendering into another document (#11974)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'bugs/excalidraw-menu.json' 'validation/phase1/excalidraw-bisect'
+COMMIT e1bb9ff8 feat(packages/excalidraw): support rendering into another document (#11974)
+  built in 20s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 18.0 credits 100s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 12.4 credits 97s
+  => BAD  30.3 credits, 217s
+e1bb9ff8f8931e783c11d104abb8967ac6605c9a is the first 'bad' commit
+commit e1bb9ff8f8931e783c11d104abb8967ac6605c9a
+Author: zsviczian <viczian.zsolt@gmail.com>
+Date:   Wed Aug 26 15:33:04 2026 +0200
+
+    feat(packages/excalidraw): support rendering into another document (#11974)
+    
+    * feat: support rendering into another document
+    
+    * add missed places
+    
+    * tweak jsdoc
+    
+    ---------
+    
+    Co-authored-by: dwelle <5153846+dwelle@users.noreply.github.com>
+
+ AGENTS.md                                          |   3 +
+ packages/common/src/utils.test.ts                  |  33 +++
+ packages/common/src/utils.ts                       |  77 ++++--
+ packages/excalidraw/actions/actionFinalize.tsx     |   4 +-
+ packages/excalidraw/actions/actionProperties.tsx   |   7 +-
+ packages/excalidraw/components/Actions.tsx         |   4 +-
+ packages/excalidraw/components/App.tsx             | 281 +++++++++++++--------
+ .../components/ColorPicker/ColorPicker.tsx         |  25 +-
+ packages/excalidraw/components/EyeDropper.tsx      |  14 +-
+ packages/excalidraw/components/LibraryMenu.tsx     |  13 +-
+ packages/excalidraw/components/Modal.tsx           |  12 +-
+ packages/excalidraw/components/SearchMenu.tsx      |  11 +-
+ packages/excalidraw/components/Stats/DragInput.tsx |  31 ++-
+ packages/excalidraw/components/UserList.tsx        |   7 +-
+ packages/excalidraw/fonts/Fonts.ts                 |  29 ++-
+ .../excalidraw/hooks/useCreatePortalContainer.ts   |   7 +-
+ packages/excalidraw/hooks/useOutsideClick.ts       |  20 +-
+ packages/excalidraw/hooks/useTextEditorFocus.ts    |  46 ++--
+ packages/excalidraw/index.tsx                      |   8 +-
+ packages/excalidraw/tests/crossDocument.test.tsx   | 147 +++++++++++
+ packages/excalidraw/types.ts                       |  12 +
+ packages/excalidraw/wysiwyg/textWysiwyg.tsx        |  82 +++---
+ 22 files changed, 618 insertions(+), 255 deletions(-)
+ create mode 100644 AGENTS.md
+ create mode 100644 packages/excalidraw/tests/crossDocument.test.tsx
+bisect found first 'bad' commit
+bisect exit 0

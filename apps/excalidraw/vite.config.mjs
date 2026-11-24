@@ -1,13 +1,14 @@
 // A small build config for Excalidraw, used for every commit in the bisect.
 // It keeps the app's own source aliases and leaves out things that don't affect
 // behaviour on the page (offline mode, sitemap, lint overlay, analytics).
-import path from "node:path"; import { createRequire } from "node:module";
+import { existsSync } from "node:fs"; import path from "node:path"; import { createRequire } from "node:module";
 const root = path.resolve(import.meta.dirname, "../excalidraw"); // copied next to the checkout when used
 const req = createRequire(path.join(root, "x.js"));
 const { defineConfig } = req("vite"); const react = req("@vitejs/plugin-react"); const svgr = req("vite-plugin-svgr"); const { ViteEjsPlugin } = req("vite-plugin-ejs");
 const pk = p => path.join(root, "packages", p);
-const alias = [];
+const alias = [{ find: new RegExp("^excalidraw-app/"), replacement: path.join(root, "excalidraw-app") + "/" }];
 for (const n of ["common", "element", "math", "utils", "fractional-indexing", "laser-pointer"]) {
+  if (!existsSync(pk(`${n}/src/index.ts`))) continue; // not part of the repo yet at this commit
   alias.push({ find: new RegExp(`^@excalidraw/${n}$`), replacement: pk(`${n}/src/index.ts`) });
   alias.push({ find: new RegExp(`^@excalidraw/${n}/(.*?)`), replacement: pk(`${n}/src/$1`) });
 }

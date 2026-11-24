@@ -1,0 +1,43 @@
+{
+  "sha": "4a6f4e7a32ce3d3360d4d209d14105acc144d8c7",
+  "subject": "feat(app): d2c streaming (#11960)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 18,
+  "totalSeconds": 222,
+  "credits": 38,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 18.818867,
+      "seconds": 100,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85G7FCYJJMZ4KH3048YVJG9/dashboard/share/US_L0D45B9HILH1Y3ZL76CB8K4W0WBAXP0XX08GKDHJGVYWASL3CX884H1PFC9A3E04?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 19.197941999999998,
+      "seconds": 104,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GAGG0EN3YK0J5WHZRMX8C/dashboard/share/US_Q2ZS2P39B0NX8U9C285GU99N0HH6QWR5UFIG6FKJ81FHYD2KSIW0F9OOBLA3WQV8?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

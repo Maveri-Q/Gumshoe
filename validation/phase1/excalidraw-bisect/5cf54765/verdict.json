@@ -1,0 +1,43 @@
+{
+  "sha": "5cf547650b700b35507e83773695098150b810d2",
+  "subject": "fix(editor): make Help button tooltip consistent with toolbar (#11681)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 18,
+  "totalSeconds": 258,
+  "credits": 39.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 18.3061725,
+      "seconds": 117,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FA5GR6VNM3BG3JPQ9SRXA/dashboard/share/US_Z34YZVNZFYPIKATP4PXFP9XSJSDIP1ZJUN8KC93X9ER42QXWKHK0BMDEJ1ZNFMBO?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 21.4475325,
+      "seconds": 123,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FDQAJ40W6V1YFM6FM6ZW4/dashboard/share/US_ZEV0IWAZIWMB30ZSFNNLIEGBIFGER00VW9T26UUZ98WZ03JLRZCYOQME0DSAYCNV?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

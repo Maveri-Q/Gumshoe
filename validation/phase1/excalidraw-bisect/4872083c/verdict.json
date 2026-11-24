@@ -1,0 +1,43 @@
+{
+  "sha": "4872083c044491b6d5c96ae134a75464f96d6831",
+  "subject": "feat(editor): bucketfill cursor + eyedropper support (#11849)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 19,
+  "totalSeconds": 242,
+  "credits": 46.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 19.781917000000004,
+      "seconds": 103,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FS5PGDPPD8N4HBZY4ZBX2/dashboard/share/US_871I1AHNZ3DEWXTV2U0DK6HFBMG72623N97K3V1ORH2X90RP2ZPSTT909VEJ2ZGS?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 26.300305,
+      "seconds": 120,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85FW9RDCAXKFWSMGCT2WY1S/dashboard/share/US_YGDMRKY6XFIGL9GOJKNMVSX5GA4MQEAWQBZBJTH1SD55S82XLYED19C2CWLV28CW?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

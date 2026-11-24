@@ -1,0 +1,18 @@
+# bad: [f1a79b73df5b9883f940417861a4f5fb879a3f02] perf(editor): stop inverting the interactive canvas via CSS filter in dark mode (#12050)
+# good: [cd514d72d6350082c7f173f7147607c7dc4cb523] feat(editor): LaserPointer based freedraw (#11507)
+git bisect start 'f1a79b73' 'cd514d72'
+# good: [5cf547650b700b35507e83773695098150b810d2] fix(editor): make Help button tooltip consistent with toolbar (#11681)
+git bisect good 5cf547650b700b35507e83773695098150b810d2
+# good: [46c42a6cb0bfc8c096ac4f232d427e10c2d943d1] fix(editor): initialize selectedLinearElement after pasting arrows (#11803)
+git bisect good 46c42a6cb0bfc8c096ac4f232d427e10c2d943d1
+# good: [4872083c044491b6d5c96ae134a75464f96d6831] feat(editor): bucketfill cursor + eyedropper support (#11849)
+git bisect good 4872083c044491b6d5c96ae134a75464f96d6831
+# good: [884225b1c7ba08d2cd506e487f5f699a52bd821b] fix(app): localize hardcoded "Sign up"/"Sign in" menu labels (#11893)
+git bisect good 884225b1c7ba08d2cd506e487f5f699a52bd821b
+# good: [4a6f4e7a32ce3d3360d4d209d14105acc144d8c7] feat(app): d2c streaming (#11960)
+git bisect good 4a6f4e7a32ce3d3360d4d209d14105acc144d8c7
+# bad: [214cd6e6e8ac3ad6b68486aa7aa7241abdf9445f] feat(editor): allow for dragging bound text along an arrow's path (#10947)
+git bisect bad 214cd6e6e8ac3ad6b68486aa7aa7241abdf9445f
+# bad: [e1bb9ff8f8931e783c11d104abb8967ac6605c9a] feat(packages/excalidraw): support rendering into another document (#11974)
+git bisect bad e1bb9ff8f8931e783c11d104abb8967ac6605c9a
+# first 'bad' commit: [e1bb9ff8f8931e783c11d104abb8967ac6605c9a] feat(packages/excalidraw): support rendering into another document (#11974)

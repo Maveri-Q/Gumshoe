@@ -1,0 +1,43 @@
+{
+  "sha": "214cd6e6e8ac3ad6b68486aa7aa7241abdf9445f",
+  "subject": "feat(editor): allow for dragging bound text along an arrow's path (#10947)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 19,
+  "totalSeconds": 210,
+  "credits": 35.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 17.767050499999996,
+      "seconds": 93,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GE8K99BE9M0JT6HR9T68J/dashboard/share/US_LTVGQ8J7XDLUGJ6MLKY1S4QMA4MTK038WAZYXH781XT59LVYTNAX1UUR734A2YUC?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 17.597134500000003,
+      "seconds": 98,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GH3FCY0CRBC6K1P3GWEC3/dashboard/share/US_NYIANI2X1F72T0AH90NH9OPPFGFXDSOH2PNS9WD8QZ616IR2QDFUI7EDZQ0GQ2AM?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

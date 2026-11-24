@@ -1,0 +1,43 @@
+{
+  "sha": "884225b1c7ba08d2cd506e487f5f699a52bd821b",
+  "subject": "fix(app): localize hardcoded \"Sign up\"/\"Sign in\" menu labels (#11893)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 18,
+  "totalSeconds": 224,
+  "credits": 39.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 20.3334945,
+      "seconds": 106,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85G0JPQ2MF7F07PA0D5FEK2/dashboard/share/US_DRW16Z6NO9ULTRGZ65T8BTAVMC96XDFYR8K6T5OVQ14KQVXGE5LKWQNQGN17FJOD?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 19.0288695,
+      "seconds": 99,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85G3SYF91KDAM146ENH44P5/dashboard/share/US_AYQJ6MEEYX955NX900ZTSZOKF4FLONMAQZNQJAPV3JSZWHMPRHGIRRTTZLHURZ1W?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

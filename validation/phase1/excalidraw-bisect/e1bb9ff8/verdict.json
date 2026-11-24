@@ -1,0 +1,43 @@
+{
+  "sha": "e1bb9ff8f8931e783c11d104abb8967ac6605c9a",
+  "subject": "feat(packages/excalidraw): support rendering into another document (#11974)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 20,
+  "totalSeconds": 217,
+  "credits": 30.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 17.9742945,
+      "seconds": 100,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GMS2EBZKB9D5B9KTB2X51/dashboard/share/US_90DG1N7A8UI4AD3Z1MTN6NB5PSD5LHQ8GOZATLBA2TQ7HNRQW2O9K8OC7D0NCSNA?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 12.357104999999999,
+      "seconds": 97,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85GQTHDTFJZVQFXP6T4T6QE/dashboard/share/US_QAP75VNDLLON1QZ6ZDXABX786ELGU2OWDSUI8IVIL3LJ39WKPQMWKRCHJY0BHFU5?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}
