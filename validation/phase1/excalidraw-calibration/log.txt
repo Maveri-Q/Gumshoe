@@ -1,0 +1,11 @@
+2026-11-24T00:09:52.466Z COMMIT f1a79b73 perf(editor): stop inverting the interactive canvas via CSS filter in dark mode (#12050)
+2026-11-24T00:10:12.450Z   built in 20s
+2026-11-24T00:12:26.705Z   try 1: bad (Kane and the saved screen agree) ready=yes broken=yes screenSaysBroken=true 26.504125000000002 credits 134s
+2026-11-24T00:14:10.120Z   try 2: bad (Kane and the saved screen agree) ready=true broken=yes screenSaysBroken=true 23.704632500000006 credits 103s
+2026-11-24T00:14:10.123Z   => BAD  50.2 credits, 258s
+2026-11-24T00:14:13.000Z COMMIT cd514d72 feat(editor): LaserPointer based freedraw (#11507)
+2026-11-24T00:14:39.181Z   built in 26s
+2026-11-24T00:16:15.075Z   try 1: unsure (Kane said broken=yes, the saved screen says no) ready=yes broken=yes screenSaysBroken=false 23.0999625 credits 96s
+2026-11-24T00:17:47.690Z   try 2: unsure (Kane said broken=yes, the saved screen says no) ready=yes broken=yes screenSaysBroken=false 22.712944999999994 credits 93s
+2026-11-24T00:19:21.355Z   try 3: unsure (Kane said broken=yes, the saved screen says no) ready=true broken=yes screenSaysBroken=false 23.327841999999997 credits 94s
+2026-11-24T00:19:21.358Z   => UNSURE  69.1 credits, 308s

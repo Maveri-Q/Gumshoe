@@ -1,0 +1,50 @@
+{
+  "sha": "cd514d72d6350082c7f173f7147607c7dc4cb523",
+  "subject": "feat(editor): LaserPointer based freedraw (#11507)",
+  "verdict": "unsure",
+  "note": "",
+  "buildSeconds": 26,
+  "totalSeconds": 308,
+  "credits": 69.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane said broken=yes, the saved screen says no",
+      "ready": "yes",
+      "broken": "yes",
+      "seen": "The Excalidraw main menu is open over a blank drawing canvas.",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 23.0999625,
+      "seconds": 96,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EF8T00Y7WQYCY5EFXSF47/dashboard/share/US_IYDVMHW9X6Y49YK9VHQVFDDAYU1MCJ61P8QZ9DBQ30WXTE67THKEVX5L6WFNOLEK?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane said broken=yes, the saved screen says no",
+      "ready": "yes",
+      "broken": "yes",
+      "seen": "The Excalidraw main menu is open over a blank drawing canvas.",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 22.712944999999994,
+      "seconds": 93,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EJ6747NZ357GFF4H49RTG/dashboard/share/US_R0EFHM10KJJILMT2V8SC24O88J19VBCF4JFL2PGUVG9J8OB4X701Z4JA4PSR6HNK?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "unsure",
+      "why": "Kane said broken=yes, the saved screen says no",
+      "ready": "true",
+      "broken": "yes",
+      "seen": "The Excalidraw main menu is open over an empty whiteboard.",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 23.327841999999997,
+      "seconds": 94,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EN0WBCHC53J77JSJYKZ3F/dashboard/share/US_Q00K41ZAOFB5MR6ZCB4QPR2U1YL1BL3X52QH5TF3YMSKPZ2T2RUCWA6GG5BJR7UP?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

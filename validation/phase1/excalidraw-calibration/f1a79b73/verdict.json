@@ -1,0 +1,37 @@
+{
+  "sha": "f1a79b73df5b9883f940417861a4f5fb879a3f02",
+  "subject": "perf(editor): stop inverting the interactive canvas via CSS filter in dark mode (#12050)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 20,
+  "totalSeconds": 258,
+  "credits": 50.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "broken": "yes",
+      "seen": "The main menu is open with file and application options visible.",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 26.504125000000002,
+      "seconds": 134,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85E76SQKPRWX25PDK1HH6AQ/dashboard/share/US_JP5VJ2TNPVQF6C51RLI3J22UWUF6J7GLY1SRXZ39E0CNDIEQASTK5CFPYKEGH8HI?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "broken": "yes",
+      "seen": "The main menu is open, showing options such as Open and Save to.",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 23.704632500000006,
+      "seconds": 103,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EB7HEN87CHXT69XQAC97F/dashboard/share/US_U3JWUCUKFB5Q2QO5PZOWMXTFSW77NTBRXSLMKHO2XCWSJ6EJ32LQ7OG6AUUFFYGK?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}
