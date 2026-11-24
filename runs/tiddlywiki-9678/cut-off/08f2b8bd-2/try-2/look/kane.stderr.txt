@@ -1,0 +1,5 @@
+info: --analyzer-only ignores --max-steps
+
+Update available: 0.10.6 → 0.10.8 — run `npm install -g @testmuai/kane-cli@latest` to update
+
+Token refresh failed. Run: kane-cli login

@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T10:19:36.567Z",
+  "sha": "785086e0a5d60d13c76a6f7527639eefcbb052b8",
+  "subject": "Fixes ESLint errors (#9668)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 10,
+  "totalSeconds": 457,
+  "credits": 69.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki section within Settings after it appeared.\nScrolled to the bottom of the settings list so the Toolbar Button Style heading, its description, and the closed dropdown were visible.\nWaited 2 seconds without changing any settings or opening the dropdown.",
+      "credits": 35.231587999999995,
+      "seconds": 230
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nOpened the TiddlyWiki settings section, then scrolled to the bottom of the settings list.\nLeft the Toolbar Button Style dropdown closed and did not change any settings.",
+      "credits": 34.0406005,
+      "seconds": 217
+    }
+  ]
+}

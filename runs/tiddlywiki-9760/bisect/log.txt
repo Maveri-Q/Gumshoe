@@ -8,3 +8,23 @@
 2026-11-24T05:41:17.877Z   built in 5s
 2026-11-24T05:44:55.716Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 42.3 credits 218s
 2026-11-24T10:04:56.759Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[null,null] screenSaysBroken=false 50.6 credits 15601s
+2026-11-24T10:09:58.293Z   try 3: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 63.7 credits 302s
+2026-11-24T10:09:58.295Z   => UNSURE  156.5 credits, 16126s
+2026-11-24T10:10:00.936Z COMMIT 6bc77cf3 Dynamic parameters for macro/procedure/function calls (#9055)
+2026-11-24T10:10:10.062Z   built in 9s
+2026-11-24T10:15:19.446Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 52.2 credits 309s
+2026-11-24T10:16:11.919Z COMMIT dc764b3a Replace fill rules in tw5.com edition (#9624)
+2026-11-24T10:16:18.740Z   built in 7s
+2026-11-24T10:22:03.249Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 50.9 credits 344s
+2026-11-24T10:27:59.643Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 55.8 credits 356s
+2026-11-24T10:33:45.095Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 54.8 credits 345s
+2026-11-24T10:33:45.099Z   => GOOD  161.5 credits, 1053s
+2026-11-24T10:33:47.119Z COMMIT 785086e0 Fixes ESLint errors (#9668)
+2026-11-24T10:33:56.900Z   built in 10s
+2026-11-24T11:46:38.974Z   Kane gave no result at all (exit 1). Stopping the bisect.
+2026-11-24T22:58:11.595Z COMMIT 785086e0 Fixes ESLint errors (#9668)
+2026-11-24T22:58:17.778Z   built in 6s
+2026-11-24T22:58:23.024Z   Kane gave no result at all (exit 2). Stopping the bisect.
+2026-11-24T22:59:23.343Z COMMIT 785086e0 Fixes ESLint errors (#9668)
+2026-11-24T22:59:27.537Z   built in 4s
+2026-11-24T23:05:09.650Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.6 credits 342s

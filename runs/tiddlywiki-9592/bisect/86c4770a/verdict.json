@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T23:09:24.321Z",
+  "sha": "86c4770a28659e0c95d05a1eb05487116191838a",
+  "subject": "Fix RSOE from filter operator errors (#9496)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 9,
+  "totalSeconds": 551,
+  "credits": 74.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title as “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the new tiddler and both requested body elements were visible.\nClicked “Jump to spot,” which navigated to the specified in-page location.",
+      "credits": 38.996736999999996,
+      "seconds": 272,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87WM0C4C4EH3Q7W32FQP8PE/dashboard/share/US_BRVAUFT60DFYL4H0DN67X4MFEE61ZF9VLOW90DG4QRRV82UCVMKAWCHXWSFZ4NH9?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the new tiddler was visible with both requested body elements.\nClicked “Jump to spot” and waited; the page ended at the target location.",
+      "credits": 35.829587,
+      "seconds": 270,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87WW9SCR0MZME0NHY3PXHFH/dashboard/share/US_MUX21BVEDRAI1GC33MQ8XG7W8ZS3BGDDH84EA63ZF94UUOZCNCE1IXY96QC4MU5E?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

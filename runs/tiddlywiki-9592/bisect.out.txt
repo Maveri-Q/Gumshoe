@@ -1,48 +1,120 @@
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 19177964 Improve switcher (UI) accessibility (#9347)
-  built in 8s
-  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.4 credits 209s
-  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.2 credits 237s
-  => GOOD  66.6 credits, 454s
 Bisecting: 41 revisions left to test after this (roughly 5 steps)
 [48eeb4603a88c5bcde55fd40f004778d388211b1] Deprecate and simplify some utility functions (#9251)
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 48eeb460 Deprecate and simplify some utility functions (#9251)
-  built in 3s
-  try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=true 33.2 credits 214s
-  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 33.6 credits 223s
-  try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 32.3 credits 226s
-  => BAD  99.1 credits, 666s
 Bisecting: 20 revisions left to test after this (roughly 4 steps)
 [30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d] Add change notes as requested in #9406 (#9435)
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 30e9b4f3 Add change notes as requested in #9406 (#9435)
-  built in 10s
-  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.9 credits 225s
-  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.3 credits 234s
-  => GOOD  69.2 credits, 469s
 Bisecting: 10 revisions left to test after this (roughly 3 steps)
 [52d73eb1a879ee4fd57c91ce7471d17020fa860d] Fix accidentally committed change to default tiddlers from #8972
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 52d73eb1 Fix accidentally committed change to default tiddlers from #8972
-  built in 8s
-  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.3 credits 247s
-  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 36.5 credits 260s
-  => GOOD  70.8 credits, 515s
 Bisecting: 5 revisions left to test after this (roughly 3 steps)
 [87d9754a4e5f00faa9a96152e63005ea381a4c32] github-linguist improvements (#9384)
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 87d9754a github-linguist improvements (#9384)
-  built in 6s
-  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.7 credits 211s
-  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 36.4 credits 204s
-  => GOOD  71.1 credits, 421s
 Bisecting: 2 revisions left to test after this (roughly 2 steps)
 [846ac9a0dddaaf65fee37732a0222a6632f3847d] Add issue types (#9490)
 running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
-COMMIT 846ac9a0 Add issue types (#9490)
-  built in 6s
-  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.5 credits 199s
-  Kane gave no result at all (exit 2). Stopping the bisect.
-No verdict for this commit, so the bisect stops: ENOENT: no such file or directory, open 'C:\Users\admin\Downloads\gumshoe\runs\tiddlywiki-9592\bisect\846ac9a0\verdict.json'
-error: bisect run failed: exit code 200 from 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect' is < 0 or >= 128
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[86c4770a28659e0c95d05a1eb05487116191838a] Fix RSOE from filter operator errors (#9496)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9592/bug.json' 'runs/tiddlywiki-9592/bisect'
+COMMIT 86c4770a Fix RSOE from filter operator errors (#9496)
+  built in 9s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 39.0 credits 272s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.8 credits 270s
+  => GOOD  74.8 credits, 551s
+48eeb4603a88c5bcde55fd40f004778d388211b1 is the first 'bad' commit
+commit 48eeb4603a88c5bcde55fd40f004778d388211b1
+Author: XLBilly <LeiYiXia29@outlook.com>
+Date:   Wed Dec 17 22:40:47 2025 +0800
+
+    Deprecate and simplify some utility functions (#9251)
+    
+    * Deprecate some utility functions
+    
+    * Drop IE support
+    
+    * Update two function
+    
+    * Update comment
+    
+    * Further simplify with arrow function
+    
+    * Fix node error
+    
+    * Deprecate logTable
+    
+    * Deprecate class functions
+    
+    * Attempt to fix error
+    
+    * Deprecate two functions
+    
+    * Remove deprecation for getLocationPath
+    
+    * Deprecate stringifyNumber, domContains, domMatchesSelector
+    
+    * Deprecate $tw.utils.each
+    
+    * Revert "Deprecate $tw.utils.each"
+    
+    This reverts commit 650df1d575a507194688c40e980625a61b2fac07.
+    
+    * Simplify getFullScreenApis
+    
+    * Replace LLMap with Map
+    
+    * Revert "Replace LLMap with Map"
+    
+    This reverts commit 4410ac194a48816745065ab85a8012e5345d88a1.
+    
+    * Move some deprecated functions to deprecated.js
+    
+    * Remove Opera & MS prefix
+    
+    * Deprecate getLocationPath
+    
+    * Fix code style
+    
+    * Revert "Remove Opera & MS prefix"
+    
+    This reverts commit e5771c00be5469b3f6a8acaf6a11c1623ed97bfb.
+    
+    * Revert "Simplify getFullScreenApis"
+    
+    This reverts commit 894cb479eae39b792051440c78a7c816e38205a8.
+    
+    * Further simplify toggleClass
+    
+    * Second attempt to simplify $tw.utils.each
+    
+    * Revert "Second attempt to simplify $tw.utils.each"
+    
+    This reverts commit 74cb4f766e66c7330d12b29f9fc49a3379c8712f.
+    
+    * Third attempt to simplify $tw.utils.each
+    
+    * Add missing comma
+    
+    * Update comments
+    
+    * Deprecate hopArray
+    
+    Since it is easy to implement it with some method
+    
+    * Update change notes
+    
+    * Deprecate tagToCssSelector
+    
+    Since tc-tagged-* classes are deprecated
+
+ boot/boot.js                                       |  76 ++++----------
+ core/modules/utils/deprecated.js                   |  58 +++++++++++
+ core/modules/utils/dom/dom.js                      |  49 ---------
+ core/modules/utils/utils.js                        | 116 ---------------------
+ .../5.4.0/deprecate-util-func - deprecation.tid    |   8 ++
+ .../releasenotes/5.4.0/deprecate-util-func.tid     |  10 ++
+ 6 files changed, 96 insertions(+), 221 deletions(-)
+ create mode 100644 core/modules/utils/deprecated.js
+ create mode 100644 editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid
+ create mode 100644 editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid
+bisect found first 'bad' commit

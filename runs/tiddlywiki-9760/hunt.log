@@ -4,3 +4,10 @@
 2026-11-24T05:12:08.306Z   on the reported version: bad
 2026-11-24T05:26:23.685Z OLDER ae943f49 2025-08-07: good
 2026-11-24T05:26:23.821Z BISECT ae943f49..962692c9, 262 commits
+2026-11-24T10:16:04.362Z ISSUE TiddlyWiki/TiddlyWiki5#9760 [5.4.0-prerelease] More button in editor misses button text
+2026-11-24T10:16:04.912Z REPORTED VERSION 962692c9 2026-03-19 FIX: restore mhchem require for \ce and \pu macro support (#9756)
+2026-11-24T10:16:04.918Z DRAFT 1: After opening the more dropdown in the text editor toolbar, each button listed in it has a text label next to its icon.
+2026-11-24T10:16:04.920Z   on the reported version: bad
+2026-11-24T10:16:06.071Z OLDER ae943f49 2025-08-07: good
+2026-11-24T10:16:08.331Z BISECT ae943f49..962692c9, 262 commits
+2026-11-24T10:16:08.488Z Picking up after a stop, with the same frozen check

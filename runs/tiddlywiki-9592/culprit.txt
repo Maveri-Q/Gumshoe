@@ -1,0 +1,89 @@
+48eeb4603a88c5bcde55fd40f004778d388211b1
+XLBilly
+2025-12-17T14:40:47Z
+Deprecate and simplify some utility functions (#9251)
+* Deprecate some utility functions
+
+* Drop IE support
+
+* Update two function
+
+* Update comment
+
+* Further simplify with arrow function
+
+* Fix node error
+
+* Deprecate logTable
+
+* Deprecate class functions
+
+* Attempt to fix error
+
+* Deprecate two functions
+
+* Remove deprecation for getLocationPath
+
+* Deprecate stringifyNumber, domContains, domMatchesSelector
+
+* Deprecate $tw.utils.each
+
+* Revert "Deprecate $tw.utils.each"
+
+This reverts commit 650df1d575a507194688c40e980625a61b2fac07.
+
+* Simplify getFullScreenApis
+
+* Replace LLMap with Map
+
+* Revert "Replace LLMap with Map"
+
+This reverts commit 4410ac194a48816745065ab85a8012e5345d88a1.
+
+* Move some deprecated functions to deprecated.js
+
+* Remove Opera & MS prefix
+
+* Deprecate getLocationPath
+
+* Fix code style
+
+* Revert "Remove Opera & MS prefix"
+
+This reverts commit e5771c00be5469b3f6a8acaf6a11c1623ed97bfb.
+
+* Revert "Simplify getFullScreenApis"
+
+This reverts commit 894cb479eae39b792051440c78a7c816e38205a8.
+
+* Further simplify toggleClass
+
+* Second attempt to simplify $tw.utils.each
+
+* Revert "Second attempt to simplify $tw.utils.each"
+
+This reverts commit 74cb4f766e66c7330d12b29f9fc49a3379c8712f.
+
+* Third attempt to simplify $tw.utils.each
+
+* Add missing comma
+
+* Update comments
+
+* Deprecate hopArray
+
+Since it is easy to implement it with some method
+
+* Update change notes
+
+* Deprecate tagToCssSelector
+
+Since tc-tagged-* classes are deprecated
+
+ boot/boot.js                                                                |  76 +++++++----------------
+ core/modules/utils/deprecated.js                                            |  58 ++++++++++++++++++
+ core/modules/utils/dom/dom.js                                               |  49 ---------------
+ core/modules/utils/utils.js                                                 | 116 ------------------------------------
+ .../tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid       |   8 +++
+ editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid        |  10 ++++
+ 6 files changed, 96 insertions(+), 221 deletions(-)

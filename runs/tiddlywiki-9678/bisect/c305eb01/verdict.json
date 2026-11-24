@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-24T10:28:38.086Z",
+  "sha": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+  "subject": "Fix passing a filtered attribute as a MVV (#9663)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 454,
+  "credits": 69,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nConfirmed that the Settings tab displayed the settings list.\nNavigated to the TiddlyWiki settings section, scrolled to the bottom, and left the Toolbar Button Style dropdown visible, closed, and unchanged after waiting briefly.\nThe requested view was reached without changing any settings.",
+      "credits": 31.173778499999997,
+      "seconds": 194
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the Control Panel and selected its Settings tab.\nA second row of Settings tabs was available, so the TiddlyWiki tab was selected.\nScrolled to the bottom of the settings list, where the Toolbar Button Style section and its closed dropdown were visible.\nWaited briefly and left all settings unchanged, including the dropdown.",
+      "credits": 37.839777999999995,
+      "seconds": 254
+    }
+  ]
+}

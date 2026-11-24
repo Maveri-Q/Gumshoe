@@ -34,3 +34,32 @@
 2026-11-24T05:46:21.339Z   built in 5s
 2026-11-24T10:04:54.833Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[null,null] screenSaysBroken=true 34.0 credits 15513s
 2026-11-24T10:08:19.970Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=true 50.6 credits 205s
+2026-11-24T10:11:57.993Z   try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 39.8 credits 218s
+2026-11-24T10:11:57.997Z   => UNSURE  124.5 credits, 15942s
+2026-11-24T10:11:59.514Z COMMIT 785086e0 Fixes ESLint errors (#9668)
+2026-11-24T10:12:09.596Z   built in 10s
+2026-11-24T10:15:59.818Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 35.2 credits 230s
+2026-11-24T10:19:36.566Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 34.0 credits 217s
+2026-11-24T10:19:36.568Z   => BAD  69.3 credits, 457s
+2026-11-24T10:19:39.923Z COMMIT c305eb01 Fix passing a filtered attribute as a MVV (#9663)
+2026-11-24T10:19:46.876Z   built in 7s
+2026-11-24T10:20:03.417Z   Kane gave no result at all (exit 2). Stopping the bisect.
+2026-11-24T10:21:03.803Z COMMIT c305eb01 Fix passing a filtered attribute as a MVV (#9663)
+2026-11-24T10:21:10.255Z   built in 6s
+2026-11-24T10:24:23.866Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 31.2 credits 194s
+2026-11-24T10:28:38.084Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 37.8 credits 254s
+2026-11-24T10:28:38.088Z   => BAD  69 credits, 454s
+2026-11-24T10:28:56.454Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T10:29:26.784Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T10:29:35.076Z   built in 8s
+2026-11-24T10:33:45.005Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 38.6 credits 250s
+2026-11-24T11:46:39.005Z   Kane gave no result at all (exit 1). Stopping the bisect.
+2026-11-24T22:58:11.621Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T22:58:17.779Z   built in 6s
+2026-11-24T22:58:23.024Z   Kane gave no result at all (exit 2). Stopping the bisect.
+2026-11-24T22:59:23.343Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T22:59:27.561Z   built in 4s
+2026-11-24T22:59:38.728Z   Kane gave no result at all (exit 2). Stopping the bisect.
+2026-11-24T23:02:52.801Z COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+2026-11-24T23:03:01.810Z   built in 9s
+2026-11-24T23:07:29.338Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.1 credits 267s

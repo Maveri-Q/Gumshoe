@@ -6,14 +6,26 @@
   "action": "Click once on an empty part of the canvas, near the bottom middle of the page, away from the menu and from any button. Then wait 2 seconds. Do not press Escape and do not click the menu button again.",
   "broken": "The main menu (a panel at the top left listing items such as Save to, Export image and Preferences) is open.",
   "working": "The main menu (a panel at the top left listing items such as Save to, Export image and Preferences) is closed.",
-  "witness": { "brokenText": "Find on canvas" },
+  "witness": {
+    "brokenText": "Find on canvas"
+  },
   "source": "https://github.com/excalidraw/excalidraw/pull/12053",
   "maintainersCulprit": "e1bb9ff8f8931e783c11d104abb8967ac6605c9a",
   "maintainersCulpritPr": "https://github.com/excalidraw/excalidraw/pull/11974",
   "good": "cd514d72",
   "bad": "f1a79b73",
   "repo": "work/excalidraw",
-  "build": ["node", "--max-old-space-size=3500", "work/node_modules/vite/bin/vite.js", "build", "-c", "work/cfg/vite.config.mjs"],
-  "env": { "VITE_APP_ENABLE_TRACKING": "false" },
-  "dist": "work/dist"
+  "build": [
+    "node",
+    "--max-old-space-size=3500",
+    "work/node_modules/vite/bin/vite.js",
+    "build",
+    "-c",
+    "work/cfg/vite.config.mjs"
+  ],
+  "env": {
+    "VITE_APP_ENABLE_TRACKING": "false"
+  },
+  "dist": "work/dist",
+  "title": "fix(editor): dismiss dropdown menus on outside clicks"
 }

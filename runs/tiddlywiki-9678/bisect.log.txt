@@ -1,0 +1,15 @@
+# bad: [431b7fa3bfe71c6100134aa7d0a9c7fc517b2876] Update ImportListing.tid (#9674)
+# good: [ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7] Version number update for 5.3.8
+git bisect start '--first-parent' '431b7fa3bfe71c6100134aa7d0a9c7fc517b2876' 'ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7'
+# good: [6cb333b65b145ca9c41cb6349fc227396948c3bc] Merge branch 'tiddlywiki-com'
+git bisect good 6cb333b65b145ca9c41cb6349fc227396948c3bc
+# good: [e42ed6808eb00e5daaf72de34d8f24f94028ff9b] Split escapecss into two platforms (#9475)
+git bisect good e42ed6808eb00e5daaf72de34d8f24f94028ff9b
+# good: [0673426f5a640d82c672579088a4336894f9fb6d] fix: remove fn wrappers and unneeded comments (#9637)
+git bisect good 0673426f5a640d82c672579088a4336894f9fb6d
+# good: [64ee20edd2ea1e2674b0118143ad1a93764d0983] Further MVV fixes (#9645)
+git bisect good 64ee20edd2ea1e2674b0118143ad1a93764d0983
+# good: [71462143bfd8951476620da2cb26a23d997eeb5f] Fix BackgroundActions example
+git bisect good 71462143bfd8951476620da2cb26a23d997eeb5f
+# bad: [07634d65955735a12fe6b0ffe447917b5d2a8c2e] Merge branch 'tiddlywiki-com'
+git bisect bad 07634d65955735a12fe6b0ffe447917b5d2a8c2e

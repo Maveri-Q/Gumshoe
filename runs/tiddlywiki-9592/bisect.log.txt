@@ -11,3 +11,8 @@ git bisect good 30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d
 git bisect good 52d73eb1a879ee4fd57c91ce7471d17020fa860d
 # good: [87d9754a4e5f00faa9a96152e63005ea381a4c32] github-linguist improvements (#9384)
 git bisect good 87d9754a4e5f00faa9a96152e63005ea381a4c32
+# good: [846ac9a0dddaaf65fee37732a0222a6632f3847d] Add issue types (#9490)
+git bisect good 846ac9a0dddaaf65fee37732a0222a6632f3847d
+# good: [86c4770a28659e0c95d05a1eb05487116191838a] Fix RSOE from filter operator errors (#9496)
+git bisect good 86c4770a28659e0c95d05a1eb05487116191838a
+# first 'bad' commit: [48eeb4603a88c5bcde55fd40f004778d388211b1] Deprecate and simplify some utility functions (#9251)

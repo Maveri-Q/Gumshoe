@@ -1,0 +1,3 @@
+LOOK ONLY
+Directly below the line 'Choose the style for toolbar buttons:', the dropdown is a tiny, roughly square box that contains only a down arrow, and the word 'Borderless' is not written inside it.
+Directly below the line 'Choose the style for toolbar buttons:', the dropdown is a wider box with the word 'Borderless' written inside it to the left of the down arrow.

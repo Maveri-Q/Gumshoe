@@ -58,7 +58,7 @@ for (const [bugName, bisect, cal] of [["excalidraw-menu", "excalidraw-bisect", "
   const commits = read(join(base, "commits.json")), c = culpritFrom(commits, b.good, judged);
   if (!c) problems.push(`${bugName}: the verdicts don't lead to one commit`);
   const all = [...ends, ...judged];
-  hunts.push({ id: bugName, by: "hand", app: "Excalidraw", issue: b.source, title: b.sentence, sentence: b.sentence, outcome: "found", culprit: c?.sha, culpritSubject: c?.subject, range: commits.length, commits, judged, ends,
+  hunts.push({ id: bugName, by: "hand", app: "Excalidraw", issue: b.source, title: b.title, sentence: b.sentence, outcome: "found", culprit: c?.sha, culpritSubject: c?.subject, range: commits.length, commits, judged, ends,
     credits: sum(all, "credits"), minutes: sum(all, "totalSeconds") / 60, tries: all.flatMap(x => x.tries).length, refused: all.flatMap(x => x.tries).filter((t: any) => t.verdict === "unsure").length,
     truth: { culprit: b.maintainersCulprit, who: "the maintainers", source: b.source } });
 }

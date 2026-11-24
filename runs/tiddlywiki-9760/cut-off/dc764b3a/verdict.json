@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-24T10:09:58.294Z",
+  "sha": "dc764b3a4ac97d1e2108badbff33366bdbf0772e",
+  "subject": "Replace fill rules in tw5.com edition (#9624)",
+  "verdict": "unsure",
+  "note": "",
+  "buildSeconds": 5,
+  "totalSeconds": 16126,
+  "credits": 156.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” in edit mode.\nPositioned the editor so the formatting toolbar above the large text box was visible near the top of the page.\nOpened the additional formatting options using the down-arrow beside the preview icon and left the menu open after waiting 2 seconds.\nThe requested editing view and toolbar state were reached successfully.",
+      "credits": 42.26444500000001,
+      "seconds": 218,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8615DA03HZEFE7VKXKWR4C4/dashboard/share/US_4NXNUPTMHT42WAHOJF1GJIJG9P761BAF7L9D4B8VKT52J59K7Q0G4BK3VEWFHI0E?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        null,
+        null
+      ],
+      "lookStatus": "failed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing after its pencil button was not available directly.\nConfirmed that “HelloThere” was in edit mode with the formatting toolbar, including bold and italic controls, above the large text area.\nPositioned the editor as needed and opened the additional formatting toolbar options using the down-arrow immediately to the left of the preview eye icon.\nLeft the additional toolbar options open after waiting as requested.",
+      "credits": 50.591346000000016,
+      "seconds": 15601,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M861C1V451057WRWW6W4S51V/dashboard/share/US_OP6T3QIS6SXYGGVB766L4AW0FMKFHT5H1EFKPXEMUP6XPT334C3R27SRQAU34033?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing.\nConfirmed that the editor showed the formatting toolbar directly above the large content text box.\nPositioned the editor so the formatting toolbar was near the top of the page.\nOpened the additional formatting options using the down-arrow immediately to the left of the preview icon, then left the menu open without making further changes.",
+      "credits": 63.69192300000002,
+      "seconds": 302,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M86G877EEF6G27G18SCRSMRZ/dashboard/share/US_PB92CDP7RIV8XKAGO5OH62VNSDBOF0XJGO9XXW9KKZ535TRPCUFCFO877VITCONJ?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

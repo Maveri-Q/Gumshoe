@@ -1,0 +1,6 @@
+Skill update available: not installed → 0.1.4 — run `kane-cli install skill`
+
+
+Update available: 0.10.6 → 0.10.9 — run `npm install -g @testmuai/kane-cli@latest` to update
+
+Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.

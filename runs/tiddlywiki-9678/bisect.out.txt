@@ -1,0 +1,33 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 58 revisions left to test after this (roughly 6 steps)
+[e42ed6808eb00e5daaf72de34d8f24f94028ff9b] Split escapecss into two platforms (#9475)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 29 revisions left to test after this (roughly 5 steps)
+[0673426f5a640d82c672579088a4336894f9fb6d] fix: remove fn wrappers and unneeded comments (#9637)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 14 revisions left to test after this (roughly 4 steps)
+[64ee20edd2ea1e2674b0118143ad1a93764d0983] Further MVV fixes (#9645)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 7 revisions left to test after this (roughly 3 steps)
+[71462143bfd8951476620da2cb26a23d997eeb5f] Fix BackgroundActions example
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 3 revisions left to test after this (roughly 2 steps)
+[07634d65955735a12fe6b0ffe447917b5d2a8c2e] Merge branch 'tiddlywiki-com'
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+Bisecting: 1 revision left to test after this (roughly 1 step)
+[08f2b8bdf416d2cad977827efcd59ffa80fe9782] Fixes variable enumeration in widgets (#9648)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect'
+COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+  built in 8s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 38.6 credits 250s
+  Kane gave no result at all (exit 1). Stopping the bisect.
+Kane gave nothing. Waiting 60 seconds, then trying this commit again.
+COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+  built in 6s
+  Kane gave no result at all (exit 2). Stopping the bisect.
+Kane gave nothing. Waiting 60 seconds, then trying this commit again.
+COMMIT 08f2b8bd Fixes variable enumeration in widgets (#9648)
+  built in 4s
+  Kane gave no result at all (exit 2). Stopping the bisect.
+No verdict for this commit, so the bisect stops: ENOENT: no such file or directory, open 'C:\Users\admin\Downloads\gumshoe\runs\tiddlywiki-9678\bisect\08f2b8bd\verdict.json'
+error: bisect run failed: exit code 200 from 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9678/bug.json' 'runs/tiddlywiki-9678/bisect' is < 0 or >= 128

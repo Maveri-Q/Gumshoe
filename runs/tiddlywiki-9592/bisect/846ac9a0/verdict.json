@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T10:13:33.976Z",
+  "sha": "846ac9a0dddaaf65fee37732a0222a6632f3847d",
+  "subject": "Add issue types (#9490)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 491,
+  "credits": 78.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the saved tiddler and its requested content were visible.\nClicked “Jump to spot,” which navigated to the specified spot after waiting briefly.",
+      "credits": 44.249922,
+      "seconds": 239,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M86G95ZSRDNXTVY4GYBTJ9T1/dashboard/share/US_N7ZQX75PXK0VADITNAYJ37106CD6UIMP4I02MWDRD25NTJ1B1LR4AG61X7RX6VRY?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Created a new tiddler while keeping the default title “New Tiddler.”\nEntered the requested HTML so the tiddler displayed a “Jump to spot” link and “Landing place” text.\nConfirmed the changes and brought the “New Tiddler” entry into view.\nClicked “Jump to spot”; the page finished at the matching in-page location.",
+      "credits": 34.65133,
+      "seconds": 247,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M86GGD66EKR0R5ZXQR5VEZX2/dashboard/share/US_OHA7F8QE9K3CPSZY9R28DYD8F8B3VCPEC2696T01PMV3N4J1AMYBGNBK30JCTMH9?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

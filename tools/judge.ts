@@ -64,22 +64,30 @@ let final: Verdict | undefined;
 while (!(final = combine(verdicts))) {
   const n = tries.length + 1, tdir = join(dir, `try-${n}`), t0 = Date.now();
   const br = await launchRole(`t${sha.slice(0, 8)}-${n}-${t0}`, 9700 + (port - 4300) * 10 + n, join(root, ".kane-profiles"));
-  let k, look, pixel: number[] | undefined, screen = { url: "", text: "" };
+  let lookedAgain = false, k, look, pixel: number[] | undefined, screen = { url: "", text: "" };
   try {
     k = await runKane({ objective, url: `http://127.0.0.1:${port}${bug.path ?? "/"}`, cdpEndpoint: br.endpoint, name: `gumshoe-${bug.id}-${sha.slice(0, 8)}-${n}`, outDir: tdir, timeoutS: 300, maxSteps: 20 });
     // A separate look-only Kane run judges the page as it is now. In calibration 1 the run that
     // did the clicks answered wrongly about its own last screenshot.
     if (k.status) look = await runKane({ objective: "", conditions: [bug.broken, bug.working], cdpEndpoint: br.endpoint, name: "look", outDir: join(tdir, "look"), timeoutS: 120 });
+    // Kane contradicted itself: let it look at the same page once more before refusing the try.
+    if (bug.lookAgain && look?.conditionResults?.length === 2 && look.conditionResults[0] === look.conditionResults[1]) {
+      const first = look;
+      look = await runKane({ objective: "", conditions: [bug.broken, bug.working], cdpEndpoint: br.endpoint, name: "look", outDir: join(tdir, "look"), timeoutS: 120 });
+      look.credits += first.credits; lookedAgain = true;
+    }
     screen = await snapshot(br, join(tdir, "after.png"));
     if (bug.witness.pixel) pixel = await readPixel(br, bug.witness.pixel);
   } finally { closeRole(br, true); }
   await new Promise(r => setTimeout(r, 2500)); // let the browser profile be removed
   writeFileSync(join(tdir, "after.txt"), screen.text);
-  if (!k.status || !look?.status) { log(`  Kane gave no result at all (exit ${k.exitCode}). Stopping the bisect.`); process.exit(200); }
+  // Kane's look came back with nothing in it. That is a lost connection, not a judgement.
+  const lost = look?.conditionResults?.some((x: any) => typeof x !== "boolean");
+  if (!k.status || !look?.status || lost) { log(`  Kane gave no result at all (exit ${k.exitCode}). Stopping the bisect.`); process.exit(200); }
   const witness = bug.witness.reader ? await secondReader(join(tdir, "after.png"), bug.broken, bug.working) : bug.witness.pixel ? pixelSaysBroken(pixel, bug.witness.workingRgb) : screen.text ? screen.text.includes(bug.witness.brokenText) : undefined;
   const v = tryVerdict({ ready: k.answers.ready, look: look.conditionResults, witness });
   const t = {
-    try: n, verdict: v.verdict, why: v.why, ready: k.answers.ready, look: look.conditionResults, lookStatus: look.status,
+    try: n, verdict: v.verdict, why: v.why, ready: k.answers.ready, look: look.conditionResults, lookStatus: look.status, ...(lookedAgain ? { lookedAgain } : {}),
     screenSaysBroken: witness, pixel, kaneStatus: k.status, summary: k.summary ?? k.oneLiner, credits: k.credits + look.credits, seconds: Math.round((Date.now() - t0) / 1000), testUrl: k.testUrl,
   };
   tries.push(t); verdicts.push(v.verdict);

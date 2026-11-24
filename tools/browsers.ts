@@ -55,7 +55,9 @@ async function withPage<T>(b: RoleBrowser, fn: (send: (m: string, p?: object) =>
   const pending = new Map<number, (v: any) => void>();
   ws.onmessage = ev => { const m = JSON.parse(String(ev.data)); if (m.id && pending.has(m.id)) { pending.get(m.id)!(m.result ?? m.error); pending.delete(m.id); } };
   const send = (method: string, params: object = {}) => new Promise<any>(res => { pending.set(++id, res); ws.send(JSON.stringify({ id, method, params })); });
-  try { return await fn(send); } finally { ws.close(); }
+  // A browser that died (the computer slept) never answers, so give up after 45 seconds.
+  const late = new Promise<never>((_, x) => setTimeout(() => x(new Error("the browser stopped answering")), 45000).unref());
+  try { return await Promise.race([fn(send), late]); } finally { ws.close(); }
 }
 
 export async function currentUrl(b: RoleBrowser): Promise<string> {

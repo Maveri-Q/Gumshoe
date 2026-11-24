@@ -1,0 +1,6 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","pid":19992,"v":1,"ts":"2026-11-24T05:48:50.370Z"}
+{"type":"recording_state","enabled":true,"session_id":"2cc049a3-c4d9-452b-8be8-2b41b42feb4c","persist":false,"v":1,"ts":"2026-11-24T05:48:50.429Z"}
+{"type":"update_available","current":"0.10.6","latest":"0.10.8","severity":"patch","v":1,"ts":"2026-11-24T05:48:51.222Z"}
+{"type":"skill_update_available","current":null,"latest":"0.1.4","install_cmd":"kane-cli install skill","v":1,"ts":"2026-11-24T05:48:51.226Z"}
+{"type":"error","message":"analyzer failed before any verdict: ","v":1,"ts":"2026-11-24T10:01:27.378Z"}
+{"type":"run_end","status":"failed","run_id":"run-0","duration":15147.8,"condition_results":[null,null],"condition_reasons":["analyzer failed before any verdict: ","analyzer failed before any verdict: "],"condition_sub_checks":[null,null],"credits_consumed":0,"reason":"analyzer failed before any verdict: ","v":1,"ts":"2026-11-24T10:01:30.224Z"}

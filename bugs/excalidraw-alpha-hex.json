@@ -35,5 +35,6 @@
     "VITE_APP_ENABLE_TRACKING": "false"
   },
   "dist": "work2/dist",
-  "port": 4301
+  "port": 4301,
+  "title": "Regression: Hex colors with Alpha broken since #10578"
 }

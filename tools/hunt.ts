@@ -34,7 +34,7 @@ if (!existsSync(src)) inClone("worktree", "add", "--detach", src, bad);
 log(`REPORTED VERSION ${bad.slice(0, 8)} ${inClone("log", "-1", "--format=%cd %s", "--date=short", bad)}`);
 
 const bugFile = `${run}/bug.json`;
-const save = (c: Check) => writeFileSync(join(root, bugFile), JSON.stringify({ id, ...c, witness: { reader: true }, source: issue.url, repo: srcRel,
+const save = (c: Check) => writeFileSync(join(root, bugFile), JSON.stringify({ id, ...c, witness: { reader: true }, ...(existsSync(join(dir, "frozen-check.sha256")) && !readFileSync(join(root, bugFile), "utf8").includes("lookAgain") ? {} : { lookAgain: true }), source: issue.url, repo: srcRel,
   build: app.build, unpack: app.unpack, dist: app.dist ?? `dist/${id}`, env: app.env ?? {}, port }, null, 2));
 function judge(sha: string, folder: string): any {
   const f = join(dir, folder, sha.slice(0, 8), "verdict.json");
@@ -101,7 +101,7 @@ git("bisect", "start", "--first-parent", knownBad, good!);
 const b = spawnSync("git", ["bisect", "run", "node", join(root, "tools/step.mjs").replace(/\\/g, "/"), bugFile, `${run}/bisect`], { cwd: src, encoding: "utf8", maxBuffer: 1e8 });
 writeFileSync(join(dir, "bisect.out.txt"), (b.stdout ?? "") + (b.stderr ?? ""));
 writeFileSync(join(dir, "bisect.log.txt"), git("bisect", "log"));
-const m = (b.stdout ?? "").match(/([0-9a-f]{40}) is the first bad commit/);
+const m = (b.stdout ?? "").match(/([0-9a-f]{40}) is the first '?bad'? commit/);
 if (!m) done({ outcome: "the bisect could not name one commit", range, good, bad: knownBad });
 const culprit = m![1];
 writeFileSync(join(dir, "culprit.txt"), git("show", "-m", "--first-parent", "--format=%H%n%an%n%cI%n%s%n%b", "--stat=120", culprit));

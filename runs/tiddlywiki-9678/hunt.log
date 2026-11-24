@@ -6,3 +6,32 @@
 2026-11-24T04:52:27.270Z   on the reported version: bad
 2026-11-24T04:58:22.788Z OLDER ae943f49 2025-08-07: good
 2026-11-24T04:58:22.917Z BISECT ae943f49..431b7fa3, 234 commits
+2026-11-24T10:28:39.932Z DONE the bisect could not name one commit 998 credits, 352.7 min
+2026-11-24T10:28:47.808Z ISSUE TiddlyWiki/TiddlyWiki5#9678 [regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style
+2026-11-24T10:28:48.201Z REPORTED VERSION 431b7fa3 2026-02-21 Update ImportListing.tid (#9674)
+2026-11-24T10:28:48.205Z DRAFT 1: In the control panel settings, the Toolbar Button Style dropdown shows the name of the currently selected style, such as Borderless.
+2026-11-24T10:28:48.206Z   on the reported version: unsure
+2026-11-24T10:28:48.211Z DRAFT 2: In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.
+2026-11-24T10:28:48.211Z   on the reported version: bad
+2026-11-24T10:28:48.884Z OLDER ae943f49 2025-08-07: good
+2026-11-24T10:28:50.536Z BISECT ae943f49..431b7fa3, 234 commits
+2026-11-24T10:28:50.650Z Picking up after a stop, with the same frozen check
+2026-11-24T10:29:18.205Z ISSUE TiddlyWiki/TiddlyWiki5#9678 [regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style
+2026-11-24T10:29:18.606Z REPORTED VERSION 431b7fa3 2026-02-21 Update ImportListing.tid (#9674)
+2026-11-24T10:29:18.611Z DRAFT 1: In the control panel settings, the Toolbar Button Style dropdown shows the name of the currently selected style, such as Borderless.
+2026-11-24T10:29:18.612Z   on the reported version: unsure
+2026-11-24T10:29:18.617Z DRAFT 2: In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.
+2026-11-24T10:29:18.618Z   on the reported version: bad
+2026-11-24T10:29:19.329Z OLDER ae943f49 2025-08-07: good
+2026-11-24T10:29:20.797Z BISECT ae943f49..431b7fa3, 234 commits
+2026-11-24T10:29:20.887Z Picking up after a stop, with the same frozen check
+2026-11-24T22:59:40.457Z DONE the bisect could not name one commit 873.5 credits, 750.4 min
+2026-11-24T23:02:44.038Z ISSUE TiddlyWiki/TiddlyWiki5#9678 [regression] v5.4.0 - ControlPanel - Settings - TW - Toolbar Button Style
+2026-11-24T23:02:44.443Z REPORTED VERSION 431b7fa3 2026-02-21 Update ImportListing.tid (#9674)
+2026-11-24T23:02:44.448Z DRAFT 1: In the control panel settings, the Toolbar Button Style dropdown shows the name of the currently selected style, such as Borderless.
+2026-11-24T23:02:44.449Z   on the reported version: unsure
+2026-11-24T23:02:44.453Z DRAFT 2: In the control panel settings, the dropdown under 'Choose the style for toolbar buttons:' shows the name of the currently selected style, such as Borderless.
+2026-11-24T23:02:44.453Z   on the reported version: bad
+2026-11-24T23:02:45.123Z OLDER ae943f49 2025-08-07: good
+2026-11-24T23:02:46.696Z BISECT ae943f49..431b7fa3, 234 commits
+2026-11-24T23:02:46.786Z Picking up after a stop, with the same frozen check

@@ -3,4 +3,5 @@ Update available: 0.10.6 → 0.10.8 — run `npm install -g @testmuai/kane-cli@l
 
 Skill update available: not installed → 0.1.4 — run `kane-cli install skill`
 
-Project and folder must be configured. Run `kane-cli login` to set up auth, or pass --username/--access-key, then `kane-cli config project <id>` / `kane-cli config folder <id>`.
+Running on: Desktop · Chrome
+evidence: view locally with `kane-cli evidence serve C:\Users\admin\.testmuai\kaneai\sessions\7b7fbadc-84bb-49a6-a2ab-09e879426b4f\evidence\db0d7cbb-98d6-4c84-b172-104e619e3b4e.evidence`

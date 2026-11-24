@@ -16,3 +16,14 @@
 2026-11-24T10:05:16.073Z OLDER ae943f49 2025-08-07: good
 2026-11-24T10:05:17.647Z BISECT ae943f49..be84dee2, 168 commits
 2026-11-24T10:05:17.752Z Picking up after a stop, with the same frozen check
+2026-11-24T23:00:05.823Z ISSUE TiddlyWiki/TiddlyWiki5#9592 [Report] HTML anchor links opens new tiddler
+2026-11-24T23:00:06.186Z REPORTED VERSION be84dee2 2026-01-17 Allow unused variables in function headers and caught exceptions (#9588)
+2026-11-24T23:00:06.191Z DRAFT 1: Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler.
+2026-11-24T23:00:06.192Z   on the reported version: unsure
+2026-11-24T23:00:06.197Z DRAFT 2: Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler.
+2026-11-24T23:00:06.198Z   on the reported version: bad
+2026-11-24T23:00:06.844Z OLDER ae943f49 2025-08-07: good
+2026-11-24T23:00:08.151Z BISECT ae943f49..be84dee2, 168 commits
+2026-11-24T23:00:08.246Z Picking up after a stop, with the same frozen check
+2026-11-24T23:09:25.186Z CULPRIT 48eeb460 Deprecate and simplify some utility functions (#9251)
+2026-11-24T23:09:26.918Z DONE found 789.5 credits, 9.4 min

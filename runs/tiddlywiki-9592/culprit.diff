@@ -1,0 +1,431 @@
+diff --git a/boot/boot.js b/boot/boot.js
+index d49f866f9..ce713916d 100644
+--- a/boot/boot.js
++++ b/boot/boot.js
+@@ -46,12 +46,8 @@ $tw.utils.hop = function(object,property) {
+ 	return object ? Object.prototype.hasOwnProperty.call(object,property) : false;
+ };
+ 
+-/*
+-Determine if a value is an array
+-*/
+-$tw.utils.isArray = function(value) {
+-	return Object.prototype.toString.call(value) == "[object Array]";
+-};
++/** @deprecated Use Array.isArray instead  */
++$tw.utils.isArray = value => Array.isArray(value);
+ 
+ /*
+ Check if an array is equal by value and by reference.
+@@ -130,35 +126,22 @@ $tw.utils.pushTop = function(array,value) {
+ 	return array;
+ };
+ 
+-/*
+-Determine if a value is a date
+-*/
+-$tw.utils.isDate = function(value) {
+-	return Object.prototype.toString.call(value) === "[object Date]";
+-};
++/** @deprecated Use instanceof Date instead */
++$tw.utils.isDate = value => value instanceof Date;
+ 
+-/*
+-Iterate through all the own properties of an object or array. Callback is invoked with (element,title,object)
+-*/
++/** @deprecated Use array iterative methods instead */
+ $tw.utils.each = function(object,callback) {
+-	var next,f,length;
+ 	if(object) {
+-		if(Object.prototype.toString.call(object) == "[object Array]") {
+-			for(f=0, length=object.length; f<length; f++) {
+-				next = callback(object[f],f,object);
+-				if(next === false) {
+-					break;
+-				}
+-			}
++		if(Array.isArray(object)) {
++			object.every((element,index,array) => {
++				const next = callback(element,index,array);
++				return next !== false;
++			});
+ 		} else {
+-			var keys = Object.keys(object);
+-			for(f=0, length=keys.length; f<length; f++) {
+-				var key = keys[f];
+-				next = callback(object[key],key,object);
+-				if(next === false) {
+-					break;
+-				}
+-			}
++			Object.entries(object).every(entry => {
++				const next = callback(entry[1], entry[0], object);
++				return next !== false;
++			});
+ 		}
+ 	}
+ };
+@@ -333,32 +316,13 @@ $tw.utils.htmlDecode = function(s) {
+ 	return s.toString().replace(/&lt;/mg,"<").replace(/&nbsp;/mg,"\xA0").replace(/&gt;/mg,">").replace(/&quot;/mg,"\"").replace(/&amp;/mg,"&");
+ };
+ 
+-/*
+-Get the browser location.hash. We don't use location.hash because of the way that Firefox auto-urldecodes it (see http://stackoverflow.com/questions/1703552/encoding-of-window-location-hash)
+-*/
+-$tw.utils.getLocationHash = function() {
+-	var href = window.location.href;
+-	var idx = href.indexOf('#');
+-	if(idx === -1) {
+-		return "#";
+-	} else if(href.substr(idx + 1,1) === "#" ||  href.substr(idx + 1,3) === "%23") {
+-		// Special case: ignore location hash if it itself starts with a #
+-		return "#";
+-	} else {
+-		return href.substring(idx);
+-	}
+-};
++/** @deprecated Use window.location.hash instead.  */
++$tw.utils.getLocationHash = () => window.location.hash;
+ 
+-/*
+-Pad a string to a given length with "0"s. Length defaults to 2
+-*/
+-$tw.utils.pad = function(value,length) {
+-	length = length || 2;
+-	var s = value.toString();
+-	if(s.length < length) {
+-		s = "000000000000000000000000000".substr(0,length - s.length) + s;
+-	}
+-	return s;
++/** @deprecated Pad a string to a given length with "0"s. Length defaults to 2 */
++$tw.utils.pad = function(value,length = 2) {
++	const s = value.toString();
++	return s.padStart(length, "0");
+ };
+ 
+ // Convert a date into UTC YYYYMMDDHHMMSSmmm format
+diff --git a/core/modules/utils/deprecated.js b/core/modules/utils/deprecated.js
+new file mode 100644
+index 000000000..ecf14e9b0
+--- /dev/null
++++ b/core/modules/utils/deprecated.js
+@@ -0,0 +1,58 @@
++/*\
++title: $:/core/modules/utils/deprecated.js
++type: application/javascript
++module-type: utils
++
++Deprecated util functions
++
++\*/
++
++exports.logTable = data => console.table(data);
++
++exports.repeat = (str,count) => str.repeat(count);
++
++exports.startsWith = (str,search) => str.startsWith(search);
++
++exports.endsWith = (str,search) => str.endsWith(search);
++
++exports.trim = function(str) {
++	if(typeof str === "string") {
++		return str.trim();
++	} else {
++		return str;
++	}
++};
++
++exports.hopArray = (object,array) => array.some(element => $tw.utils.hop(object,element));
++
++exports.sign = Math.sign;
++
++exports.strEndsWith = (str,ending,position) => str.endsWith(ending,position);
++
++exports.stringifyNumber = num => num.toString();
++
++exports.tagToCssSelector = function(tagName) {
++	return "tc-tagged-" + encodeURIComponent(tagName).replace(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^`{\|}~,]/mg,function(c) {
++		return "\\" + c;
++	});
++};
++
++exports.domContains = (a,b) => a.compareDocumentPosition(b) & 16;
++
++exports.domMatchesSelector = (node,selector) => node.matches(selector);
++
++exports.hasClass = (el,className) => el.classList && el.classList.contains(className);
++
++exports.addClass = function(el,className) {
++	el.classList && el.classList.add(className);
++};
++
++exports.removeClass = function(el,className) {
++	el.classList && el.classList.remove(className);
++};
++
++exports.toggleClass = function(el,className,status) {
++	el.classList && el.classList.toggle(className, status);
++};
++
++exports.getLocationPath = () => window.location.origin + window.location.pathname;
+\ No newline at end of file
+diff --git a/core/modules/utils/dom/dom.js b/core/modules/utils/dom/dom.js
+index 849c5a88b..22bee6b39 100644
+--- a/core/modules/utils/dom/dom.js
++++ b/core/modules/utils/dom/dom.js
+@@ -11,19 +11,6 @@ Various static DOM-related utility functions.
+ 
+ var Popup = require("$:/core/modules/utils/dom/popup.js");
+ 
+-/*
+-Determines whether element 'a' contains element 'b'
+-Code thanks to John Resig, http://ejohn.org/blog/comparing-document-position/
+-*/
+-exports.domContains = function(a,b) {
+-	return a.contains ?
+-		a !== b && a.contains(b) :
+-		!!(a.compareDocumentPosition(b) & 16);
+-};
+-
+-exports.domMatchesSelector = function(node,selector) {
+-	return node.matches ? node.matches(selector) : node.msMatchesSelector(selector);
+-};
+ 
+ /*
+ Select text in a an input or textarea (setSelectionRange crashes on certain input types)
+@@ -49,38 +36,6 @@ exports.removeChildren = function(node) {
+ 	}
+ };
+ 
+-exports.hasClass = function(el,className) {
+-	return el && el.hasAttribute && el.hasAttribute("class") && el.getAttribute("class").split(" ").indexOf(className) !== -1;
+-};
+-
+-exports.addClass = function(el,className) {
+-	var c = (el.getAttribute("class") || "").split(" ");
+-	if(c.indexOf(className) === -1) {
+-		c.push(className);
+-		el.setAttribute("class",c.join(" "));
+-	}
+-};
+-
+-exports.removeClass = function(el,className) {
+-	var c = (el.getAttribute("class") || "").split(" "),
+-		p = c.indexOf(className);
+-	if(p !== -1) {
+-		c.splice(p,1);
+-		el.setAttribute("class",c.join(" "));
+-	}
+-};
+-
+-exports.toggleClass = function(el,className,status) {
+-	if(status === undefined) {
+-		status = !exports.hasClass(el,className);
+-	}
+-	if(status) {
+-		exports.addClass(el,className);
+-	} else {
+-		exports.removeClass(el,className);
+-	}
+-};
+-
+ /*
+ Get the first parent element that has scrollbars or use the body as fallback.
+ */
+@@ -297,10 +252,6 @@ exports.copyToClipboard = function(text,options) {
+ 	document.body.removeChild(textArea);
+ };
+ 
+-exports.getLocationPath = function() {
+-	return window.location.toString().split("#")[0];
+-};
+-
+ /*
+ Collect DOM variables
+ */
+diff --git a/core/modules/utils/utils.js b/core/modules/utils/utils.js
+index a9c05975d..1e754e7a3 100644
+--- a/core/modules/utils/utils.js
++++ b/core/modules/utils/utils.js
+@@ -48,31 +48,6 @@ exports.warning = function(text) {
+ 	exports.log(text,"brown/orange");
+ };
+ 
+-/*
+-Log a table of name: value or name: [values...] pairs
+-*/
+-exports.logTable = function(data) {
+-	var hasArrays = false;
+-	$tw.utils.each(data,function(value,name) {
+-		if($tw.utils.isArray(value)) {
+-			hasArrays = true;
+-		}
+-	});
+-	if(console.table && !hasArrays) {
+-		console.table(data);
+-	} else {
+-		$tw.utils.each(data,function(value,name) {
+-			if($tw.utils.isArray(value)) {
+-				for(var t=0; t<value.length; t++) {
+-					console.log(`${name}[${t}]: ${value[t]}`);
+-				}
+-			} else {
+-				console.log(`${name}: ${value}`);
+-			}
+-		});
+-	}
+-}
+-
+ /*
+ Return the integer represented by the str (string).
+ Return the dflt (default) parameter if str is not a base-10 number.
+@@ -91,43 +66,6 @@ exports.replaceString = function(text,search,replace) {
+ 	});
+ };
+ 
+-/*
+-Repeats a string
+-*/
+-exports.repeat = function(str,count) {
+-	var result = "";
+-	for(var t=0;t<count;t++) {
+-		result += str;
+-	}
+-	return result;
+-};
+-
+-/*
+-Check if a string starts with another string
+-*/
+-exports.startsWith = function(str,search) {
+-	return str.substring(0, search.length) === search;
+-};
+-
+-/*
+-Check if a string ends with another string
+-*/
+-exports.endsWith = function(str,search) {
+-	return str.substring(str.length - search.length) === search;
+-};
+-
+-/*
+-Trim whitespace from the start and end of a string
+-Thanks to Steven Levithan, http://blog.stevenlevithan.com/archives/faster-trim-javascript
+-*/
+-exports.trim = function(str) {
+-	if(typeof str === "string") {
+-		return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+-	} else {
+-		return str;
+-	}
+-};
+-
+ exports.trimPrefix = function(str,unwanted) {
+ 	if(typeof str === "string" && typeof unwanted === "string") {
+ 		if(unwanted === "") {
+@@ -212,18 +150,6 @@ exports.count = function(object) {
+ 	return Object.keys(object || {}).length;
+ };
+ 
+-/*
+-Determine whether an array-item is an object-property
+-*/
+-exports.hopArray = function(object,array) {
+-	for(var i=0; i<array.length; i++) {
+-		if($tw.utils.hop(object,array[i])) {
+-			return true;
+-		}
+-	}
+-	return false;
+-};
+-
+ /*
+ Remove entries from an array
+ 	array: array to modify
+@@ -952,44 +878,6 @@ exports.makeDataUri = function(text,type,_canonical_uri) {
+ 	return parts.join("");
+ };
+ 
+-/*
+-Useful for finding out the fully escaped CSS selector equivalent to a given tag. For example:
+-
+-$tw.utils.tagToCssSelector("$:/tags/Stylesheet") --> tc-tagged-\%24\%3A\%2Ftags\%2FStylesheet
+-*/
+-exports.tagToCssSelector = function(tagName) {
+-	return "tc-tagged-" + encodeURIComponent(tagName).replace(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^`{\|}~,]/mg,function(c) {
+-		return "\\" + c;
+-	});
+-};
+-
+-/*
+-IE does not have sign function
+-*/
+-exports.sign = Math.sign || function(x) {
+-	x = +x; // convert to a number
+-	if(x === 0 || isNaN(x)) {
+-		return x;
+-	}
+-	return x > 0 ? 1 : -1;
+-};
+-
+-/*
+-IE does not have an endsWith function
+-*/
+-exports.strEndsWith = function(str,ending,position) {
+-	if(str.endsWith) {
+-		return str.endsWith(ending,position);
+-	} else {
+-		if(typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > str.length) {
+-			position = str.length;
+-		}
+-		position -= ending.length;
+-		var lastIndex = str.indexOf(ending, position);
+-		return lastIndex !== -1 && lastIndex === position;
+-	}
+-};
+-
+ /*
+ Return system information useful for debugging
+ */
+@@ -1016,10 +904,6 @@ exports.parseInt = function(str) {
+ 	return parseInt(str,10) || 0;
+ };
+ 
+-exports.stringifyNumber = function(num) {
+-	return num + "";
+-};
+-
+ exports.makeCompareFunction = function(type,options) {
+ 	options = options || {};
+ 	// set isCaseSensitive to true if not defined in options
+diff --git a/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid b/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid
+new file mode 100644
+index 000000000..2ce43b1bf
+--- /dev/null
++++ b/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid	
+@@ -0,0 +1,8 @@
++title: $:/changenotes/5.4.0/#9251/impacts/deprecation
++changenote: $:/changenotes/5.4.0/#9251
++created: 20251129130610944
++modified: 20251129130610953
++tags: $:/tags/ImpactNote
++description: Some utility functions are deprecated and are discouraged to be used
++impact-type: deprecation
++
+diff --git a/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid b/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid
+new file mode 100644
+index 000000000..b2c05acab
+--- /dev/null
++++ b/editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid
+@@ -0,0 +1,10 @@
++title: $:/changenotes/5.4.0/#9251
++description: Deprecate some utility functions
++release: 5.4.0
++tags: $:/tags/ChangeNote
++change-type: deprecation
++change-category: developer
++github-links: https://github.com/TiddlyWiki/TiddlyWiki5/pull/9251
++github-contributors: Leilei332
++
++Deprecate some utility functions. Some of them are moved to [[$:/core/modules/utils/deprecated.js]].
+\ No newline at end of file

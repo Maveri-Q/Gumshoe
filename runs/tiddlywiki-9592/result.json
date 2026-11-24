@@ -4,15 +4,18 @@
   "title": "[Report] HTML anchor links opens new tiddler",
   "issueCreatedAt": "2026-01-18T03:41:09Z",
   "sentence": "Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler.",
-  "outcome": "the bisect could not name one commit",
+  "outcome": "found",
+  "culprit": "48eeb4603a88c5bcde55fd40f004778d388211b1",
+  "culpritSubject": "Deprecate and simplify some utility functions (#9251)",
+  "culpritDate": "2025-12-17T14:40:47Z",
   "range": 168,
   "good": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
   "bad": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
-  "tries": 18,
+  "tries": 22,
   "refused": 3,
-  "credits": 635.8,
-  "minutes": 70.3,
-  "finishedAt": "2026-11-24T05:49:16.077Z",
+  "credits": 789.5,
+  "minutes": 9.4,
+  "finishedAt": "2026-11-24T23:09:26.915Z",
   "steps": [
     {
       "part": "reported-1",
@@ -93,6 +96,26 @@
       "seconds": 421,
       "date": "2025-12-13T09:31:55Z",
       "finished": "2026-11-24T05:45:32.454Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "846ac9a0dddaaf65fee37732a0222a6632f3847d",
+      "subject": "Add issue types (#9490)",
+      "verdict": "good",
+      "credits": 78.9,
+      "seconds": 491,
+      "date": "2025-12-13T10:14:54Z",
+      "finished": "2026-11-24T10:13:33.976Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "86c4770a28659e0c95d05a1eb05487116191838a",
+      "subject": "Fix RSOE from filter operator errors (#9496)",
+      "verdict": "good",
+      "credits": 74.8,
+      "seconds": 551,
+      "date": "2025-12-17T14:24:25Z",
+      "finished": "2026-11-24T23:09:24.321Z"
     }
   ]
 }
