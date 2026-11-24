@@ -1,0 +1,3 @@
+LOOK ONLY
+The main menu (a panel at the top left listing items such as Save to, Export image and Preferences) is open.
+The main menu (a panel at the top left listing items such as Save to, Export image and Preferences) is closed.

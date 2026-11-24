@@ -1,0 +1,43 @@
+{
+  "sha": "cd514d72d6350082c7f173f7147607c7dc4cb523",
+  "subject": "feat(editor): LaserPointer based freedraw (#11507)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 25,
+  "totalSeconds": 249,
+  "credits": 48.6,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 28.555735000000006,
+      "seconds": 117,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EV67DDGTAFNT6R18H4B8F/dashboard/share/US_E1QI8H73A76AYIIEJ65IDUDHX6OUHZXTAK5B9EEHMGN2WDMP5E7A4G6KK3FJW1SH?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 20.0661775,
+      "seconds": 107,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85EYQ0XVPTCQNRBT1303HC7/dashboard/share/US_VMSRUV0KJ1C8ZQT87KJDM6UT7Q9FJVOZ7XXKW0WFT0W6LHEOJX0ZXS44N1EEUU8O?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

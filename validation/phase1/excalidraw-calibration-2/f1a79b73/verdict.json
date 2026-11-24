@@ -1,0 +1,43 @@
+{
+  "sha": "f1a79b73df5b9883f940417861a4f5fb879a3f02",
+  "subject": "perf(editor): stop inverting the interactive canvas via CSS filter in dark mode (#12050)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 26,
+  "totalSeconds": 234,
+  "credits": 38.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 19.2852575,
+      "seconds": 108,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85F2T4JBVDNCCE73MJ9VQ81/dashboard/share/US_G7S4694U3H4QW0AX32IQWF4ABACVA9R6LGW4EER5ZZ7J1XYRX9HBSB4D6NY9I64D?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "true",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 18.824879999999997,
+      "seconds": 100,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M85F63B80W4XAKHFWC7ZAS8B/dashboard/share/US_7K09EBBZJ4LLI6BC9EIR96TK11QTEJY7H1E7CJUM0TA9KX7RXYBL8QIXR9UE359L?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

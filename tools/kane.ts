@@ -5,7 +5,7 @@ import { writeFileSync, readFileSync, mkdirSync, existsSync, readdirSync, append
 import { join } from "node:path";
 export interface KaneResult {
   exitCode: number | null; status?: string; reasonCode?: string; resultCode?: number; credits: number;
-  testUrl?: string; oneLiner?: string; summary?: string; answers: Record<string, string>;
+  testUrl?: string; oneLiner?: string; summary?: string; answers: Record<string, string>; conditionResults?: boolean[];
   evidencePack?: string; ndjsonPath: string; durationS?: number;
 }
 
@@ -22,6 +22,8 @@ function kaneCommand(): { cmd: string; pre: string[] } {
 
 export interface RunOpts {
   objective: string;
+  /** Look-only mode: judge these statements on the current page. No clicks, nothing saved (docs: kane-cli modes). */
+  conditions?: string[];
   /** Leave out to start from the page the browser is already on (no reload). */
   url?: string;
   cdpEndpoint?: string;
@@ -45,6 +47,7 @@ export function resultFromEvents(events: any[], ndjsonPath: string, exitCode: nu
   for (const [k, v] of Object.entries<any>(end?.final_state ?? {})) if (typeof v === "string" && !answers[k]) answers[k] = v;
   const pack = events.find(e => e.type === "coverage" && e.pack)?.pack;
   return {
+    conditionResults: end?.condition_results,
     exitCode, status: end?.status, reasonCode: end?.reason_code, resultCode: end?.result_code,
     credits: Number(end?.credits_consumed ?? end?.credits ?? 0), testUrl: end?.test_url,
     oneLiner: end?.one_liner, summary: end?.summary, answers, evidencePack: pack, ndjsonPath, durationS: end?.duration,
@@ -54,12 +57,12 @@ export function resultFromEvents(events: any[], ndjsonPath: string, exitCode: nu
 export async function runKane(o: RunOpts): Promise<KaneResult> {
   mkdirSync(o.outDir, { recursive: true });
   const { cmd, pre } = kaneCommand();
-  const args = [...pre, "run", o.objective, ...(o.url ? ["--url", o.url] : ["--allow-missing-url"]), "--agent", "--timeout", String(o.timeoutS ?? 480),
-    "--max-steps", String(o.maxSteps ?? 60), "--name", o.name.replace(/[^a-zA-Z0-9_-]/g, "-")];
+  const args = [...pre, "run", ...(o.conditions ? ["--analyzer-only", ...o.conditions.flatMap(c => ["--condition", c])] : [o.objective]), ...(o.url ? ["--url", o.url] : ["--allow-missing-url"]), "--agent", "--timeout", String(o.timeoutS ?? 480),
+    "--max-steps", String(o.maxSteps ?? 60), ...(o.conditions ? [] : ["--name", o.name.replace(/[^a-zA-Z0-9_-]/g, "-")])];
   if (o.cdpEndpoint) args.push("--cdp-endpoint", o.cdpEndpoint);
   else args.push("--headless");
   const ndjsonPath = join(o.outDir, "kane.ndjson");
-  writeFileSync(join(o.outDir, "objective.txt"), o.objective);
+  writeFileSync(join(o.outDir, "objective.txt"), o.conditions ? ["LOOK ONLY", ...o.conditions].join(String.fromCharCode(10)) : o.objective);
   // Stream output to disk as it arrives, so a stuck run can be inspected while it runs.
   writeFileSync(ndjsonPath, "");
   writeFileSync(join(o.outDir, "kane.stderr.txt"), "");

@@ -1,5 +1,6 @@
-// Plain code decides every verdict. Kane only answers two positive questions per try.
-export type Try = { ready?: string; broken?: string; witness?: boolean };
+// Plain code decides every verdict. Kane judges two opposite statements, "it is broken"
+// and "it works", and plain code checks that they don't contradict each other.
+export type Try = { ready?: string; look?: boolean[]; witness?: boolean };
 export type Verdict = "good" | "bad" | "unsure";
 
 const yn = (s?: string) => {
@@ -11,11 +12,12 @@ const yn = (s?: string) => {
  *  plain code says the same thing Kane said. */
 export function tryVerdict(t: Try): { verdict: Verdict; why: string } {
   if (yn(t.ready) !== "yes") return { verdict: "unsure", why: "Kane did not get the app ready" };
-  const b = yn(t.broken);
-  if (!b) return { verdict: "unsure", why: "Kane gave no clear answer" };
+  if (t.look?.length !== 2) return { verdict: "unsure", why: "Kane gave no clear answer" };
+  if (t.look[0] === t.look[1]) return { verdict: "unsure", why: "Kane contradicted itself" };
+  const b = t.look[0];
   if (t.witness === undefined) return { verdict: "unsure", why: "no saved screen to compare with" };
-  if (t.witness !== (b === "yes")) return { verdict: "unsure", why: `Kane said broken=${b}, the saved screen says ${t.witness ? "yes" : "no"}` };
-  return { verdict: b === "yes" ? "bad" : "good", why: "Kane and the saved screen agree" };
+  if (t.witness !== b) return { verdict: "unsure", why: `Kane said broken=${b}, the saved screen says ${t.witness ? "yes" : "no"}` };
+  return { verdict: b ? "bad" : "good", why: "Kane and the saved screen agree" };
 }
 
 /** Two tries must agree. `undefined` means run another try. Three tries at most. */
