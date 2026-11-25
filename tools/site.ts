@@ -8,11 +8,16 @@ const esc = (s: any) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&l
 const short = (s?: string) => (s ?? "").slice(0, 8);
 const mins = (m: number) => `${Math.round(m)} min`;
 
-function picture(root: string, from: string, name: string) {
+// The part of the screen where each bug shows: x, y, width, height on a 1920x1080 page.
+const CROP: Record<string, string> = {
+  "tiddlywiki-9592": "800:400:30:28", "tiddlywiki-9678": "1000:500:20:560", "tiddlywiki-9760": "1000:500:560:110",
+  "excalidraw-10772": "1200:600:0:350", "excalidraw-alpha-hex": "1200:600:0:350", "excalidraw-menu": "1000:500:0:0",
+};
+function picture(root: string, from: string, name: string, crop?: string) {
   const to = join(root, "site", "img", name + ".jpg");
   if (!existsSync(to) && existsSync(from)) {
     mkdirSync(join(root, "site", "img"), { recursive: true });
-    const r = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", from, "-vf", "scale=1120:-1", "-q:v", "5", to]);
+    const r = spawnSync("ffmpeg", ["-y", "-loglevel", "error", "-i", from, "-vf", (crop ? `crop=${crop},` : "") + "scale=1120:-1", "-q:v", "5", to]);
     if (r.status !== 0) copyFileSync(from, to);
   }
   return existsSync(to) ? `img/${name}.jpg` : "";
@@ -42,6 +47,18 @@ function rows(h: any, root: string) {
   return out;
 }
 
+/** The guilty commit next to the last version that worked. */
+function pair(h: any, root: string) {
+  const i = h.commits.findIndex((c: any) => c.sha === h.culprit), all = [...h.judged, ...h.ends];
+  const before = i > 0 ? all.find((j: any) => j.sha === h.commits[i - 1].sha) : h.ends.find((j: any) => j.verdict === "good");
+  const guilty = all.find((j: any) => j.sha === h.culprit);
+  const one = (j: any, side: string) => {
+    const t = j?.tries.filter((x: any) => x.verdict === j.verdict).at(-1);
+    return t && { sha: short(j.sha), subject: j.subject, link: t.testUrl, img: picture(root, join(root, j.dir, `try-${t.try}`, "after.png"), `${h.id}-${side}`, CROP[h.id]) };
+  };
+  return { before: one(before, "before"), guilty: one(guilty, "guilty") };
+}
+
 export function renderSite(hunts: any[], root: string): string {
   const found = hunts.filter(h => h.outcome === "found");
   const known = found.filter(h => h.same !== undefined), same = known.filter(h => h.same);
@@ -49,12 +66,12 @@ export function renderSite(hunts: any[], root: string): string {
   const data = [hero, ...found.filter(h => h !== hero)].map(h => ({
     app: h.app, no: h.issue.split("/").pop() + (h.by === "hand" ? " (by hand)" : ""), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
     commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.note, took: h.truth?.took,
-    minutes: Math.round(h.minutes), credits: Math.round(h.credits), n: h.commits.length, rows: rows(h, root), diff: h.diff,
+    minutes: Math.round(h.minutes), credits: Math.round(h.credits), n: h.commits.length, at: h.commits.findIndex((c: any) => c.sha === h.culprit), files: h.commits.map((c: any) => c.files ?? 1), from: h.commits[0]?.date.slice(0, 10), to: h.commits.at(-1)?.date.slice(0, 10), pair: pair(h, root), working: h.working, broken: h.broken, rows: rows(h, root), diff: h.diff,
     fix: h.fix && {
       outcome: h.fix.outcome, green: h.fix.test?.green.status, red: h.fix.test?.red.status, file: h.fix.test?.file,
       attempts: h.fix.attempts.map((a: any) => ({
         n: a.n, verdict: a.verdict, said: a.said, diff: a.diff, link: a.tries?.at(-1)?.testUrl,
-        img: a.sha ? picture(root, join(root, "runs", h.id, "fix", `attempt-${a.n}`, short(a.sha), `try-${a.tries?.at(-1)?.try}`, "after.png"), `${h.id}-fix-${a.n}`) : "",
+        img: a.sha ? picture(root, join(root, "runs", h.id, "fix", `attempt-${a.n}`, short(a.sha), `try-${a.tries?.at(-1)?.try}`, "after.png"), `${h.id}-fix-${a.n}`, CROP[h.id]) : "",
       })),
     },
   }));
