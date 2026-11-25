@@ -13,5 +13,6 @@
     "HEAD"
   ],
   "unpack": "app.tar",
-  "versionTag": "v{version}"
+  "versionTag": "v{version}",
+  "name": "JS Paint"
 }

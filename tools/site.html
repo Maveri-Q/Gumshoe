@@ -71,7 +71,7 @@ main,header,footer{padding-left:16px;padding-right:16px}.fix{padding:18px}.funne
 <figure class="shot"><img alt=""><figcaption></figcaption></figure></div>
 <div class="fixbox"></div>
 <section id="board"><h2>Every bug we tried</h2>
-<p class="lead">%%FOUND%% of %%HUNTS%% hunts ended on one commit. Where the maintainers named a commit, Gumshoe named the same one in %%SAME%% of %%KNOWN%%. All bugs are real and public. None were planted.</p>
+<p class="lead">%%FOUND%% of %%HUNTS%% hunts ended on one commit. Where the maintainers named a commit, Gumshoe named the same one in %%SAME%% of %%KNOWN%%. The %%HUNTS%% hunts cover %%REPORTS%% reports and %%COMMITS%% different guilty commits. One report was hunted twice, once by hand and once by Gumshoe. All are real and public. None were planted.</p>
 <div class="scroll" tabindex="0" role="region" aria-label="Scoreboard"><table><thead><tr><th>Bug report</th><th>Gumshoe says</th><th>Maintainers say</th><th>Match</th><th>Commits searched</th><th>Kane tries</th><th>Time</th><th>Kane credits</th><th>Maintainers took</th><th>Check written</th><th>Fix</th></tr></thead><tbody>%%BOARD%%</tbody></table></div></section>
 <section class="cols"><div><h2>Why one sentence</h2><p>A test that looks for a button by its code name breaks when the code changes. A bug hunt goes back through months of changes. “The menu closes” still means the same thing on an old version.</p></div>
 <div><h2>How it avoids wrong answers</h2><p>Kane does the steps. A second Kane run only looks, and judges two opposite statements. A second reader judges the saved screen. All must agree, in two tries, or the commit is skipped. %%REFUSED%% of %%TOTAL%% tries were refused.</p></div></section>
@@ -80,7 +80,7 @@ main,header,footer{padding-left:16px;padding-right:16px}.fix{padding:18px}.funne
 <li>The report must say clearly what should happen. A vague report gives a vague check.</li>
 <li>Kane can misread a screen, and so can the second reader. If both misread it the same way twice, the answer is wrong.</li>
 <li>It names the commit where the behaviour changed. That is not always the real cause.</li>
-<li>%%KNOWN%% bugs with a known answer is a small sample, from %%APPS%% apps.</li>
+<li>%%REPORTS%% reports from %%APPS%% apps is a small sample.</li>
 <li>Each app needs a short build file, written once by a person.</li></ul></section>
 </main>
 <footer>Every picture and number here comes from a recorded run. <code>npm run replay</code> rebuilds this page from those recordings. Built for the KaneCLI online hackathon.</footer>

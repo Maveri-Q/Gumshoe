@@ -47,7 +47,7 @@ export function renderSite(hunts: any[], root: string): string {
   const known = found.filter(h => h.same !== undefined), same = known.filter(h => h.same);
   const hero = found.find(h => h.fix?.outcome === "fixed" && h.same) ?? found.find(h => h.by === "issue" && h.same) ?? found[0];
   const data = [hero, ...found.filter(h => h !== hero)].map(h => ({
-    app: h.app, no: h.issue.split("/").pop(), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
+    app: h.app, no: h.issue.split("/").pop() + (h.by === "hand" ? " (by hand)" : ""), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
     commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.note, took: h.truth?.took,
     minutes: Math.round(h.minutes), credits: Math.round(h.credits), n: h.commits.length, rows: rows(h, root), diff: h.diff,
     fix: h.fix && {
@@ -71,6 +71,7 @@ export function renderSite(hunts: any[], root: string): string {
   const page = readFileSync(join(root, "tools", "site.html"), "utf8");
   const fill: Record<string, string> = {
     BOARD: board, FOUND: String(found.length), HUNTS: String(hunts.length), SAME: String(same.length), KNOWN: String(known.length), TOTAL: String(total), REFUSED: String(refused),
+    REPORTS: String(new Set(hunts.map(h => h.issue)).size), COMMITS: String(new Set(found.map(h => h.culprit)).size),
     APPS: String(new Set(hunts.map(h => h.app)).size), DATA: JSON.stringify(data).replace(/</g, "\\u003c"),
   };
   return page.replace(/%%([A-Z]+)%%/g, (_, k) => fill[k]);

@@ -40,7 +40,22 @@ npm run fix -- tiddlywiki-9592
 - The saved test, [kane-tests/tiddlywiki-9592_test.md](kane-tests/tiddlywiki-9592_test.md), passes on the fix and fails on the broken version.
 - TiddlyWiki's own tests give the same result before and after the fix: 72 of 1,404 fail here on Windows both times.
 
-See the full scoreboard on the report page (`site/index.html`), or run `npm run replay`.
+## Scoreboard
+
+| Report | Gumshoe says | Maintainers say | Commits searched | Tries (refused) | Time | Credits |
+|---|---|---|---|---|---|---|
+| TiddlyWiki 9592 | 48eeb460 | same | 168 | 22 (3) | 83 min | 790 |
+| TiddlyWiki 9678 | c305eb01 | same, through a linked report | 234 | 27 (4) | 93 min | 972 |
+| TiddlyWiki 9760 | c305eb01 | same | 262 | 31 (10) | 146 min | 1,526 |
+| Excalidraw 10772 | 63e11482 | same | 48 | 19 (2) | 65 min | 664 |
+| Excalidraw 10772, by hand | 63e11482 | same | 56 | 17 (1) | 35 min | 369 |
+| Excalidraw 12053, by hand | e1bb9ff8 | same | 70 | 18 (0) | 35 min | 356 |
+
+6 hunts, 5 reports, 4 different guilty commits. Only 9592 was run without us having looked for the answer first. We knew the answer for 9760 and 10772, and a likely one for 9678. Gumshoe itself was not told any of them, except that 10772's own title names #10578.
+
+Time counts the commits in the final result. Our real spend on the whole project was about 6,460 credits, including failed drafts, calibrations and tries cut off by sleep.
+
+More on the report page (`site/index.html`), or run `npm run replay`.
 
 ## How it works
 
@@ -66,16 +81,17 @@ All the decisions are plain code in [tools/verdict.ts](tools/verdict.ts).
 ## Where it went wrong
 - **Kane's answer was wrong 3 times out of 3** on a good commit in our first calibration. Its own screenshots showed the right thing. That is why a separate look-only run exists. ([validation/phase1](validation/phase1))
 - **Kane contradicted itself** many times. Those tries are in the recordings, refused.
-- **First drafts failed.** On 9592 and 9678 the first draft didn't give a clear result on the reported version. The second did.
+- **First drafts failed.** In 9592 and 9678 the first draft didn't give a clear result on the reported version. The second did.
 - **The computer slept during three hunts.** Tries that were cut off were set aside (`runs/*/cut-off`) and those commits were judged again, with the same frozen check. Finished verdicts were kept. Because of that, real credits spent are higher than the scoreboard shows.
-- One app's steps in the first two hunts were written by hand, by us. The scoreboard says which.
+- The steps in the first two hunts were written by hand, by us. The scoreboard says which.
+- **9760 was the hardest:** 10 of 31 tries were refused and three commits were skipped (one didn't build). It still ended on one commit.
 
 ## What it can't do
 - Old versions must still build. If one doesn't, it is skipped.
 - The report must say clearly what should happen.
 - Kane can misread, and so can the second reader. If both misread a screen the same way twice, the answer is wrong.
 - It names where the behaviour changed. That is not always the real cause.
-- A handful of bugs in two apps is a small sample. Two of the TiddlyWiki reports may come from the same commit.
+- A handful of bugs in two apps is a small sample. Two of the TiddlyWiki reports come from the same commit.
 - Each app needs a short build file ([apps](apps)), written once by a person.
 - The fix is made on the version in the report, because these bugs are already fixed in the newest one.
 - It is slow and costs credits. If a script can check the bug, plain `git bisect` is faster. On 9760 a maintainer did that in about 80 minutes.

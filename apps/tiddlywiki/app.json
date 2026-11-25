@@ -20,5 +20,6 @@
     "--version",
     "--build",
     "index"
-  ]
+  ],
+  "name": "TiddlyWiki"
 }
