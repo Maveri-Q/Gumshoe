@@ -43,7 +43,7 @@ npm run fix -- tiddlywiki-9592
 ## The newest one: TiddlyWiki issue 9574
 
 - The report is one sentence: Ctrl+Enter no longer saves when the cursor is in the tags box.
-- Gumshoe named `3889a2a0`, "Fix nested span.tc-keyboard element in core (#9235)". 161 commits, 121 credits, first draft of the check.
+- Gumshoe named `3889a2a0`, "Fix nested span.tc-keyboard element in core (#9235)". 161 commits, 120 credits, first draft of the check.
 - We looked up the answer afterwards. Nobody in the report had settled on a commit. Seven days in, one person [suspected 23f0a9bf](https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574#issuecomment-3769486600), a change to dragging links, and wrote that undoing it did not help.
 - We settled it with a plain script, no Kane and no AI ([check.mjs](validation/9574-script/check.mjs), [result](validation/9574-script/result.json)):
 
@@ -76,7 +76,7 @@ We ran the 9592 bisect again this way, with the same check and the same two ends
 | Report | Gumshoe says | Maintainers say | Commits searched | Tries (refused) | Time | Credits |
 |---|---|---|---|---|---|---|
 | TiddlyWiki 9592 | 48eeb460 | same | 168 | 22 (3) | 83 min | 790 |
-| TiddlyWiki 9574, cheap mode | 3889a2a0 | not settled, a script agrees | 161 | 19 (1) | 33 min | 121 |
+| TiddlyWiki 9574, cheap mode | 3889a2a0 | not settled, a script agrees | 161 | 19 (1) | 32 min | 120 |
 | TiddlyWiki 9678 | c305eb01 | same, through a linked report | 234 | 27 (4) | 93 min | 972 |
 | TiddlyWiki 9760 | c305eb01 | same | 262 | 31 (10) | 146 min | 1,526 |
 | Excalidraw 10772 | 63e11482 | same | 48 | 19 (2) | 65 min | 664 |
