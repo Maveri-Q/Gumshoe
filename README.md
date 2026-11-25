@@ -81,7 +81,9 @@ All the decisions are plain code in [tools/verdict.ts](tools/verdict.ts).
 ## Where it went wrong
 - **Kane's answer was wrong 3 times out of 3** on a good commit in our first calibration. Its own screenshots showed the right thing. That is why a separate look-only run exists. ([validation/phase1](validation/phase1))
 - **Kane contradicted itself** many times. Those tries are in the recordings, refused.
-- **First drafts failed.** In 9592 and 9678 the first draft didn't give a clear result on the reported version. The second did.
+- **First drafts failed, and we helped.** In 9592 and 9678 the first draft didn't give a clear result on the reported version. Claude rewrote the check. Between the drafts we also changed how Gumshoe asks Kane "is the app ready", because Kane had stored the words "yes or no" as its answer. That was before either bisect began.
+- **We changed Gumshoe while hunts were running.** We added resuming after sleep, skipping lost connections, looking for older versions by weeks (10772 needed it), and reading git's newer wording (9760 and 9678 ended on their commit before this, but Gumshoe missed the line). The check and the rules for a verdict stayed the same during each bisect.
+- **The short app notes in `apps` were written by us after we had read the reports.** They say things like where the control panel is. They help the check writer, and they don't name a cause.
 - **The computer slept during three hunts.** Tries that were cut off were set aside (`runs/*/cut-off`) and those commits were judged again, with the same frozen check. Finished verdicts were kept. Because of that, real credits spent are higher than the scoreboard shows.
 - The steps in the first two hunts were written by hand, by us. The scoreboard says which.
 - **9760 was the hardest:** 10 of 31 tries were refused and three commits were skipped (one didn't build). It still ended on one commit.
