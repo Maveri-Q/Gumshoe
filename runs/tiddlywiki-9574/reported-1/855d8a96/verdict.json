@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:22:07.099Z",
+  "sha": "855d8a963884082ec300f4da23a28d5fe4fd7403",
+  "subject": "Fix images loaded from _canonical_uri tiddlers do not have loading and error classes assigned (#9570)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 187,
+  "credits": 9.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 6.4791,
+      "how": "replay",
+      "seconds": 94
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 3.05797,
+      "how": "replay",
+      "seconds": 89
+    }
+  ]
+}

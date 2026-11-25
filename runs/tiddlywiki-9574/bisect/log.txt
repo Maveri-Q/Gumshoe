@@ -1,0 +1,35 @@
+2026-11-25T21:27:28.357Z COMMIT 7898cb84 Revert "Fix 8166 html tag validation (#8176)" (#9374)
+2026-11-25T21:27:32.852Z   built in 4s
+2026-11-25T21:29:30.870Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 3.7 credits 118s
+2026-11-25T21:30:58.233Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.6 credits 87s
+2026-11-25T21:30:58.234Z   => BAD  6.3 credits, 210s
+2026-11-25T21:31:00.857Z COMMIT 3889a2a0 Fix nested `span.tc-keyboard` element in core (#9235)
+2026-11-25T21:31:03.753Z   built in 3s
+2026-11-25T21:32:29.089Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 4.8 credits 85s
+2026-11-25T21:33:50.034Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.9 credits 81s
+2026-11-25T21:33:50.035Z   => BAD  7.7 credits, 169s
+2026-11-25T21:33:52.142Z COMMIT 810ac428 Release notes: show current banner for the current release
+2026-11-25T21:33:54.580Z   built in 2s
+2026-11-25T21:35:20.619Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.8 credits 86s
+2026-11-25T21:37:03.128Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.7 credits 103s
+2026-11-25T21:37:03.129Z   => GOOD  10.4 credits, 191s
+2026-11-25T21:37:04.982Z COMMIT a36356a0 Adds info tiddlers for viewport dimensions (#9260)
+2026-11-25T21:37:07.471Z   built in 2s
+2026-11-25T21:38:21.271Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.3 credits 74s
+2026-11-25T21:39:48.743Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.4 credits 87s
+2026-11-25T21:39:48.744Z   => GOOD  5.7 credits, 164s
+2026-11-25T21:39:49.228Z COMMIT dc7f2a57 Use currentColor to style svg (#9316)
+2026-11-25T21:39:51.756Z   built in 3s
+2026-11-25T21:41:14.925Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.6 credits 83s
+2026-11-25T21:42:34.790Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.3 credits 80s
+2026-11-25T21:42:34.792Z   => GOOD  7.9 credits, 166s
+2026-11-25T21:42:35.264Z COMMIT b462aaa9 Modules in draft tidders should not be executed (#9293)
+2026-11-25T21:42:37.912Z   built in 3s
+2026-11-25T21:43:54.942Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 77s
+2026-11-25T21:45:21.340Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 86s
+2026-11-25T21:45:21.341Z   => GOOD  5.1 credits, 166s
+2026-11-25T21:45:21.807Z COMMIT 34737f4e Improve ARIA support for link widget (#9167)
+2026-11-25T21:45:24.284Z   built in 2s
+2026-11-25T21:46:44.620Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.9 credits 80s
+2026-11-25T21:48:04.088Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.5 credits 79s
+2026-11-25T21:48:04.089Z   => GOOD  6.4 credits, 162s

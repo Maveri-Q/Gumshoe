@@ -1,0 +1,18 @@
+{
+  "test_id": "48ce6951-9c7b-4b13-911c-b419f5e2573e",
+  "project_id": "01M7PA9D5BYEMMWR2EC2NM7JZW",
+  "folder_id": "01M7PA9F0S2XEXTFZSRX5XBB1F",
+  "org_id": "3438576",
+  "session_name": "steps",
+  "commit_id": "22ce180f-9ea6-4624-8496-30a797df8979",
+  "testcase_id": "01M8A91AJDDYZDJMQWG7BEDM7W",
+  "executions": [
+    {
+      "execution_id": "ae50a2c8-ed3f-4efb-baea-4a4a772f87f4",
+      "run_kind": "author",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-11-25T21:18:35.866Z"
+    }
+  ]
+}

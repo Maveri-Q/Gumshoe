@@ -1,0 +1,3 @@
+LOOK ONLY
+The HelloThere tiddler is still open in an editor: its title box and the tag input with the placeholder text 'tag name' are visible.
+The HelloThere tiddler is no longer being edited: HelloThere is shown as a plain heading above its normal reading text, and no title box or tag input with the placeholder text 'tag name' is visible in it.

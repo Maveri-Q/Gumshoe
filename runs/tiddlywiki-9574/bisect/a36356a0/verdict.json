@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:39:48.743Z",
+  "sha": "a36356a07d4762074fa458885e0a713f7ea012be",
+  "subject": "Adds info tiddlers for viewport dimensions (#9260)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 2,
+  "totalSeconds": 164,
+  "credits": 5.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.28618,
+      "how": "replay",
+      "seconds": 74
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.42908,
+      "how": "replay",
+      "seconds": 87
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:42:34.791Z",
+  "sha": "dc7f2a57bb60188cf428d6304471427fa06c9e84",
+  "subject": "Use currentColor to style svg (#9316)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 166,
+  "credits": 7.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.60426,
+      "how": "replay",
+      "seconds": 83
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.26034,
+      "how": "replay",
+      "seconds": 80
+    }
+  ]
+}

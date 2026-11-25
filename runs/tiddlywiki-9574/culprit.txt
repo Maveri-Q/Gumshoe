@@ -1,0 +1,15 @@
+3889a2a0d0f38bd09ad156353d016061fcd7a72f
+Leilei332
+2025-10-08T10:28:59+01:00
+Fix nested `span.tc-keyboard` element in core (#9235)
+* Fix nested `span.keyboard` element in core
+
+* Fix switching search results not working
+
+ core/ui/AdvancedSearch/Filter.tid          | 40 +++++++++++++++++++++++-----------------
+ core/ui/AdvancedSearch/Shadows.tid         | 12 +++++++++---
+ core/ui/AdvancedSearch/Standard.tid        | 20 +++++++++++++-------
+ core/ui/AdvancedSearch/System.tid          | 12 +++++++++---
+ core/ui/SideBarSegments/search.tid         | 16 +++++++++++-----
+ core/wiki/macros/keyboard-driven-input.tid | 26 ++++++++++++++++----------
+ 6 files changed, 81 insertions(+), 45 deletions(-)

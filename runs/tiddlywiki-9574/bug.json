@@ -1,0 +1,30 @@
+{
+  "id": "tiddlywiki-9574",
+  "sentence": "While editing a tiddler, pressing Ctrl+Enter with the cursor in the tag name input saves the tiddler and closes its editor.",
+  "path": "/#HelloThere",
+  "setup": "Wait until the page has fully loaded and the tiddler titled HelloThere is visible. In the row of buttons at the top right of the HelloThere tiddler, click the edit button (a pencil icon). Wait 2 seconds until the tiddler changes into an editor with a title box at the top and a large text box. In that editor, find the small input below the title box that shows the grey placeholder text 'tag name', and click once inside it so the cursor is there. Do not type anything. If a list of tags drops down below the input, leave it open and do not click anything else.",
+  "ready": "The HelloThere tiddler is open in an editor, with a title box, a tag input with the placeholder text 'tag name', and a large text box.",
+  "action": "With the cursor still in the 'tag name' input, press Ctrl+Enter once on the keyboard (hold Control and press Enter). Do not click anything else. Wait 2 seconds.",
+  "broken": "The HelloThere tiddler is still open in an editor: its title box and the tag input with the placeholder text 'tag name' are visible.",
+  "working": "The HelloThere tiddler is no longer being edited: HelloThere is shown as a plain heading above its normal reading text, and no title box or tag input with the placeholder text 'tag name' is visible in it.",
+  "goodVersion": "5.3.8",
+  "witness": {
+    "reader": true
+  },
+  "lookAgain": true,
+  "recording": "runs/tiddlywiki-9574/recording-1",
+  "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574",
+  "repo": "clones/hunt-tiddlywiki-9574",
+  "build": [
+    "node",
+    "{src}/tiddlywiki.js",
+    "{src}/editions/tw5.com",
+    "--output",
+    "{dist}",
+    "--build",
+    "index"
+  ],
+  "dist": "dist/tiddlywiki-9574",
+  "env": {},
+  "port": 4345
+}

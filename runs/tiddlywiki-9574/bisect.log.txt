@@ -1,0 +1,18 @@
+# bad: [855d8a963884082ec300f4da23a28d5fe4fd7403] Fix images loaded from _canonical_uri tiddlers do not have loading and error classes assigned (#9570)
+# good: [ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7] Version number update for 5.3.8
+git bisect start '--first-parent' '855d8a963884082ec300f4da23a28d5fe4fd7403' 'ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7'
+# bad: [7898cb84469c3cc6b02b216abe6110785933b994] Revert "Fix 8166 html tag validation (#8176)" (#9374)
+git bisect bad 7898cb84469c3cc6b02b216abe6110785933b994
+# bad: [3889a2a0d0f38bd09ad156353d016061fcd7a72f] Fix nested `span.tc-keyboard` element in core (#9235)
+git bisect bad 3889a2a0d0f38bd09ad156353d016061fcd7a72f
+# good: [810ac42810a4efcda6c764a64bfe97fec32987f8] Release notes: show current banner for the current release
+git bisect good 810ac42810a4efcda6c764a64bfe97fec32987f8
+# good: [a36356a07d4762074fa458885e0a713f7ea012be] Adds info tiddlers for viewport dimensions (#9260)
+git bisect good a36356a07d4762074fa458885e0a713f7ea012be
+# good: [dc7f2a57bb60188cf428d6304471427fa06c9e84] Use currentColor to style svg (#9316)
+git bisect good dc7f2a57bb60188cf428d6304471427fa06c9e84
+# good: [b462aaa9a35d92f02231fc39e1423d45942baee1] Modules in draft tidders should not be executed (#9293)
+git bisect good b462aaa9a35d92f02231fc39e1423d45942baee1
+# good: [34737f4e289b8ae2720ed5b7dd4d0548324e1d14] Improve ARIA support for link widget (#9167)
+git bisect good 34737f4e289b8ae2720ed5b7dd4d0548324e1d14
+# first 'bad' commit: [3889a2a0d0f38bd09ad156353d016061fcd7a72f] Fix nested `span.tc-keyboard` element in core (#9235)

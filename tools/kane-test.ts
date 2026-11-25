@@ -25,16 +25,17 @@ Verify that this is true: ${bug.working}
 `;
 }
 
-export async function runTestFile(file: string, dist: string, port: number, outDir: string) {
+export async function runTestFile(file: string, dist: string, port: number, outDir: string, extra: string[] = []) {
   mkdirSync(outDir, { recursive: true });
   const server = await serve(resolve(dist), port);
   const { cmd, pre } = kaneCommand(), t0 = Date.now();
-  const child = spawn(cmd, [...pre, "testmd", "run", file, "--agent", "--headless", "--timeout", "480"], { cwd: outDir, windowsHide: true });
+  const child = spawn(cmd, [...pre, "testmd", "run", file, "--agent", "--headless", "--timeout", "480", ...extra], { cwd: outDir, windowsHide: true });
   let out = "", err = "";
   child.stdout.on("data", d => (out += d)); child.stderr.on("data", d => (err += d));
   const timer = setTimeout(() => child.kill(), 600000);
   const exit = await new Promise<number | null>(r => { child.on("close", r); child.on("error", () => r(-1)); });
   clearTimeout(timer); server.close();
+  out = out.replace(/"share_url":"[^"]*",?/g, "");
   writeFileSync(`${outDir}/kane.ndjson`, out); writeFileSync(`${outDir}/kane.stderr.txt`, err);
   const events = parseNdjson(out);
   const credits = Math.round(events.filter(e => e.type === "run_end").reduce((a, e) => a + Number(e.credits_consumed ?? e.credits ?? 0), 0) * 10) / 10;

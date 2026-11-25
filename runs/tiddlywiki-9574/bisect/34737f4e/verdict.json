@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:48:04.088Z",
+  "sha": "34737f4e289b8ae2720ed5b7dd4d0548324e1d14",
+  "subject": "Improve ARIA support for link widget (#9167)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 2,
+  "totalSeconds": 162,
+  "credits": 6.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.8899800000000004,
+      "how": "replay",
+      "seconds": 80
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.48111,
+      "how": "replay",
+      "seconds": 79
+    }
+  ]
+}

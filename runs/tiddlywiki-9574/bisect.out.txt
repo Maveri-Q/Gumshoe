@@ -1,0 +1,73 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT 7898cb84 Revert "Fix 8166 html tag validation (#8176)" (#9374)
+  built in 4s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 3.7 credits 118s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.6 credits 87s
+  => BAD  6.3 credits, 210s
+Bisecting: 39 revisions left to test after this (roughly 5 steps)
+[3889a2a0d0f38bd09ad156353d016061fcd7a72f] Fix nested `span.tc-keyboard` element in core (#9235)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT 3889a2a0 Fix nested `span.tc-keyboard` element in core (#9235)
+  built in 3s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 4.8 credits 85s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.9 credits 81s
+  => BAD  7.7 credits, 169s
+Bisecting: 19 revisions left to test after this (roughly 4 steps)
+[810ac42810a4efcda6c764a64bfe97fec32987f8] Release notes: show current banner for the current release
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT 810ac428 Release notes: show current banner for the current release
+  built in 2s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.8 credits 86s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.7 credits 103s
+  => GOOD  10.4 credits, 191s
+Bisecting: 9 revisions left to test after this (roughly 3 steps)
+[a36356a07d4762074fa458885e0a713f7ea012be] Adds info tiddlers for viewport dimensions (#9260)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT a36356a0 Adds info tiddlers for viewport dimensions (#9260)
+  built in 2s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.3 credits 74s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.4 credits 87s
+  => GOOD  5.7 credits, 164s
+Bisecting: 4 revisions left to test after this (roughly 2 steps)
+[dc7f2a57bb60188cf428d6304471427fa06c9e84] Use currentColor to style svg (#9316)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT dc7f2a57 Use currentColor to style svg (#9316)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.6 credits 83s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.3 credits 80s
+  => GOOD  7.9 credits, 166s
+Bisecting: 2 revisions left to test after this (roughly 1 step)
+[b462aaa9a35d92f02231fc39e1423d45942baee1] Modules in draft tidders should not be executed (#9293)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT b462aaa9 Modules in draft tidders should not be executed (#9293)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 77s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 86s
+  => GOOD  5.1 credits, 166s
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[34737f4e289b8ae2720ed5b7dd4d0548324e1d14] Improve ARIA support for link widget (#9167)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9574/bug.json' 'runs/tiddlywiki-9574/bisect'
+COMMIT 34737f4e Improve ARIA support for link widget (#9167)
+  built in 2s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.9 credits 80s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.5 credits 79s
+  => GOOD  6.4 credits, 162s
+3889a2a0d0f38bd09ad156353d016061fcd7a72f is the first 'bad' commit
+commit 3889a2a0d0f38bd09ad156353d016061fcd7a72f
+Author: Leilei332 <LeiYiXia29@outlook.com>
+Date:   Wed Oct 8 17:28:59 2025 +0800
+
+    Fix nested `span.tc-keyboard` element in core (#9235)
+    
+    * Fix nested `span.keyboard` element in core
+    
+    * Fix switching search results not working
+
+ core/ui/AdvancedSearch/Filter.tid          | 40 +++++++++++++++++-------------
+ core/ui/AdvancedSearch/Shadows.tid         | 12 ++++++---
+ core/ui/AdvancedSearch/Standard.tid        | 20 +++++++++------
+ core/ui/AdvancedSearch/System.tid          | 12 ++++++---
+ core/ui/SideBarSegments/search.tid         | 16 ++++++++----
+ core/wiki/macros/keyboard-driven-input.tid | 26 +++++++++++--------
+ 6 files changed, 81 insertions(+), 45 deletions(-)
+bisect found first 'bad' commit

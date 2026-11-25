@@ -1,0 +1,9 @@
+2026-11-25T21:15:31.837Z ISSUE TiddlyWiki/TiddlyWiki5#9574 [Report] prerelease: ctrl+Enter fails if cursor is in tags or fieldname input
+2026-11-25T21:15:38.061Z REPORTED VERSION 855d8a96 2026-01-10 Fix images loaded from _canonical_uri tiddlers do not have loading and error classes assigned (#9570)
+2026-11-25T21:15:47.203Z DRAFT 1: While editing a tiddler, pressing Ctrl+Enter with the cursor in the tag name input saves the tiddler and closes its editor.
+2026-11-25T21:18:59.641Z   recording the steps: done
+2026-11-25T21:22:07.123Z   on the reported version: bad
+2026-11-25T21:27:25.535Z OLDER ae943f49 2025-08-07: good
+2026-11-25T21:27:25.661Z BISECT ae943f49..855d8a96, 161 commits
+2026-11-25T21:48:04.474Z CULPRIT 3889a2a0 Fix nested `span.tc-keyboard` element in core (#9235)
+2026-11-25T21:48:05.245Z DONE found 75 credits, 32.6 min

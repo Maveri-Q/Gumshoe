@@ -1,0 +1,45 @@
+{
+  "finishedAt": "2026-11-25T21:30:58.234Z",
+  "sha": "7898cb84469c3cc6b02b216abe6110785933b994",
+  "subject": "Revert \"Fix 8166 html tag validation (#8176)\" (#9374)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 210,
+  "credits": 6.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "lookedAgain": true,
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 3.6797299999999997,
+      "how": "replay",
+      "seconds": 118
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.5888099999999996,
+      "how": "replay",
+      "seconds": 87
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:45:21.341Z",
+  "sha": "b462aaa9a35d92f02231fc39e1423d45942baee1",
+  "subject": "Modules in draft tidders should not be executed (#9293)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 166,
+  "credits": 5.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.5050600000000003,
+      "how": "replay",
+      "seconds": 77
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.56021,
+      "how": "replay",
+      "seconds": 86
+    }
+  ]
+}

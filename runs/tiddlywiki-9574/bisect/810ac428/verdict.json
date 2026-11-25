@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:37:03.128Z",
+  "sha": "810ac42810a4efcda6c764a64bfe97fec32987f8",
+  "subject": "Release notes: show current banner for the current release",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 2,
+  "totalSeconds": 191,
+  "credits": 10.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 5.76564,
+      "how": "replay",
+      "seconds": 86
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.67864,
+      "how": "replay",
+      "seconds": 103
+    }
+  ]
+}

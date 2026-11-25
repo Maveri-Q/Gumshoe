@@ -1,0 +1,111 @@
+{
+  "id": "tiddlywiki-9574",
+  "issue": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574",
+  "title": "[Report] prerelease: ctrl+Enter fails if cursor is in tags or fieldname input",
+  "issueCreatedAt": "2026-01-12T08:18:39Z",
+  "sentence": "While editing a tiddler, pressing Ctrl+Enter with the cursor in the tag name input saves the tiddler and closes its editor.",
+  "outcome": "found",
+  "culprit": "3889a2a0d0f38bd09ad156353d016061fcd7a72f",
+  "culpritSubject": "Fix nested `span.tc-keyboard` element in core (#9235)",
+  "culpritDate": "2025-10-08T10:28:59+01:00",
+  "range": 161,
+  "good": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "bad": "855d8a963884082ec300f4da23a28d5fe4fd7403",
+  "tries": 19,
+  "refused": 1,
+  "credits": 75,
+  "minutes": 32.6,
+  "finishedAt": "2026-11-25T21:48:05.244Z",
+  "steps": [
+    {
+      "part": "reported-1",
+      "sha": "855d8a963884082ec300f4da23a28d5fe4fd7403",
+      "subject": "Fix images loaded from _canonical_uri tiddlers do not have loading and error classes assigned (#9570)",
+      "verdict": "bad",
+      "credits": 9.5,
+      "seconds": 187,
+      "date": "2026-01-10T14:50:31Z",
+      "finished": "2026-11-25T21:22:07.099Z"
+    },
+    {
+      "part": "older",
+      "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+      "subject": "Version number update for 5.3.8",
+      "verdict": "good",
+      "credits": 16,
+      "seconds": 316,
+      "date": "2025-08-07T09:01:06+01:00",
+      "finished": "2026-11-25T21:27:25.434Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "7898cb84469c3cc6b02b216abe6110785933b994",
+      "subject": "Revert \"Fix 8166 html tag validation (#8176)\" (#9374)",
+      "verdict": "bad",
+      "credits": 6.3,
+      "seconds": 210,
+      "date": "2025-10-29T22:01:03+01:00",
+      "finished": "2026-11-25T21:30:58.234Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "3889a2a0d0f38bd09ad156353d016061fcd7a72f",
+      "subject": "Fix nested `span.tc-keyboard` element in core (#9235)",
+      "verdict": "bad",
+      "credits": 7.7,
+      "seconds": 169,
+      "date": "2025-10-08T10:28:59+01:00",
+      "finished": "2026-11-25T21:33:50.035Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "810ac42810a4efcda6c764a64bfe97fec32987f8",
+      "subject": "Release notes: show current banner for the current release",
+      "verdict": "good",
+      "credits": 10.4,
+      "seconds": 191,
+      "date": "2025-09-14T14:36:31+01:00",
+      "finished": "2026-11-25T21:37:03.128Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "a36356a07d4762074fa458885e0a713f7ea012be",
+      "subject": "Adds info tiddlers for viewport dimensions (#9260)",
+      "verdict": "good",
+      "credits": 5.7,
+      "seconds": 164,
+      "date": "2025-10-06T17:00:13+01:00",
+      "finished": "2026-11-25T21:39:48.743Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "dc7f2a57bb60188cf428d6304471427fa06c9e84",
+      "subject": "Use currentColor to style svg (#9316)",
+      "verdict": "good",
+      "credits": 7.9,
+      "seconds": 166,
+      "date": "2025-10-07T11:55:26+01:00",
+      "finished": "2026-11-25T21:42:34.791Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "b462aaa9a35d92f02231fc39e1423d45942baee1",
+      "subject": "Modules in draft tidders should not be executed (#9293)",
+      "verdict": "good",
+      "credits": 5.1,
+      "seconds": 166,
+      "date": "2025-10-07T12:03:11+01:00",
+      "finished": "2026-11-25T21:45:21.341Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "34737f4e289b8ae2720ed5b7dd4d0548324e1d14",
+      "subject": "Improve ARIA support for link widget (#9167)",
+      "verdict": "good",
+      "credits": 6.4,
+      "seconds": 162,
+      "date": "2025-10-07T15:46:43+01:00",
+      "finished": "2026-11-25T21:48:04.088Z"
+    }
+  ]
+}

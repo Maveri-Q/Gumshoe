@@ -1,0 +1,8 @@
+{
+  "url": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574",
+  "repo": "TiddlyWiki/TiddlyWiki5",
+  "number": 9574,
+  "title": "[Report] prerelease: ctrl+Enter fails if cursor is in tags or fieldname input",
+  "body": "In the current prerelease, other than in version 5.3.8, <kbd>Ctrl-Enter</kbd> doesn't work to save the tiddler in the `tags input` and the `fieldname input`",
+  "createdAt": "2026-01-12T08:18:39Z"
+}

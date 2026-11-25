@@ -4,7 +4,7 @@
 // The agent gets the source without git history, and may not touch the sentence or the test.
 import { execFileSync, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, appendFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, appendFileSync, cpSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { askClaude } from "./claude.ts";
 import { runTestFile, testFile } from "./kane-test.ts";
@@ -83,6 +83,8 @@ git("checkout", "-q", "--", "."); git("clean", "-qfd");
 mkdirSync(join(root, "kane-tests"), { recursive: true });
 const file = join(root, "kane-tests", `${id}_test.md`);
 writeFileSync(file, testFile(bug, port));
+// Cheap mode: the setup step is the same words, so Kane can replay it from the hunt's recording.
+if (bug.recording) cpSync(join(root, bug.recording, "output-steps"), join(root, "kane-tests", `output-${id}`), { recursive: true });
 const build = (sha: string) => {
   git("checkout", "-q", sha);
   const dist = join(root, "dist", "fix-" + id);
@@ -95,7 +97,7 @@ const build = (sha: string) => {
 const last = attempts.at(-1).sha;
 const green = await runTestFile(file, build(last), port, join(out, "test-green"));
 log(`TEST ON THE FIX: ${green.status} (${green.credits} credits)`);
-const red = await runTestFile(file, build(startSha), port, join(out, "test-red"));
+const red = await runTestFile(file, build(startSha), port, join(out, "test-red"), bug.recording ? ["--no-adaptive-heal", "--bug-detection", "off"] : []);
 log(`TEST ON THE BROKEN VERSION: ${red.status} (${red.credits} credits)`);
 finish("fixed", { testsBefore, testsAfter, test: { file: `kane-tests/${id}_test.md`, green, red } });
 

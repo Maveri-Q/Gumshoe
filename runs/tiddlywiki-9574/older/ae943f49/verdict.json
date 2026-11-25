@@ -1,0 +1,61 @@
+{
+  "finishedAt": "2026-11-25T21:27:25.434Z",
+  "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "subject": "Version number update for 5.3.8",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 316,
+  "credits": 16,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "lookedAgain": true,
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 7.85799,
+      "how": "replay",
+      "seconds": 117
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.01865,
+      "how": "replay",
+      "seconds": 100
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.16453,
+      "how": "replay",
+      "seconds": 97
+    }
+  ]
+}

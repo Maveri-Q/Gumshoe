@@ -1,0 +1,6 @@
+
+Update available: 0.10.6 → 0.10.9 — run `npm install -g @testmuai/kane-cli@latest` to update
+
+Skill update available: not installed → 0.1.4 — run `kane-cli install skill`
+
+evidence: view locally with `kane-cli evidence serve C:\Users\admin\.testmuai\kaneai\sessions\3e045240-5377-4f85-ad23-dc82278cc83a\evidence\7fc95ba6-8c34-46cc-9a6a-8ac7599de643.evidence`

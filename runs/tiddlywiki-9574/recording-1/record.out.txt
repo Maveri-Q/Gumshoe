@@ -1,0 +1,8 @@
+{
+  finished: true,
+  passed: true,
+  replayed: false,
+  why: 'Objective completed, Objective completed',
+  credits: 45.39062,
+  testUrl: undefined
+}

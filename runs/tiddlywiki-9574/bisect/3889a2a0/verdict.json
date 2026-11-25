@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:33:50.035Z",
+  "sha": "3889a2a0d0f38bd09ad156353d016061fcd7a72f",
+  "subject": "Fix nested `span.tc-keyboard` element in core (#9235)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 169,
+  "credits": 7.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 4.80363,
+      "how": "replay",
+      "seconds": 85
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.86993,
+      "how": "replay",
+      "seconds": 81
+    }
+  ]
+}

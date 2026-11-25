@@ -1,0 +1,82 @@
+[
+ {
+  "commit": "34737f4e",
+  "box": "tag name",
+  "editorOpened": 1,
+  "focused": "tag name",
+  "editorsAfter": 0,
+  "result": "works"
+ },
+ {
+  "commit": "34737f4e",
+  "box": "field name",
+  "editorOpened": 1,
+  "focused": "field name",
+  "editorsAfter": 0,
+  "result": "works"
+ },
+ {
+  "commit": "3889a2a0",
+  "box": "tag name",
+  "editorOpened": 1,
+  "focused": "tag name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ },
+ {
+  "commit": "3889a2a0",
+  "box": "field name",
+  "editorOpened": 1,
+  "focused": "field name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ },
+ {
+  "commit": "bad87c40",
+  "box": "tag name",
+  "editorOpened": 1,
+  "focused": "tag name",
+  "editorsAfter": 0,
+  "result": "works"
+ },
+ {
+  "commit": "bad87c40",
+  "box": "field name",
+  "editorOpened": 1,
+  "focused": "field name",
+  "editorsAfter": 0,
+  "result": "works"
+ },
+ {
+  "commit": "23f0a9bf",
+  "box": "tag name",
+  "editorOpened": 1,
+  "focused": "tag name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ },
+ {
+  "commit": "23f0a9bf",
+  "box": "field name",
+  "editorOpened": 1,
+  "focused": "field name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ },
+ {
+  "commit": "40cc62f7",
+  "box": "tag name",
+  "editorOpened": 1,
+  "focused": "tag name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ },
+ {
+  "commit": "40cc62f7",
+  "box": "field name",
+  "editorOpened": 1,
+  "focused": "field name",
+  "editorsAfter": 1,
+  "result": "BROKEN"
+ }
+]
