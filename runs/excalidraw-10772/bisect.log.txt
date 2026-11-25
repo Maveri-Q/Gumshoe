@@ -1,0 +1,16 @@
+# bad: [a70417f23f5985e3ed2a678c3cd25bffb23b1cff] feat(editor): visualize binding midpoints + support for simple arrows (#10611)
+# good: [e95222ed323d45adf2183bae835c9fb6708e7029] fix: add constants and side methods to packages (#10418)
+git bisect start '--first-parent' 'a70417f23f5985e3ed2a678c3cd25bffb23b1cff' 'e95222ed323d45adf2183bae835c9fb6708e7029'
+# bad: [6135548534fcfacc0ffa7bd1d1f7d32ce05f137d] fix: rerender TTD preview on message remove (#10681)
+git bisect bad 6135548534fcfacc0ffa7bd1d1f7d32ce05f137d
+# bad: [a0b98a944f1ddedba090b8a6908ff38b9132177e] feat: TextToDiagram v2 (#10530)
+git bisect bad a0b98a944f1ddedba090b8a6908ff38b9132177e
+# bad: [87faa5d3da055ea22c6bce261ee88087bf4cca0e] fix: sentry CI worfklow (#10610)
+git bisect bad 87faa5d3da055ea22c6bce261ee88087bf4cca0e
+# good: [b5fc873323e16f181860a4e731c731b4e40badd1] chore: Update translations from Crowdin (#10453)
+git bisect good b5fc873323e16f181860a4e731c731b4e40badd1
+# bad: [c158187f20e9eb60c7b0dd5256f0030594883867] fix: grid color in dark mode (#10600)
+git bisect bad c158187f20e9eb60c7b0dd5256f0030594883867
+# bad: [63e1148280163a36326b7efb5fdfeefebabdb3e4] feat: stop using CSS filters for dark mode (static canvas) (#10578)
+git bisect bad 63e1148280163a36326b7efb5fdfeefebabdb3e4
+# first 'bad' commit: [63e1148280163a36326b7efb5fdfeefebabdb3e4] feat: stop using CSS filters for dark mode (static canvas) (#10578)

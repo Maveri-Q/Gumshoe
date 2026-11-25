@@ -1,0 +1,161 @@
+{
+  "id": "tiddlywiki-9760",
+  "issue": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9760",
+  "title": "[5.4.0-prerelease] More button in editor misses button text",
+  "issueCreatedAt": "2026-03-20T08:00:50Z",
+  "sentence": "After opening the more dropdown in the text editor toolbar, each button listed in it has a text label next to its icon.",
+  "outcome": "found",
+  "culprit": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+  "culpritSubject": "Fix passing a filtered attribute as a MVV (#9663)",
+  "culpritDate": "2026-02-19T12:11:39+01:00",
+  "range": 262,
+  "good": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+  "bad": "962692c90ce4f7f1a9a1464215551a9373dc17af",
+  "tries": 34,
+  "refused": 13,
+  "credits": 1682.1,
+  "minutes": 0.2,
+  "finishedAt": "2026-11-25T19:45:08.259Z",
+  "steps": [
+    {
+      "part": "reported-1",
+      "sha": "962692c90ce4f7f1a9a1464215551a9373dc17af",
+      "subject": "FIX: restore mhchem require for \\ce and \\pu macro support (#9756)",
+      "verdict": "bad",
+      "credits": 94.8,
+      "seconds": 533,
+      "date": "2026-03-19T22:34:56Z",
+      "finished": "2026-11-24T05:12:08.282Z"
+    },
+    {
+      "part": "older",
+      "sha": "ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7",
+      "subject": "Version number update for 5.3.8",
+      "verdict": "good",
+      "credits": 151.5,
+      "seconds": 854,
+      "date": "2025-08-07T09:01:06+01:00",
+      "finished": "2026-11-24T05:26:23.581Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "86d61e09bdafb58a0773d21a00f25be8d2e6083b",
+      "subject": "Edit-text widget: rows parameter takes precedence, CM accepts rows now (#9454)",
+      "verdict": "good",
+      "credits": 132.9,
+      "seconds": 883,
+      "date": "2025-12-17T15:03:23Z",
+      "finished": "2026-11-24T05:41:09.835Z"
+    },
+    {
+      "part": "cut-off",
+      "sha": "dc764b3a4ac97d1e2108badbff33366bdbf0772e",
+      "subject": "Replace fill rules in tw5.com edition (#9624)",
+      "verdict": "unsure",
+      "credits": 156.5,
+      "seconds": 16126,
+      "date": "2026-02-04T11:22:32Z",
+      "finished": "2026-11-24T10:09:58.294Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "dc764b3a4ac97d1e2108badbff33366bdbf0772e",
+      "subject": "Replace fill rules in tw5.com edition (#9624)",
+      "verdict": "good",
+      "credits": 161.5,
+      "seconds": 1053,
+      "date": "2026-02-04T11:22:32Z",
+      "finished": "2026-11-24T10:33:45.097Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "785086e0a5d60d13c76a6f7527639eefcbb052b8",
+      "subject": "Fixes ESLint errors (#9668)",
+      "verdict": "bad",
+      "credits": 153.7,
+      "seconds": 1031,
+      "date": "2026-02-20T08:38:42Z",
+      "finished": "2026-11-24T23:16:34.110Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "b1ccb82e0a675775aa16234f052cf227d363b307",
+      "subject": "Update body-toolbar-button - use `value={{{ [subfilter{!!button-classes}] :and[join[ ]] }}}` (#9585)",
+      "verdict": "unsure",
+      "credits": 0,
+      "seconds": 8,
+      "date": "2026-02-06T11:50:43+01:00",
+      "finished": "2026-11-24T23:16:45.988Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "599933c34dff42e65ae236f28fbb54457568a570",
+      "subject": "Remove 'tiddlywiki/dom-to-image' dependency",
+      "verdict": "good",
+      "credits": 93,
+      "seconds": 600,
+      "date": "2026-02-06T12:01:22+01:00",
+      "finished": "2026-11-25T18:35:51.333Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "42a908e1c9b446edca5b864c279d2d9680254f18",
+      "subject": "set arrow function parens to always (#9590)",
+      "verdict": "good",
+      "credits": 105.2,
+      "seconds": 572,
+      "date": "2026-02-10T12:35:10+01:00",
+      "finished": "2026-11-25T18:45:24.524Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "909149a3479990b721332abe05e94c5190ee28e7",
+      "subject": "[fix] Remove overflow:hidden on the tiddler info pannel, allowing popups to escape the info pannel (#9660)",
+      "verdict": "unsure",
+      "credits": 137.7,
+      "seconds": 761,
+      "date": "2026-02-15T18:57:48Z",
+      "finished": "2026-11-25T18:58:06.428Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+      "subject": "Fix passing a filtered attribute as a MVV (#9663)",
+      "verdict": "bad",
+      "credits": 116.2,
+      "seconds": 543,
+      "date": "2026-02-19T12:11:39+01:00",
+      "finished": "2026-11-25T19:07:09.953Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "a2543cfd4a198fbb3cd99344fa972f913bdf0ba0",
+      "subject": "5.4.0 Update German translations (#9655)",
+      "verdict": "unsure",
+      "credits": 143.9,
+      "seconds": 772,
+      "date": "2026-02-14T21:26:02+01:00",
+      "finished": "2026-11-25T19:20:03.055Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "b713d13c5a3cd49a56062a9482b9591ed07ee0c4",
+      "subject": "Accidentally committed with #9657",
+      "verdict": "good",
+      "credits": 91.8,
+      "seconds": 463,
+      "date": "2026-02-13T17:39:12Z",
+      "finished": "2026-11-25T19:32:35.283Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "71462143bfd8951476620da2cb26a23d997eeb5f",
+      "subject": "Fix BackgroundActions example",
+      "verdict": "good",
+      "credits": 143.4,
+      "seconds": 714,
+      "date": "2026-02-16T18:16:45Z",
+      "finished": "2026-11-25T19:44:29.355Z"
+    }
+  ]
+}

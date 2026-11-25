@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T18:45:24.524Z",
+  "sha": "42a908e1c9b446edca5b864c279d2d9680254f18",
+  "subject": "set arrow function parens to always (#9590)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 7,
+  "totalSeconds": 572,
+  "credits": 105.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” in edit mode.\nPositioned the formatting toolbar above the large text box near the top of the page.\nOpened the additional formatting options using the down-arrow immediately to the left of the preview (eye) icon.\nLeft the additional-options menu open and waited 2 seconds as requested.",
+      "credits": 54.1268305,
+      "seconds": 308,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZWN7DZ5KY2K2DKXF3KG48/dashboard/share/US_E6AZ29WPYNDYPP6FPIN3TSPGQG66JMM4JN5EQP8LSZJDNSQWG3ZU08HI1G0D4LG9?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing.\nConfirmed that the editor displayed its large text box with the formatting toolbar above it.\nPositioned the formatting toolbar near the top of the page, opened the additional toolbar options using the down arrow immediately left of the preview eye, and left that dropdown open after waiting.\nThe requested editing view and open toolbar menu were left in place.",
+      "credits": 51.049724000000005,
+      "seconds": 258,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A0612RT1C6EMAEMX6HGEZT/dashboard/share/US_YWPUXLA4YYOZVL3I44HM1N3B242ZC33UDMRDBL8MS8C18QHAZVQJBLRSZYP6ZZSV?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

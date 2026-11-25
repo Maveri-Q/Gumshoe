@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:06:46.784Z",
+  "sha": "87faa5d3da055ea22c6bce261ee88087bf4cca0e",
+  "subject": "fix: sentry CI worfklow (#10610)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 24,
+  "totalSeconds": 382,
+  "credits": 71.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the canvas background colour control.\nOpened the colour picker and selected the existing Hex code value.\nReplaced the Hex code with ff000080 and waited without confirming it or closing the picker.\nThe colour picker remained open, and the canvas was still white when the picker was opened.",
+      "credits": 34.3451465,
+      "seconds": 175,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1A2RWN8JE0K1VJB19JQPC/dashboard/share/US_RP0LLA74AI1X6DS4D03ACHCEYL1JWM4SF0V2V400DG1SJ33KCFP2GKN3G1M24C4Y?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the canvas background colour option.\nOpened the colour picker, focused the Hex code field next to the # symbol, and selected its existing text without entering a new value.\nWaited 2 seconds; the colour picker remained open and the canvas stayed white.",
+      "credits": 37.402444,
+      "seconds": 184,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1FCQD3V7Z4WC03KACVPA1/dashboard/share/US_F8UG7V9895XXEDUFX6AFXH7DSK2QW4CHF85GONFHD1OU403E3C59LH2C87WS5RV4?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

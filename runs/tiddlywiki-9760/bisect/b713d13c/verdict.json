@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:32:35.283Z",
+  "sha": "b713d13c5a3cd49a56062a9482b9591ed07ee0c4",
+  "subject": "Accidentally committed with #9657",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 463,
+  "credits": 91.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "The requested tiddler, “HelloThere,” was located.\nIts edit control was available and the tiddler was opened in edit mode.\nThe editor showed the large text box with the formatting toolbar, including bold and italic controls, directly above it.\nThe run ended at the HelloThere page; the requested additional-toolbar dropdown was not confirmed as open.",
+      "credits": 49.155016,
+      "seconds": 242,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A2P8Z298JDB4K016BVQ6WK/dashboard/share/US_303WTDTDDXPJQWIIBUFC1WSKQXXBRS04HAIHCN8QS8BU9FMV52S2SUROBJKF04MX?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and switched it into edit mode.\nPositioned the editor so the formatting toolbar above the large text box was visible near the top of the page.\nOpened the additional formatting options using the down-arrow immediately to the left of the preview eye icon, then left the dropdown open as requested.",
+      "credits": 42.67650149999999,
+      "seconds": 217,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A2XMDVTDS8C8508PZ3YPMD/dashboard/share/US_AG9UU3CV4R14J4KZ109C80XZ3SXWH3TPWTBKP7X1U8BON66LZ3S8K6KO0X17H6WR?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

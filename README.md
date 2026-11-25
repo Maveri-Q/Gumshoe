@@ -1,5 +1,7 @@
 # Gumshoe
 
+**Live:** https://gumshoe-puce.vercel.app
+
 **Which commit broke it? Give Gumshoe a bug report and it finds out.**
 
 Gumshoe turns a GitHub issue into one plain sentence. [Kane CLI](https://www.npmjs.com/package/@testmuai/kane-cli) checks that sentence in a real browser, on older and older versions of the app, driven by `git bisect`. One commit is left at the end. A coding agent fixes it, Kane proves the fix with the same sentence, and the sentence is saved as a Kane test.
@@ -33,6 +35,10 @@ npm run fix -- tiddlywiki-9592
 - It wrote the sentence: "Clicking an HTML anchor link that points to a spot inside the same tiddler keeps that tiddler on screen and does not open another tiddler."
 - 168 commits were searched. It ended on `48eeb460`, "Deprecate and simplify some utility functions (#9251)".
 - We had not looked up the answer. Then we did: the maintainers' fix, [#9622](https://github.com/TiddlyWiki/TiddlyWiki5/pull/9622), blames #9251.
+
+- Claude Code fixed it on the first attempt, without seeing the maintainers' fix. Kane checked the same sentence twice: it works.
+- The saved test, [kane-tests/tiddlywiki-9592_test.md](kane-tests/tiddlywiki-9592_test.md), passes on the fix and fails on the broken version.
+- TiddlyWiki's own tests give the same result before and after the fix: 72 of 1,404 fail here on Windows both times.
 
 See the full scoreboard on the report page (`site/index.html`), or run `npm run replay`.
 

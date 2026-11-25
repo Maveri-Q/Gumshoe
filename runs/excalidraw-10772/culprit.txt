@@ -1,0 +1,49 @@
+63e1148280163a36326b7efb5fdfeefebabdb3e4
+David Luzar
+2026-01-04T15:16:35+01:00
+feat: stop using CSS filters for dark mode (static canvas) (#10578)
+* feat: stop using CSS filters for dark mode (static canvas)
+
+* fix comment
+
+* remove conditional dark mode export
+
+* make shape cache theme-aware
+
+* refactor
+
+* refactor
+
+* fixes and notes
+
+ excalidraw-app/debug.ts                                                |  67 +++++++---
+ packages/common/package.json                                           |   6 +
+ packages/common/src/__snapshots__/colors.test.ts.snap                  |  93 ++++++++++++++
+ packages/common/src/colors.test.ts                                     | 280 +++++++++++++++++++++++++++++++++++++++++
+ packages/common/src/colors.ts                                          | 133 +++++++++++++++++++-
+ packages/common/src/constants.ts                                       |   3 -
+ packages/common/src/utils.ts                                           |  10 +-
+ packages/element/src/bounds.ts                                         |   3 +-
+ packages/element/src/renderElement.ts                                  | 155 +++++------------------
+ packages/element/src/shape.ts                                          | 187 ++++++++++++++++++++-------
+ packages/element/tests/__snapshots__/linearElementEditor.test.tsx.snap |   2 +-
+ packages/excalidraw/components/App.tsx                                 |  14 ++-
+ packages/excalidraw/components/ColorPicker/ColorInput.tsx              |  44 +++++--
+ packages/excalidraw/components/ColorPicker/ColorPicker.tsx             |  22 ----
+ packages/excalidraw/components/ColorPicker/colorPickerUtils.ts         |  47 ++-----
+ packages/excalidraw/components/ImageExportDialog.tsx                   |  37 +++---
+ packages/excalidraw/components/TTDDialog/common.ts                     |   6 +
+ packages/excalidraw/css/styles.scss                                    |  13 +-
+ packages/excalidraw/hooks/useLibraryItemSvg.ts                         |   2 +
+ packages/excalidraw/index.tsx                                          |   1 -
+ packages/excalidraw/renderer/helpers.ts                                |  11 +-
+ packages/excalidraw/renderer/staticSvgScene.ts                         | 128 +++++++++++--------
+ packages/excalidraw/scene/export.ts                                    |  14 ++-
+ packages/excalidraw/scene/types.ts                                     |  13 +-
+ packages/excalidraw/tests/colorInput.test.ts                           | 115 +++++++++++++++++
+ packages/excalidraw/tests/fixtures/elementFixture.ts                   |   1 +
+ packages/excalidraw/tests/scene/__snapshots__/export.test.ts.snap      |  14 +--
+ packages/excalidraw/tests/scene/export.test.ts                         |  18 ++-
+ packages/excalidraw/wysiwyg/textWysiwyg.tsx                            |   8 +-
+ yarn.lock                                                              |  10 ++
+ 30 files changed, 1069 insertions(+), 388 deletions(-)

@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-25T19:44:29.355Z",
+  "sha": "71462143bfd8951476620da2cb26a23d997eeb5f",
+  "subject": "Fix BackgroundActions example",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 714,
+  "credits": 143.4,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and selected its edit button.\nConfirmed that “HelloThere” was in edit mode with its formatting toolbar, including bold and italic, above the large text box.\nPositioned the editor area as needed, opened the additional toolbar options using the down arrow immediately left of the preview eye, and left the dropdown open after waiting 2 seconds.",
+      "credits": 45.27079799999999,
+      "seconds": 236,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A34C7SYB9GXEQ4CYCMRRGJ/dashboard/share/US_6JOPVHWF9AJ1OR89U4MFVP4WQS38RUUGU0UNAIEVR2DK9J2KMVEBG1T6R0P88OWS?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane did not get the app ready",
+      "ready": "the word yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the “HelloThere” tiddler for editing.\nPositioned the formatting toolbar above the editor text area near the top of the page.\nOpened the additional formatting options using the down-arrow beside the preview icon and left the dropdown open after waiting 2 seconds.\nThe requested editing view and expanded toolbar were left open successfully.",
+      "credits": 53.1309515,
+      "seconds": 236,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A3BM2RW1ABDCQ4PEQ2YZ6E/dashboard/share/US_KCDTALBF35EL63W3FOA6U3R7Z4YX8PYPT8Y34F7ASVIAFEQQC44G3V5RF5LKO9CY?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "You asked to open the tiddler titled “HelloThere” for editing and display its additional formatting tools.\nThe tiddler was opened in edit mode, with the bold and italic formatting controls visible above the large text box.\nThe additional-toolbar dropdown was opened using the down-arrow beside the preview icon and was left open as requested.",
+      "credits": 45.02735699999999,
+      "seconds": 237,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A3JSRZ5PZDSNFQ9RCV92V9/dashboard/share/US_05DA99F27NA5KR8QATBUGNX7HP419FASPFXOI079HQ0GL0XP7BM5WISF1MGXDW81?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

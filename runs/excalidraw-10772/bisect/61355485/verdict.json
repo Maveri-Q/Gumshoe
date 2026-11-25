@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T18:54:31.883Z",
+  "sha": "6135548534fcfacc0ffa7bd1d1f7d32ce05f137d",
+  "subject": "fix: rerender TTD preview on message remove (#10681)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 27,
+  "totalSeconds": 384,
+  "credits": 65.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and chose the canvas background colour control.\nOpened the colour picker and selected the existing text in the Hex code field next to the # symbol.\nLeft the colour picker open without entering a new colour; the canvas remained white.",
+      "credits": 30.206674999999994,
+      "seconds": 175,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A0KPSK78MVPJJW4DP6M8WX/dashboard/share/US_DOBNIJFZK4F3WRXQ3LXYXN099IK64YT6NYBS7RFYO72IORLPUZTKONS5EOTXIWJV?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the custom Canvas background colour option.\nOpened the colour picker, selected the existing Hex code, and replaced it with ff000080 without adding a # sign.\nWaited two seconds and left the colour picker open without pressing Enter or clicking elsewhere.\nThe canvas remained white while the colour picker was open.",
+      "credits": 34.925442499999996,
+      "seconds": 183,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A0S01SB262DE69DPFW1MTV/dashboard/share/US_JOFVXW86OX3NYP54ZNEYZX3Z0L4D33K0MADNKKLLZTULS268X56EJEFYMUA58BLP?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:00:23.808Z",
+  "sha": "a0b98a944f1ddedba090b8a6908ff38b9132177e",
+  "subject": "feat: TextToDiagram v2 (#10530)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 23,
+  "totalSeconds": 349,
+  "credits": 62.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "You asked to open the canvas background colour picker and select the existing Hex code without changing it.\nThe menu was opened and the canvas background colour picker was opened from the colour squares.\nThe Hex code field next to the # symbol was focused and its existing value was selected.\nNo new colour code was entered; the picker was left open and the canvas remained white.",
+      "credits": 30.472337500000002,
+      "seconds": 158,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A0ZD1QG0BJKBTDWNHT8H22/dashboard/share/US_JTKNG7ZSXC4N9E786G5JYCTFI3T41N4ZARX7Q4YB45Y3OMYLT4GAIDHDWZ4FPDXH?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and opened the canvas background colour picker.\nSelected the Hex code field next to the # symbol without changing its value.\nWaited 2 seconds and left the colour picker open; the canvas remained white.",
+      "credits": 32.231049999999996,
+      "seconds": 169,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1457NTEC41PB2BADCX92Y/dashboard/share/US_VODE7JK9MVOTXIBZYGCUQFLMQXBBTA48RO4CQ9T8ZNO487ZERFA6U7UMZWJFF8GH?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

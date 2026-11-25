@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:26:44.449Z",
+  "sha": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+  "subject": "feat: stop using CSS filters for dark mode (static canvas) (#10578)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 41,
+  "totalSeconds": 417,
+  "credits": 75.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the rightmost canvas-background colour option.\nOpened the colour picker, selected the existing Hex code text, and replaced it with ff000080.\nLeft the colour picker open after entering the value; the canvas was still white when the picker was opened.",
+      "credits": 40.911195000000006,
+      "seconds": 204,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A2E6D76DK9E50GS44J90KF/dashboard/share/US_S30RI9CYQRCDQAHZN794G2005D9QAVU96XU0JSF6GY2DMVW7H9HUIFNLZY5GHAKY?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the canvas background colour controls and selected the colour-square option to open the colour picker.\nSelected the existing Hex code value, entered ff000080, and waited as requested.\nLeft the colour picker open without pressing Enter or making any further clicks.",
+      "credits": 34.184069,
+      "seconds": 172,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A2MAW02R7PB2CTA0QJY212/dashboard/share/US_GA4IZARU1U75E7275T0AW2OZYKGRA6S71ZHUDH8ZCFPOQ11A6DV4Y6GM4JB5IS92?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

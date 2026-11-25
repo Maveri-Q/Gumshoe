@@ -1,0 +1,44 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 65 revisions left to test after this (roughly 6 steps)
+[dc764b3a4ac97d1e2108badbff33366bdbf0772e] Replace fill rules in tw5.com edition (#9624)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 32 revisions left to test after this (roughly 5 steps)
+[785086e0a5d60d13c76a6f7527639eefcbb052b8] Fixes ESLint errors (#9668)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 16 revisions left to test after this (roughly 4 steps)
+[b1ccb82e0a675775aa16234f052cf227d363b307] Update body-toolbar-button - use `value={{{ [subfilter{!!button-classes}] :and[join[ ]] }}}` (#9585)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 15 revisions left to test after this (roughly 4 steps)
+[599933c34dff42e65ae236f28fbb54457568a570] Remove 'tiddlywiki/dom-to-image' dependency
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 7 revisions left to test after this (roughly 3 steps)
+[42a908e1c9b446edca5b864c279d2d9680254f18] set arrow function parens to always (#9590)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 3 revisions left to test after this (roughly 2 steps)
+[909149a3479990b721332abe05e94c5190ee28e7] [fix] Remove overflow:hidden on the tiddler info pannel, allowing popups to escape the info pannel (#9660)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 3 revisions left to test after this (roughly 2 steps)
+[c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[a2543cfd4a198fbb3cd99344fa972f913bdf0ba0] 5.4.0 Update German translations (#9655)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[b713d13c5a3cd49a56062a9482b9591ed07ee0c4] Accidentally committed with #9657
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+Bisecting: 1 revision left to test after this (roughly 1 step)
+[71462143bfd8951476620da2cb26a23d997eeb5f] Fix BackgroundActions example
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/tiddlywiki-9760/bug.json' 'runs/tiddlywiki-9760/bisect'
+c305eb01eb23029b4709cac53cf2d3dd4b98a754 is the first 'bad' commit
+commit c305eb01eb23029b4709cac53cf2d3dd4b98a754
+Author: Jeremy Ruston <jeremy@jermolene.com>
+Date:   Thu Feb 19 11:11:39 2026 +0000
+
+    Fix passing a filtered attribute as a MVV (#9663)
+
+ core/modules/widgets/transclude.js                    |  2 +-
+ core/modules/widgets/widget.js                        |  3 ++-
+ .../TranscludeParameterDirectly.tid                   | 19 +++++++++++++++++++
+ 3 files changed, 22 insertions(+), 2 deletions(-)
+ create mode 100644 editions/test/tiddlers/tests/data/multi-valued-variables/TranscludeParameterDirectly.tid
+bisect found first 'bad' commit

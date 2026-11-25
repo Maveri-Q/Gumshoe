@@ -1,0 +1,121 @@
+{
+  "id": "excalidraw-10772",
+  "issue": "https://github.com/excalidraw/excalidraw/issues/10772",
+  "title": "Regression: Hex colors with Alpha broken since #10578",
+  "issueCreatedAt": "2026-02-12T20:16:47Z",
+  "sentence": "When an 8-digit hex colour that includes transparency is typed without a leading # into the canvas background colour field, the canvas takes that semi-transparent colour.",
+  "outcome": "found",
+  "culprit": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+  "culpritSubject": "feat: stop using CSS filters for dark mode (static canvas) (#10578)",
+  "culpritDate": "2026-01-04T15:16:35+01:00",
+  "range": 48,
+  "good": "e95222ed323d45adf2183bae835c9fb6708e7029",
+  "bad": "a70417f23f5985e3ed2a678c3cd25bffb23b1cff",
+  "tries": 19,
+  "refused": 2,
+  "credits": 664.2,
+  "minutes": 56.7,
+  "finishedAt": "2026-11-25T19:26:45.776Z",
+  "steps": [
+    {
+      "part": "reported-1",
+      "sha": "a70417f23f5985e3ed2a678c3cd25bffb23b1cff",
+      "subject": "feat(editor): visualize binding midpoints + support for simple arrows (#10611)",
+      "verdict": "bad",
+      "credits": 66.7,
+      "seconds": 489,
+      "date": "2026-02-11T11:06:27+01:00",
+      "finished": "2026-11-24T23:22:50.066Z"
+    },
+    {
+      "part": "older",
+      "sha": "817d8c553c3389650f8b4503984a6d4a5d2f0c11",
+      "subject": "docs: update CHANGELOG (#9243)",
+      "verdict": "unsure",
+      "credits": 0,
+      "seconds": 10,
+      "date": "2025-03-11T13:44:10+01:00",
+      "finished": "2026-11-25T18:27:00.584Z"
+    },
+    {
+      "part": "older",
+      "sha": "f5cf81ce42276ef8148b7cd951274025648476b8",
+      "subject": "feat: prevent pasting excalidraw into textarea & paste element text if avail (#10710)",
+      "verdict": "unsure",
+      "credits": 115.3,
+      "seconds": 658,
+      "date": "2026-01-28T22:35:39+01:00",
+      "finished": "2026-11-25T18:41:09.946Z"
+    },
+    {
+      "part": "older",
+      "sha": "e95222ed323d45adf2183bae835c9fb6708e7029",
+      "subject": "fix: add constants and side methods to packages (#10418)",
+      "verdict": "good",
+      "credits": 73.5,
+      "seconds": 412,
+      "date": "2025-12-28T21:53:25+01:00",
+      "finished": "2026-11-25T18:48:06.330Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "6135548534fcfacc0ffa7bd1d1f7d32ce05f137d",
+      "subject": "fix: rerender TTD preview on message remove (#10681)",
+      "verdict": "bad",
+      "credits": 65.1,
+      "seconds": 384,
+      "date": "2026-01-21T14:07:48+01:00",
+      "finished": "2026-11-25T18:54:31.883Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "a0b98a944f1ddedba090b8a6908ff38b9132177e",
+      "subject": "feat: TextToDiagram v2 (#10530)",
+      "verdict": "bad",
+      "credits": 62.7,
+      "seconds": 349,
+      "date": "2026-01-15T19:15:41+01:00",
+      "finished": "2026-11-25T19:00:23.808Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "87faa5d3da055ea22c6bce261ee88087bf4cca0e",
+      "subject": "fix: sentry CI worfklow (#10610)",
+      "verdict": "bad",
+      "credits": 71.7,
+      "seconds": 382,
+      "date": "2026-01-06T11:39:45+01:00",
+      "finished": "2026-11-25T19:06:46.784Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "b5fc873323e16f181860a4e731c731b4e40badd1",
+      "subject": "chore: Update translations from Crowdin (#10453)",
+      "verdict": "good",
+      "credits": 70.5,
+      "seconds": 364,
+      "date": "2026-01-04T15:15:46+01:00",
+      "finished": "2026-11-25T19:12:51.014Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "c158187f20e9eb60c7b0dd5256f0030594883867",
+      "subject": "fix: grid color in dark mode (#10600)",
+      "verdict": "bad",
+      "credits": 63.6,
+      "seconds": 415,
+      "date": "2026-01-04T17:51:53+01:00",
+      "finished": "2026-11-25T19:19:47.033Z"
+    },
+    {
+      "part": "bisect",
+      "sha": "63e1148280163a36326b7efb5fdfeefebabdb3e4",
+      "subject": "feat: stop using CSS filters for dark mode (static canvas) (#10578)",
+      "verdict": "bad",
+      "credits": 75.1,
+      "seconds": 417,
+      "date": "2026-01-04T15:16:35+01:00",
+      "finished": "2026-11-25T19:26:44.449Z"
+    }
+  ]
+}

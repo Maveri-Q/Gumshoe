@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T18:48:06.330Z",
+  "sha": "e95222ed323d45adf2183bae835c9fb6708e7029",
+  "subject": "fix: add constants and side methods to packages (#10418)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 32,
+  "totalSeconds": 412,
+  "credits": 73.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "You asked to open the canvas background colour picker, select the Hex code value, and replace it with ff000080 without closing the picker.\nOpened the top-left menu, chose the last Canvas background colour square, and selected the existing Hex code text.\nEntered ff000080 in the Hex code field and left the colour picker open.\nThe canvas remained white while the picker was open.",
+      "credits": 33.799055,
+      "seconds": 174,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A077GRWNAQ0KTGQ5RJPKMM/dashboard/share/US_LZZXKKO6FAIYIUFIUF5ULGSSLHJMUA4R3SP5T8EWBZG5QK5FJDO1ASMGBYTNT3E2?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the last Canvas background colour option.\nOpened the colour picker, selected the existing Hex code value, and replaced it with ff000080.\nWaited 2 seconds without pressing Enter or making any additional clicks.\nThe colour picker remained open at the end of the run.",
+      "credits": 39.695750000000004,
+      "seconds": 206,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A0CHTP750PZSY56D2T8630/dashboard/share/US_5HYMRJ8QOE4A5V94MKT9FQ6FNLONOK96TINVJMMOK0H107HQRM9YXJOODCGWH5P3?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

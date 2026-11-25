@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:19:47.033Z",
+  "sha": "c158187f20e9eb60c7b0dd5256f0030594883867",
+  "subject": "fix: grid color in dark mode (#10600)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 24,
+  "totalSeconds": 415,
+  "credits": 63.6,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the background colour control at the end of the Canvas background colour row.\nOpened the colour picker, selected the Hex code field beside the # symbol, and replaced its value with ff000080.\nWaited 2 seconds without pressing Enter or making any further clicks, leaving the colour picker open.",
+      "credits": 29.66432249999999,
+      "seconds": 163,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A20X03VYZ0K93WYT35G80X/dashboard/share/US_N7BSGRDV34LLG667IBAIG44C3UL5JJVQ8BSVERBVPOEICAEO4MAGMA1RW3KE71GP?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the rightmost canvas background colour square to open the colour picker.\nClicked the Hex code field next to the # symbol and selected its existing text.\nLeft the colour picker open without entering a new colour value; the canvas remained white.",
+      "credits": 33.90539149999999,
+      "seconds": 228,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A25WMEFYTNZ6Q6X3SZZYGF/dashboard/share/US_6FUITKZ0V95BI4W83QZ75BVZGK45HPHU0680ZB5QDA2WGWIKGO33433AF39P9XNS?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

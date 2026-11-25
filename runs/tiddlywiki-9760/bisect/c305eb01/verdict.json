@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:07:09.953Z",
+  "sha": "c305eb01eb23029b4709cac53cf2d3dd4b98a754",
+  "subject": "Fix passing a filtered attribute as a MVV (#9663)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 543,
+  "credits": 116.2,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing.\nConfirmed that the editor showed the formatting toolbar above the large text box.\nOpened the additional formatting-options menu using the down-arrow beside the preview icon and left the menu open after waiting 2 seconds.\nThe requested editing view and open toolbar menu were left in place.",
+      "credits": 57.296957,
+      "seconds": 262,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A15957J5J0HX8KMWZGEQ8J/dashboard/share/US_71FZ4RLIP4VCI2DIPWKDQVG432TQAX0YTRN3O0TYFCLQHVGU54EPLZLDGMFY76EV?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” for editing.\nConfirmed that the editor showed the large content text box with the formatting toolbar above it.\nPositioned the editor area so the formatting toolbar was accessible, then opened the additional toolbar buttons using the down-arrow next to the preview icon.\nLeft the additional-toolbar menu open as requested.",
+      "credits": 58.858941,
+      "seconds": 277,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1D8ERS9G0AZY9PDHDHXDB/dashboard/share/US_US5VTM6SYEWJBV8PN2I1OUXJOCNR8NNLCW387R42M01XZK1G1SWP3K6GJ60DQK7M?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

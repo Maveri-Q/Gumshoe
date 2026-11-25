@@ -44,3 +44,36 @@
 2026-11-25T18:35:52.363Z COMMIT 42a908e1 set arrow function parens to always (#9590)
 2026-11-25T18:35:58.876Z   built in 7s
 2026-11-25T18:41:06.627Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 54.1 credits 308s
+2026-11-25T18:45:24.522Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 51.0 credits 258s
+2026-11-25T18:45:24.525Z   => GOOD  105.2 credits, 572s
+2026-11-25T18:45:25.376Z COMMIT 909149a3 [fix] Remove overflow:hidden on the tiddler info pannel, allowing popups to escape the info pannel (#9660)
+2026-11-25T18:45:31.240Z   built in 6s
+2026-11-25T18:49:30.738Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 38.2 credits 239s
+2026-11-25T18:53:50.067Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 47.0 credits 259s
+2026-11-25T18:58:06.427Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 52.5 credits 256s
+2026-11-25T18:58:06.428Z   => UNSURE  137.7 credits, 761s
+2026-11-25T18:58:07.095Z COMMIT c305eb01 Fix passing a filtered attribute as a MVV (#9663)
+2026-11-25T18:58:11.042Z   built in 4s
+2026-11-25T19:02:32.859Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.3 credits 262s
+2026-11-25T19:07:09.953Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 58.9 credits 277s
+2026-11-25T19:07:09.954Z   => BAD  116.2 credits, 543s
+2026-11-25T19:07:10.822Z COMMIT a2543cfd 5.4.0 Update German translations (#9655)
+2026-11-25T19:07:19.158Z   built in 8s
+2026-11-25T19:11:17.027Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 44.6 credits 238s
+2026-11-25T19:15:41.791Z   try 2: unsure (Kane said broken=true, the second look at the saved screen says broken=false) ready=yes look[broken,working]=[true,false] screenSaysBroken=false 54.1 credits 265s
+2026-11-25T19:20:03.054Z   try 3: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=false 45.2 credits 261s
+2026-11-25T19:20:03.056Z   => UNSURE  143.9 credits, 772s
+2026-11-25T19:20:03.878Z COMMIT b713d13c Accidentally committed with #9657
+2026-11-25T19:20:09.777Z   built in 6s
+2026-11-25T19:23:52.173Z   Kane gave no result at all (exit 0). Stopping the bisect.
+2026-11-25T19:24:52.521Z COMMIT b713d13c Accidentally committed with #9657
+2026-11-25T19:24:56.216Z   built in 4s
+2026-11-25T19:28:58.286Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 49.2 credits 242s
+2026-11-25T19:32:35.282Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 42.7 credits 217s
+2026-11-25T19:32:35.283Z   => GOOD  91.8 credits, 463s
+2026-11-25T19:32:35.781Z COMMIT 71462143 Fix BackgroundActions example
+2026-11-25T19:32:39.254Z   built in 3s
+2026-11-25T19:36:35.763Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 45.3 credits 236s
+2026-11-25T19:40:31.861Z   try 2: unsure (Kane did not get the app ready) ready=the word yes look[broken,working]=[false,true] screenSaysBroken=false 53.1 credits 236s
+2026-11-25T19:44:29.355Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 45.0 credits 237s
+2026-11-25T19:44:29.356Z   => GOOD  143.4 credits, 714s

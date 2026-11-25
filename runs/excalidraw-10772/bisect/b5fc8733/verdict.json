@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T19:12:51.014Z",
+  "sha": "b5fc873323e16f181860a4e731c731b4e40badd1",
+  "subject": "chore: Update translations from Crowdin (#10453)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 23,
+  "totalSeconds": 364,
+  "credits": 70.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the canvas background colour control.\nOpened the colour picker and selected the existing text in the Hex code field.\nLeft the colour picker open without entering a new colour, as requested.\nThe canvas remained white and the Hex code field was available next to the # symbol.",
+      "credits": 34.695809,
+      "seconds": 166,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1NRWAE6TFNE7283F7SWQ6/dashboard/share/US_5BUGND16SJXA4TZLA32GFRJUFNWQ6ODZ8IU5I26DF6LBTAAEHFCEZXN09YWYBKOQ?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the Canvas background colour picker from the top-left menu.\nSelected the existing Hex code value and entered ff000080 without confirming it or clicking elsewhere.\nWaited 2 seconds; the colour picker remained open and the canvas was still white.",
+      "credits": 35.848025,
+      "seconds": 174,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A1TT06YZR9FMW2ERKG826G/dashboard/share/US_DQAG833OMBXSLG0NUZK9X0NQ7GLWSN0BBQRHOUMGQTFHRF0ZJ7ZS6CKESDQ850KM?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

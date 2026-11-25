@@ -1,0 +1,2555 @@
+diff --git a/excalidraw-app/debug.ts b/excalidraw-app/debug.ts
+index 38ba8050..4f4eee91 100644
+--- a/excalidraw-app/debug.ts
++++ b/excalidraw-app/debug.ts
+@@ -24,34 +24,35 @@ export class Debug {
+   private static LAST_DEBUG_LOG_CALL = 0;
+   private static DEBUG_LOG_INTERVAL_ID: null | number = null;
+ 
++  private static LAST_FRAME_TIMESTAMP = 0;
++  private static FRAME_COUNT = 0;
++  private static ANIMATION_FRAME_ID: null | number = null;
++
++  private static scheduleAnimationFrame = () => {
++    if (Debug.DEBUG_LOG_INTERVAL_ID !== null) {
++      Debug.ANIMATION_FRAME_ID = requestAnimationFrame((timestamp) => {
++        if (Debug.LAST_FRAME_TIMESTAMP !== timestamp) {
++          Debug.LAST_FRAME_TIMESTAMP = timestamp;
++          Debug.FRAME_COUNT++;
++        }
++
++        if (Debug.DEBUG_LOG_INTERVAL_ID !== null) {
++          Debug.scheduleAnimationFrame();
++        }
++      });
++    }
++  };
++
+   private static setupInterval = () => {
+     if (Debug.DEBUG_LOG_INTERVAL_ID === null) {
+       console.info("%c(starting perf recording)", "color: lime");
+       Debug.DEBUG_LOG_INTERVAL_ID = window.setInterval(Debug.debugLogger, 1000);
++      Debug.scheduleAnimationFrame();
+     }
+     Debug.LAST_DEBUG_LOG_CALL = Date.now();
+   };
+ 
+   private static debugLogger = () => {
+-    if (
+-      Date.now() - Debug.LAST_DEBUG_LOG_CALL > 600 &&
+-      Debug.DEBUG_LOG_INTERVAL_ID !== null
+-    ) {
+-      window.clearInterval(Debug.DEBUG_LOG_INTERVAL_ID);
+-      Debug.DEBUG_LOG_INTERVAL_ID = null;
+-      for (const [name, { avg }] of Object.entries(Debug.TIMES_AVG)) {
+-        if (avg != null) {
+-          console.info(
+-            `%c${name} run avg: ${avg}ms (${getFps(avg)} fps)`,
+-            "color: blue",
+-          );
+-        }
+-      }
+-      console.info("%c(stopping perf recording)", "color: red");
+-      Debug.TIMES_AGGR = {};
+-      Debug.TIMES_AVG = {};
+-      return;
+-    }
+     if (Debug.DEBUG_LOG_TIMES) {
+       for (const [name, { t, times }] of Object.entries(Debug.TIMES_AGGR)) {
+         if (times.length) {
+@@ -66,7 +67,15 @@ export class Debug {
+       for (const [name, { t, times, avg }] of Object.entries(Debug.TIMES_AVG)) {
+         if (times.length) {
+           const avgFrameTime = getAvgFrameTime(times);
+-          console.info(name, `${avgFrameTime}ms (${getFps(avgFrameTime)} fps)`);
++          console.info(
++            name,
++            `${times.length} runs: ${avgFrameTime}ms across ${
++              Debug.FRAME_COUNT
++            } frames (${getFps(avgFrameTime)} fps ~ ${lessPrecise(
++              (avgFrameTime / 16.67) * 100,
++              1,
++            )}% of frame budget)`,
++          );
+           Debug.TIMES_AVG[name] = {
+             t,
+             times: [],
+@@ -76,6 +85,24 @@ export class Debug {
+         }
+       }
+     }
++    Debug.FRAME_COUNT = 0;
++
++    // Check for stop condition after logging
++    if (
++      Date.now() - Debug.LAST_DEBUG_LOG_CALL > 600 &&
++      Debug.DEBUG_LOG_INTERVAL_ID !== null
++    ) {
++      console.info("%c(stopping perf recording)", "color: red");
++      window.clearInterval(Debug.DEBUG_LOG_INTERVAL_ID);
++      window.cancelAnimationFrame(Debug.ANIMATION_FRAME_ID!);
++      Debug.ANIMATION_FRAME_ID = null;
++      Debug.FRAME_COUNT = 0;
++      Debug.LAST_FRAME_TIMESTAMP = 0;
++
++      Debug.DEBUG_LOG_INTERVAL_ID = null;
++      Debug.TIMES_AGGR = {};
++      Debug.TIMES_AVG = {};
++    }
+   };
+ 
+   public static logTime = (time?: number, name = "default") => {
+diff --git a/packages/common/package.json b/packages/common/package.json
+index cf566ad9..148ada31 100644
+--- a/packages/common/package.json
++++ b/packages/common/package.json
+@@ -55,5 +55,11 @@
+   "scripts": {
+     "gen:types": "rimraf types && tsc",
+     "build:esm": "rimraf dist && node ../../scripts/buildBase.js && yarn gen:types"
++  },
++  "dependencies": {
++    "tinycolor2": "1.6.0"
++  },
++  "devDependencies": {
++    "@types/tinycolor2": "1.4.6"
+   }
+ }
+diff --git a/packages/common/src/__snapshots__/colors.test.ts.snap b/packages/common/src/__snapshots__/colors.test.ts.snap
+new file mode 100644
+index 00000000..7320bf4d
+--- /dev/null
++++ b/packages/common/src/__snapshots__/colors.test.ts.snap
+@@ -0,0 +1,93 @@
++// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
++
++exports[`applyDarkModeFilter > COLOR_PALETTE regression tests > matches snapshot for all palette colors 1`] = `
++{
++  "black": "#d3d3d3",
++  "blue": [
++    "#121e26",
++    "#154162",
++    "#2273b4",
++    "#3791e0",
++    "#56a2e8",
++  ],
++  "bronze": [
++    "#221c1a",
++    "#362b26",
++    "#5a463d",
++    "#917569",
++    "#a98d84",
++  ],
++  "cyan": [
++    "#0a1e20",
++    "#004149",
++    "#007281",
++    "#0f8fa1",
++    "#3da5b6",
++  ],
++  "grape": [
++    "#211a25",
++    "#5b3165",
++    "#a954be",
++    "#d471ed",
++    "#e28af8",
++  ],
++  "gray": [
++    "#161718",
++    "#202325",
++    "#33383d",
++    "#6e757c",
++    "#b7bcc1",
++  ],
++  "green": [
++    "#0f1d12",
++    "#043b0c",
++    "#056715",
++    "#16842a",
++    "#39994b",
++  ],
++  "orange": [
++    "#22190d",
++    "#4c2b01",
++    "#924800",
++    "#cd6005",
++    "#f17634",
++  ],
++  "pink": [
++    "#26191e",
++    "#602e40",
++    "#b04d70",
++    "#f56e9d",
++    "#ff8dbc",
++  ],
++  "red": [
++    "#1f1717",
++    "#5a2c2c",
++    "#b44d4d",
++    "#fa6969",
++    "#ff8383",
++  ],
++  "teal": [
++    "#0a1d17",
++    "#00422b",
++    "#00744b",
++    "#039267",
++    "#32a783",
++  ],
++  "transparent": "#ededed00",
++  "violet": [
++    "#1f1c29",
++    "#4a3b72",
++    "#8a6cdf",
++    "#a885ff",
++    "#b595ff",
++  ],
++  "white": "#121212",
++  "yellow": [
++    "#1e1900",
++    "#362600",
++    "#5f3a00",
++    "#905000",
++    "#b86200",
++  ],
++}
++`;
+diff --git a/packages/common/src/colors.test.ts b/packages/common/src/colors.test.ts
+new file mode 100644
+index 00000000..121fa3c8
+--- /dev/null
++++ b/packages/common/src/colors.test.ts
+@@ -0,0 +1,280 @@
++import {
++  applyDarkModeFilter,
++  COLOR_PALETTE,
++  rgbToHex,
++} from "@excalidraw/common";
++
++describe("applyDarkModeFilter", () => {
++  describe("basic transformations", () => {
++    it("transforms black to near-white", () => {
++      const result = applyDarkModeFilter("#000000");
++      // Black inverted 93% + hue rotate should be near white/light gray
++      expect(result).toBe("#ededed");
++    });
++
++    it("transforms white to near-black", () => {
++      const result = applyDarkModeFilter("#ffffff");
++      // White inverted 93% should be near black/dark gray
++      expect(result).toBe("#121212");
++    });
++
++    it("transforms pure red", () => {
++      const result = applyDarkModeFilter("#ff0000");
++      // Invert 93% + hue rotate 180deg produces a cyan-ish tint
++      expect(result).toBe("#ff9090");
++    });
++
++    it("transforms pure green", () => {
++      const result = applyDarkModeFilter("#00ff00");
++      // Invert 93% + hue rotate 180deg
++      expect(result).toBe("#008f00");
++    });
++
++    it("transforms pure blue", () => {
++      const result = applyDarkModeFilter("#0000ff");
++      // Invert 93% + hue rotate 180deg produces a light purple
++      expect(result).toBe("#cdcdff");
++    });
++  });
++
++  describe("color formats", () => {
++    it("handles hex with hash", () => {
++      const result = applyDarkModeFilter("#ff0000");
++      // Fully opaque colors return 6-char hex
++      expect(result).toMatch(/^#[0-9a-f]{6}$/);
++    });
++
++    it("handles named colors", () => {
++      const result = applyDarkModeFilter("red");
++      // "red" = #ff0000, fully opaque
++      expect(result).toBe("#ff9090");
++    });
++
++    it("handles rgb format", () => {
++      const result = applyDarkModeFilter("rgb(255, 0, 0)");
++      expect(result).toBe("#ff9090");
++    });
++
++    it("handles rgba format and preserves alpha", () => {
++      const result = applyDarkModeFilter("rgba(255, 0, 0, 0.5)");
++      expect(result).toMatch(/^#[0-9a-f]{8}$/);
++      // Alpha 0.5 = 128 in hex = 80
++      expect(result).toBe("#ff909080");
++    });
++
++    it("handles transparent", () => {
++      const result = applyDarkModeFilter("transparent");
++      // transparent = rgba(0,0,0,0), inverted should still have 0 alpha
++      expect(result).toBe("#ededed00");
++    });
++
++    it("handles shorthand hex", () => {
++      const result = applyDarkModeFilter("#f00");
++      expect(result).toBe("#ff9090");
++    });
++  });
++
++  describe("alpha preservation", () => {
++    it("omits alpha for full opacity", () => {
++      const result = applyDarkModeFilter("#ff0000ff");
++      // Full opacity returns 6-char hex (no alpha suffix)
++      expect(result).toBe("#ff9090");
++    });
++
++    it("preserves 50% opacity", () => {
++      const result = applyDarkModeFilter("#ff000080");
++      expect(result.slice(-2)).toBe("80");
++    });
++
++    it("preserves 0% opacity", () => {
++      const result = applyDarkModeFilter("#ff000000");
++      expect(result.slice(-2)).toBe("00");
++    });
++  });
++
++  describe("COLOR_PALETTE regression tests", () => {
++    it("transforms black from palette", () => {
++      // COLOR_PALETTE.black is #1e1e1e (not pure black)
++      const result = applyDarkModeFilter(COLOR_PALETTE.black);
++      expect(result).toBe("#d3d3d3");
++    });
++
++    it("transforms white from palette", () => {
++      const result = applyDarkModeFilter(COLOR_PALETTE.white);
++      expect(result).toBe("#121212");
++    });
++
++    it("transforms transparent from palette", () => {
++      const result = applyDarkModeFilter(COLOR_PALETTE.transparent);
++      expect(result).toBe("#ededed00");
++    });
++
++    // Test each color family from the palette (all opaque, so 6-char hex)
++    describe("red shades", () => {
++      const redShades = COLOR_PALETTE.red;
++      it.each(redShades.map((color, i) => [color, i]))(
++        "transforms red shade %s (index %d)",
++        (color) => {
++          const result = applyDarkModeFilter(color as string);
++          expect(result).toMatch(/^#[0-9a-f]{6}$/);
++        },
++      );
++    });
++
++    describe("blue shades", () => {
++      const blueShades = COLOR_PALETTE.blue;
++      it.each(blueShades.map((color, i) => [color, i]))(
++        "transforms blue shade %s (index %d)",
++        (color) => {
++          const result = applyDarkModeFilter(color as string);
++          expect(result).toMatch(/^#[0-9a-f]{6}$/);
++        },
++      );
++    });
++
++    describe("green shades", () => {
++      const greenShades = COLOR_PALETTE.green;
++      it.each(greenShades.map((color, i) => [color, i]))(
++        "transforms green shade %s (index %d)",
++        (color) => {
++          const result = applyDarkModeFilter(color as string);
++          expect(result).toMatch(/^#[0-9a-f]{6}$/);
++        },
++      );
++    });
++
++    describe("gray shades", () => {
++      const grayShades = COLOR_PALETTE.gray;
++      it.each(grayShades.map((color, i) => [color, i]))(
++        "transforms gray shade %s (index %d)",
++        (color) => {
++          const result = applyDarkModeFilter(color as string);
++          expect(result).toMatch(/^#[0-9a-f]{6}$/);
++        },
++      );
++    });
++
++    describe("bronze shades", () => {
++      const bronzeShades = COLOR_PALETTE.bronze;
++      it.each(bronzeShades.map((color, i) => [color, i]))(
++        "transforms bronze shade %s (index %d)",
++        (color) => {
++          const result = applyDarkModeFilter(color as string);
++          expect(result).toMatch(/^#[0-9a-f]{6}$/);
++        },
++      );
++    });
++
++    // Snapshot test for full palette to catch any regressions
++    it("matches snapshot for all palette colors", () => {
++      const transformedPalette: Record<string, string | string[]> = {};
++
++      transformedPalette.black = applyDarkModeFilter(COLOR_PALETTE.black);
++      transformedPalette.white = applyDarkModeFilter(COLOR_PALETTE.white);
++      transformedPalette.transparent = applyDarkModeFilter(
++        COLOR_PALETTE.transparent,
++      );
++
++      // Transform color arrays
++      for (const colorName of [
++        "gray",
++        "red",
++        "pink",
++        "grape",
++        "violet",
++        "blue",
++        "cyan",
++        "teal",
++        "green",
++        "yellow",
++        "orange",
++        "bronze",
++      ] as const) {
++        const shades = COLOR_PALETTE[colorName];
++        transformedPalette[colorName] = shades.map((shade) =>
++          applyDarkModeFilter(shade),
++        );
++      }
++
++      expect(transformedPalette).toMatchSnapshot();
++    });
++  });
++
++  describe("caching", () => {
++    it("returns same result for same input (cached)", () => {
++      const result1 = applyDarkModeFilter("#ff0000");
++      const result2 = applyDarkModeFilter("#ff0000");
++      expect(result1).toBe(result2);
++    });
++  });
++});
++
++describe("rgbToHex", () => {
++  describe("basic RGB conversion", () => {
++    it("converts black (0,0,0)", () => {
++      expect(rgbToHex(0, 0, 0)).toBe("#000000");
++    });
++
++    it("converts white (255,255,255)", () => {
++      expect(rgbToHex(255, 255, 255)).toBe("#ffffff");
++    });
++
++    it("converts red (255,0,0)", () => {
++      expect(rgbToHex(255, 0, 0)).toBe("#ff0000");
++    });
++
++    it("converts green (0,255,0)", () => {
++      expect(rgbToHex(0, 255, 0)).toBe("#00ff00");
++    });
++
++    it("converts blue (0,0,255)", () => {
++      expect(rgbToHex(0, 0, 255)).toBe("#0000ff");
++    });
++
++    it("converts arbitrary color", () => {
++      expect(rgbToHex(30, 30, 30)).toBe("#1e1e1e");
++    });
++  });
++
++  describe("leading zeros preservation", () => {
++    it("preserves leading zeros for low values", () => {
++      expect(rgbToHex(0, 0, 1)).toBe("#000001");
++      expect(rgbToHex(0, 1, 0)).toBe("#000100");
++      expect(rgbToHex(1, 0, 0)).toBe("#010000");
++    });
++
++    it("preserves zeros for single-digit hex values", () => {
++      expect(rgbToHex(15, 15, 15)).toBe("#0f0f0f");
++    });
++  });
++
++  describe("alpha handling", () => {
++    it("omits alpha when undefined", () => {
++      expect(rgbToHex(255, 0, 0)).toBe("#ff0000");
++      expect(rgbToHex(255, 0, 0, undefined)).toBe("#ff0000");
++    });
++
++    it("omits alpha when fully opaque (1)", () => {
++      expect(rgbToHex(255, 0, 0, 1)).toBe("#ff0000");
++    });
++
++    it("includes alpha for semi-transparent (0.5)", () => {
++      // 0.5 * 255 = 127.5 -> rounds to 128 = 0x80
++      expect(rgbToHex(255, 0, 0, 0.5)).toBe("#ff000080");
++    });
++
++    it("includes alpha for fully transparent (0)", () => {
++      expect(rgbToHex(255, 0, 0, 0)).toBe("#ff000000");
++    });
++
++    it("includes alpha for near-opaque (0.99)", () => {
++      // 0.99 * 255 = 252.45 -> rounds to 252 = 0xfc
++      expect(rgbToHex(255, 0, 0, 0.99)).toBe("#ff0000fc");
++    });
++
++    it("pads alpha with leading zero when needed", () => {
++      // 0.05 * 255 = 12.75 -> rounds to 13 = 0x0d
++      expect(rgbToHex(255, 0, 0, 0.05)).toBe("#ff00000d");
++    });
++  });
++});
+diff --git a/packages/common/src/colors.ts b/packages/common/src/colors.ts
+index 4dc45616..662514fa 100644
+--- a/packages/common/src/colors.ts
++++ b/packages/common/src/colors.ts
+@@ -1,7 +1,121 @@
+ import oc from "open-color";
++import tinycolor from "tinycolor2";
++
++import { clamp } from "@excalidraw/math";
++import { degreesToRadians } from "@excalidraw/math";
++
++import type { Degrees } from "@excalidraw/math";
+ 
+ import type { Merge } from "./utility-types";
+ 
++export { tinycolor };
++
++// Browser-only cache to avoid memory leaks on server
++const DARK_MODE_COLORS_CACHE: Map<string, string> | null =
++  typeof window !== "undefined" ? new Map() : null;
++
++// ---------------------------------------------------------------------------
++// Dark mode color transformation
++// ---------------------------------------------------------------------------
++
++function cssHueRotate(
++  red: number,
++  green: number,
++  blue: number,
++  degrees: Degrees,
++): { r: number; g: number; b: number } {
++  // normalize
++  const r = red / 255;
++  const g = green / 255;
++  const b = blue / 255;
++
++  // Convert degrees to radians
++  const a = degreesToRadians(degrees);
++
++  const c = Math.cos(a);
++  const s = Math.sin(a);
++
++  // rotation matrix
++  const matrix = [
++    0.213 + c * 0.787 - s * 0.213,
++    0.715 - c * 0.715 - s * 0.715,
++    0.072 - c * 0.072 + s * 0.928,
++    0.213 - c * 0.213 + s * 0.143,
++    0.715 + c * 0.285 + s * 0.14,
++    0.072 - c * 0.072 - s * 0.283,
++    0.213 - c * 0.213 - s * 0.787,
++    0.715 - c * 0.715 + s * 0.715,
++    0.072 + c * 0.928 + s * 0.072,
++  ];
++
++  // transform
++  const newR = r * matrix[0] + g * matrix[1] + b * matrix[2];
++  const newG = r * matrix[3] + g * matrix[4] + b * matrix[5];
++  const newB = r * matrix[6] + g * matrix[7] + b * matrix[8];
++
++  // clamp the values to [0, 1] range and convert back to [0, 255]
++  return {
++    r: Math.round(Math.max(0, Math.min(1, newR)) * 255),
++    g: Math.round(Math.max(0, Math.min(1, newG)) * 255),
++    b: Math.round(Math.max(0, Math.min(1, newB)) * 255),
++  };
++}
++
++const cssInvert = (
++  r: number,
++  g: number,
++  b: number,
++  percent: number,
++): { r: number; g: number; b: number } => {
++  const p = clamp(percent, 0, 100) / 100;
++
++  // Function to invert a single color component
++  const invertComponent = (color: number): number => {
++    // Apply the invert formula
++    const inverted = color * (1 - p) + (255 - color) * p;
++    // Round to the nearest integer and clamp to [0, 255]
++    return Math.round(clamp(inverted, 0, 255));
++  };
++
++  // Calculate the inverted RGB components
++  const invertedR = invertComponent(r);
++  const invertedG = invertComponent(g);
++  const invertedB = invertComponent(b);
++
++  return { r: invertedR, g: invertedG, b: invertedB };
++};
++
++export const applyDarkModeFilter = (color: string): string => {
++  const cached = DARK_MODE_COLORS_CACHE?.get(color);
++  if (cached) {
++    return cached;
++  }
++
++  const tc = tinycolor(color);
++  const alpha = tc.getAlpha();
++
++  // order of operations matters
++  // (corresponds to "filter: invert(invertPercent) hue-rotate(hueDegrees)" in css)
++  const rgb = tc.toRgb();
++  const inverted = cssInvert(rgb.r, rgb.g, rgb.b, 93);
++  const rotated = cssHueRotate(
++    inverted.r,
++    inverted.g,
++    inverted.b,
++    180 as Degrees,
++  );
++
++  const result = rgbToHex(rotated.r, rotated.g, rotated.b, alpha);
++
++  if (DARK_MODE_COLORS_CACHE) {
++    DARK_MODE_COLORS_CACHE.set(color, result);
++  }
++
++  return result;
++};
++
++// ---------------------------------------------------------------------------
++
+ export const COLOR_OUTLINE_CONTRAST_THRESHOLD = 240;
+ 
+ // FIXME can't put to utils.ts rn because of circular dependency
+@@ -167,7 +281,22 @@ export const getAllColorsSpecificShade = (index: 0 | 1 | 2 | 3 | 4) =>
+     COLOR_PALETTE.red[index],
+   ] as const;
+ 
+-export const rgbToHex = (r: number, g: number, b: number) =>
+-  `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
++export const rgbToHex = (r: number, g: number, b: number, a?: number) => {
++  // (1 << 24) adds 0x1000000 to ensure the hex string is always 7 chars,
++  // then slice(1) removes the leading "1" to get exactly 6 hex digits
++  // e.g. rgb(0,0,0) -> 0x1000000 -> "1000000" -> "000000"
++  const hex6 = `#${((1 << 24) + (r << 16) + (g << 8) + b)
++    .toString(16)
++    .slice(1)}`;
++  if (a !== undefined && a < 1) {
++    // convert alpha from 0-1 float to 0-255 int, then to 2-digit hex
++    // e.g. 0.5 -> 128 -> "80"
++    const alphaHex = Math.round(a * 255)
++      .toString(16)
++      .padStart(2, "0");
++    return `${hex6}${alphaHex}`;
++  }
++  return hex6;
++};
+ 
+ // -----------------------------------------------------------------------------
+diff --git a/packages/common/src/constants.ts b/packages/common/src/constants.ts
+index f7137046..80d89b8c 100644
+--- a/packages/common/src/constants.ts
++++ b/packages/common/src/constants.ts
+@@ -305,9 +305,6 @@ export const IDLE_THRESHOLD = 60_000;
+ // Report a user active each ACTIVE_THRESHOLD milliseconds
+ export const ACTIVE_THRESHOLD = 3_000;
+ 
+-// duplicates --theme-filter, should be removed soon
+-export const THEME_FILTER = "invert(93%) hue-rotate(180deg)";
+-
+ export const URL_QUERY_KEYS = {
+   addLibrary: "addLibrary",
+ } as const;
+diff --git a/packages/common/src/utils.ts b/packages/common/src/utils.ts
+index 7cb7d991..64d380af 100644
+--- a/packages/common/src/utils.ts
++++ b/packages/common/src/utils.ts
+@@ -10,7 +10,7 @@ import type {
+   Zoom,
+ } from "@excalidraw/excalidraw/types";
+ 
+-import { COLOR_PALETTE } from "./colors";
++import { tinycolor } from "./colors";
+ import {
+   DEFAULT_VERSION,
+   ENV,
+@@ -549,13 +549,7 @@ export const mapFind = <T, K>(
+ };
+ 
+ export const isTransparent = (color: string) => {
+-  const isRGBTransparent = color.length === 5 && color.substr(4, 1) === "0";
+-  const isRRGGBBTransparent = color.length === 9 && color.substr(7, 2) === "00";
+-  return (
+-    isRGBTransparent ||
+-    isRRGGBBTransparent ||
+-    color === COLOR_PALETTE.transparent
+-  );
++  return tinycolor(color).getAlpha() === 0;
+ };
+ 
+ export type ResolvablePromise<T> = Promise<T> & {
+diff --git a/packages/element/src/bounds.ts b/packages/element/src/bounds.ts
+index 0c2ce478..0daa80f1 100644
+--- a/packages/element/src/bounds.ts
++++ b/packages/element/src/bounds.ts
+@@ -897,6 +897,7 @@ export const getArrowheadPoints = (
+   return [x2, y2, x3, y3, x4, y4];
+ };
+ 
++// TODO reuse shape.ts
+ const generateLinearElementShape = (
+   element: ExcalidrawLinearElement,
+ ): Drawable => {
+@@ -954,7 +955,7 @@ const getLinearElementRotatedBounds = (
+   }
+ 
+   // first element is always the curve
+-  const cachedShape = ShapeCache.get(element)?.[0];
++  const cachedShape = ShapeCache.get(element, null)?.[0];
+   const shape = cachedShape ?? generateLinearElementShape(element);
+   const ops = getCurvePathOps(shape);
+   const transformXY = ([x, y]: GlobalPoint) =>
+diff --git a/packages/element/src/renderElement.ts b/packages/element/src/renderElement.ts
+index 6a49d420..2459bd45 100644
+--- a/packages/element/src/renderElement.ts
++++ b/packages/element/src/renderElement.ts
+@@ -1,5 +1,4 @@
+ import rough from "roughjs/bin/rough";
+-import { getStroke } from "perfect-freehand";
+ 
+ import {
+   type GlobalPoint,
+@@ -22,6 +21,7 @@ import {
+   isRTL,
+   getVerticalOffset,
+   invariant,
++  applyDarkModeFilter,
+ } from "@excalidraw/common";
+ 
+ import type {
+@@ -78,16 +78,8 @@ import type {
+   ElementsMap,
+ } from "./types";
+ 
+-import type { StrokeOptions } from "perfect-freehand";
+ import type { RoughCanvas } from "roughjs/bin/canvas";
+ 
+-// using a stronger invert (100% vs our regular 93%) and saturate
+-// as a temp hack to make images in dark theme look closer to original
+-// color scheme (it's still not quite there and the colors look slightly
+-// desatured, alas...)
+-export const IMAGE_INVERT_FILTER =
+-  "invert(100%) hue-rotate(180deg) saturate(1.25)";
+-
+ const isPendingImageElement = (
+   element: ExcalidrawElement,
+   renderConfig: StaticCanvasRenderConfig,
+@@ -95,19 +87,6 @@ const isPendingImageElement = (
+   isInitializedImageElement(element) &&
+   !renderConfig.imageCache.has(element.fileId);
+ 
+-const shouldResetImageFilter = (
+-  element: ExcalidrawElement,
+-  renderConfig: StaticCanvasRenderConfig,
+-  appState: StaticCanvasAppState | InteractiveCanvasAppState,
+-) => {
+-  return (
+-    appState.theme === THEME.DARK &&
+-    isInitializedImageElement(element) &&
+-    !isPendingImageElement(element, renderConfig) &&
+-    renderConfig.imageCache.get(element.fileId)?.mimeType !== MIME_TYPES.svg
+-  );
+-};
+-
+ const getCanvasPadding = (element: ExcalidrawElement) => {
+   switch (element.type) {
+     case "freedraw":
+@@ -272,11 +251,6 @@ const generateElementCanvas = (
+ 
+   const rc = rough.canvas(canvas);
+ 
+-  // in dark theme, revert the image color filter
+-  if (shouldResetImageFilter(element, renderConfig, appState)) {
+-    context.filter = IMAGE_INVERT_FILTER;
+-  }
+-
+   drawElementOnCanvas(element, rc, context, renderConfig);
+ 
+   context.restore();
+@@ -421,7 +395,8 @@ const drawElementOnCanvas = (
+     case "ellipse": {
+       context.lineJoin = "round";
+       context.lineCap = "round";
+-      rc.draw(ShapeCache.get(element)!);
++
++      rc.draw(ShapeCache.generateElementShape(element, renderConfig));
+       break;
+     }
+     case "arrow":
+@@ -429,26 +404,31 @@ const drawElementOnCanvas = (
+       context.lineJoin = "round";
+       context.lineCap = "round";
+ 
+-      ShapeCache.get(element)!.forEach((shape) => {
+-        rc.draw(shape);
+-      });
++      ShapeCache.generateElementShape(element, renderConfig).forEach(
++        (shape) => {
++          rc.draw(shape);
++        },
++      );
+       break;
+     }
+     case "freedraw": {
+       // Draw directly to canvas
+       context.save();
+-      context.fillStyle = element.strokeColor;
+ 
+-      const path = getFreeDrawPath2D(element) as Path2D;
+-      const fillShape = ShapeCache.get(element);
++      const shapes = ShapeCache.generateElementShape(element, renderConfig);
+ 
+-      if (fillShape) {
+-        rc.draw(fillShape);
++      for (const shape of shapes) {
++        if (typeof shape === "string") {
++          context.fillStyle =
++            renderConfig.theme === THEME.DARK
++              ? applyDarkModeFilter(element.strokeColor)
++              : element.strokeColor;
++          context.fill(new Path2D(shape));
++        } else {
++          rc.draw(shape);
++        }
+       }
+ 
+-      context.fillStyle = element.strokeColor;
+-      context.fill(path);
+-
+       context.restore();
+       break;
+     }
+@@ -506,7 +486,10 @@ const drawElementOnCanvas = (
+         context.canvas.setAttribute("dir", rtl ? "rtl" : "ltr");
+         context.save();
+         context.font = getFontString(element);
+-        context.fillStyle = element.strokeColor;
++        context.fillStyle =
++          renderConfig.theme === THEME.DARK
++            ? applyDarkModeFilter(element.strokeColor)
++            : element.strokeColor;
+         context.textAlign = element.textAlign as CanvasTextAlign;
+ 
+         // Canvas does not support multiline text by default
+@@ -759,12 +742,17 @@ export const renderElement = (
+         context.fillStyle = "rgba(0, 0, 200, 0.04)";
+ 
+         context.lineWidth = FRAME_STYLE.strokeWidth / appState.zoom.value;
+-        context.strokeStyle = FRAME_STYLE.strokeColor;
++        context.strokeStyle =
++          appState.theme === THEME.DARK
++            ? applyDarkModeFilter(FRAME_STYLE.strokeColor)
++            : FRAME_STYLE.strokeColor;
+ 
+         // TODO change later to only affect AI frames
+         if (isMagicFrameElement(element)) {
+           context.strokeStyle =
+-            appState.theme === THEME.LIGHT ? "#7affd7" : "#1d8264";
++            appState.theme === THEME.LIGHT
++              ? "#7affd7"
++              : applyDarkModeFilter("#1d8264");
+         }
+ 
+         if (FRAME_STYLE.radius && context.roundRect) {
+@@ -787,11 +775,6 @@ export const renderElement = (
+       break;
+     }
+     case "freedraw": {
+-      // TODO investigate if we can do this in situ. Right now we need to call
+-      // beforehand because math helpers (such as getElementAbsoluteCoords)
+-      // rely on existing shapes
+-      ShapeCache.generateElementShape(element, null);
+-
+       if (renderConfig.isExporting) {
+         const [x1, y1, x2, y2] = getElementAbsoluteCoords(element, elementsMap);
+         const cx = (x1 + x2) / 2 + appState.scrollX;
+@@ -835,10 +818,6 @@ export const renderElement = (
+     case "text":
+     case "iframe":
+     case "embeddable": {
+-      // TODO investigate if we can do this in situ. Right now we need to call
+-      // beforehand because math helpers (such as getElementAbsoluteCoords)
+-      // rely on existing shapes
+-      ShapeCache.generateElementShape(element, renderConfig);
+       if (renderConfig.isExporting) {
+         const [x1, y1, x2, y2] = getElementAbsoluteCoords(element, elementsMap);
+         const cx = (x1 + x2) / 2 + appState.scrollX;
+@@ -861,9 +840,6 @@ export const renderElement = (
+         context.save();
+         context.translate(cx, cy);
+ 
+-        if (shouldResetImageFilter(element, renderConfig, appState)) {
+-          context.filter = "none";
+-        }
+         const boundTextElement = getBoundTextElement(element, elementsMap);
+ 
+         if (isArrowElement(element) && boundTextElement) {
+@@ -1026,23 +1002,6 @@ export const renderElement = (
+   context.globalAlpha = 1;
+ };
+ 
+-export const pathsCache = new WeakMap<ExcalidrawFreeDrawElement, Path2D>([]);
+-
+-export function generateFreeDrawShape(element: ExcalidrawFreeDrawElement) {
+-  const svgPathData = getFreeDrawSvgPath(element);
+-  const path = new Path2D(svgPathData);
+-  pathsCache.set(element, path);
+-  return path;
+-}
+-
+-export function getFreeDrawPath2D(element: ExcalidrawFreeDrawElement) {
+-  return pathsCache.get(element);
+-}
+-
+-export function getFreeDrawSvgPath(element: ExcalidrawFreeDrawElement) {
+-  return getSvgPathFromStroke(getFreedrawOutlinePoints(element));
+-}
+-
+ export function getFreedrawOutlineAsSegments(
+   element: ExcalidrawFreeDrawElement,
+   points: [number, number][],
+@@ -1098,57 +1057,3 @@ export function getFreedrawOutlineAsSegments(
+     ],
+   );
+ }
+-
+-export function getFreedrawOutlinePoints(element: ExcalidrawFreeDrawElement) {
+-  // If input points are empty (should they ever be?) return a dot
+-  const inputPoints = element.simulatePressure
+-    ? element.points
+-    : element.points.length
+-    ? element.points.map(([x, y], i) => [x, y, element.pressures[i]])
+-    : [[0, 0, 0.5]];
+-
+-  // Consider changing the options for simulated pressure vs real pressure
+-  const options: StrokeOptions = {
+-    simulatePressure: element.simulatePressure,
+-    size: element.strokeWidth * 4.25,
+-    thinning: 0.6,
+-    smoothing: 0.5,
+-    streamline: 0.5,
+-    easing: (t) => Math.sin((t * Math.PI) / 2), // https://easings.net/#easeOutSine
+-    last: true,
+-  };
+-
+-  return getStroke(inputPoints as number[][], options) as [number, number][];
+-}
+-
+-function med(A: number[], B: number[]) {
+-  return [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2];
+-}
+-
+-// Trim SVG path data so number are each two decimal points. This
+-// improves SVG exports, and prevents rendering errors on points
+-// with long decimals.
+-const TO_FIXED_PRECISION = /(\s?[A-Z]?,?-?[0-9]*\.[0-9]{0,2})(([0-9]|e|-)*)/g;
+-
+-function getSvgPathFromStroke(points: number[][]): string {
+-  if (!points.length) {
+-    return "";
+-  }
+-
+-  const max = points.length - 1;
+-
+-  return points
+-    .reduce(
+-      (acc, point, i, arr) => {
+-        if (i === max) {
+-          acc.push(point, med(point, arr[0]), "L", arr[0], "Z");
+-        } else {
+-          acc.push(point, med(point, arr[i + 1]));
+-        }
+-        return acc;
+-      },
+-      ["M", points[0], "Q"],
+-    )
+-    .join(" ")
+-    .replace(TO_FIXED_PRECISION, "$1");
+-}
+diff --git a/packages/element/src/shape.ts b/packages/element/src/shape.ts
+index 7a8cd351..176455bd 100644
+--- a/packages/element/src/shape.ts
++++ b/packages/element/src/shape.ts
+@@ -1,4 +1,5 @@
+ import { simplify } from "points-on-curve";
++import { getStroke } from "perfect-freehand";
+ 
+ import {
+   type GeometricShape,
+@@ -17,10 +18,12 @@ import {
+ } from "@excalidraw/math";
+ import {
+   ROUGHNESS,
++  THEME,
+   isTransparent,
+   assertNever,
+   COLOR_PALETTE,
+   LINE_POLYGON_POINT_MERGE_DISTANCE,
++  applyDarkModeFilter,
+ } from "@excalidraw/common";
+ 
+ import { RoughGenerator } from "roughjs/bin/generator";
+@@ -36,6 +39,7 @@ import type {
+ import type {
+   ElementShape,
+   ElementShapes,
++  SVGPathString,
+ } from "@excalidraw/excalidraw/scene/types";
+ 
+ import { elementWithCanvasCache } from "./renderElement";
+@@ -52,7 +56,6 @@ import { getCornerRadius, isPathALoop } from "./utils";
+ import { headingForPointIsHorizontal } from "./heading";
+ 
+ import { canChangeRoundness } from "./comparisons";
+-import { generateFreeDrawShape } from "./renderElement";
+ import {
+   getArrowheadPoints,
+   getCenterForBounds,
+@@ -77,29 +80,32 @@ import type { Point as RoughPoint } from "roughjs/bin/geometry";
+ 
+ export class ShapeCache {
+   private static rg = new RoughGenerator();
+-  private static cache = new WeakMap<ExcalidrawElement, ElementShape>();
++  private static cache = new WeakMap<
++    ExcalidrawElement,
++    { shape: ElementShape; theme: AppState["theme"] }
++  >();
+ 
+   /**
+    * Retrieves shape from cache if available. Use this only if shape
+    * is optional and you have a fallback in case it's not cached.
+    */
+-  public static get = <T extends ExcalidrawElement>(element: T) => {
+-    return ShapeCache.cache.get(
+-      element,
+-    ) as T["type"] extends keyof ElementShapes
+-      ? ElementShapes[T["type"]] | undefined
+-      : ElementShape | undefined;
+-  };
+-
+-  public static set = <T extends ExcalidrawElement>(
++  public static get = <T extends ExcalidrawElement>(
+     element: T,
+-    shape: T["type"] extends keyof ElementShapes
+-      ? ElementShapes[T["type"]]
+-      : Drawable,
+-  ) => ShapeCache.cache.set(element, shape);
++    theme: AppState["theme"] | null,
++  ) => {
++    const cached = ShapeCache.cache.get(element);
++    if (cached && (theme === null || cached.theme === theme)) {
++      return cached.shape as T["type"] extends keyof ElementShapes
++        ? ElementShapes[T["type"]] | undefined
++        : ElementShape | undefined;
++    }
++    return undefined;
++  };
+ 
+-  public static delete = (element: ExcalidrawElement) =>
++  public static delete = (element: ExcalidrawElement) => {
+     ShapeCache.cache.delete(element);
++    elementWithCanvasCache.delete(element);
++  };
+ 
+   public static destroy = () => {
+     ShapeCache.cache = new WeakMap();
+@@ -117,12 +123,13 @@ export class ShapeCache {
+       isExporting: boolean;
+       canvasBackgroundColor: AppState["viewBackgroundColor"];
+       embedsValidationStatus: EmbedsValidationStatus;
++      theme: AppState["theme"];
+     } | null,
+   ) => {
+     // when exporting, always regenerated to guarantee the latest shape
+     const cachedShape = renderConfig?.isExporting
+       ? undefined
+-      : ShapeCache.get(element);
++      : ShapeCache.get(element, renderConfig ? renderConfig.theme : null);
+ 
+     // `null` indicates no rc shape applicable for this element type,
+     // but it's considered a valid cache value (= do not regenerate)
+@@ -132,19 +139,25 @@ export class ShapeCache {
+ 
+     elementWithCanvasCache.delete(element);
+ 
+-    const shape = generateElementShape(
++    const shape = _generateElementShape(
+       element,
+       ShapeCache.rg,
+       renderConfig || {
+         isExporting: false,
+         canvasBackgroundColor: COLOR_PALETTE.white,
+         embedsValidationStatus: null,
++        theme: THEME.LIGHT,
+       },
+     ) as T["type"] extends keyof ElementShapes
+       ? ElementShapes[T["type"]]
+       : Drawable | null;
+ 
+-    ShapeCache.cache.set(element, shape);
++    if (!renderConfig?.isExporting) {
++      ShapeCache.cache.set(element, {
++        shape,
++        theme: renderConfig?.theme || THEME.LIGHT,
++      });
++    }
+ 
+     return shape;
+   };
+@@ -180,6 +193,7 @@ function adjustRoughness(element: ExcalidrawElement): number {
+ export const generateRoughOptions = (
+   element: ExcalidrawElement,
+   continuousPath = false,
++  isDarkMode: boolean = false,
+ ): Options => {
+   const options: Options = {
+     seed: element.seed,
+@@ -204,7 +218,9 @@ export const generateRoughOptions = (
+     fillWeight: element.strokeWidth / 2,
+     hachureGap: element.strokeWidth * 4,
+     roughness: adjustRoughness(element),
+-    stroke: element.strokeColor,
++    stroke: isDarkMode
++      ? applyDarkModeFilter(element.strokeColor)
++      : element.strokeColor,
+     preserveVertices:
+       continuousPath || element.roughness < ROUGHNESS.cartoonist,
+   };
+@@ -218,6 +234,8 @@ export const generateRoughOptions = (
+       options.fillStyle = element.fillStyle;
+       options.fill = isTransparent(element.backgroundColor)
+         ? undefined
++        : isDarkMode
++        ? applyDarkModeFilter(element.backgroundColor)
+         : element.backgroundColor;
+       if (element.type === "ellipse") {
+         options.curveFitting = 1;
+@@ -231,6 +249,8 @@ export const generateRoughOptions = (
+         options.fill =
+           element.backgroundColor === "transparent"
+             ? undefined
++            : isDarkMode
++            ? applyDarkModeFilter(element.backgroundColor)
+             : element.backgroundColor;
+       }
+       return options;
+@@ -284,6 +304,7 @@ const getArrowheadShapes = (
+   generator: RoughGenerator,
+   options: Options,
+   canvasBackgroundColor: string,
++  isDarkMode: boolean,
+ ) => {
+   const arrowheadPoints = getArrowheadPoints(
+     element,
+@@ -309,6 +330,10 @@ const getArrowheadShapes = (
+     return [generator.line(x3, y3, x4, y4, options)];
+   };
+ 
++  const strokeColor = isDarkMode
++    ? applyDarkModeFilter(element.strokeColor)
++    : element.strokeColor;
++
+   switch (arrowhead) {
+     case "dot":
+     case "circle":
+@@ -324,10 +349,10 @@ const getArrowheadShapes = (
+           fill:
+             arrowhead === "circle_outline"
+               ? canvasBackgroundColor
+-              : element.strokeColor,
++              : strokeColor,
+ 
+           fillStyle: "solid",
+-          stroke: element.strokeColor,
++          stroke: strokeColor,
+           roughness: Math.min(0.5, options.roughness || 0),
+         }),
+       ];
+@@ -352,7 +377,7 @@ const getArrowheadShapes = (
+             fill:
+               arrowhead === "triangle_outline"
+                 ? canvasBackgroundColor
+-                : element.strokeColor,
++                : strokeColor,
+             fillStyle: "solid",
+             roughness: Math.min(1, options.roughness || 0),
+           },
+@@ -380,7 +405,7 @@ const getArrowheadShapes = (
+             fill:
+               arrowhead === "diamond_outline"
+                 ? canvasBackgroundColor
+-                : element.strokeColor,
++                : strokeColor,
+             fillStyle: "solid",
+             roughness: Math.min(1, options.roughness || 0),
+           },
+@@ -602,19 +627,22 @@ export const generateLinearCollisionShape = (
+  *
+  * @private
+  */
+-const generateElementShape = (
++const _generateElementShape = (
+   element: Exclude<NonDeletedExcalidrawElement, ExcalidrawSelectionElement>,
+   generator: RoughGenerator,
+   {
+     isExporting,
+     canvasBackgroundColor,
+     embedsValidationStatus,
++    theme,
+   }: {
+     isExporting: boolean;
+     canvasBackgroundColor: string;
+     embedsValidationStatus: EmbedsValidationStatus | null;
++    theme?: AppState["theme"];
+   },
+-): Drawable | Drawable[] | null => {
++): ElementShape => {
++  const isDarkMode = theme === THEME.DARK;
+   switch (element.type) {
+     case "rectangle":
+     case "iframe":
+@@ -640,6 +668,7 @@ const generateElementShape = (
+               embedsValidationStatus,
+             ),
+             true,
++            isDarkMode,
+           ),
+         );
+       } else {
+@@ -655,6 +684,7 @@ const generateElementShape = (
+               embedsValidationStatus,
+             ),
+             false,
++            isDarkMode,
+           ),
+         );
+       }
+@@ -692,7 +722,7 @@ const generateElementShape = (
+             C ${topX} ${topY}, ${topX} ${topY}, ${topX + verticalRadius} ${
+             topY + horizontalRadius
+           }`,
+-          generateRoughOptions(element, true),
++          generateRoughOptions(element, true, isDarkMode),
+         );
+       } else {
+         shape = generator.polygon(
+@@ -702,7 +732,7 @@ const generateElementShape = (
+             [bottomX, bottomY],
+             [leftX, leftY],
+           ],
+-          generateRoughOptions(element),
++          generateRoughOptions(element, false, isDarkMode),
+         );
+       }
+       return shape;
+@@ -713,14 +743,14 @@ const generateElementShape = (
+         element.height / 2,
+         element.width,
+         element.height,
+-        generateRoughOptions(element),
++        generateRoughOptions(element, false, isDarkMode),
+       );
+       return shape;
+     }
+     case "line":
+     case "arrow": {
+       let shape: ElementShapes[typeof element.type];
+-      const options = generateRoughOptions(element);
++      const options = generateRoughOptions(element, false, isDarkMode);
+ 
+       // points array can be empty in the beginning, so it is important to add
+       // initial position to it
+@@ -745,7 +775,7 @@ const generateElementShape = (
+           shape = [
+             generator.path(
+               generateElbowArrowShape(points, 16),
+-              generateRoughOptions(element, true),
++              generateRoughOptions(element, true, isDarkMode),
+             ),
+           ];
+         }
+@@ -778,6 +808,7 @@ const generateElementShape = (
+             generator,
+             options,
+             canvasBackgroundColor,
++            isDarkMode,
+           );
+           shape.push(...shapes);
+         }
+@@ -795,6 +826,7 @@ const generateElementShape = (
+             generator,
+             options,
+             canvasBackgroundColor,
++            isDarkMode,
+           );
+           shape.push(...shapes);
+         }
+@@ -802,23 +834,28 @@ const generateElementShape = (
+       return shape;
+     }
+     case "freedraw": {
+-      let shape: ElementShapes[typeof element.type];
+-      generateFreeDrawShape(element);
++      // oredered in terms of z-index [background, stroke]
++      const shapes: ElementShapes[typeof element.type] = [];
+ 
++      // (1) background fill (rc shape), optional
+       if (isPathALoop(element.points)) {
+         // generate rough polygon to fill freedraw shape
+         const simplifiedPoints = simplify(
+           element.points as Mutable<LocalPoint[]>,
+           0.75,
+         );
+-        shape = generator.curve(simplifiedPoints as [number, number][], {
+-          ...generateRoughOptions(element),
+-          stroke: "none",
+-        });
+-      } else {
+-        shape = null;
++        shapes.push(
++          generator.curve(simplifiedPoints as [number, number][], {
++            ...generateRoughOptions(element, false, isDarkMode),
++            stroke: "none",
++          }),
++        );
+       }
+-      return shape;
++
++      // (2) stroke
++      shapes.push(getFreeDrawSvgPath(element));
++
++      return shapes;
+     }
+     case "frame":
+     case "magicframe":
+@@ -925,9 +962,7 @@ export const getElementShape = <Point extends GlobalPoint | LocalPoint>(
+       return getPolygonShape(element);
+     case "arrow":
+     case "line": {
+-      const roughShape =
+-        ShapeCache.get(element)?.[0] ??
+-        ShapeCache.generateElementShape(element, null)[0];
++      const roughShape = ShapeCache.generateElementShape(element, null)[0];
+       const [, , , , cx, cy] = getElementAbsoluteCoords(element, elementsMap);
+ 
+       return shouldTestInside(element)
+@@ -1003,3 +1038,69 @@ export const toggleLinePolygonState = (
+ 
+   return ret;
+ };
++
++// -----------------------------------------------------------------------------
++//                         freedraw shape helper
++// -----------------------------------------------------------------------------
++
++// NOTE not cached (-> for SVG export)
++const getFreeDrawSvgPath = (element: ExcalidrawFreeDrawElement) => {
++  return getSvgPathFromStroke(
++    getFreedrawOutlinePoints(element),
++  ) as SVGPathString;
++};
++
++export const getFreedrawOutlinePoints = (
++  element: ExcalidrawFreeDrawElement,
++) => {
++  // If input points are empty (should they ever be?) return a dot
++  const inputPoints = element.simulatePressure
++    ? element.points
++    : element.points.length
++    ? element.points.map(([x, y], i) => [x, y, element.pressures[i]])
++    : [[0, 0, 0.5]];
++
++  return getStroke(inputPoints as number[][], {
++    simulatePressure: element.simulatePressure,
++    size: element.strokeWidth * 4.25,
++    thinning: 0.6,
++    smoothing: 0.5,
++    streamline: 0.5,
++    easing: (t) => Math.sin((t * Math.PI) / 2), // https://easings.net/#easeOutSine
++    last: true,
++  }) as [number, number][];
++};
++
++const med = (A: number[], B: number[]) => {
++  return [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2];
++};
++
++// Trim SVG path data so number are each two decimal points. This
++// improves SVG exports, and prevents rendering errors on points
++// with long decimals.
++const TO_FIXED_PRECISION = /(\s?[A-Z]?,?-?[0-9]*\.[0-9]{0,2})(([0-9]|e|-)*)/g;
++
++const getSvgPathFromStroke = (points: number[][]): string => {
++  if (!points.length) {
++    return "";
++  }
++
++  const max = points.length - 1;
++
++  return points
++    .reduce(
++      (acc, point, i, arr) => {
++        if (i === max) {
++          acc.push(point, med(point, arr[0]), "L", arr[0], "Z");
++        } else {
++          acc.push(point, med(point, arr[i + 1]));
++        }
++        return acc;
++      },
++      ["M", points[0], "Q"],
++    )
++    .join(" ")
++    .replace(TO_FIXED_PRECISION, "$1");
++};
++
++// -----------------------------------------------------------------------------
+diff --git a/packages/element/tests/__snapshots__/linearElementEditor.test.tsx.snap b/packages/element/tests/__snapshots__/linearElementEditor.test.tsx.snap
+index 67639e5b..3ee60ba8 100644
+--- a/packages/element/tests/__snapshots__/linearElementEditor.test.tsx.snap
++++ b/packages/element/tests/__snapshots__/linearElementEditor.test.tsx.snap
+@@ -17,7 +17,7 @@ exports[`Test Linear Elements > Test bound text element > should match styles fo
+   class="excalidraw-wysiwyg"
+   data-type="wysiwyg"
+   dir="auto"
+-  style="position: absolute; display: inline-block; min-height: 1em; backface-visibility: hidden; margin: 0px; padding: 0px; border: 0px; outline: 0; resize: none; background: transparent; overflow: hidden; z-index: var(--zIndex-wysiwyg); word-break: break-word; white-space: pre-wrap; overflow-wrap: break-word; box-sizing: content-box; width: 10.5px; height: 26.25px; left: 35px; top: 7.5px; transform: translate(0px, 0px) scale(1) rotate(0deg); text-align: center; vertical-align: middle; color: rgb(30, 30, 30); opacity: 1; filter: var(--theme-filter); max-height: 992.5px; font: Emoji 20px 20px; line-height: 1.25; font-family: Excalifont, Xiaolai, sans-serif, Segoe UI Emoji;"
++  style="position: absolute; display: inline-block; min-height: 1em; backface-visibility: hidden; margin: 0px; padding: 0px; border: 0px; outline: 0; resize: none; background: transparent; overflow: hidden; z-index: var(--zIndex-wysiwyg); word-break: break-word; white-space: pre-wrap; overflow-wrap: break-word; box-sizing: content-box; width: 10.5px; height: 26.25px; left: 35px; top: 7.5px; transform: translate(0px, 0px) scale(1) rotate(0deg); text-align: center; vertical-align: middle; color: rgb(30, 30, 30); opacity: 1; max-height: 992.5px; font: Emoji 20px 20px; line-height: 1.25; font-family: Excalifont, Xiaolai, sans-serif, Segoe UI Emoji;"
+   tabindex="0"
+   wrap="off"
+ />
+diff --git a/packages/excalidraw/components/App.tsx b/packages/excalidraw/components/App.tsx
+index 8b9a1a51..5fec6ff4 100644
+--- a/packages/excalidraw/components/App.tsx
++++ b/packages/excalidraw/components/App.tsx
+@@ -47,7 +47,6 @@ import {
+   TAP_TWICE_TIMEOUT,
+   TEXT_TO_CENTER_SNAP_THRESHOLD,
+   THEME,
+-  THEME_FILTER,
+   TOUCH_CTX_MENU_TIMEOUT,
+   VERTICAL_ALIGN,
+   YOUTUBE_STATES,
+@@ -89,6 +88,7 @@ import {
+   getDateTime,
+   isShallowEqual,
+   arrayToMap,
++  applyDarkModeFilter,
+   type EXPORT_IMAGE_TYPES,
+   randomInteger,
+   CLASSES,
+@@ -1770,8 +1770,9 @@ class App extends React.Component<AppProps, AppState> {
+               }
+             }}
+             style={{
+-              background: this.state.viewBackgroundColor,
+-              filter: isDarkTheme ? THEME_FILTER : "none",
++              background: isDarkTheme
++                ? applyDarkModeFilter(this.state.viewBackgroundColor)
++                : this.state.viewBackgroundColor,
+               zIndex: 2,
+               border: "none",
+               display: "block",
+@@ -1781,7 +1782,9 @@ class App extends React.Component<AppProps, AppState> {
+               fontFamily: "Assistant",
+               fontSize: `${FRAME_STYLE.nameFontSize}px`,
+               transform: `translate(-${FRAME_NAME_EDIT_PADDING}px, ${FRAME_NAME_EDIT_PADDING}px)`,
+-              color: "var(--color-gray-80)",
++              color: isDarkTheme
++                ? FRAME_STYLE.nameColorDarkTheme
++                : FRAME_STYLE.nameColorLightTheme,
+               overflow: "hidden",
+               maxWidth: `${
+                 document.body.clientWidth - x1 - FRAME_NAME_EDIT_PADDING
+@@ -2116,6 +2119,7 @@ class App extends React.Component<AppProps, AppState> {
+                             elementsPendingErasure: this.elementsPendingErasure,
+                             pendingFlowchartNodes:
+                               this.flowChartCreator.pendingNodes,
++                            theme: this.state.theme,
+                           }}
+                         />
+                         {this.state.newElement && (
+@@ -2136,6 +2140,7 @@ class App extends React.Component<AppProps, AppState> {
+                               elementsPendingErasure:
+                                 this.elementsPendingErasure,
+                               pendingFlowchartNodes: null,
++                              theme: this.state.theme,
+                             }}
+                           />
+                         )}
+@@ -3181,6 +3186,7 @@ class App extends React.Component<AppProps, AppState> {
+     ) {
+       setEraserCursor(this.interactiveCanvas, this.state.theme);
+     }
++
+     // Hide hyperlink popup if shown when element type is not selection
+     if (
+       prevState.activeTool.type === "selection" &&
+diff --git a/packages/excalidraw/components/ColorPicker/ColorInput.tsx b/packages/excalidraw/components/ColorPicker/ColorInput.tsx
+index 7de0af41..b433b485 100644
+--- a/packages/excalidraw/components/ColorPicker/ColorInput.tsx
++++ b/packages/excalidraw/components/ColorPicker/ColorInput.tsx
+@@ -1,7 +1,9 @@
+ import clsx from "clsx";
+ import { useCallback, useEffect, useRef, useState } from "react";
+ 
+-import { KEYS } from "@excalidraw/common";
++import { isTransparent, KEYS } from "@excalidraw/common";
++
++import tinycolor from "tinycolor2";
+ 
+ import { getShortcutKey } from "../..//shortcut";
+ import { useAtom } from "../../editor-jotai";
+@@ -10,18 +12,32 @@ import { useEditorInterface } from "../App";
+ import { activeEyeDropperAtom } from "../EyeDropper";
+ import { eyeDropperIcon } from "../icons";
+ 
+-import { getColor } from "./ColorPicker";
+ import { activeColorPickerSectionAtom } from "./colorPickerUtils";
+ 
+ import type { ColorPickerType } from "./colorPickerUtils";
+ 
+-interface ColorInputProps {
+-  color: string;
+-  onChange: (color: string) => void;
+-  label: string;
+-  colorPickerType: ColorPickerType;
+-  placeholder?: string;
+-}
++/**
++ * tries to keep the input color as-is if it's valid, making minimal adjustments
++ * (trimming whitespace or adding `#` to hex colors)
++ */
++export const normalizeInputColor = (color: string): string | null => {
++  color = color.trim();
++  if (isTransparent(color)) {
++    return color;
++  }
++
++  const tc = tinycolor(color);
++  if (tc.isValid()) {
++    // testing for `#` first fixes a bug on Electron (more specfically, an
++    // Obsidian popout window), where a hex color without `#` is considered valid
++    if (tc.getFormat() === "hex" && !color.startsWith("#")) {
++      return `#${color}`;
++    }
++    return color;
++  }
++
++  return null;
++};
+ 
+ export const ColorInput = ({
+   color,
+@@ -29,7 +45,13 @@ export const ColorInput = ({
+   label,
+   colorPickerType,
+   placeholder,
+-}: ColorInputProps) => {
++}: {
++  color: string;
++  onChange: (color: string) => void;
++  label: string;
++  colorPickerType: ColorPickerType;
++  placeholder?: string;
++}) => {
+   const editorInterface = useEditorInterface();
+   const [innerValue, setInnerValue] = useState(color);
+   const [activeSection, setActiveColorPickerSection] = useAtom(
+@@ -43,7 +65,7 @@ export const ColorInput = ({
+   const changeColor = useCallback(
+     (inputValue: string) => {
+       const value = inputValue.toLowerCase();
+-      const color = getColor(value);
++      const color = normalizeInputColor(value);
+ 
+       if (color) {
+         onChange(color);
+diff --git a/packages/excalidraw/components/ColorPicker/ColorPicker.tsx b/packages/excalidraw/components/ColorPicker/ColorPicker.tsx
+index 441ad514..ffbffce9 100644
+--- a/packages/excalidraw/components/ColorPicker/ColorPicker.tsx
++++ b/packages/excalidraw/components/ColorPicker/ColorPicker.tsx
+@@ -5,7 +5,6 @@ import { useRef, useEffect } from "react";
+ import {
+   COLOR_OUTLINE_CONTRAST_THRESHOLD,
+   COLOR_PALETTE,
+-  isTransparent,
+   isWritableElement,
+ } from "@excalidraw/common";
+ 
+@@ -38,27 +37,6 @@ import type { ColorPickerType } from "./colorPickerUtils";
+ 
+ import type { AppState } from "../../types";
+ 
+-const isValidColor = (color: string) => {
+-  const style = new Option().style;
+-  style.color = color;
+-  return !!style.color;
+-};
+-
+-export const getColor = (color: string): string | null => {
+-  if (isTransparent(color)) {
+-    return color;
+-  }
+-
+-  // testing for `#` first fixes a bug on Electron (more specfically, an
+-  // Obsidian popout window), where a hex color without `#` is (incorrectly)
+-  // considered valid
+-  return isValidColor(`#${color}`)
+-    ? `#${color}`
+-    : isValidColor(color)
+-    ? color
+-    : null;
+-};
+-
+ interface ColorPickerProps {
+   type: ColorPickerType;
+   /**
+diff --git a/packages/excalidraw/components/ColorPicker/colorPickerUtils.ts b/packages/excalidraw/components/ColorPicker/colorPickerUtils.ts
+index d5a6f5b8..3bf86d85 100644
+--- a/packages/excalidraw/components/ColorPicker/colorPickerUtils.ts
++++ b/packages/excalidraw/components/ColorPicker/colorPickerUtils.ts
+@@ -1,4 +1,8 @@
+-import { MAX_CUSTOM_COLORS_USED_IN_CANVAS } from "@excalidraw/common";
++import {
++  isTransparent,
++  MAX_CUSTOM_COLORS_USED_IN_CANVAS,
++  tinycolor,
++} from "@excalidraw/common";
+ 
+ import type { ExcalidrawElement } from "@excalidraw/element/types";
+ 
+@@ -108,48 +112,17 @@ export const isColorDark = (color: string, threshold = 160): boolean => {
+     return true;
+   }
+ 
+-  if (color === "transparent") {
++  if (isTransparent(color)) {
+     return false;
+   }
+ 
+-  // a string color (white etc) or any other format -> convert to rgb by way
+-  // of creating a DOM node and retrieving the computeStyle
+-  if (!color.startsWith("#")) {
+-    const node = document.createElement("div");
+-    node.style.color = color;
+-
+-    if (node.style.color) {
+-      // making invisible so document doesn't reflow (hopefully).
+-      // display=none works too, but supposedly not in all browsers
+-      node.style.position = "absolute";
+-      node.style.visibility = "hidden";
+-      node.style.width = "0";
+-      node.style.height = "0";
+-
+-      // needs to be in DOM else browser won't compute the style
+-      document.body.appendChild(node);
+-      const computedColor = getComputedStyle(node).color;
+-      document.body.removeChild(node);
+-      // computed style is in rgb() format
+-      const rgb = computedColor
+-        .replace(/^(rgb|rgba)\(/, "")
+-        .replace(/\)$/, "")
+-        .replace(/\s/g, "")
+-        .split(",");
+-      const r = parseInt(rgb[0]);
+-      const g = parseInt(rgb[1]);
+-      const b = parseInt(rgb[2]);
+-
+-      return calculateContrast(r, g, b) < threshold;
+-    }
+-    // invalid color -> assume it default to black
++  const tc = tinycolor(color);
++  if (!tc.isValid()) {
++    // invalid color -> assume it defaults to black
+     return true;
+   }
+ 
+-  const r = parseInt(color.slice(1, 3), 16);
+-  const g = parseInt(color.slice(3, 5), 16);
+-  const b = parseInt(color.slice(5, 7), 16);
+-
++  const { r, g, b } = tc.toRgb();
+   return calculateContrast(r, g, b) < threshold;
+ };
+ 
+diff --git a/packages/excalidraw/components/ImageExportDialog.tsx b/packages/excalidraw/components/ImageExportDialog.tsx
+index e8e0b70f..18831fa0 100644
+--- a/packages/excalidraw/components/ImageExportDialog.tsx
++++ b/packages/excalidraw/components/ImageExportDialog.tsx
+@@ -40,9 +40,6 @@ import type { ActionManager } from "../actions/manager";
+ 
+ import type { AppClassProperties, BinaryFiles, UIAppState } from "../types";
+ 
+-const supportsContextFilters =
+-  "filter" in document.createElement("canvas").getContext("2d")!;
+-
+ export const ErrorCanvasPreview = () => {
+   return (
+     <div>
+@@ -230,25 +227,23 @@ const ImageExportModal = ({
+             }}
+           />
+         </ExportSetting>
+-        {supportsContextFilters && (
+-          <ExportSetting
+-            label={t("imageExportDialog.label.darkMode")}
++        <ExportSetting
++          label={t("imageExportDialog.label.darkMode")}
++          name="exportDarkModeSwitch"
++        >
++          <Switch
+             name="exportDarkModeSwitch"
+-          >
+-            <Switch
+-              name="exportDarkModeSwitch"
+-              checked={exportDarkMode}
+-              onChange={(checked) => {
+-                setExportDarkMode(checked);
+-                actionManager.executeAction(
+-                  actionExportWithDarkMode,
+-                  "ui",
+-                  checked,
+-                );
+-              }}
+-            />
+-          </ExportSetting>
+-        )}
++            checked={exportDarkMode}
++            onChange={(checked) => {
++              setExportDarkMode(checked);
++              actionManager.executeAction(
++                actionExportWithDarkMode,
++                "ui",
++                checked,
++              );
++            }}
++          />
++        </ExportSetting>
+         <ExportSetting
+           label={t("imageExportDialog.label.embedScene")}
+           tooltip={t("imageExportDialog.tooltip.embedScene")}
+diff --git a/packages/excalidraw/components/TTDDialog/common.ts b/packages/excalidraw/components/TTDDialog/common.ts
+index 2e59565c..998de10f 100644
+--- a/packages/excalidraw/components/TTDDialog/common.ts
++++ b/packages/excalidraw/components/TTDDialog/common.ts
+@@ -101,6 +101,12 @@ export const convertMermaidToExcalidraw = async ({
+       maxWidthOrHeight:
+         Math.max(parent.offsetWidth, parent.offsetHeight) *
+         window.devicePixelRatio,
++      appState: {
++        // TODO hack (will be refactored in TTD v2)
++        exportWithDarkMode: document
++          .querySelector(".excalidraw-container")
++          ?.classList.contains("theme--dark"),
++      },
+     });
+     // if converting to blob fails, there's some problem that will
+     // likely prevent preview and export (e.g. canvas too big)
+diff --git a/packages/excalidraw/css/styles.scss b/packages/excalidraw/css/styles.scss
+index 4e3cf286..2d8f3b7e 100644
+--- a/packages/excalidraw/css/styles.scss
++++ b/packages/excalidraw/css/styles.scss
+@@ -106,6 +106,9 @@ body.excalidraw-cursor-resize * {
+ 
+     &.interactive {
+       z-index: var(--zIndex-interactiveCanvas);
++      // Apply theme filter only to interactive canvas for UI elements
++      // (resize handles, selection boxes, etc.)
++      filter: var(--theme-filter);
+     }
+ 
+     // Remove the main canvas from document flow to avoid resizeObserver
+@@ -134,16 +137,6 @@ body.excalidraw-cursor-resize * {
+     pointer-events: none;
+   }
+ 
+-  &.theme--dark {
+-    // The percentage is inspired by
+-    // https://material.io/design/color/dark-theme.html#properties, which
+-    // recommends surface color of #121212, 93% yields #111111 for #FFF
+-
+-    canvas {
+-      filter: var(--theme-filter);
+-    }
+-  }
+-
+   .FixedSideContainer {
+     padding-top: var(--sat, 0);
+     padding-right: var(--sar, 0);
+diff --git a/packages/excalidraw/hooks/useLibraryItemSvg.ts b/packages/excalidraw/hooks/useLibraryItemSvg.ts
+index 0e0731cf..cb6d4dc3 100644
+--- a/packages/excalidraw/hooks/useLibraryItemSvg.ts
++++ b/packages/excalidraw/hooks/useLibraryItemSvg.ts
+@@ -12,6 +12,8 @@ export type SvgCache = Map<LibraryItem["id"], SVGSVGElement>;
+ export const libraryItemSvgsCache = atom<SvgCache>(new Map());
+ 
+ const exportLibraryItemToSvg = async (elements: LibraryItem["elements"]) => {
++  // TODO should pass theme (appState.exportWithDark) - we're still using
++  // CSS filter here
+   return await exportToSvg({
+     elements,
+     appState: {
+diff --git a/packages/excalidraw/index.tsx b/packages/excalidraw/index.tsx
+index c6fc0984..5cd70e66 100644
+--- a/packages/excalidraw/index.tsx
++++ b/packages/excalidraw/index.tsx
+@@ -250,7 +250,6 @@ export {
+   loadSceneOrLibraryFromBlob,
+   loadLibraryFromBlob,
+ } from "./data/blob";
+-export { getFreeDrawSvgPath } from "@excalidraw/element";
+ export { mergeLibraryItems, getLibraryItemsHash } from "./data/library";
+ export { isLinearElement } from "@excalidraw/element";
+ 
+diff --git a/packages/excalidraw/renderer/helpers.ts b/packages/excalidraw/renderer/helpers.ts
+index cfa502df..8fd70428 100644
+--- a/packages/excalidraw/renderer/helpers.ts
++++ b/packages/excalidraw/renderer/helpers.ts
+@@ -1,4 +1,4 @@
+-import { THEME, THEME_FILTER } from "@excalidraw/common";
++import { THEME, applyDarkModeFilter } from "@excalidraw/common";
+ 
+ import type { StaticCanvasRenderConfig } from "../scene/types";
+ import type { AppState, StaticCanvasAppState } from "../types";
+@@ -51,10 +51,6 @@ export const bootstrapCanvas = ({
+   context.setTransform(1, 0, 0, 1, 0, 0);
+   context.scale(scale, scale);
+ 
+-  if (isExporting && theme === THEME.DARK) {
+-    context.filter = THEME_FILTER;
+-  }
+-
+   // Paint background
+   if (typeof viewBackgroundColor === "string") {
+     const hasTransparence =
+@@ -66,7 +62,10 @@ export const bootstrapCanvas = ({
+       context.clearRect(0, 0, normalizedWidth, normalizedHeight);
+     }
+     context.save();
+-    context.fillStyle = viewBackgroundColor;
++    context.fillStyle =
++      theme === THEME.DARK
++        ? applyDarkModeFilter(viewBackgroundColor)
++        : viewBackgroundColor;
+     context.fillRect(0, 0, normalizedWidth, normalizedHeight);
+     context.restore();
+   } else {
+diff --git a/packages/excalidraw/renderer/staticSvgScene.ts b/packages/excalidraw/renderer/staticSvgScene.ts
+index 29831124..c6ff0eee 100644
+--- a/packages/excalidraw/renderer/staticSvgScene.ts
++++ b/packages/excalidraw/renderer/staticSvgScene.ts
+@@ -1,12 +1,13 @@
+ import {
+   FRAME_STYLE,
+   MAX_DECIMALS_FOR_SVG_EXPORT,
+-  MIME_TYPES,
+   SVG_NS,
++  THEME,
+   getFontFamilyString,
+   isRTL,
+   isTestEnv,
+   getVerticalOffset,
++  applyDarkModeFilter,
+ } from "@excalidraw/common";
+ import { normalizeLink, toValidURL } from "@excalidraw/common";
+ import { hashString } from "@excalidraw/element";
+@@ -31,8 +32,6 @@ import { getCornerRadius, isPathALoop } from "@excalidraw/element";
+ 
+ import { ShapeCache } from "@excalidraw/element";
+ 
+-import { getFreeDrawSvgPath, IMAGE_INVERT_FILTER } from "@excalidraw/element";
+-
+ import { getElementAbsoluteCoords } from "@excalidraw/element";
+ 
+ import type {
+@@ -74,7 +73,7 @@ const maybeWrapNodesInFrameClipPath = (
+   }
+   const frame = getContainingFrame(element, elementsMap);
+   if (frame) {
+-    const g = root.ownerDocument!.createElementNS(SVG_NS, "g");
++    const g = root.ownerDocument.createElementNS(SVG_NS, "g");
+     g.setAttributeNS(SVG_NS, "clip-path", `url(#${frame.id})`);
+     nodes.forEach((node) => g.appendChild(node));
+     return g;
+@@ -120,7 +119,7 @@ const renderElementToSvg = (
+ 
+   // if the element has a link, create an anchor tag and make that the new root
+   if (element.link) {
+-    const anchorTag = svgRoot.ownerDocument!.createElementNS(SVG_NS, "a");
++    const anchorTag = svgRoot.ownerDocument.createElementNS(SVG_NS, "a");
+     anchorTag.setAttribute("href", normalizeLink(element.link));
+     root.appendChild(anchorTag);
+     root = anchorTag;
+@@ -147,7 +146,7 @@ const renderElementToSvg = (
+     case "rectangle":
+     case "diamond":
+     case "ellipse": {
+-      const shape = ShapeCache.generateElementShape(element, null);
++      const shape = ShapeCache.generateElementShape(element, renderConfig);
+       const node = roughSVGDrawWithPrecision(
+         rsvg,
+         shape,
+@@ -242,7 +241,7 @@ const renderElementToSvg = (
+         renderConfig.renderEmbeddables === false ||
+         embedLink?.type === "document"
+       ) {
+-        const anchorTag = svgRoot.ownerDocument!.createElementNS(SVG_NS, "a");
++        const anchorTag = svgRoot.ownerDocument.createElementNS(SVG_NS, "a");
+         anchorTag.setAttribute("href", normalizeLink(element.link || ""));
+         anchorTag.setAttribute("target", "_blank");
+         anchorTag.setAttribute("rel", "noopener noreferrer");
+@@ -250,18 +249,18 @@ const renderElementToSvg = (
+ 
+         embeddableNode.appendChild(anchorTag);
+       } else {
+-        const foreignObject = svgRoot.ownerDocument!.createElementNS(
++        const foreignObject = svgRoot.ownerDocument.createElementNS(
+           SVG_NS,
+           "foreignObject",
+         );
+         foreignObject.style.width = `${element.width}px`;
+         foreignObject.style.height = `${element.height}px`;
+         foreignObject.style.border = "none";
+-        const div = foreignObject.ownerDocument!.createElementNS(SVG_NS, "div");
++        const div = foreignObject.ownerDocument.createElementNS(SVG_NS, "div");
+         div.setAttribute("xmlns", "http://www.w3.org/1999/xhtml");
+         div.style.width = "100%";
+         div.style.height = "100%";
+-        const iframe = div.ownerDocument!.createElement("iframe");
++        const iframe = div.ownerDocument.createElement("iframe");
+         iframe.src = embedLink?.link ?? "";
+         iframe.style.width = "100%";
+         iframe.style.height = "100%";
+@@ -281,10 +280,10 @@ const renderElementToSvg = (
+     case "line":
+     case "arrow": {
+       const boundText = getBoundTextElement(element, elementsMap);
+-      const maskPath = svgRoot.ownerDocument!.createElementNS(SVG_NS, "mask");
++      const maskPath = svgRoot.ownerDocument.createElementNS(SVG_NS, "mask");
+       if (boundText) {
+         maskPath.setAttribute("id", `mask-${element.id}`);
+-        const maskRectVisible = svgRoot.ownerDocument!.createElementNS(
++        const maskRectVisible = svgRoot.ownerDocument.createElementNS(
+           SVG_NS,
+           "rect",
+         );
+@@ -303,7 +302,7 @@ const renderElementToSvg = (
+         );
+ 
+         maskPath.appendChild(maskRectVisible);
+-        const maskRectInvisible = svgRoot.ownerDocument!.createElementNS(
++        const maskRectInvisible = svgRoot.ownerDocument.createElementNS(
+           SVG_NS,
+           "rect",
+         );
+@@ -324,7 +323,7 @@ const renderElementToSvg = (
+         maskRectInvisible.setAttribute("opacity", "1");
+         maskPath.appendChild(maskRectInvisible);
+       }
+-      const group = svgRoot.ownerDocument!.createElementNS(SVG_NS, "g");
++      const group = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+       if (boundText) {
+         group.setAttribute("mask", `url(#mask-${element.id})`);
+       }
+@@ -374,42 +373,63 @@ const renderElementToSvg = (
+       break;
+     }
+     case "freedraw": {
+-      const backgroundFillShape = ShapeCache.generateElementShape(
+-        element,
+-        renderConfig,
+-      );
+-      const node = backgroundFillShape
+-        ? roughSVGDrawWithPrecision(
++      const wrapper = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
++
++      const shapes = ShapeCache.generateElementShape(element, renderConfig);
++      // always ordered as [background, stroke]
++      for (const shape of shapes) {
++        if (typeof shape === "string") {
++          // stroke (SVGPathString)
++
++          const path = svgRoot.ownerDocument.createElementNS(SVG_NS, "path");
++          path.setAttribute(
++            "fill",
++            renderConfig.theme === THEME.DARK
++              ? applyDarkModeFilter(element.strokeColor)
++              : element.strokeColor,
++          );
++          path.setAttribute("d", shape);
++          wrapper.appendChild(path);
++        } else {
++          // background (Drawable)
++
++          const bgNode = roughSVGDrawWithPrecision(
+             rsvg,
+-            backgroundFillShape,
++            shape,
+             MAX_DECIMALS_FOR_SVG_EXPORT,
+-          )
+-        : svgRoot.ownerDocument!.createElementNS(SVG_NS, "g");
++          );
++
++          // if children wrapped in <g>, unwrap it
++          if (bgNode.nodeName === "g") {
++            while (bgNode.firstChild) {
++              wrapper.appendChild(bgNode.firstChild);
++            }
++          } else {
++            wrapper.appendChild(bgNode);
++          }
++        }
++      }
+       if (opacity !== 1) {
+-        node.setAttribute("stroke-opacity", `${opacity}`);
+-        node.setAttribute("fill-opacity", `${opacity}`);
++        wrapper.setAttribute("stroke-opacity", `${opacity}`);
++        wrapper.setAttribute("fill-opacity", `${opacity}`);
+       }
+-      node.setAttribute(
++      wrapper.setAttribute(
+         "transform",
+         `translate(${offsetX || 0} ${
+           offsetY || 0
+         }) rotate(${degree} ${cx} ${cy})`,
+       );
+-      node.setAttribute("stroke", "none");
+-      const path = svgRoot.ownerDocument!.createElementNS(SVG_NS, "path");
+-      path.setAttribute("fill", element.strokeColor);
+-      path.setAttribute("d", getFreeDrawSvgPath(element));
+-      node.appendChild(path);
++      wrapper.setAttribute("stroke", "none");
+ 
+       const g = maybeWrapNodesInFrameClipPath(
+         element,
+         root,
+-        [node],
++        [wrapper],
+         renderConfig.frameRendering,
+         elementsMap,
+       );
+ 
+-      addToRoot(g || node, element);
++      addToRoot(g || wrapper, element);
+       break;
+     }
+     case "image": {
+@@ -439,10 +459,10 @@ const renderElementToSvg = (
+ 
+         let symbol = svgRoot.querySelector(`#${symbolId}`);
+         if (!symbol) {
+-          symbol = svgRoot.ownerDocument!.createElementNS(SVG_NS, "symbol");
++          symbol = svgRoot.ownerDocument.createElementNS(SVG_NS, "symbol");
+           symbol.id = symbolId;
+ 
+-          const image = svgRoot.ownerDocument!.createElementNS(SVG_NS, "image");
++          const image = svgRoot.ownerDocument.createElementNS(SVG_NS, "image");
+           image.setAttribute("href", fileData.dataURL);
+           image.setAttribute("preserveAspectRatio", "none");
+ 
+@@ -459,17 +479,9 @@ const renderElementToSvg = (
+           (root.querySelector("defs") || root).prepend(symbol);
+         }
+ 
+-        const use = svgRoot.ownerDocument!.createElementNS(SVG_NS, "use");
++        const use = svgRoot.ownerDocument.createElementNS(SVG_NS, "use");
+         use.setAttribute("href", `#${symbolId}`);
+ 
+-        // in dark theme, revert the image color filter
+-        if (
+-          renderConfig.exportWithDarkMode &&
+-          fileData.mimeType !== MIME_TYPES.svg
+-        ) {
+-          use.setAttribute("filter", IMAGE_INVERT_FILTER);
+-        }
+-
+         let normalizedCropX = 0;
+         let normalizedCropY = 0;
+ 
+@@ -506,13 +518,13 @@ const renderElementToSvg = (
+           );
+         }
+ 
+-        const g = svgRoot.ownerDocument!.createElementNS(SVG_NS, "g");
++        const g = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+ 
+         if (element.crop) {
+-          const mask = svgRoot.ownerDocument!.createElementNS(SVG_NS, "mask");
++          const mask = svgRoot.ownerDocument.createElementNS(SVG_NS, "mask");
+           mask.setAttribute("id", `mask-image-crop-${element.id}`);
+           mask.setAttribute("fill", "#fff");
+-          const maskRect = svgRoot.ownerDocument!.createElementNS(
++          const maskRect = svgRoot.ownerDocument.createElementNS(
+             SVG_NS,
+             "rect",
+           );
+@@ -536,13 +548,13 @@ const renderElementToSvg = (
+         );
+ 
+         if (element.roundness) {
+-          const clipPath = svgRoot.ownerDocument!.createElementNS(
++          const clipPath = svgRoot.ownerDocument.createElementNS(
+             SVG_NS,
+             "clipPath",
+           );
+           clipPath.id = `image-clipPath-${element.id}`;
+           clipPath.setAttribute("clipPathUnits", "userSpaceOnUse");
+-          const clipRect = svgRoot.ownerDocument!.createElementNS(
++          const clipRect = svgRoot.ownerDocument.createElementNS(
+             SVG_NS,
+             "rect",
+           );
+@@ -598,7 +610,12 @@ const renderElementToSvg = (
+         rect.setAttribute("ry", FRAME_STYLE.radius.toString());
+ 
+         rect.setAttribute("fill", "none");
+-        rect.setAttribute("stroke", FRAME_STYLE.strokeColor);
++        rect.setAttribute(
++          "stroke",
++          renderConfig.theme === THEME.DARK
++            ? applyDarkModeFilter(FRAME_STYLE.strokeColor)
++            : FRAME_STYLE.strokeColor,
++        );
+         rect.setAttribute("stroke-width", FRAME_STYLE.strokeWidth.toString());
+ 
+         addToRoot(rect, element);
+@@ -607,7 +624,7 @@ const renderElementToSvg = (
+     }
+     default: {
+       if (isTextElement(element)) {
+-        const node = svgRoot.ownerDocument!.createElementNS(SVG_NS, "g");
++        const node = svgRoot.ownerDocument.createElementNS(SVG_NS, "g");
+         if (opacity !== 1) {
+           node.setAttribute("stroke-opacity", `${opacity}`);
+           node.setAttribute("fill-opacity", `${opacity}`);
+@@ -643,13 +660,18 @@ const renderElementToSvg = (
+             ? "end"
+             : "start";
+         for (let i = 0; i < lines.length; i++) {
+-          const text = svgRoot.ownerDocument!.createElementNS(SVG_NS, "text");
++          const text = svgRoot.ownerDocument.createElementNS(SVG_NS, "text");
+           text.textContent = lines[i];
+           text.setAttribute("x", `${horizontalOffset}`);
+           text.setAttribute("y", `${i * lineHeightPx + verticalOffset}`);
+           text.setAttribute("font-family", getFontFamilyString(element));
+           text.setAttribute("font-size", `${element.fontSize}px`);
+-          text.setAttribute("fill", element.strokeColor);
++          text.setAttribute(
++            "fill",
++            renderConfig.theme === THEME.DARK
++              ? applyDarkModeFilter(element.strokeColor)
++              : element.strokeColor,
++          );
+           text.setAttribute("text-anchor", textAnchor);
+           text.setAttribute("style", "white-space: pre;");
+           text.setAttribute("direction", direction);
+diff --git a/packages/excalidraw/scene/export.ts b/packages/excalidraw/scene/export.ts
+index 5fb4eff8..7cf111f6 100644
+--- a/packages/excalidraw/scene/export.ts
++++ b/packages/excalidraw/scene/export.ts
+@@ -6,13 +6,13 @@ import {
+   FONT_FAMILY,
+   SVG_NS,
+   THEME,
+-  THEME_FILTER,
+   MIME_TYPES,
+   EXPORT_DATA_TYPES,
+   arrayToMap,
+   distance,
+   getFontString,
+   toBrandedType,
++  applyDarkModeFilter,
+ } from "@excalidraw/common";
+ 
+ import { getCommonBounds, getElementAbsoluteCoords } from "@excalidraw/element";
+@@ -268,6 +268,7 @@ export const exportToCanvas = async (
+       embedsValidationStatus: new Map(),
+       elementsPendingErasure: new Set(),
+       pendingFlowchartNodes: null,
++      theme: appState.exportWithDarkMode ? THEME.DARK : THEME.LIGHT,
+     },
+   });
+ 
+@@ -348,9 +349,6 @@ export const exportToSvg = async (
+   svgRoot.setAttribute("viewBox", `0 0 ${width} ${height}`);
+   svgRoot.setAttribute("width", `${width * exportScale}`);
+   svgRoot.setAttribute("height", `${height * exportScale}`);
+-  if (exportWithDarkMode) {
+-    svgRoot.setAttribute("filter", THEME_FILTER);
+-  }
+ 
+   const defsElement = svgRoot.ownerDocument.createElementNS(SVG_NS, "defs");
+ 
+@@ -455,7 +453,12 @@ export const exportToSvg = async (
+     rect.setAttribute("y", "0");
+     rect.setAttribute("width", `${width}`);
+     rect.setAttribute("height", `${height}`);
+-    rect.setAttribute("fill", viewBackgroundColor);
++    rect.setAttribute(
++      "fill",
++      exportWithDarkMode
++        ? applyDarkModeFilter(viewBackgroundColor)
++        : viewBackgroundColor,
++    );
+     svgRoot.appendChild(rect);
+   }
+ 
+@@ -489,6 +492,7 @@ export const exportToSvg = async (
+           )
+         : new Map(),
+       reuseImages: opts?.reuseImages ?? true,
++      theme: exportWithDarkMode ? THEME.DARK : THEME.LIGHT,
+     },
+   );
+ 
+diff --git a/packages/excalidraw/scene/types.ts b/packages/excalidraw/scene/types.ts
+index c127a9de..59c421f8 100644
+--- a/packages/excalidraw/scene/types.ts
++++ b/packages/excalidraw/scene/types.ts
+@@ -36,6 +36,7 @@ export type StaticCanvasRenderConfig = {
+   embedsValidationStatus: EmbedsValidationStatus;
+   elementsPendingErasure: ElementsPendingErasure;
+   pendingFlowchartNodes: PendingExcalidrawElements | null;
++  theme: AppState["theme"];
+ };
+ 
+ export type SVGRenderConfig = {
+@@ -54,6 +55,7 @@ export type SVGRenderConfig = {
+    * @default true
+    */
+   reuseImages: boolean;
++  theme: AppState["theme"];
+ };
+ 
+ export type InteractiveCanvasRenderConfig = {
+@@ -148,7 +150,14 @@ export type ScrollBars = {
+   } | null;
+ };
+ 
+-export type ElementShape = Drawable | Drawable[] | null;
++export type SVGPathString = string & { __brand: "SVGPathString" };
++
++export type ElementShape =
++  | Drawable
++  | Drawable[]
++  | Path2D
++  | (Drawable | SVGPathString)[]
++  | null;
+ 
+ export type ElementShapes = {
+   rectangle: Drawable;
+@@ -156,7 +165,7 @@ export type ElementShapes = {
+   diamond: Drawable;
+   iframe: Drawable;
+   embeddable: Drawable;
+-  freedraw: Drawable | null;
++  freedraw: (Drawable | SVGPathString)[];
+   arrow: Drawable[];
+   line: Drawable[];
+   text: null;
+diff --git a/packages/excalidraw/tests/colorInput.test.ts b/packages/excalidraw/tests/colorInput.test.ts
+new file mode 100644
+index 00000000..c2e3ae82
+--- /dev/null
++++ b/packages/excalidraw/tests/colorInput.test.ts
+@@ -0,0 +1,115 @@
++import { normalizeInputColor } from "../components/ColorPicker/ColorInput";
++
++describe("normalizeInputColor", () => {
++  describe("hex colors", () => {
++    it("returns hex color with hash as-is", () => {
++      expect(normalizeInputColor("#ff0000")).toBe("#ff0000");
++      expect(normalizeInputColor("#FF0000")).toBe("#FF0000");
++      expect(normalizeInputColor("#abc")).toBe("#abc");
++      expect(normalizeInputColor("#ABC")).toBe("#ABC");
++    });
++
++    it("adds hash to hex color without hash", () => {
++      expect(normalizeInputColor("ff0000")).toBe("#ff0000");
++      expect(normalizeInputColor("FF0000")).toBe("#FF0000");
++      expect(normalizeInputColor("abc")).toBe("#abc");
++      expect(normalizeInputColor("ABC")).toBe("#ABC");
++    });
++
++    it("handles 8-digit hex (hexa) with alpha", () => {
++      expect(normalizeInputColor("#ff000080")).toBe("#ff000080");
++      expect(normalizeInputColor("#ff0000ff")).toBe("#ff0000ff");
++    });
++
++    it("does NOT add hash to hexa without hash (tinycolor detects as hex8, not hex)", () => {
++      // Note: tinycolor detects 8-digit hex as "hex8" format, not "hex",
++      // so the hash prefix logic doesn't apply
++      expect(normalizeInputColor("ff000080")).toBe("ff000080");
++    });
++  });
++
++  describe("named colors", () => {
++    it("returns named colors as-is", () => {
++      expect(normalizeInputColor("red")).toBe("red");
++      expect(normalizeInputColor("blue")).toBe("blue");
++      expect(normalizeInputColor("green")).toBe("green");
++      expect(normalizeInputColor("white")).toBe("white");
++      expect(normalizeInputColor("black")).toBe("black");
++      expect(normalizeInputColor("transparent")).toBe("transparent");
++    });
++
++    it("handles case variations of named colors", () => {
++      expect(normalizeInputColor("RED")).toBe("RED");
++      expect(normalizeInputColor("Red")).toBe("Red");
++    });
++  });
++
++  describe("rgb/rgba colors", () => {
++    it("returns rgb colors as-is", () => {
++      expect(normalizeInputColor("rgb(255, 0, 0)")).toBe("rgb(255, 0, 0)");
++      expect(normalizeInputColor("rgb(0,0,0)")).toBe("rgb(0,0,0)");
++    });
++
++    // NOTE: tinycolor clamps values, so rgb(256, 0, 0) is treated as valid
++    it("tinycolor considers out-of-range rgb values as valid (clamped)", () => {
++      expect(normalizeInputColor("rgb(256, 0, 0)")).toBe("rgb(256, 0, 0)");
++    });
++
++    it("returns rgba colors as-is", () => {
++      expect(normalizeInputColor("rgba(255, 0, 0, 0.5)")).toBe(
++        "rgba(255, 0, 0, 0.5)",
++      );
++      expect(normalizeInputColor("rgba(0,0,0,1)")).toBe("rgba(0,0,0,1)");
++    });
++  });
++
++  describe("hsl/hsla colors", () => {
++    it("returns hsl colors as-is", () => {
++      expect(normalizeInputColor("hsl(0, 100%, 50%)")).toBe(
++        "hsl(0, 100%, 50%)",
++      );
++    });
++
++    it("returns hsla colors as-is", () => {
++      expect(normalizeInputColor("hsla(0, 100%, 50%, 0.5)")).toBe(
++        "hsla(0, 100%, 50%, 0.5)",
++      );
++    });
++  });
++
++  describe("whitespace handling", () => {
++    it("trims leading whitespace", () => {
++      expect(normalizeInputColor("  #ff0000")).toBe("#ff0000");
++      expect(normalizeInputColor("  red")).toBe("red");
++    });
++
++    it("trims trailing whitespace", () => {
++      expect(normalizeInputColor("#ff0000  ")).toBe("#ff0000");
++      expect(normalizeInputColor("red  ")).toBe("red");
++    });
++
++    it("trims both leading and trailing whitespace", () => {
++      expect(normalizeInputColor("  #ff0000  ")).toBe("#ff0000");
++      expect(normalizeInputColor("  red  ")).toBe("red");
++    });
++
++    it("adds hash to trimmed hex without hash", () => {
++      expect(normalizeInputColor("  ff0000  ")).toBe("#ff0000");
++    });
++  });
++
++  describe("invalid colors", () => {
++    it("returns null for invalid color strings", () => {
++      expect(normalizeInputColor("notacolor")).toBe(null);
++      expect(normalizeInputColor("gggggg")).toBe(null);
++      expect(normalizeInputColor("#gggggg")).toBe(null);
++      expect(normalizeInputColor("")).toBe(null);
++      expect(normalizeInputColor("   ")).toBe(null);
++    });
++
++    it("returns null for partial/malformed colors", () => {
++      expect(normalizeInputColor("#ff")).toBe(null);
++      expect(normalizeInputColor("rgb(")).toBe(null);
++    });
++  });
++});
+diff --git a/packages/excalidraw/tests/fixtures/elementFixture.ts b/packages/excalidraw/tests/fixtures/elementFixture.ts
+index 35aabd55..7d31672d 100644
+--- a/packages/excalidraw/tests/fixtures/elementFixture.ts
++++ b/packages/excalidraw/tests/fixtures/elementFixture.ts
+@@ -59,6 +59,7 @@ export const textFixture: ExcalidrawElement = {
+   type: "text",
+   fontSize: 20,
+   fontFamily: DEFAULT_FONT_FAMILY,
++  strokeColor: "#1e1e1e",
+   text: "original text",
+   originalText: "original text",
+   textAlign: "left",
+diff --git a/packages/excalidraw/tests/scene/__snapshots__/export.test.ts.snap b/packages/excalidraw/tests/scene/__snapshots__/export.test.ts.snap
+index cef1fd79..180a14e6 100644
+--- a/packages/excalidraw/tests/scene/__snapshots__/export.test.ts.snap
++++ b/packages/excalidraw/tests/scene/__snapshots__/export.test.ts.snap
+@@ -85,7 +85,7 @@ exports[`exportToSvg > with a CJK font 1`] = `
+     <text
+       direction="ltr"
+       dominant-baseline="alphabetic"
+-      fill="#000000"
++      fill="#1e1e1e"
+       font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
+       font-size="20px"
+       style="white-space: pre;"
+@@ -103,7 +103,7 @@ exports[`exportToSvg > with a CJK font 1`] = `
+     <text
+       direction="ltr"
+       dominant-baseline="alphabetic"
+-      fill="#000000"
++      fill="#1e1e1e"
+       font-family="Nunito, sans-serif, Segoe UI Emoji"
+       font-size="20px"
+       style="white-space: pre;"
+@@ -121,7 +121,7 @@ exports[`exportToSvg > with a CJK font 1`] = `
+     <text
+       direction="ltr"
+       dominant-baseline="alphabetic"
+-      fill="#000000"
++      fill="#1e1e1e"
+       font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
+       font-size="20px"
+       style="white-space: pre;"
+@@ -202,7 +202,7 @@ exports[`exportToSvg > with default arguments 1`] = `
+     <text
+       direction="ltr"
+       dominant-baseline="alphabetic"
+-      fill="#000000"
++      fill="#1e1e1e"
+       font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
+       font-size="20px"
+       style="white-space: pre;"
+@@ -220,7 +220,7 @@ exports[`exportToSvg > with default arguments 1`] = `
+     <text
+       direction="ltr"
+       dominant-baseline="alphabetic"
+-      fill="#000000"
++      fill="#1e1e1e"
+       font-family="Nunito, sans-serif, Segoe UI Emoji"
+       font-size="20px"
+       style="white-space: pre;"
+@@ -240,12 +240,12 @@ exports[`exportToSvg > with elements that have a link 1`] = `
+ `;
+ 
+ exports[`exportToSvg > with exportEmbedScene 1`] = `
+-"<!-- svg-source:excalidraw --><metadata><!-- payload-type:application/vnd.excalidraw+json --><!-- payload-version:2 --><!-- payload-start -->eyJ2ZXJzaW9uIjoiMSIsImVuY29kaW5nIjoiYnN0cmluZyIsImNvbXByZXNzZWQiOnRydWUsImVuY29kZWQiOiJ4nO1WW2vbMFx1MDAxNH7vrzDaa1llJ2myvGXrLoWxwTIorPRBtY5tYVlyJTmXhfz3SvJiOV7Z81x1MDAxYeJcdTAwMDfD+c5Vn76DvbuIXCJktjWgeYRgk1x1MDAxMs6oXCJrdOnwXHUwMDE1KM2ksK7E21o2KvWRhTH1/OqKS5tQSG3mI4xxm1x1MDAwNFx1MDAxYypcdTAwMTBG27B7a0fRzr+th1GXurpTT99cdTAwMTdZyVx1MDAwNE2e0mr69Wbx+ZdP9UFcdTAwMWJcdTAwMWIzjsedvXXdR9POXjNqXG6LxVx1MDAxOHdYXHUwMDAxLC/MXHUwMDAwJFwi527WgGijZFx0XHUwMDFmJJfKXHLyXHUwMDA2+ye0fiRpmSvZXGJcdTAwMWFi4lx0IY9ZiMlcdTAwMTjnS7PlLVx1MDAwYiQtXHUwMDFhXHUwMDA1aNDh7jDiXHUwMDAw7/K0tCyHLNsyL1x1MDAwNGh9lCNrkjKzXHUwMDFknMrNV99Sz+5DmEqRXG5uXHUwMDFkvaLhvF9Y0D+Fj1x1MDAxY5Z7cEQj0ju+XHUwMDA2oL7bOL6eTN/hWedcdDqIXHUwMDEzPES/SeE1XHUwMDExx7NcdTAwMTnG42R6XHUwMDFk2uhcdTAwMWKrXHUwMDA248tmhGtcYlS7yT5cdTAwMDalXHUwMDFjTdfUlLRJgVxyzkQ5jLPqK1+ofVAzZaSSglwij+8vz1r837VcdTAwMTifrlx1MDAxNoFzVms4a/G1aDE5XS1cdTAwMWHYmN7FSWGW7Lfz9M7g0E+kYtzxPFx0JVxcqi0hXHUwMDE1y5kgPDqudYB//jvMWVx1MDAwYs5yR1x1MDAxY+KQ9VxcljvD7D9F5zayXHUwMDBl3tRORZhcdTAwMDD195VaXHUwMDFl4Esn97dJmJk0Rv5cdTAwMDDdXHUwMDFl0TNyXsJXsoSj81x1MDAxMnZLXHUwMDE4XHUwMDA2P6UltG8vXHUwMDE0ROp6aSyx1t2uJFoxWL9/QfSZf9yX1K+wXHUwMDEzPbhb2u0v9s9cdTAwMGXWRI8ifQ==<!-- payload-end --></metadata><defs><style class="style-fonts">
++"<!-- svg-source:excalidraw --><metadata><!-- payload-type:application/vnd.excalidraw+json --><!-- payload-version:2 --><!-- payload-start -->eyJ2ZXJzaW9uIjoiMSIsImVuY29kaW5nIjoiYnN0cmluZyIsImNvbXByZXNzZWQiOnRydWUsImVuY29kZWQiOiJ4nO1WW2vbMFx1MDAxOH3vrzDaa1llJ2nSvGXrLoWxwTIorOxBtT7bwrLkSnIuXHUwMDBi+e+T5MVyvLLnNYtcdTAwMDOG7350dD6c3UVcdTAwMTQhs61cdTAwMDHNI1x1MDAwNJuUcEZcdTAwMTVZo0vnX4HSTFxuXHUwMDFiSrytZaNSn1lcdTAwMThTz6+uuLRcdTAwMDWF1GY+wlx1MDAxOLdFwKFcdTAwMDJhtE17sHZcdTAwMTTt/NtGXHUwMDE4daWre/X0ZZGVTNDkKa2mn25cdTAwMTdcdTAwMWa++1KftLE543jc2Vs3fTTt7DWjprC+XHUwMDE4485XXHUwMDAwy1x1MDAwYjNwXHUwMDEykXOHNXi0UbKEt5JL5YC8wv5cdKNcdTAwMWZJWuZKNoKGnHhCyGNcdTAwMTZyMsb50mx5y1x1MDAwMkmLRlx1MDAwMVx1MDAxYUy4P0BcdTAwMWP4uzotLcuhyo7MXHUwMDBiXHUwMDAxWlx1MDAxZtXImqTMbFx1MDAwN6dy+Oo76tn9XHUwMDExUClSwZ2jVzSc91x1MDAxYlx1MDAwYvq78VHAclx1MDAwZo5oRHrH11x1MDAwMNRPXHUwMDFix9eT6VxynnWRoIM4wUPvZym8JuJ4NsN4nEyvw1x1MDAxOH1r1WB824xwXHKBaofsXVDKXHUwMDExuqampC1cbmxwJsphnlVf+Uzvg5opI5VcdTAwMTRcdTAwMTR5//7yrMV/XYvx6WpcdTAwMTE4Z7WGl6HFXHUwMDE43O//1mJyulo0sDG9i5PCLNlPXHUwMDE36Z3Bed+TinHH8yS0cKW2hVQsZ4Lw6LjXwf3t72nOWnCWO+JcdTAwMTCHrFx1MDAxN7LcXHUwMDE5Zv9TdGEj61x1MDAxME0tKsJcdTAwMDSoP6/U8lx1MDAwMFx1MDAxZju5v05cdTAwMDJm0lx1MDAxOPlcdTAwMTV0e0TPyHlcdF/IXHUwMDEyjs5L2C1hXHUwMDAwfkpLaN9eKIjU9dJYYm24XUm0YrB+84zoM/+4L6lfYSd6cLe021/sf1x1MDAwMVSoRdMifQ==<!-- payload-end --></metadata><defs><style class="style-fonts">
+       @font-face { font-family: Excalifont; src: url(data:font/woff2;base64,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); }
+       @font-face { font-family: Excalifont; src: url(data:font/woff2;base64,d09GMgABAAAAAAHcAA0AAAAAA9gAAAGMAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx4cNAZgAAQRCAoAKgsEAAE2AiQDBAQgBYMYByAbHQPIrgp4MjSeIQLqpl4jnPFQwveqm205gmrZevZ2/8kKGaJ6ictBuCwMMnsKo8hC4RwaLBrJ7dXaFrFk0Re1e/Dk3t9wCUVrYAiZkgiZ5rGDVFdY04wBF4APOCzXHr/ljrNIDqLAY/slkQf0SyjxLNBaAq8Z1AJqYW5j0GjbckRLQhoJCgwYoyfY3q33QS5DrSAwYB4hFruNve4WoN2On4P29GEFWsC+nVM/UvSlVwIcsWycI/5gbqfUhE/9Q2P7UppTOAVeIR4TYIocELVKIEACZJgXCJ5GXl0o+esbFP3g+763DcDPx6/60MrnBaBPAsGPUDRC/8+FGIqGUSBA+NIJOwTWe13HRCIrgEvfRhj1RjLiE42eG7I5DIpVNuqkNNhxwaItTI2srRz4dfHGjhZoO0O8nb2pilFYQKhenFaycLUxsYcoAQRyoRBEnPvcgfysPq+npClt8UxLyvHWjaudqbGJA+TCckNECBGBGFforuTs0M4CUMbCAvp+P4in4o864XECREBtFQAAAAA=); }
+       @font-face { font-family: Nunito; src: url(data:font/woff2;base64,d09GMgABAAAAAAIsAA4AAAAABLQAAAHYAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx4cLgZgP1NUQVREAAQRCAoAKgsEAAE2AiQDBAQgBYQkByAb5wPIrgp4Mt6IIcJZFNCfWmZY6KzqazTt6AiVHCFawzJ7V0CQBKoSQQEpFKrCVxiSFbqqqsaTevKs/q7s6uBYmujMyA9wxb6a7XnEOcNnDLgG4nW8PoPzHzYpS2uqp51pL3eB/xZoxIllCQc80B9o4j/4xMbxQB+j+SC3hsm6JmI8RMaHj+aJApW6ZbkXlg4vXSE5FECg0og6LzxP9pOarug4tF1RLpbHeZqLX0pIt2mfy3pNG6eyGaRIjrnrr/gv2c//yGdjpJ/7DuJLin5eIZRLaObBMM/NpYpuXJ8z3SE088mEFANcCARESfwChCioAwESsVxBgeyxp6+vZ3Xzv8uz7Ae8tRk+p6RUTPOR7BmlEgh+STsAimNuKibilyluhBNe5/wCACSBKrcykVfgyb+RYcK/TGq9yMyCt3bOskSnR1FqTLMSVBsMGLQVltDKKw2IYA+wcGxHJCINY9mDOCaN4IZEo1ChY4xNg8DaB0RxDqnbMNjXJJRzF9iInqahtm67M8dOHFvXaYbn+wrGxKG3YZI+2V4CW58ovdfV1tFHXFJJiPH7T1FAJxEgYo5BKkA5iDIVQluOqZYWhQapGF6TAFhaFAAoTBIZsCFHi/0oV3gpVKwbAA==); }
+       @font-face { font-family: Nunito; src: url(data:font/woff2;base64,d09GMgABAAAAAAI0AA4AAAAABLQAAAHeAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx4cLgZgP1NUQVREAAQRCAoAKgsEAAE2AiQDBAQgBYQkByAb5wPIrgpsY9TYDjGuJ1F+MUed8Q+Do8lDKF1uhErOw/f7/X7tcy+iEk0SUSWRLDGExBCqZYuETCJVS3jlW/rvPv/y4Fra6szKjvjBubd/Nui7lGEMuAbidbw+g/MfFilLa6qnnWkvd4H/FmjEiWUJBzzQH2jiP/jExvFAH6P5ILeGybomYjxExoeP5okC5TpFmecWVieTSw4FIFBuSJ4Vngd7SlWTd4eom7xMLI/zNBO/FJHO0i6T1Zo29kTTT5Ecc9Nf4b9kP/+RT8dQL/MVxGuKXlYhlEpoZMEgy8mRiGYc/001h9DIJhNS9DEhEBBF8QsQokANCJCI5QoKZLddfb/er5n9XZpln/DYYniZkJR+fpjdo1gCwS/pEkByzEzFRPwywYywwWaOVQCAJFDhTCbyMtz5NzKM+ZdJtQeZmfPVzlkWafcoio0oVoJK/QGDNsMiWn6lPh7sAJo3ujXOJwmjmUNvVJIPNzgSgQhtMDoJAmM/EPVmRd2Cwb7gUMZdoCNqiprKqu32bGxtjOs0w8O+gFG9obdhkj7ZHgJXvyi9V1VWUUeciDjE+P07FJBxPiCij0EiQBmINBFCV4aukhKBBImYd0UfgKZEAIBAxeEBHTKU6I9yhpVChXUCAAAA); }
+       @font-face { font-family: Nunito; src: url(data:font/woff2;base64,d09GMgABAAAAAAIsAA4AAAAABLQAAAHYAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx4cLgZgP1NUQVREAAQRCAoAKgsEAAE2AiQDBAQgBYQkByAb5wPILgps9xRFkFEihAtyRcm3sWFhmEeo5Dz8tx/rvpmPqESTBE0lkSBySERCJxSLhLR5U7Uk2jzt3GfnB66lLWNU8Qd04uTtzX70HcgYcA3E63iUZs1n9bQz7eUu8N8CjTixwAIOeKA/0MR/8IlNNx7oYzQf5NYwWddEjIfI+PDR3FGg0bAs9+b23pkrpIJSQKDRjCovPE/2jZqu6Di0XVEulttVWotfakj36YLLQQ0bl7KZpEiOueu9/Jf8839UqzEzzv0A8SF9YJxXCPUSunkwzXN3raIbN+dMdwjdfLKQYoILgYCoiV+AEKVoAwESscqBAvl55Pju68dV2/rv+py/wJu+4f2SMlM2UqnaudRKIPgl5Qwg9QWdJuKXJW6EE163fAIAZIEm97KoGvDi38iw4F8mrV7LbNNzvWJZY9CdqDWnXgiaTQYM2gtraOOVJkRwDlg4tn0SkYaxbEMck0ZwSaJRqNABxqZBYOkVojh71KwZ7AsSyrkLbERHXV9Tu92JA4cOLMs0w5N1BWPi0Fs3SZ8sz4GNN5Tea2tq6SLOqCTE+P1HKKCTCBAxxSAVoBxEkQqhDcdYQ4NCg1QMr04ALA0KABQmiQzYkKPBfpRLvBQqrwwDAA==); }
+       @font-face { font-family: Nunito; src: url(data:font/woff2;base64,d09GMgABAAAAAAIoAA4AAAAABLQAAAHVAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGx4cLgZgP1NUQVREAAQRCAoAKgsEAAE2AiQDBAQgBYQkByAb5wMRFZQHZF8mb0PNXjkIbeHQ4UpbWDTlYMnK5cOfavAw/zzrESo5EbTf6+zdCyBIAqHiUlkJRMJHmIKskVWRFZ4Uelb50Iz7S0IKNNGB0oyDDbgkjnxA+VCvYpk1vog5la7RoxGwSoMFQHNIwf6bvMXbb7uB/zbQEScWUOABB/oDJf6DJ5YWB/oY5UFuDZN1TcR4iIwPH80dBd1mzcrh6sxZnRpoDQTd1qyp8Hzy6v/JPaP30LMHRmG53ZSD/CblWFLgqIbNBWE2y5SSY+mk9V/qr9Nr9rO2mFcC8rUMi6qITgWjClaVl+6tZxG4/ezyvYhiVKOKkiUQBNKW3wCR1gQCConGgYL6Vik5uYHBH+T6E3yc6OHLTplP/6g2k2hXQPgla1sH3lJf6DTJbxPEedV9bQIAqqDHcZWmC+/+j44tH3TR772uDr2oN6zbTDun2m3YKIReywFCxkEb6b7Skm4ghBglR9vyebxlKPLNt+27HjvxxGew/DGCDtQsGvyXTehdSPR6qVWpddg/nU/LMs3gtu7yCJFbt56xvjyH9E/ovVql2tAfnq0bv/9CILBNpk8584BQPeMxltJeuez6zONGyYS47AK4ke1Awmg5eZRnZSUd); }
+-      @font-face { font-family: Nunito; src: url(data:font/woff2;base64,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); }</style></defs><g stroke-linecap="round" transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><path d="M0.32 50.63 C0.32 50.63, 0.32 50.63, 0.32 50.63 M0.32 50.63 C0.32 50.63, 0.32 50.63, 0.32 50.63 M2.68 54.01 C17.68 37.03, 33.95 20.86, 40.74 10.24 M2.68 54.01 C16.59 38.38, 31.52 22.36, 40.74 10.24 M5.7 56.63 C19.86 43.02, 33.12 27.27, 52.94 2.29 M5.7 56.63 C23.06 37.39, 40.39 16.53, 52.94 2.29 M8.72 59.26 C23.62 43.85, 37.66 28.7, 55.96 4.92 M8.72 59.26 C27.67 38.75, 44.88 17.7, 55.96 4.92 M11.74 61.88 C23.55 50.54, 31.34 37.36, 58.98 7.54 M11.74 61.88 C25.4 47.12, 38.59 32.54, 58.98 7.54 M14.76 64.51 C25.64 54.29, 34.7 42.69, 61.34 10.92 M14.76 64.51 C25.83 51.81, 38 38.36, 61.34 10.92 M17.12 67.88 C34.34 49.26, 48.5 31.65, 64.36 13.55 M17.12 67.88 C33.86 49.33, 49.44 31.94, 64.36 13.55 M20.14 70.51 C28.87 60.06, 40.4 48.29, 66.72 16.92 M20.14 70.51 C29.76 60.14, 39.05 48.61, 66.72 16.92 M23.16 73.13 C37.73 55.91, 51.72 40.01, 69.74 19.55 M23.16 73.13 C35.28 60.9, 46.76 46.19, 69.74 19.55 M26.18 75.76 C38.75 61.93, 48.87 47, 72.76 22.17 M26.18 75.76 C41.17 57.48, 56.57 40.42, 72.76 22.17 M29.2 78.38 C38.58 66.84, 49.28 56.06, 75.12 25.55 M29.2 78.38 C45.23 60.41, 60.56 42.59, 75.12 25.55 M31.56 81.76 C48.47 62.24, 65.95 45.31, 78.14 28.18 M31.56 81.76 C45.84 64.05, 61.69 48.32, 78.14 28.18 M34.58 84.39 C53.9 64.75, 70.59 44.84, 81.16 30.8 M34.58 84.39 C52.97 64.26, 69.66 43.17, 81.16 30.8 M37.6 87.01 C48.25 74.78, 55.5 66.41, 83.52 34.18 M37.6 87.01 C48.99 71.83, 62.27 58.43, 83.52 34.18 M40.62 89.63 C50.34 79.26, 59.13 68.4, 86.54 36.8 M40.62 89.63 C54.92 72.51, 68.88 57.45, 86.54 36.8 M43.64 92.26 C53.65 80.81, 66.89 67.98, 89.56 39.43 M43.64 92.26 C58.66 75.45, 72.42 57.89, 89.56 39.43 M46 95.64 C61.79 76.78, 78.15 59.99, 91.92 42.81 M46 95.64 C61.9 78.99, 77.17 61.29, 91.92 42.81 M49.02 98.26 C62.86 82.2, 75.55 68.59, 94.94 45.43 M49.02 98.26 C66.35 78.07, 84.72 56.67, 94.94 45.43 M61.22 90.32 C67.86 83.05, 77.21 73.12, 97.96 48.06 M61.22 90.32 C71.29 78.99, 79.23 69.82, 97.96 48.06" stroke="#15aabf" stroke-width="0.5" fill="none"></path><path d="M51 0 C63.55 12.43, 75.75 25.91, 100 51 M51 0 C68.7 19, 85.84 36.05, 100 51 M100 51 C86.33 62.39, 74.98 74.41, 51 100 M100 51 C82.86 68.81, 63.17 88.61, 51 100 M51 100 C30.58 80.76, 12.2 63.63, 0 51 M51 100 C32.58 80.36, 11.39 62.79, 0 51 M0 51 C13.05 38.39, 26.48 26.08, 51 0 M0 51 C14.03 37.59, 27.42 24.3, 51 0" stroke="#000000" stroke-width="1" fill="none"></path></g><g stroke-linecap="round" transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><path d="M16.06 13.96 C16.06 13.96, 16.06 13.96, 16.06 13.96 M16.06 13.96 C16.06 13.96, 16.06 13.96, 16.06 13.96 M4.65 33.19 C11.77 27.87, 17.81 20.43, 26.3 8.29 M4.65 33.19 C12.84 24.59, 20.75 14.56, 26.3 8.29 M4.39 39.59 C14.94 29.16, 24.78 18.84, 37.19 1.85 M4.39 39.59 C17.83 25.46, 29.51 10.78, 37.19 1.85 M4.13 45.99 C13.58 37.43, 18.93 27.04, 40.86 3.72 M4.13 45.99 C14.89 34.56, 25.16 23.35, 40.86 3.72 M3.86 52.38 C13.79 43.36, 21.85 32.91, 45.85 4.08 M3.86 52.38 C13.79 40.95, 24.84 28.8, 45.85 4.08 M0.98 61.8 C19.05 42.22, 34.04 23.64, 50.84 4.44 M0.98 61.8 C18.6 42.22, 35.05 23.82, 50.84 4.44 M2.69 65.93 C13.07 53.65, 26.22 40.02, 56.48 4.05 M2.69 65.93 C13.71 53.84, 24.49 40.6, 56.48 4.05 M5.05 69.31 C22.52 48.71, 39.47 29.41, 61.47 4.41 M5.05 69.31 C19.68 54.34, 33.61 36.81, 61.47 4.41 M7.41 72.69 C23.29 55.19, 36.64 36.55, 66.46 4.77 M7.41 72.69 C26.51 49.67, 46.1 27.78, 66.46 4.77 M9.12 76.83 C21.59 61.65, 35.54 47.13, 70.13 6.64 M9.12 76.83 C30.41 52.84, 51 28.96, 70.13 6.64 M11.48 80.21 C33.9 54.33, 56.91 31.04, 73.81 8.51 M11.48 80.21 C30.8 56.74, 51.74 35.15, 73.81 8.51 M13.84 83.58 C39.61 56.49, 62.81 29.08, 77.48 10.38 M13.84 83.58 C38.7 55.9, 61.91 27.31, 77.48 10.38 M16.21 86.96 C30.75 70.22, 41.87 57.39, 80.5 13 M16.21 86.96 C32.53 65.84, 50.87 46.62, 80.5 13 M19.88 88.83 C33.21 74.39, 45.68 59.3, 84.17 14.87 M19.88 88.83 C40.06 65.13, 59.82 43.4, 84.17 14.87 M23.56 90.7 C37.96 74.48, 55.4 56.83, 87.85 16.74 M23.56 90.7 C44.27 67.09, 63.87 42.81, 87.85 16.74 M26.57 93.33 C48.43 67.31, 71.05 43.33, 90.21 20.12 M26.57 93.33 C48.35 69.95, 69.55 45.41, 90.21 20.12 M30.25 95.2 C48.46 74.18, 65.49 55.57, 91.92 24.25 M30.25 95.2 C53.67 67.88, 78.29 39.3, 91.92 24.25 M33.92 97.07 C45.33 84.45, 59.49 68.99, 94.28 27.63 M33.92 97.07 C49.95 78.85, 63.69 63.01, 94.28 27.63 M37.6 98.93 C57.98 79.1, 72.57 56.11, 95.99 31.77 M37.6 98.93 C52.82 81.56, 70.36 62.86, 95.99 31.77 M42.59 99.3 C62.5 72.18, 86.66 48.61, 98.35 35.14 M42.59 99.3 C56.8 81.15, 71.26 63.76, 98.35 35.14 M48.23 98.9 C67.5 76.43, 86.2 53.85, 100.71 38.52 M48.23 98.9 C66.04 79.87, 82.62 59.16, 100.71 38.52 M53.87 98.51 C66.57 83.45, 76.58 72.74, 100.45 44.92 M53.87 98.51 C64.66 85.25, 76.57 72.6, 100.45 44.92 M58.86 98.87 C72.85 81.35, 88.43 63.51, 100.85 50.56 M58.86 98.87 C74.11 80.25, 90.51 62.43, 100.85 50.56 M63.19 99.98 C76.96 84.2, 90.81 65.29, 100.59 56.96 M63.19 99.98 C71.88 89.37, 81.43 79.1, 100.59 56.96 M74.08 93.55 C81.37 85.47, 87.74 76.3, 99.67 64.11 M74.08 93.55 C79.97 87.9, 85.67 81.47, 99.67 64.11" stroke="#15aabf" stroke-width="0.5" fill="none"></path><path d="M38.1 1.46 C45.72 -1.06, 55.49 -0.08, 63.58 2.19 C71.68 4.46, 80.88 9.29, 86.67 15.09 C92.46 20.89, 96.33 29.02, 98.32 36.99 C100.32 44.97, 101 54.87, 98.62 62.96 C96.24 71.05, 90.17 79.66, 84.03 85.55 C77.89 91.43, 69.57 96.06, 61.79 98.28 C54 100.51, 45.12 100.97, 37.32 98.91 C29.52 96.84, 21.11 92.03, 14.99 85.89 C8.88 79.75, 2.75 70.16, 0.63 62.05 C-1.48 53.94, -0.22 45.19, 2.3 37.23 C4.82 29.28, 9.28 20.51, 15.77 14.3 C22.25 8.1, 36.21 2.25, 41.23 0.02 C46.25 -2.21, 45.49 0.09, 45.88 0.91 M40.94 1.53 C48.29 -0.28, 59.04 0.38, 66.96 3.27 C74.89 6.16, 83.12 12.22, 88.48 18.88 C93.85 25.53, 97.82 35.15, 99.18 43.21 C100.54 51.28, 99.41 59.58, 96.65 67.29 C93.89 74.99, 88.87 84.03, 82.63 89.47 C76.39 94.91, 67.44 98.55, 59.2 99.93 C50.97 101.3, 41.25 100.52, 33.2 97.7 C25.15 94.87, 16.16 89.68, 10.9 82.99 C5.64 76.3, 2.84 65.86, 1.64 57.57 C0.45 49.28, 0.99 40.72, 3.74 33.24 C6.5 25.76, 11.77 18.2, 18.18 12.7 C24.59 7.2, 38.36 1.99, 42.22 0.24 C46.09 -1.5, 41.49 1.56, 41.37 2.2" stroke="#000000" stroke-width="1" fill="none"></path></g><g transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><text x="0" y="17.619999999999997" font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">original text</text></g><g transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><text x="0" y="19.08" font-family="Nunito, sans-serif, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">original text</text></g>"
++      @font-face { font-family: Nunito; src: url(data:font/woff2;base64,d09GMgABAAAAAAY8AA8AAAAADAwAAAXkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhwbgkocZAZgP1NUQVREAHwRCAqKAIgNCyAAATYCJAM8BCAFhCQHIBv4CVFUchKQ/TyMjWWPhbGVsLhp9GSH50tTI0kpiVprztv5Fg//7Ue7b76siAPJNIlodGtQN2PVLBMSh9QsiSdPzOBa2yGm7yb77eytNyKhUQpUht7Tv2xOByU3QenAtgPMB7F4fyAboXSW9/+/n6v/TjQN8ThtnIUEjdIpZXKR+wRP5pOEmJw+KE2scl5CrJImJdM0EiorlZ5YdBMRC560xeTjuPbtLy7QCkiSUAq1ViHQbDaL3Q2bEgVwd6KYhuDuYjSLwJ09yP8F4sIpGoEjBEIpaZS81yy5rcQrjzVpEJ1J/k3+gsP/ff8Il5G/2fNPGkF4pUAjvJfNawrz6+6nByVFqa9kYlFhOgoleq5SgazextGgsaNdiThmeeBJXBYr4z15AL5i/ioJvcwoWg7EgX1xjpO37MHbHk9cvNKHBpa8cWVIoeH9ZVoeX1Sk6ykIsL08SRz2FoqiqiH0H80ZBl8mbYqf/59QLgvtScQdiPfpNCbtCqFRQq+nzZp37cyEJfB7ESNYvPedtBiOKeCsCogqfiETZge9IpzwbzwL6HdlV21S19DYFITRWJv8H8yErsk/8lQez2N5NH4HI3koD+Y+IfILkbMOmItxUMQzUoFWr05wQJLEsdEC75K6R820tQUE+AQklUUEZHTU+fxbmEyk+i6LRAJoC/0YmL5Nar15FkGqz7RnmvctjIyMwqOsoReDAVLV0rwVJEhjp+jRUxhr1HGbAUa3IvzK1cwbXoQOVDGwuSytwfn+4SGxQ2JzLAdGRkcXscPyBAQhTdHRueyuHlEQQ6pXy5nLIFXRQ1pZLJUzlwhocf+WFaTAQxtDBLYC2io05Fdg1p8uIoNwsB+MJSr3zYkchu8OAaX+TjFMB6rugYymaXp0oIATKKGzrMDBZYnhJWXlS/KliW0IeizZcjbhgO1oMziJbZFUPCTWtzd6RCoQBNwf5Rk9j/mjgYOLfD84LO6H+PcPLaHXF/AAkl/fHOct//vHPIZeatoOmqbhlS9pepY6lKBzQzm1aH3VPlmNXKsvFgpOwj7P/M5wzdP3A0RUCV+Jhh/5CAZiYonQhTdv314aaKBlOWyyKAlHdorbyYAqXy4dZC4kLxJgacdvLOs6r63voK3kZcIV4l/PcsiCT15U/TMevMcVIg6UbhoHmy7WOT1wXDhEE1Z2cY6E4DErivD4ug6TNFezbFAHTdGQiPT+rAfBAhwrgCPZOdT6SsdeXdHTmEap+SEbKnmYUKl1kF9ixbBTvAjDi8Q7YTIeJvVGXPKVlMwVSfFrRErAQx6USuEfFmB4AXxvPKPOeytqahwT5VCsEgL5NVYIh7RnYQnQZ8M1wmpj5aGh4k8+gIk4brwGIaTM7D1T/l89ALkmOy2yKTb5MBsigGfagSxd+I0mLtr2Goo0qyBK3Se3V1eCadQGKKzhwsmjoL8DbcjsH/TZ2UwJIYLL2cX9CiYCEVZUDVWa5Td7EUMhYQMR+3ReC44nK7341kBYyFC0+J0Zy0R0AJ2+LirQcHa3APhUgt78p9aYOtMXb8kQ/JHUseYN+SQyliokRGB+U+fVV+/elyG/lb4jcj1HRtNAyNBRcYlDEpJLEhIroFYlYR+19qt2YF3+7UU6JVDcHxum1ZyNvFzxG3vxGV4PxIB3izP535BXlNqlEKCWQPBN0h6G1nAEQvSyjvhlccIYEk6RqBT+rLBhq++6mCeaVmSnhRSRLhqn858kQhmckK8KdDho33l762L3oRbXFaJswnP/GldY6NuVtHvpKmyw2lmyXZVhDWdtPtWkoNUMGcLYD5WxmaYg9eyDLXQhSUMDU0sLUawuaKqvbGhqbIKVYjiQaQQL2njT0LoS/m7lCr4lQzTmuxjCoadioqGD8nYpaSnBrVwZcjQGguzd9Lz9OWZlztV+GGmLZo3W0dAyABUGMFy9YkQGraQZyvui5GUQK8TxDTs4JGuoWSSGjZraeB5NvHiPSv+dQ4gKw8agodG7ECucqIZ2GpDaFVWXt4wC); }</style></defs><g stroke-linecap="round" transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><path d="M0.32 50.63 C0.32 50.63, 0.32 50.63, 0.32 50.63 M0.32 50.63 C0.32 50.63, 0.32 50.63, 0.32 50.63 M2.68 54.01 C17.68 37.03, 33.95 20.86, 40.74 10.24 M2.68 54.01 C16.59 38.38, 31.52 22.36, 40.74 10.24 M5.7 56.63 C19.86 43.02, 33.12 27.27, 52.94 2.29 M5.7 56.63 C23.06 37.39, 40.39 16.53, 52.94 2.29 M8.72 59.26 C23.62 43.85, 37.66 28.7, 55.96 4.92 M8.72 59.26 C27.67 38.75, 44.88 17.7, 55.96 4.92 M11.74 61.88 C23.55 50.54, 31.34 37.36, 58.98 7.54 M11.74 61.88 C25.4 47.12, 38.59 32.54, 58.98 7.54 M14.76 64.51 C25.64 54.29, 34.7 42.69, 61.34 10.92 M14.76 64.51 C25.83 51.81, 38 38.36, 61.34 10.92 M17.12 67.88 C34.34 49.26, 48.5 31.65, 64.36 13.55 M17.12 67.88 C33.86 49.33, 49.44 31.94, 64.36 13.55 M20.14 70.51 C28.87 60.06, 40.4 48.29, 66.72 16.92 M20.14 70.51 C29.76 60.14, 39.05 48.61, 66.72 16.92 M23.16 73.13 C37.73 55.91, 51.72 40.01, 69.74 19.55 M23.16 73.13 C35.28 60.9, 46.76 46.19, 69.74 19.55 M26.18 75.76 C38.75 61.93, 48.87 47, 72.76 22.17 M26.18 75.76 C41.17 57.48, 56.57 40.42, 72.76 22.17 M29.2 78.38 C38.58 66.84, 49.28 56.06, 75.12 25.55 M29.2 78.38 C45.23 60.41, 60.56 42.59, 75.12 25.55 M31.56 81.76 C48.47 62.24, 65.95 45.31, 78.14 28.18 M31.56 81.76 C45.84 64.05, 61.69 48.32, 78.14 28.18 M34.58 84.39 C53.9 64.75, 70.59 44.84, 81.16 30.8 M34.58 84.39 C52.97 64.26, 69.66 43.17, 81.16 30.8 M37.6 87.01 C48.25 74.78, 55.5 66.41, 83.52 34.18 M37.6 87.01 C48.99 71.83, 62.27 58.43, 83.52 34.18 M40.62 89.63 C50.34 79.26, 59.13 68.4, 86.54 36.8 M40.62 89.63 C54.92 72.51, 68.88 57.45, 86.54 36.8 M43.64 92.26 C53.65 80.81, 66.89 67.98, 89.56 39.43 M43.64 92.26 C58.66 75.45, 72.42 57.89, 89.56 39.43 M46 95.64 C61.79 76.78, 78.15 59.99, 91.92 42.81 M46 95.64 C61.9 78.99, 77.17 61.29, 91.92 42.81 M49.02 98.26 C62.86 82.2, 75.55 68.59, 94.94 45.43 M49.02 98.26 C66.35 78.07, 84.72 56.67, 94.94 45.43 M61.22 90.32 C67.86 83.05, 77.21 73.12, 97.96 48.06 M61.22 90.32 C71.29 78.99, 79.23 69.82, 97.96 48.06" stroke="#15aabf" stroke-width="0.5" fill="none"></path><path d="M51 0 C63.55 12.43, 75.75 25.91, 100 51 M51 0 C68.7 19, 85.84 36.05, 100 51 M100 51 C86.33 62.39, 74.98 74.41, 51 100 M100 51 C82.86 68.81, 63.17 88.61, 51 100 M51 100 C30.58 80.76, 12.2 63.63, 0 51 M51 100 C32.58 80.36, 11.39 62.79, 0 51 M0 51 C13.05 38.39, 26.48 26.08, 51 0 M0 51 C14.03 37.59, 27.42 24.3, 51 0" stroke="#000000" stroke-width="1" fill="none"></path></g><g stroke-linecap="round" transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><path d="M16.06 13.96 C16.06 13.96, 16.06 13.96, 16.06 13.96 M16.06 13.96 C16.06 13.96, 16.06 13.96, 16.06 13.96 M4.65 33.19 C11.77 27.87, 17.81 20.43, 26.3 8.29 M4.65 33.19 C12.84 24.59, 20.75 14.56, 26.3 8.29 M4.39 39.59 C14.94 29.16, 24.78 18.84, 37.19 1.85 M4.39 39.59 C17.83 25.46, 29.51 10.78, 37.19 1.85 M4.13 45.99 C13.58 37.43, 18.93 27.04, 40.86 3.72 M4.13 45.99 C14.89 34.56, 25.16 23.35, 40.86 3.72 M3.86 52.38 C13.79 43.36, 21.85 32.91, 45.85 4.08 M3.86 52.38 C13.79 40.95, 24.84 28.8, 45.85 4.08 M0.98 61.8 C19.05 42.22, 34.04 23.64, 50.84 4.44 M0.98 61.8 C18.6 42.22, 35.05 23.82, 50.84 4.44 M2.69 65.93 C13.07 53.65, 26.22 40.02, 56.48 4.05 M2.69 65.93 C13.71 53.84, 24.49 40.6, 56.48 4.05 M5.05 69.31 C22.52 48.71, 39.47 29.41, 61.47 4.41 M5.05 69.31 C19.68 54.34, 33.61 36.81, 61.47 4.41 M7.41 72.69 C23.29 55.19, 36.64 36.55, 66.46 4.77 M7.41 72.69 C26.51 49.67, 46.1 27.78, 66.46 4.77 M9.12 76.83 C21.59 61.65, 35.54 47.13, 70.13 6.64 M9.12 76.83 C30.41 52.84, 51 28.96, 70.13 6.64 M11.48 80.21 C33.9 54.33, 56.91 31.04, 73.81 8.51 M11.48 80.21 C30.8 56.74, 51.74 35.15, 73.81 8.51 M13.84 83.58 C39.61 56.49, 62.81 29.08, 77.48 10.38 M13.84 83.58 C38.7 55.9, 61.91 27.31, 77.48 10.38 M16.21 86.96 C30.75 70.22, 41.87 57.39, 80.5 13 M16.21 86.96 C32.53 65.84, 50.87 46.62, 80.5 13 M19.88 88.83 C33.21 74.39, 45.68 59.3, 84.17 14.87 M19.88 88.83 C40.06 65.13, 59.82 43.4, 84.17 14.87 M23.56 90.7 C37.96 74.48, 55.4 56.83, 87.85 16.74 M23.56 90.7 C44.27 67.09, 63.87 42.81, 87.85 16.74 M26.57 93.33 C48.43 67.31, 71.05 43.33, 90.21 20.12 M26.57 93.33 C48.35 69.95, 69.55 45.41, 90.21 20.12 M30.25 95.2 C48.46 74.18, 65.49 55.57, 91.92 24.25 M30.25 95.2 C53.67 67.88, 78.29 39.3, 91.92 24.25 M33.92 97.07 C45.33 84.45, 59.49 68.99, 94.28 27.63 M33.92 97.07 C49.95 78.85, 63.69 63.01, 94.28 27.63 M37.6 98.93 C57.98 79.1, 72.57 56.11, 95.99 31.77 M37.6 98.93 C52.82 81.56, 70.36 62.86, 95.99 31.77 M42.59 99.3 C62.5 72.18, 86.66 48.61, 98.35 35.14 M42.59 99.3 C56.8 81.15, 71.26 63.76, 98.35 35.14 M48.23 98.9 C67.5 76.43, 86.2 53.85, 100.71 38.52 M48.23 98.9 C66.04 79.87, 82.62 59.16, 100.71 38.52 M53.87 98.51 C66.57 83.45, 76.58 72.74, 100.45 44.92 M53.87 98.51 C64.66 85.25, 76.57 72.6, 100.45 44.92 M58.86 98.87 C72.85 81.35, 88.43 63.51, 100.85 50.56 M58.86 98.87 C74.11 80.25, 90.51 62.43, 100.85 50.56 M63.19 99.98 C76.96 84.2, 90.81 65.29, 100.59 56.96 M63.19 99.98 C71.88 89.37, 81.43 79.1, 100.59 56.96 M74.08 93.55 C81.37 85.47, 87.74 76.3, 99.67 64.11 M74.08 93.55 C79.97 87.9, 85.67 81.47, 99.67 64.11" stroke="#15aabf" stroke-width="0.5" fill="none"></path><path d="M38.1 1.46 C45.72 -1.06, 55.49 -0.08, 63.58 2.19 C71.68 4.46, 80.88 9.29, 86.67 15.09 C92.46 20.89, 96.33 29.02, 98.32 36.99 C100.32 44.97, 101 54.87, 98.62 62.96 C96.24 71.05, 90.17 79.66, 84.03 85.55 C77.89 91.43, 69.57 96.06, 61.79 98.28 C54 100.51, 45.12 100.97, 37.32 98.91 C29.52 96.84, 21.11 92.03, 14.99 85.89 C8.88 79.75, 2.75 70.16, 0.63 62.05 C-1.48 53.94, -0.22 45.19, 2.3 37.23 C4.82 29.28, 9.28 20.51, 15.77 14.3 C22.25 8.1, 36.21 2.25, 41.23 0.02 C46.25 -2.21, 45.49 0.09, 45.88 0.91 M40.94 1.53 C48.29 -0.28, 59.04 0.38, 66.96 3.27 C74.89 6.16, 83.12 12.22, 88.48 18.88 C93.85 25.53, 97.82 35.15, 99.18 43.21 C100.54 51.28, 99.41 59.58, 96.65 67.29 C93.89 74.99, 88.87 84.03, 82.63 89.47 C76.39 94.91, 67.44 98.55, 59.2 99.93 C50.97 101.3, 41.25 100.52, 33.2 97.7 C25.15 94.87, 16.16 89.68, 10.9 82.99 C5.64 76.3, 2.84 65.86, 1.64 57.57 C0.45 49.28, 0.99 40.72, 3.74 33.24 C6.5 25.76, 11.77 18.2, 18.18 12.7 C24.59 7.2, 38.36 1.99, 42.22 0.24 C46.09 -1.5, 41.49 1.56, 41.37 2.2" stroke="#000000" stroke-width="1" fill="none"></path></g><g transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><text x="0" y="17.619999999999997" font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji" font-size="20px" fill="#1e1e1e" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">original text</text></g><g transform="translate(10 10) rotate(0 50 50)" data-id="vWrqOAfkind2qcm7LDAGZ"><text x="0" y="19.08" font-family="Nunito, sans-serif, Segoe UI Emoji" font-size="20px" fill="#1e1e1e" text-anchor="start" style="white-space: pre;" direction="ltr" dominant-baseline="alphabetic">original text</text></g>"
+ `;
+diff --git a/packages/excalidraw/tests/scene/export.test.ts b/packages/excalidraw/tests/scene/export.test.ts
+index 3187e2c4..b97f4619 100644
+--- a/packages/excalidraw/tests/scene/export.test.ts
++++ b/packages/excalidraw/tests/scene/export.test.ts
+@@ -1,6 +1,10 @@
+ import { exportToCanvas, exportToSvg } from "@excalidraw/utils";
+ 
+-import { FONT_FAMILY, FRAME_STYLE } from "@excalidraw/common";
++import {
++  applyDarkModeFilter,
++  FONT_FAMILY,
++  FRAME_STYLE,
++} from "@excalidraw/common";
+ 
+ import type {
+   ExcalidrawTextElement,
+@@ -116,9 +120,15 @@ describe("exportToSvg", () => {
+       null,
+     );
+ 
+-    expect(svgElement.getAttribute("filter")).toMatchInlineSnapshot(
+-      `"invert(93%) hue-rotate(180deg)"`,
+-    );
++    const textElements = svgElement.querySelectorAll("text");
++    expect(textElements.length).toBeGreaterThan(0);
++
++    textElements.forEach((textEl) => {
++      // fill color should be inverted in dark mode
++      expect(textEl.getAttribute("fill")).toBe(
++        applyDarkModeFilter(textFixture.strokeColor),
++      );
++    });
+   });
+ 
+   it("with exportPadding", async () => {
+diff --git a/packages/excalidraw/wysiwyg/textWysiwyg.tsx b/packages/excalidraw/wysiwyg/textWysiwyg.tsx
+index 149faf89..e1444de5 100644
+--- a/packages/excalidraw/wysiwyg/textWysiwyg.tsx
++++ b/packages/excalidraw/wysiwyg/textWysiwyg.tsx
+@@ -3,11 +3,13 @@ import {
+   KEYS,
+   CLASSES,
+   POINTER_BUTTON,
++  THEME,
+   isWritableElement,
+   getFontString,
+   getFontFamilyString,
+   isTestEnv,
+   MIME_TYPES,
++  applyDarkModeFilter,
+ } from "@excalidraw/common";
+ 
+ import {
+@@ -260,9 +262,11 @@ export const textWysiwyg = ({
+         ),
+         textAlign,
+         verticalAlign,
+-        color: updatedTextElement.strokeColor,
++        color:
++          appState.theme === THEME.DARK
++            ? applyDarkModeFilter(updatedTextElement.strokeColor)
++            : updatedTextElement.strokeColor,
+         opacity: updatedTextElement.opacity / 100,
+-        filter: "var(--theme-filter)",
+         maxHeight: `${editorMaxHeight}px`,
+       });
+       editable.scrollTop = 0;
+diff --git a/yarn.lock b/yarn.lock
+index 87eead85..919192bd 100644
+--- a/yarn.lock
++++ b/yarn.lock
+@@ -3009,6 +3009,11 @@
+   dependencies:
+     socket.io-client "*"
+ 
++"@types/tinycolor2@1.4.6":
++  version "1.4.6"
++  resolved "https://registry.yarnpkg.com/@types/tinycolor2/-/tinycolor2-1.4.6.tgz#670cbc0caf4e58dd61d1e3a6f26386e473087f06"
++  integrity sha512-iEN8J0BoMnsWBqjVbWH/c0G0Hh7O21lpR2/+PrvAVgWdzL7eexIFm4JN/Wn10PTcmNdtS6U67r499mlWMXOxNw==
++
+ "@types/trusted-types@^2.0.2":
+   version "2.0.7"
+   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.7.tgz#baccb07a970b91707df3a3e8ba6896c57ead2d11"
+@@ -9098,6 +9103,11 @@ tinybench@^2.9.0:
+   resolved "https://registry.yarnpkg.com/tinybench/-/tinybench-2.9.0.tgz#103c9f8ba6d7237a47ab6dd1dcff77251863426b"
+   integrity sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==
+ 
++tinycolor2@1.6.0:
++  version "1.6.0"
++  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.6.0.tgz#f98007460169b0263b97072c5ae92484ce02d09e"
++  integrity sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==
++
+ tinyexec@^0.3.2:
+   version "0.3.2"
+   resolved "https://registry.yarnpkg.com/tinyexec/-/tinyexec-0.3.2.tgz#941794e657a85e496577995c6eef66f53f42b3d2"

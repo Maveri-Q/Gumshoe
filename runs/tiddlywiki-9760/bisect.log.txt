@@ -1,0 +1,26 @@
+# bad: [962692c90ce4f7f1a9a1464215551a9373dc17af] FIX: restore mhchem require for \ce and \pu macro support (#9756)
+# good: [ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7] Version number update for 5.3.8
+git bisect start '--first-parent' '962692c90ce4f7f1a9a1464215551a9373dc17af' 'ae943f4906edc529cf7ce7d1c9c07a2c2328ecc7'
+# good: [86d61e09bdafb58a0773d21a00f25be8d2e6083b] Edit-text widget: rows parameter takes precedence, CM accepts rows now (#9454)
+git bisect good 86d61e09bdafb58a0773d21a00f25be8d2e6083b
+# good: [dc764b3a4ac97d1e2108badbff33366bdbf0772e] Replace fill rules in tw5.com edition (#9624)
+git bisect good dc764b3a4ac97d1e2108badbff33366bdbf0772e
+# bad: [785086e0a5d60d13c76a6f7527639eefcbb052b8] Fixes ESLint errors (#9668)
+git bisect bad 785086e0a5d60d13c76a6f7527639eefcbb052b8
+# skip: [b1ccb82e0a675775aa16234f052cf227d363b307] Update body-toolbar-button - use `value={{{ [subfilter{!!button-classes}] :and[join[ ]] }}}` (#9585)
+git bisect skip b1ccb82e0a675775aa16234f052cf227d363b307
+# good: [599933c34dff42e65ae236f28fbb54457568a570] Remove 'tiddlywiki/dom-to-image' dependency
+git bisect good 599933c34dff42e65ae236f28fbb54457568a570
+# good: [42a908e1c9b446edca5b864c279d2d9680254f18] set arrow function parens to always (#9590)
+git bisect good 42a908e1c9b446edca5b864c279d2d9680254f18
+# skip: [909149a3479990b721332abe05e94c5190ee28e7] [fix] Remove overflow:hidden on the tiddler info pannel, allowing popups to escape the info pannel (#9660)
+git bisect skip 909149a3479990b721332abe05e94c5190ee28e7
+# bad: [c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)
+git bisect bad c305eb01eb23029b4709cac53cf2d3dd4b98a754
+# skip: [a2543cfd4a198fbb3cd99344fa972f913bdf0ba0] 5.4.0 Update German translations (#9655)
+git bisect skip a2543cfd4a198fbb3cd99344fa972f913bdf0ba0
+# good: [b713d13c5a3cd49a56062a9482b9591ed07ee0c4] Accidentally committed with #9657
+git bisect good b713d13c5a3cd49a56062a9482b9591ed07ee0c4
+# good: [71462143bfd8951476620da2cb26a23d997eeb5f] Fix BackgroundActions example
+git bisect good 71462143bfd8951476620da2cb26a23d997eeb5f
+# first 'bad' commit: [c305eb01eb23029b4709cac53cf2d3dd4b98a754] Fix passing a filtered attribute as a MVV (#9663)

@@ -11,3 +11,13 @@
 2026-11-24T10:16:06.071Z OLDER ae943f49 2025-08-07: good
 2026-11-24T10:16:08.331Z BISECT ae943f49..962692c9, 262 commits
 2026-11-24T10:16:08.488Z Picking up after a stop, with the same frozen check
+2026-11-25T19:44:30.688Z DONE the bisect could not name one commit 1682.1 credits, 2008.4 min
+2026-11-25T19:44:56.356Z ISSUE TiddlyWiki/TiddlyWiki5#9760 [5.4.0-prerelease] More button in editor misses button text
+2026-11-25T19:44:56.674Z REPORTED VERSION 962692c9 2026-03-19 FIX: restore mhchem require for \ce and \pu macro support (#9756)
+2026-11-25T19:44:56.678Z DRAFT 1: After opening the more dropdown in the text editor toolbar, each button listed in it has a text label next to its icon.
+2026-11-25T19:44:56.680Z   on the reported version: bad
+2026-11-25T19:44:58.193Z OLDER ae943f49 2025-08-07: good
+2026-11-25T19:44:59.486Z BISECT ae943f49..962692c9, 262 commits
+2026-11-25T19:44:59.588Z Picking up after a stop, with the same frozen check
+2026-11-25T19:45:06.577Z CULPRIT c305eb01 Fix passing a filtered attribute as a MVV (#9663)
+2026-11-25T19:45:08.261Z DONE found 1682.1 credits, 0.2 min

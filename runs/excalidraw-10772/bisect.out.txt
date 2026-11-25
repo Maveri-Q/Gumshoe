@@ -1,0 +1,102 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT 61355485 fix: rerender TTD preview on message remove (#10681)
+  built in 27s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 30.2 credits 175s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 34.9 credits 183s
+  => BAD  65.1 credits, 384s
+Bisecting: 11 revisions left to test after this (roughly 4 steps)
+[a0b98a944f1ddedba090b8a6908ff38b9132177e] feat: TextToDiagram v2 (#10530)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT a0b98a94 feat: TextToDiagram v2 (#10530)
+  built in 23s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 30.5 credits 158s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 32.2 credits 169s
+  => BAD  62.7 credits, 349s
+Bisecting: 5 revisions left to test after this (roughly 3 steps)
+[87faa5d3da055ea22c6bce261ee88087bf4cca0e] fix: sentry CI worfklow (#10610)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT 87faa5d3 fix: sentry CI worfklow (#10610)
+  built in 24s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 34.3 credits 175s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 37.4 credits 184s
+  => BAD  71.7 credits, 382s
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[b5fc873323e16f181860a4e731c731b4e40badd1] chore: Update translations from Crowdin (#10453)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT b5fc8733 chore: Update translations from Crowdin (#10453)
+  built in 23s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 34.7 credits 166s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 35.8 credits 174s
+  => GOOD  70.5 credits, 364s
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[c158187f20e9eb60c7b0dd5256f0030594883867] fix: grid color in dark mode (#10600)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT c158187f fix: grid color in dark mode (#10600)
+  built in 24s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 29.7 credits 163s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 33.9 credits 228s
+  => BAD  63.6 credits, 415s
+Bisecting: 0 revisions left to test after this (roughly 0 steps)
+[63e1148280163a36326b7efb5fdfeefebabdb3e4] feat: stop using CSS filters for dark mode (static canvas) (#10578)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'runs/excalidraw-10772/bug.json' 'runs/excalidraw-10772/bisect'
+COMMIT 63e11482 feat: stop using CSS filters for dark mode (static canvas) (#10578)
+  built in 41s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 40.9 credits 204s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 34.2 credits 172s
+  => BAD  75.1 credits, 417s
+63e1148280163a36326b7efb5fdfeefebabdb3e4 is the first 'bad' commit
+commit 63e1148280163a36326b7efb5fdfeefebabdb3e4
+Author: David Luzar <5153846+dwelle@users.noreply.github.com>
+Date:   Sun Jan 4 15:16:35 2026 +0100
+
+    feat: stop using CSS filters for dark mode (static canvas) (#10578)
+    
+    * feat: stop using CSS filters for dark mode (static canvas)
+    
+    * fix comment
+    
+    * remove conditional dark mode export
+    
+    * make shape cache theme-aware
+    
+    * refactor
+    
+    * refactor
+    
+    * fixes and notes
+
+ excalidraw-app/debug.ts                            |  67 +++--
+ packages/common/package.json                       |   6 +
+ .../common/src/__snapshots__/colors.test.ts.snap   |  93 +++++++
+ packages/common/src/colors.test.ts                 | 280 +++++++++++++++++++++
+ packages/common/src/colors.ts                      | 133 +++++++++-
+ packages/common/src/constants.ts                   |   3 -
+ packages/common/src/utils.ts                       |  10 +-
+ packages/element/src/bounds.ts                     |   3 +-
+ packages/element/src/renderElement.ts              | 155 +++---------
+ packages/element/src/shape.ts                      | 187 ++++++++++----
+ .../linearElementEditor.test.tsx.snap              |   2 +-
+ packages/excalidraw/components/App.tsx             |  14 +-
+ .../components/ColorPicker/ColorInput.tsx          |  44 +++-
+ .../components/ColorPicker/ColorPicker.tsx         |  22 --
+ .../components/ColorPicker/colorPickerUtils.ts     |  47 +---
+ .../excalidraw/components/ImageExportDialog.tsx    |  37 ++-
+ packages/excalidraw/components/TTDDialog/common.ts |   6 +
+ packages/excalidraw/css/styles.scss                |  13 +-
+ packages/excalidraw/hooks/useLibraryItemSvg.ts     |   2 +
+ packages/excalidraw/index.tsx                      |   1 -
+ packages/excalidraw/renderer/helpers.ts            |  11 +-
+ packages/excalidraw/renderer/staticSvgScene.ts     | 128 ++++++----
+ packages/excalidraw/scene/export.ts                |  14 +-
+ packages/excalidraw/scene/types.ts                 |  13 +-
+ packages/excalidraw/tests/colorInput.test.ts       | 115 +++++++++
+ .../excalidraw/tests/fixtures/elementFixture.ts    |   1 +
+ .../tests/scene/__snapshots__/export.test.ts.snap  |  14 +-
+ packages/excalidraw/tests/scene/export.test.ts     |  18 +-
+ packages/excalidraw/wysiwyg/textWysiwyg.tsx        |   8 +-
+ yarn.lock                                          |  10 +
+ 30 files changed, 1069 insertions(+), 388 deletions(-)
+ create mode 100644 packages/common/src/__snapshots__/colors.test.ts.snap
+ create mode 100644 packages/common/src/colors.test.ts
+ create mode 100644 packages/excalidraw/tests/colorInput.test.ts
+bisect found first 'bad' commit
