@@ -68,7 +68,7 @@ We ran the 9592 bisect again this way, with the same check and the same two ends
 
 | | Guilty commit | Tries (refused) | Time | Credits |
 |---|---|---|---|---|
-| First time | 48eeb460 | 15 | 59 min | 531 |
+| First time | 48eeb460 | 15 (1) | 59 min | 531 |
 | Cheap mode | 48eeb460 | 14 (0) | 20 min | 46, plus 42 once for the recording |
 
 ## Scoreboard

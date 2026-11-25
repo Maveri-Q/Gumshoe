@@ -79,7 +79,7 @@ for (const id of existsSync(join(root, "runs")) ? readdirSync(join(root, "runs")
   }
   const all = [...ends, ...judged];
   // Cheap mode: making the recording counts too.
-  const recs = readdirSync(base).filter(x => /^recording-d/.test(x) && existsSync(join(base, x, "record.json"))).map(x => read(join(base, x, "record.json")));
+  const recs = readdirSync(base).filter(x => /^recording-\d/.test(x) && existsSync(join(base, x, "record.json"))).map(x => read(join(base, x, "record.json")));
   h.cheap = recs.length > 0;
   h.credits = Math.round((sum(all, "credits") + sum(recs, "credits")) * 10) / 10; h.minutes = (sum(all, "totalSeconds") + sum(recs, "seconds")) / 60; h.tries = all.flatMap(x => x.tries).length; h.refused = all.flatMap(x => x.tries).filter((t: any) => t.verdict === "unsure").length;
   if (existsSync(join(root, "truth", id + ".json"))) h.truth = read(join(root, "truth", id + ".json"));
