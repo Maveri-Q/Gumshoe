@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:05:35.630Z",
+  "sha": "52d73eb1a879ee4fd57c91ce7471d17020fa860d",
+  "subject": "Fix accidentally committed change to default tiddlers from #8972",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 149,
+  "credits": 5.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.53483,
+      "how": "replay",
+      "seconds": 74
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.73764,
+      "how": "replay",
+      "seconds": 72
+    }
+  ]
+}

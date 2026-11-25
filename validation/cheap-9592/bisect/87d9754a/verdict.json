@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:08:44.880Z",
+  "sha": "87d9754a4e5f00faa9a96152e63005ea381a4c32",
+  "subject": "github-linguist improvements (#9384)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 2,
+  "totalSeconds": 189,
+  "credits": 9.1,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 5.03688,
+      "how": "replay",
+      "seconds": 90
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.08448,
+      "how": "replay",
+      "seconds": 97
+    }
+  ]
+}

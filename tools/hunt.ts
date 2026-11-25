@@ -1,5 +1,6 @@
 // gumshoe <issue link>: from a bug report to the commit that broke it.
-//   node tools/hunt.ts <issue link> --app tiddlywiki [--port 4310] [--good <sha>] [--bad <sha>]
+//   node tools/hunt.ts <issue link> --app tiddlywiki [--port 4310] [--good <sha>] [--bad <sha>] [--cheap]
+// --cheap: Kane does the steps once, and every other version replays them (tools/recording.ts)
 // 1 read the issue  2 write the check  3 check the bug shows on the reported version
 // 4 find a good older version  5 git bisect run  6 save the result
 import { execFileSync, spawnSync } from "node:child_process";
@@ -34,7 +35,8 @@ if (!existsSync(src)) inClone("worktree", "add", "--detach", src, bad);
 log(`REPORTED VERSION ${bad.slice(0, 8)} ${inClone("log", "-1", "--format=%cd %s", "--date=short", bad)}`);
 
 const bugFile = `${run}/bug.json`;
-const save = (c: Check) => writeFileSync(join(root, bugFile), JSON.stringify({ id, ...c, witness: { reader: true }, ...(existsSync(join(dir, "frozen-check.sha256")) && !readFileSync(join(root, bugFile), "utf8").includes("lookAgain") ? {} : { lookAgain: true }), source: issue.url, repo: srcRel,
+const cheap = rest.includes("--cheap");
+const save = (c: Check, draft: number) => writeFileSync(join(root, bugFile), JSON.stringify({ id, ...c, witness: { reader: true }, ...(existsSync(join(dir, "frozen-check.sha256")) && !readFileSync(join(root, bugFile), "utf8").includes("lookAgain") ? {} : { lookAgain: true }), ...(cheap ? { recording: `${run}/recording-${draft}` } : {}), source: issue.url, repo: srcRel,
   build: app.build, unpack: app.unpack, dist: app.dist ?? `dist/${id}`, env: app.env ?? {}, port }, null, 2));
 function judge(sha: string, folder: string): any {
   const f = join(dir, folder, sha.slice(0, 8), "verdict.json");
@@ -50,8 +52,15 @@ let shown = false, feedback: any;
 for (let draft = 1; draft <= 3 && !shown; draft++) {
   const saved = join(dir, `check-${draft}.json`);
   check = existsSync(saved) ? JSON.parse(readFileSync(saved, "utf8")) as Check : await writeCheck(issue, app.about, feedback);
-  writeFileSync(saved, JSON.stringify(check, null, 2)); save(check);
+  writeFileSync(saved, JSON.stringify(check, null, 2)); save(check, draft);
   log(`DRAFT ${draft}: ${check.sentence}`);
+  const recDir = join(dir, `recording-${draft}`);
+  if (cheap && !existsSync(join(recDir, "output-steps", ".internal"))) {
+    const rec = spawnSync(process.execPath, [join(root, "tools/record.ts"), bugFile, bad], { cwd: root, encoding: "utf8" });
+    log(`  recording the steps: ${rec.status === 0 ? "done" : "failed"}`);
+    writeFileSync(join(recDir, "record.out.txt"), (rec.stdout ?? "") + (rec.stderr ?? ""));
+    if (rec.status !== 0) { feedback = { previous: check, notes: "Kane could not finish the steps: " + (rec.stdout ?? "").slice(-1500), screens: [join(recDir, "after.png")].filter(p => existsSync(p)) }; continue; }
+  }
   const v = judge(bad, `reported-${draft}`);
   shown = v.verdict === "bad";
   log(`  on the reported version: ${v.verdict}`);
@@ -92,7 +101,7 @@ if (!good) done({ outcome: "found no older version where it works", bad });
 try { git("bisect", "reset"); } catch {}
 const range = Number(git("rev-list", "--count", "--first-parent", `${good}..${knownBad}`));
 log(`BISECT ${good!.slice(0, 8)}..${knownBad.slice(0, 8)}, ${range} commits`);
-const frozenFile = join(dir, "frozen-check.sha256"), frozen = execFileSync("git", ["hash-object", join(root, bugFile)], { encoding: "utf8" });
+const frozenFile = join(dir, "frozen-check.sha256"), frozen = execFileSync("git", ["hash-object", join(root, bugFile), ...frozenRecording()], { encoding: "utf8" });
 if (existsSync(frozenFile)) {
   if (readFileSync(frozenFile, "utf8") !== frozen) throw new Error("the check changed since the bisect began");
   process.env.GUMSHOE_RESUME = "1"; log("Picking up after a stop, with the same frozen check");
@@ -110,6 +119,11 @@ writeFileSync(join(dir, "culprit.diff"), git("show", "-m", "--first-parent", "--
 log(`CULPRIT ${culprit.slice(0, 8)} ${git("log", "-1", "--format=%s", culprit)}`);
 done({ outcome: "found", culprit, culpritSubject: git("log", "-1", "--format=%s", culprit), culpritDate: git("log", "-1", "--format=%cI", culprit), range, good, bad: knownBad });
 
+/** In cheap mode the recording is part of the frozen check. */
+function frozenRecording(): string[] {
+  const r = JSON.parse(readFileSync(join(root, bugFile), "utf8")).recording, at = r && join(root, r, "output-steps", ".internal");
+  return at ? (readdirSync(at, { recursive: true }) as string[]).filter(f => f.endsWith(".ndjson")).sort().map(f => join(at, f)) : [];
+}
 function done(r: any): never {
   let credits = 0, tries = 0, refused = 0;
   const steps: any[] = [];

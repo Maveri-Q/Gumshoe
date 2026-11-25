@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:11:39.574Z",
+  "sha": "846ac9a0dddaaf65fee37732a0222a6632f3847d",
+  "subject": "Add issue types (#9490)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 174,
+  "credits": 5.5,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.5603299999999996,
+      "how": "replay",
+      "seconds": 86
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.91833,
+      "how": "replay",
+      "seconds": 85
+    }
+  ]
+}

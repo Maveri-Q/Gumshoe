@@ -1,0 +1,151 @@
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 19177964 Improve switcher (UI) accessibility (#9347)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 71s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.2 credits 89s
+  => GOOD  5.8 credits, 163s
+Bisecting: 41 revisions left to test after this (roughly 5 steps)
+[48eeb4603a88c5bcde55fd40f004778d388211b1] Deprecate and simplify some utility functions (#9251)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 48eeb460 Deprecate and simplify some utility functions (#9251)
+  built in 3s
+  try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.2 credits 85s
+  try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 1.7 credits 78s
+  => BAD  3.9 credits, 165s
+Bisecting: 20 revisions left to test after this (roughly 4 steps)
+[30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d] Add change notes as requested in #9406 (#9435)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 30e9b4f3 Add change notes as requested in #9406 (#9435)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.9 credits 107s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.1 credits 82s
+  => GOOD  10 credits, 192s
+Bisecting: 10 revisions left to test after this (roughly 3 steps)
+[52d73eb1a879ee4fd57c91ce7471d17020fa860d] Fix accidentally committed change to default tiddlers from #8972
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 52d73eb1 Fix accidentally committed change to default tiddlers from #8972
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 74s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.7 credits 72s
+  => GOOD  5.3 credits, 149s
+Bisecting: 5 revisions left to test after this (roughly 3 steps)
+[87d9754a4e5f00faa9a96152e63005ea381a4c32] github-linguist improvements (#9384)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 87d9754a github-linguist improvements (#9384)
+  built in 2s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.0 credits 90s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.1 credits 97s
+  => GOOD  9.1 credits, 189s
+Bisecting: 2 revisions left to test after this (roughly 2 steps)
+[846ac9a0dddaaf65fee37732a0222a6632f3847d] Add issue types (#9490)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 846ac9a0 Add issue types (#9490)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 86s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.9 credits 85s
+  => GOOD  5.5 credits, 174s
+Bisecting: 0 revisions left to test after this (roughly 1 step)
+[86c4770a28659e0c95d05a1eb05487116191838a] Fix RSOE from filter operator errors (#9496)
+running 'node' 'C:/Users/admin/Downloads/gumshoe/tools/step.mjs' 'validation/cheap-9592/bug.json' 'validation/cheap-9592/bisect'
+COMMIT 86c4770a Fix RSOE from filter operator errors (#9496)
+  built in 3s
+  try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.2 credits 75s
+  try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.6 credits 76s
+  => GOOD  6.7 credits, 154s
+48eeb4603a88c5bcde55fd40f004778d388211b1 is the first 'bad' commit
+commit 48eeb4603a88c5bcde55fd40f004778d388211b1
+Author: XLBilly <LeiYiXia29@outlook.com>
+Date:   Wed Dec 17 22:40:47 2025 +0800
+
+    Deprecate and simplify some utility functions (#9251)
+    
+    * Deprecate some utility functions
+    
+    * Drop IE support
+    
+    * Update two function
+    
+    * Update comment
+    
+    * Further simplify with arrow function
+    
+    * Fix node error
+    
+    * Deprecate logTable
+    
+    * Deprecate class functions
+    
+    * Attempt to fix error
+    
+    * Deprecate two functions
+    
+    * Remove deprecation for getLocationPath
+    
+    * Deprecate stringifyNumber, domContains, domMatchesSelector
+    
+    * Deprecate $tw.utils.each
+    
+    * Revert "Deprecate $tw.utils.each"
+    
+    This reverts commit 650df1d575a507194688c40e980625a61b2fac07.
+    
+    * Simplify getFullScreenApis
+    
+    * Replace LLMap with Map
+    
+    * Revert "Replace LLMap with Map"
+    
+    This reverts commit 4410ac194a48816745065ab85a8012e5345d88a1.
+    
+    * Move some deprecated functions to deprecated.js
+    
+    * Remove Opera & MS prefix
+    
+    * Deprecate getLocationPath
+    
+    * Fix code style
+    
+    * Revert "Remove Opera & MS prefix"
+    
+    This reverts commit e5771c00be5469b3f6a8acaf6a11c1623ed97bfb.
+    
+    * Revert "Simplify getFullScreenApis"
+    
+    This reverts commit 894cb479eae39b792051440c78a7c816e38205a8.
+    
+    * Further simplify toggleClass
+    
+    * Second attempt to simplify $tw.utils.each
+    
+    * Revert "Second attempt to simplify $tw.utils.each"
+    
+    This reverts commit 74cb4f766e66c7330d12b29f9fc49a3379c8712f.
+    
+    * Third attempt to simplify $tw.utils.each
+    
+    * Add missing comma
+    
+    * Update comments
+    
+    * Deprecate hopArray
+    
+    Since it is easy to implement it with some method
+    
+    * Update change notes
+    
+    * Deprecate tagToCssSelector
+    
+    Since tc-tagged-* classes are deprecated
+
+ boot/boot.js                                       |  76 ++++----------
+ core/modules/utils/deprecated.js                   |  58 +++++++++++
+ core/modules/utils/dom/dom.js                      |  49 ---------
+ core/modules/utils/utils.js                        | 116 ---------------------
+ .../5.4.0/deprecate-util-func - deprecation.tid    |   8 ++
+ .../releasenotes/5.4.0/deprecate-util-func.tid     |  10 ++
+ 6 files changed, 96 insertions(+), 221 deletions(-)
+ create mode 100644 core/modules/utils/deprecated.js
+ create mode 100644 editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func - deprecation.tid
+ create mode 100644 editions/tw5.com/tiddlers/releasenotes/5.4.0/deprecate-util-func.tid
+bisect found first 'bad' commit
+BISECT-ENDED

@@ -1,0 +1,3 @@
+LOOK ONLY
+A separate tiddler whose title contains 'my-spot' (such as '#my-spot') is shown in the main area, with a message that this tiddler is missing.
+The text 'Landing place' is shown in the main area, and no tiddler whose title contains 'my-spot' and no missing tiddler message is shown.

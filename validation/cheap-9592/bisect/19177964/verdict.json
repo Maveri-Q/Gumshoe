@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T20:57:08.402Z",
+  "sha": "19177964c8297d6ca12b66ebdc6add4608d4f05f",
+  "subject": "Improve switcher (UI) accessibility (#9347)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 163,
+  "credits": 5.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.59323,
+      "how": "replay",
+      "seconds": 71
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.2287600000000003,
+      "how": "replay",
+      "seconds": 89
+    }
+  ]
+}

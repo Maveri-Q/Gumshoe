@@ -42,7 +42,9 @@ export async function runSteps(o: { recording: string; work: string; url: string
   const timer = setTimeout(() => child.kill(), 420000);
   await new Promise(r => { child.on("close", r); child.on("error", r); });
   clearTimeout(timer);
-  writeFileSync(o.ndjson, out); writeFileSync(o.ndjson + ".stderr.txt", err);
-  if (o.record) for (const f of ["output-steps"]) if (existsSync(join(o.work, f))) cpSync(join(o.work, f), join(o.recording, f), { recursive: true });
+  out = out.replace(/"share_url":"[^"]*",?/g, ""); // a link that opens the run for anyone who has it
+  writeFileSync(o.ndjson, out); if (!o.record) writeFileSync(o.ndjson + ".stderr.txt", err);
+  const made = join(o.work, "output-steps");
+  if (o.record && existsSync(made)) cpSync(made, join(o.recording, "output-steps"), { recursive: true });
   return replayResult(parseNdjson(out));
 }

@@ -1,0 +1,35 @@
+2026-11-25T20:54:25.591Z COMMIT 19177964 Improve switcher (UI) accessibility (#9347)
+2026-11-25T20:54:28.338Z   built in 3s
+2026-11-25T20:55:38.912Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 71s
+2026-11-25T20:57:08.401Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.2 credits 89s
+2026-11-25T20:57:08.403Z   => GOOD  5.8 credits, 163s
+2026-11-25T20:57:09.009Z COMMIT 48eeb460 Deprecate and simplify some utility functions (#9251)
+2026-11-25T20:57:11.747Z   built in 3s
+2026-11-25T20:58:36.413Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.2 credits 85s
+2026-11-25T20:59:53.992Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 1.7 credits 78s
+2026-11-25T20:59:53.993Z   => BAD  3.9 credits, 165s
+2026-11-25T20:59:54.553Z COMMIT 30e9b4f3 Add change notes as requested in #9406 (#9435)
+2026-11-25T20:59:57.344Z   built in 3s
+2026-11-25T21:01:44.329Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.9 credits 107s
+2026-11-25T21:03:06.123Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.1 credits 82s
+2026-11-25T21:03:06.125Z   => GOOD  10 credits, 192s
+2026-11-25T21:03:06.674Z COMMIT 52d73eb1 Fix accidentally committed change to default tiddlers from #8972
+2026-11-25T21:03:09.252Z   built in 3s
+2026-11-25T21:04:23.320Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 74s
+2026-11-25T21:05:35.629Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.7 credits 72s
+2026-11-25T21:05:35.630Z   => GOOD  5.3 credits, 149s
+2026-11-25T21:05:36.104Z COMMIT 87d9754a github-linguist improvements (#9384)
+2026-11-25T21:05:38.588Z   built in 2s
+2026-11-25T21:07:08.195Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.0 credits 90s
+2026-11-25T21:08:44.879Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 4.1 credits 97s
+2026-11-25T21:08:44.881Z   => GOOD  9.1 credits, 189s
+2026-11-25T21:08:45.451Z COMMIT 846ac9a0 Add issue types (#9490)
+2026-11-25T21:08:48.799Z   built in 3s
+2026-11-25T21:10:14.627Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 86s
+2026-11-25T21:11:39.573Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.9 credits 85s
+2026-11-25T21:11:39.574Z   => GOOD  5.5 credits, 174s
+2026-11-25T21:11:40.046Z COMMIT 86c4770a Fix RSOE from filter operator errors (#9496)
+2026-11-25T21:11:42.626Z   built in 3s
+2026-11-25T21:12:57.487Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.2 credits 75s
+2026-11-25T21:14:13.701Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.6 credits 76s
+2026-11-25T21:14:13.702Z   => GOOD  6.7 credits, 154s

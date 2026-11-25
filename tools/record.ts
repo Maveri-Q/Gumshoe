@@ -9,6 +9,7 @@ const root = resolve(import.meta.dirname, ".."), bug = JSON.parse(readFileSync(r
 const repo = resolve(root, bug.repo), dist = resolve(root, bug.dist), rec = resolve(root, bug.recording);
 execFileSync("git", ["checkout", "-q", "--force", sha], { cwd: repo });
 rmSync(dist, { recursive: true, force: true }); mkdirSync(dist, { recursive: true });
+const t0 = Date.now();
 const c = bug.build.map((a: string) => a.replaceAll("{src}", repo).replaceAll("{dist}", dist));
 const b = spawnSync(c[0], c.slice(1), { cwd: root, encoding: "utf8", env: { ...process.env, ...bug.env }, maxBuffer: 1e8 });
 if (b.status) throw new Error("build failed " + b.stderr);
@@ -18,4 +19,5 @@ const server = await serve(dist, bug.port), br = await launchRole("rec-" + Date.
 const r = await runSteps({ recording: rec, work: join(root, "work", "replay", bug.id + "-record"), url: "", cdpEndpoint: br.endpoint, ndjson: join(rec, "record.ndjson"), record: true });
 await snapshot(br, join(rec, "after.png"));
 closeRole(br, true); server.close();
+writeFileSync(join(rec, "record.json"), JSON.stringify({ sha, credits: Math.round(r.credits * 10) / 10, seconds: Math.round((Date.now() - t0) / 1000), passed: r.passed }));
 console.log(r); process.exit(r.passed ? 0 : 1);

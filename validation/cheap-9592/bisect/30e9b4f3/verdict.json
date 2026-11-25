@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:03:06.124Z",
+  "sha": "30e9b4f3b7f861a00410e685a3e5c00b6e54cc9d",
+  "subject": "Add change notes as requested in #9406 (#9435)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 192,
+  "credits": 10,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 5.892740000000001,
+      "how": "replay",
+      "seconds": 107
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 4.121859999999999,
+      "how": "replay",
+      "seconds": 82
+    }
+  ]
+}
