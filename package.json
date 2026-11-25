@@ -9,5 +9,11 @@
     "replay": "node tools/replay.ts",
     "hunt": "node tools/hunt.ts",
     "fix": "node tools/fix.ts"
+  },
+  "bin": {
+    "gumshoe": "bin/gumshoe.mjs"
+  },
+  "engines": {
+    "node": ">=22.18"
   }
 }
