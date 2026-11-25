@@ -29,3 +29,13 @@
 2026-11-24T22:59:27.537Z   built in 4s
 2026-11-24T23:05:09.650Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 57.6 credits 342s
 2026-11-24T23:10:58.246Z   try 2: unsure (Kane contradicted itself) ready=yes look[broken,working]=[false,false] screenSaysBroken=undefined 41.9 credits 349s
+2026-11-24T23:16:34.109Z   try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 54.2 credits 336s
+2026-11-24T23:16:34.112Z   => BAD  153.7 credits, 1031s
+2026-11-24T23:16:37.794Z COMMIT b1ccb82e Update body-toolbar-button - use `value={{{ [subfilter{!!button-classes}] :and[join[ ]] }}}` (#9585)
+2026-11-24T23:16:45.990Z   => UNSURE build failed (8s) 0 credits, 8s
+2026-11-24T23:16:47.060Z COMMIT 599933c3 Remove 'tiddlywiki/dom-to-image' dependency
+2026-11-24T23:16:54.928Z   built in 8s
+2026-11-25T18:24:53.081Z   Kane gave no result at all (exit 0). Stopping the bisect.
+2026-11-25T18:25:51.531Z COMMIT 599933c3 Remove 'tiddlywiki/dom-to-image' dependency
+2026-11-25T18:25:57.420Z   built in 6s
+2026-11-25T18:31:42.628Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 50.7 credits 345s

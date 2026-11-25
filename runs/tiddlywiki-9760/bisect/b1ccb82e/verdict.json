@@ -1,0 +1,11 @@
+{
+  "finishedAt": "2026-11-24T23:16:45.988Z",
+  "sha": "b1ccb82e0a675775aa16234f052cf227d363b307",
+  "subject": "Update body-toolbar-button - use `value={{{ [subfilter{!!button-classes}] :and[join[ ]] }}}` (#9585)",
+  "verdict": "unsure",
+  "note": "build failed (8s)",
+  "buildSeconds": 8,
+  "totalSeconds": 8,
+  "credits": 0,
+  "tries": []
+}

@@ -1,0 +1,62 @@
+{
+  "finishedAt": "2026-11-24T23:16:34.110Z",
+  "sha": "785086e0a5d60d13c76a6f7527639eefcbb052b8",
+  "subject": "Fixes ESLint errors (#9668)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 4,
+  "totalSeconds": 1031,
+  "credits": 153.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and switched it into edit mode.\nPositioned the editor so the formatting toolbar above the large text box was visible near the top of the page.\nOpened the additional formatting-options menu using the down-arrow immediately to the left of the preview (eye) icon, then left it open as requested.\nThe HelloThere editor remained open with its formatting controls visible.",
+      "credits": 57.6420405,
+      "seconds": 342,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87WJH3XRCY35QYEAFJAJTP9/dashboard/share/US_KJET9TBMQTRN55P6DXSPC2WLG78JKIYWLLWU7BBBMCSKDMQAI1U8S7VLA6CLLTR6?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        false,
+        false
+      ],
+      "lookStatus": "passed",
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere.”\nEntered edit mode using the tiddler’s edit button and positioned the formatting toolbar above the large content box.\nOpened the additional formatting options using the down-arrow just left of the preview eye icon, then left that menu open as requested.\nThe requested setup was completed successfully.",
+      "credits": 41.896528,
+      "seconds": 349,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87WWW5HY9PWJKTN8RWS0STQ/dashboard/share/US_APW1CAJOFHK03RKVL6266S4LDS855X0B7C0ROOF8MOYVE2KSACQRULBRKMXPLDZL?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and used its visible edit button.\nConfirmed that HelloThere entered edit mode, with the formatting toolbar visible directly above its large content box.\nPositioned the editor as needed, opened the additional formatting-toolbar options using the down arrow just left of the preview icon, and left that menu open after waiting 2 seconds.",
+      "credits": 54.17934,
+      "seconds": 336,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87X7E3GH0C8XSMJ93WP5SR0/dashboard/share/US_KAAB5JLB58N1GTCCAXM1JSOLKV6KCR7PAB6SK9B9G3URKH3MNURO0XJOVYOHKEM7?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

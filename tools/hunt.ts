@@ -77,9 +77,10 @@ const at = Date.parse(issue.createdAt);
 const tags = inClone("for-each-ref", "refs/tags", "--sort=-creatordate", "--format=%(refname:short) %(creatordate:unix)").split("\n").map(l => l.split(" "))
   .filter(([t, d]) => /^v?\d+(\.\d+)+$/.test(t) && Number(d) * 1000 < at && Number(d) * 1000 > at - 400 * 864e5);
 for (const [t] of tags.slice(0, 4)) add(t);
-if (!tags.length) for (const w of [2, 6, 14, 30]) add(inClone("rev-list", "-1", "--first-parent", `--before=${new Date(at - w * 7 * 864e5).toISOString()}`, branch));
+// Releases can be too old to build, so going back by weeks comes after them.
+for (const w of [2, 6, 14, 30]) add(inClone("rev-list", "-1", "--first-parent", `--before=${new Date(at - w * 7 * 864e5).toISOString()}`, branch));
 let good: string | undefined, knownBad = bad;
-for (const c of candidates.slice(0, 5)) {
+for (const c of candidates.slice(0, 8)) {
   const v = judge(c, "older");
   log(`OLDER ${c.slice(0, 8)} ${inClone("log", "-1", "--format=%cd", "--date=short", c)}: ${v.verdict}`);
   if (v.verdict === "good") { good = c; break; }

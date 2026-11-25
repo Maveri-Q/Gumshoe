@@ -1,0 +1,4 @@
+{"type":"stream_start","cli_version":"0.10.6","surface":"run","pid":19016,"v":1,"ts":"2026-11-25T18:31:47.351Z"}
+{"type":"recording_state","enabled":true,"session_id":"a52a77b0-8912-42ad-b95d-b3a096e51cb4","persist":true,"session_name":"gumshoe-tiddlywiki-9760-599933c3-2","test_path":"C:\\Users\\admin\\Downloads\\gumshoe\\runs\\tiddlywiki-9760\\bisect\\599933c3\\try-2\\.testmuai\\tests\\gumshoe-tiddlywiki-9760-599933c3-2_test.md","output_path":"C:\\Users\\admin\\Downloads\\gumshoe\\runs\\tiddlywiki-9760\\bisect\\599933c3\\try-2\\.testmuai\\tests\\output-gumshoe-tiddlywiki-9760-599933c3-2","v":1,"ts":"2026-11-25T18:31:47.375Z"}
+{"type":"update_available","current":"0.10.6","latest":"0.10.9","severity":"patch","v":1,"ts":"2026-11-25T18:31:50.610Z"}
+{"type":"skill_update_available","current":null,"latest":"0.1.4","install_cmd":"kane-cli install skill","v":1,"ts":"2026-11-25T18:31:50.642Z"}

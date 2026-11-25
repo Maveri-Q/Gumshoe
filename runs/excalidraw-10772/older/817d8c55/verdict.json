@@ -1,0 +1,11 @@
+{
+  "finishedAt": "2026-11-25T18:27:00.584Z",
+  "sha": "817d8c553c3389650f8b4503984a6d4a5d2f0c11",
+  "subject": "docs: update CHANGELOG (#9243)",
+  "verdict": "unsure",
+  "note": "build failed (10s)",
+  "buildSeconds": 10,
+  "totalSeconds": 10,
+  "credits": 0,
+  "tries": []
+}

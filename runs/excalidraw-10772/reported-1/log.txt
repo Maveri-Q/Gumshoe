@@ -1,2 +1,5 @@
 2026-11-24T23:14:41.164Z COMMIT a70417f2 feat(editor): visualize binding midpoints + support for simple arrows (#10611)
 2026-11-24T23:16:04.235Z   built in 83s
+2026-11-24T23:19:24.902Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 36.2 credits 201s
+2026-11-24T23:22:50.065Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 30.5 credits 205s
+2026-11-24T23:22:50.067Z   => BAD  66.7 credits, 489s

@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-24T23:22:50.066Z",
+  "sha": "a70417f23f5985e3ed2a678c3cd25bffb23b1cff",
+  "subject": "feat(editor): visualize binding midpoints + support for simple arrows (#10611)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 83,
+  "totalSeconds": 489,
+  "credits": 66.7,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the canvas background colour control.\nOpened the colour picker and selected the existing Hex code value while the canvas was still white.\nReplaced the Hex code with ff000080, waited 2 seconds, and left the colour picker open without confirming or clicking elsewhere.",
+      "credits": 36.1509975,
+      "seconds": 201,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87XGRY0WN3NPQ68SJE4P1NR/dashboard/share/US_JB6E5UUYVT7L4QP3X6GMH9AZY7SPMBK06USB4KIG79QDW3FMT11JGQOZHQB7LRE5?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and selected the canvas background colour control.\nOpened the colour picker and selected the existing Hex code value in its text field.\nStopped with the colour picker still open and the canvas still white; no new colour value was entered.",
+      "credits": 30.51105,
+      "seconds": 205,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M87XPWQNJNMWGPHYHQ2Q0XK6/dashboard/share/US_89MADRJ1NJCVOF3E68UWAGUI0DSN9RS3G0QW4J5HJ9D2IF0AUBHMQJ7Y4FWZJK1M?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+LOOK ONLY
+The dropdown opened from the editor toolbar is visible and lists buttons with only icons, with no descriptive words beside the icons.
+The dropdown opened from the editor toolbar is visible and lists buttons that each have an icon with descriptive words beside it saying what the button does.
