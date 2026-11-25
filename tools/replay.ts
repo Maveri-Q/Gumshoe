@@ -5,6 +5,7 @@
 import { readFileSync, existsSync, readdirSync, writeFileSync } from "node:fs";
 import { join, resolve, relative } from "node:path";
 import { parseNdjson, resultFromEvents } from "./kane.ts";
+import { replayResult } from "./recording.ts";
 import { tryVerdict, combine, type Verdict } from "./verdict.ts";
 import { renderSite } from "./site.ts";
 
@@ -18,7 +19,9 @@ function replayCommit(dir: string) {
   const v = read(join(dir, "verdict.json")), verdicts: Verdict[] = [];
   const tries = v.tries.map((t: any) => {
     const kf = join(dir, `try-${t.try}`, "kane.ndjson"), lf = join(dir, `try-${t.try}`, "look", "kane.ndjson");
-    const k = resultFromEvents(parseNdjson(readFileSync(kf, "utf8")), kf, 0);
+    // Cheap mode: "ready" means every recorded step, with its ready check, passed in Kane's own output.
+    const steps = t.how === "replay" ? replayResult(parseNdjson(readFileSync(join(dir, `try-${t.try}`, "steps.ndjson"), "utf8"))) : undefined;
+    const k = steps ? { answers: { ready: steps.passed ? "yes" : undefined }, testUrl: steps.testUrl } as any : resultFromEvents(parseNdjson(readFileSync(kf, "utf8")), kf, 0);
     const look = existsSync(lf) ? resultFromEvents(parseNdjson(readFileSync(lf, "utf8")), lf, 0).conditionResults : undefined;
     const again = tryVerdict({ ready: k.answers.ready, look, witness: t.screenSaysBroken });
     checkedTries++;

@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T20:50:31.513Z",
+  "sha": "86c4770a28659e0c95d05a1eb05487116191838a",
+  "subject": "Fix RSOE from filter operator errors (#9496)",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 182,
+  "credits": 12.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 8.54349,
+      "how": "replay",
+      "seconds": 99
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.7091299999999996,
+      "how": "replay",
+      "seconds": 80
+    }
+  ]
+}

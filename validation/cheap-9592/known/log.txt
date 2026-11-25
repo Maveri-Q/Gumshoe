@@ -1,0 +1,11 @@
+2026-11-25T20:47:29.462Z COMMIT 86c4770a Fix RSOE from filter operator errors (#9496)
+2026-11-25T20:47:32.421Z   built in 3s
+2026-11-25T20:49:11.162Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 8.5 credits 99s
+2026-11-25T20:50:31.513Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.7 credits 80s
+2026-11-25T20:50:31.514Z   => GOOD  12.3 credits, 182s
+2026-11-25T20:50:34.446Z COMMIT 48eeb460 Deprecate and simplify some utility functions (#9251)
+2026-11-25T20:50:37.301Z   built in 3s
+2026-11-25T20:51:52.022Z   try 1: unsure (Kane contradicted itself) ready=yes look[broken,working]=[true,true] screenSaysBroken=true 1.5 credits 75s
+2026-11-25T20:53:02.895Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 1.6 credits 71s
+2026-11-25T20:54:07.877Z   try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 1.5 credits 65s
+2026-11-25T20:54:07.878Z   => BAD  4.6 credits, 213s

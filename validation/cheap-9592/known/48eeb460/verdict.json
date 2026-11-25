@@ -1,0 +1,60 @@
+{
+  "finishedAt": "2026-11-25T20:54:07.877Z",
+  "sha": "48eeb4603a88c5bcde55fd40f004778d388211b1",
+  "subject": "Deprecate and simplify some utility functions (#9251)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 213,
+  "credits": 4.6,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane contradicted itself",
+      "ready": "yes",
+      "look": [
+        true,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 1.46611,
+      "how": "replay",
+      "seconds": 75
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 1.6248900000000002,
+      "how": "replay",
+      "seconds": 71
+    },
+    {
+      "try": 3,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 1.52991,
+      "how": "replay",
+      "seconds": 65
+    }
+  ]
+}

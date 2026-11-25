@@ -7,6 +7,7 @@ import { createServer } from "node:http";
 import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync, appendFileSync, rmSync } from "node:fs";
 import { join, resolve, extname, sep } from "node:path";
 import { runKane } from "./kane.ts";
+import { runSteps } from "./recording.ts";
 import { launchRole, snapshot, closeRole, readPixel } from "./browsers.ts";
 import { secondReader } from "./claude.ts";
 import { tryVerdict, combine, pixelSaysBroken, bisectCode, type Verdict } from "./verdict.ts";
@@ -59,14 +60,26 @@ const objective = [
   `3. ${bug.action}`,
   `Then stop.`,
 ].join("\n");
+let missed = 0;
 const tries: any[] = [], verdicts: Verdict[] = [];
 let final: Verdict | undefined;
 while (!(final = combine(verdicts))) {
+  missed = 0;
   const n = tries.length + 1, tdir = join(dir, `try-${n}`), t0 = Date.now();
-  const br = await launchRole(`t${sha.slice(0, 8)}-${n}-${t0}`, 9700 + (port - 4300) * 10 + n, join(root, ".kane-profiles"));
-  let lookedAgain = false, k, look, pixel: number[] | undefined, screen = { url: "", text: "" };
+  let br = await launchRole(`t${sha.slice(0, 8)}-${n}-${t0}`, 9700 + (port - 4300) * 10 + n, join(root, ".kane-profiles"));
+  let lookedAgain = false, how: string | undefined, k: any, look: any, pixel: number[] | undefined, screen = { url: "", text: "" };
   try {
-    k = await runKane({ objective, url: `http://127.0.0.1:${port}${bug.path ?? "/"}`, cdpEndpoint: br.endpoint, name: `gumshoe-${bug.id}-${sha.slice(0, 8)}-${n}`, outDir: tdir, timeoutS: 300, maxSteps: 20 });
+    if (bug.recording) {
+      const s = await runSteps({ recording: resolve(root, bug.recording), work: join(root, "work", "replay", `${bug.id}-${sha.slice(0, 8)}-${n}`), url: `http://127.0.0.1:${port}${bug.path ?? "/"}`, cdpEndpoint: br.endpoint, ndjson: (mkdirSync(tdir, { recursive: true }), join(tdir, "steps.ndjson")) });
+      if (s.passed) { how = "replay"; k = { status: "passed", answers: { ready: "yes" }, credits: s.credits, testUrl: s.testUrl, exitCode: 0 }; }
+      else { // The recording doesn't fit this version. Kane does the steps itself, in a fresh browser.
+        log(`  try ${n}: the recording did not fit (${s.why}), Kane does the steps itself`);
+        closeRole(br, true); await new Promise(r => setTimeout(r, 2500));
+        br = await launchRole(`t${sha.slice(0, 8)}-${n}b-${t0}`, 9700 + (port - 4300) * 10 + n, join(root, ".kane-profiles"));
+        how = "steps"; missed = s.credits;
+      }
+    }
+    if (!k) k = await runKane({ objective, url: `http://127.0.0.1:${port}${bug.path ?? "/"}`, cdpEndpoint: br.endpoint, name: `gumshoe-${bug.id}-${sha.slice(0, 8)}-${n}`, outDir: tdir, timeoutS: 300, maxSteps: 20 });
     // A separate look-only Kane run judges the page as it is now. In calibration 1 the run that
     // did the clicks answered wrongly about its own last screenshot.
     if (k.status) look = await runKane({ objective: "", conditions: [bug.broken, bug.working], cdpEndpoint: br.endpoint, name: "look", outDir: join(tdir, "look"), timeoutS: 120 });
@@ -88,7 +101,7 @@ while (!(final = combine(verdicts))) {
   const v = tryVerdict({ ready: k.answers.ready, look: look.conditionResults, witness });
   const t = {
     try: n, verdict: v.verdict, why: v.why, ready: k.answers.ready, look: look.conditionResults, lookStatus: look.status, ...(lookedAgain ? { lookedAgain } : {}),
-    screenSaysBroken: witness, pixel, kaneStatus: k.status, summary: k.summary ?? k.oneLiner, credits: k.credits + look.credits, seconds: Math.round((Date.now() - t0) / 1000), testUrl: k.testUrl,
+    screenSaysBroken: witness, pixel, kaneStatus: k.status, summary: k.summary ?? k.oneLiner, credits: k.credits + look.credits + missed, ...(how ? { how } : {}), seconds: Math.round((Date.now() - t0) / 1000), testUrl: k.testUrl,
   };
   tries.push(t); verdicts.push(v.verdict);
   log(`  try ${n}: ${v.verdict} (${v.why}) ready=${t.ready} look[broken,working]=${JSON.stringify(t.look)} screenSaysBroken=${witness} ${t.credits.toFixed(1)} credits ${t.seconds}s`);
