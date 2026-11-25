@@ -48,7 +48,7 @@ export function renderSite(hunts: any[], root: string): string {
   const hero = found.find(h => h.fix?.outcome === "fixed" && h.same) ?? found.find(h => h.by === "issue" && h.same) ?? found[0];
   const data = [hero, ...found.filter(h => h !== hero)].map(h => ({
     app: h.app, no: h.issue.split("/").pop(), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
-    commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.note,
+    commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.note, took: h.truth?.took,
     minutes: Math.round(h.minutes), credits: Math.round(h.credits), n: h.commits.length, rows: rows(h, root), diff: h.diff,
     fix: h.fix && {
       outcome: h.fix.outcome, green: h.fix.test?.green.status, red: h.fix.test?.red.status, file: h.fix.test?.file,

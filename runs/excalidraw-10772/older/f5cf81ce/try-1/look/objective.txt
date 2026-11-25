@@ -1,0 +1,3 @@
+LOOK ONLY
+The Hex code field shows ff000080, but the large empty canvas area outside the menu and popup is not pink or light red. It is black, white or another colour.
+The Hex code field shows ff000080, and the large empty canvas area outside the menu and popup is filled with pink or light red.

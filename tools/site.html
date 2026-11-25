@@ -100,11 +100,11 @@ function show(i){
     const label=r.what=="older"?"Older: works":r.what=="reported"?"Report: broken":left==1?"1 suspect":left+" suspects";
     b.innerHTML='<span class=track><span class=left style="left:'+100*(r.lo+1)/n+"%;width:"+100*left/n+'%"></span><span class=dot style="left:'+Math.max(0,Math.min(99.5,100*(r.at+.5)/n))+'%"></span></span><span class=num>'+label+"</span>";
     b.setAttribute("aria-label",(r.what?label:"Commit "+r.sha+": "+V[r.verdict]+", "+left+" left"));b.onclick=()=>look(k);f.append(b)});
-  $(".verdict").innerHTML="<div class=sha>"+e(cur.culprit)+"</div><p>"+e(cur.subject)+"</p><p>"+(cur.same===true?"Same commit as "+e(cur.who||"the maintainers")+". ":cur.same===false?"The maintainers named a different commit. ":e(cur.note||"The maintainers named no commit.")+" ")+'<a href="'+e(cur.commitUrl)+'">See the commit</a></p><p>'+cur.range+" commits searched in "+cur.minutes+" minutes, for "+cur.credits+" Kane credits.</p>";
+  $(".verdict").innerHTML="<div class=sha>"+e(cur.culprit)+"</div><p>"+e(cur.subject)+"</p><p>"+(cur.same===true?"Same commit as "+e(cur.who||"the maintainers")+". ":cur.same===false?"The maintainers named a different commit. ":e(cur.note||"The maintainers named no commit.")+" ")+'<a href="'+e(cur.commitUrl)+'">See the commit</a></p><p>'+cur.range+" commits searched in "+cur.minutes+" minutes, for "+cur.credits+" Kane credits."+(cur.took?"<br>Maintainers: "+e(cur.took[0].toLowerCase()+cur.took.slice(1))+".":"")+"</p>";
   $(".diff").innerHTML=cur.diff?"<details><summary>What that commit changed</summary>"+diff(cur.diff)+"</details>":"";
   const x=cur.fix,a=x&&x.attempts.at(-1);
   $(".fixbox").innerHTML=x?"<div class=fix><div><h3>"+(x.outcome=="fixed"?"Then the coding agent fixed it":"The fix: "+e(x.outcome))+"</h3><p>"+x.attempts.map(t=>"Attempt "+t.n+": "+(V[t.verdict]||e(t.verdict)).toLowerCase()).join(". ")+".</p>"+(a&&a.said?"<p>"+e(a.said)+"</p>":"")+(x.file?"<p>The sentence is now a Kane test, <code>"+e(x.file)+"</code>. On the fix it "+e(x.green)+". On the broken version it "+e(x.red)+".</p>":"")+(a&&a.diff?"<details><summary>The fix</summary>"+diff(a.diff)+"</details>":"")+"</div>"+(a&&a.img?'<div><img src="'+a.img+'" alt="The app after the fix, as Kane left it"></div>':"")+"</div>":"";
-  look(cur.rows.length-1);
+  const g=cur.rows.findLastIndex(r=>r.sha==cur.culprit);look(g<0?cur.rows.length-1:g);
 }
 function look(k){
   const r=cur.rows[k];[...$(".funnel").children].forEach((b,j)=>b.setAttribute("aria-pressed",k==j));

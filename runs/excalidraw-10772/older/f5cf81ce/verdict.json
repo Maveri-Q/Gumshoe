@@ -1,0 +1,63 @@
+{
+  "finishedAt": "2026-11-25T18:41:09.946Z",
+  "sha": "f5cf81ce42276ef8148b7cd951274025648476b8",
+  "subject": "feat: prevent pasting excalidraw into textarea & paste element text if avail (#10710)",
+  "verdict": "unsure",
+  "note": "",
+  "buildSeconds": 51,
+  "totalSeconds": 658,
+  "credits": 115.3,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "unsure",
+      "why": "Kane did not get the app ready",
+      "ready": "no",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the top-left menu and chose the rightmost Canvas background colour option.\nOpened the colour picker, which remained visible with the Hex code field beside the # sign.\nThe canvas was no longer white, so no hexadecimal colour value was entered; the colour picker was left open as requested.",
+      "credits": 45.629132500000004,
+      "seconds": 219,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZKMVWRGFT5VN2H7BF4TDK/dashboard/share/US_2IF0Q1AAY7TI7PEBO33QFIZBNHR7Y47BHZH2392C7E5AXGGP5KDCX0ZGR195STCR?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Updated the canvas background colour’s Hex code field as requested.\nOpened the top-left menu, selected the last canvas-background colour option, and opened its colour picker.\nSelected the existing Hex code text and entered ff000080 without pressing Enter or closing the picker.\nLeft the colour picker open; the canvas was still white when the picker was opened.",
+      "credits": 31.424575000000008,
+      "seconds": 186,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZT9RESQZ48XK28MQQB01C/dashboard/share/US_S332Q8MJ2SN2OKXS5TZCQ5YD3IGX1C7RQRK7UN8EWPOG6TG5WM5NB8KGWLTAWZ5D?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 3,
+      "verdict": "unsure",
+      "why": "Kane did not get the app ready",
+      "ready": "no",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "summary": "Opened the canvas background colour picker from the top-left menu.\nSelected the Hex code field and replaced its value with ff000080, without pressing Enter or making any further clicks.\nLeft the colour picker open as requested; the canvas background was no longer white while the picker was open.",
+      "credits": 38.206377499999995,
+      "seconds": 202,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M8A000J9RMMCD42HP0K8E8AB/dashboard/share/US_8YZOQWX09J8ZN6OHF81ZN9M4421ARB01K3N16PDAPMX8ML1VV0FEQ230B0NA2W7I?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

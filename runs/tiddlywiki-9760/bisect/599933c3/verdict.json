@@ -1,0 +1,46 @@
+{
+  "finishedAt": "2026-11-25T18:35:51.333Z",
+  "sha": "599933c34dff42e65ae236f28fbb54457568a570",
+  "subject": "Remove 'tiddlywiki/dom-to-image' dependency",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 6,
+  "totalSeconds": 600,
+  "credits": 93,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Opened the tiddler titled “HelloThere” and switched it into edit mode.\nPositioned the editor so the formatting toolbar above the large text box was visible.\nOpened the additional formatting-options dropdown using the down arrow just left of the preview icon, then left it open as requested.\nThe requested task was completed on the HelloThere page.",
+      "credits": 50.65205949999999,
+      "seconds": 345,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZA99X1ZN1Z1HE3D3X7TQ5/dashboard/share/US_A6AITO500IIEOYJRXUFRD9DYO158E49XAXCAJP3UGN6REA4P00R9WFJYYWPJHFM7?type=summary&agentView=true&fqdn=summary-page"
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "summary": "Located the tiddler titled “HelloThere” and opened it for editing using its pencil button.\nConfirmed that the HelloThere editor showed the formatting toolbar directly above the large content text box.\nOpened the additional formatting-buttons menu using the down arrow immediately to the left of the preview (eye) button, then left the menu open for two seconds.\nThe requested state was reached successfully, with HelloThere still open in edit mode.",
+      "credits": 42.3322425,
+      "seconds": 249,
+      "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZMWQXNMDXXN93MPFXG71J/dashboard/share/US_KVF150E4DLJSWCBU1I699UO8E8UP4OHW588LMY77ILT2RS8FOSUHCDUVN6AINOFE?type=summary&agentView=true&fqdn=summary-page"
+    }
+  ]
+}

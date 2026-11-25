@@ -39,3 +39,8 @@
 2026-11-25T18:25:51.531Z COMMIT 599933c3 Remove 'tiddlywiki/dom-to-image' dependency
 2026-11-25T18:25:57.420Z   built in 6s
 2026-11-25T18:31:42.628Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 50.7 credits 345s
+2026-11-25T18:35:51.333Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 42.3 credits 249s
+2026-11-25T18:35:51.335Z   => GOOD  93 credits, 600s
+2026-11-25T18:35:52.363Z COMMIT 42a908e1 set arrow function parens to always (#9590)
+2026-11-25T18:35:58.876Z   built in 7s
+2026-11-25T18:41:06.627Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 54.1 credits 308s

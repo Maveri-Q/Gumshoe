@@ -1,0 +1,85 @@
+{
+  "id": "tiddlywiki-9592",
+  "at": "be84dee26b66395218e0c075ba5dcf31397ad1e1",
+  "outcome": "fixed",
+  "attempts": [
+    {
+      "n": 1,
+      "verdict": "good",
+      "credits": 76.1,
+      "seconds": 712,
+      "sha": "8bd355793d657ef69e7813eaa387f41629495f61",
+      "said": "The simplified `$tw.utils.getLocationHash` in `boot/boot.js` returned the raw browser hash, dropping the rule that ignores hashes starting with a second `#` (or `%23`), so clicking `##my-spot` was treated as navigating to a tiddler called `#my-spot`. I restored that rule (and the `#` result for an empty hash) while still using `window.location.hash`, and replaced the deprecation comment because the function is no longer equivalent to it; I had no way to run the app here, so your steps haven't been tested.\n",
+      "tries": [
+        {
+          "try": 1,
+          "verdict": "good",
+          "why": "Kane and the saved screen agree",
+          "ready": "yes",
+          "look": [
+            false,
+            true
+          ],
+          "lookStatus": "passed",
+          "screenSaysBroken": false,
+          "kaneStatus": "passed",
+          "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the new tiddler was visible with both the link and text.\nClicked “Jump to spot”; the page finished at the requested spot in the page.",
+          "credits": 42.9802345,
+          "seconds": 361,
+          "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89Z9ZTQQPZTCDXK64GWB2WE/dashboard/share/US_YMH6SY415OHYEXX46KRCK63W7T082QYWLIUIX2SBBHOV5H842LMGESMAAE6BL9A5?type=summary&agentView=true&fqdn=summary-page"
+        },
+        {
+          "try": 2,
+          "verdict": "good",
+          "why": "Kane and the saved screen agree",
+          "ready": "yes",
+          "look": [
+            false,
+            true
+          ],
+          "lookStatus": "passed",
+          "screenSaysBroken": false,
+          "kaneStatus": "passed",
+          "summary": "Created a new tiddler while keeping the title “New Tiddler.”\nAdded the requested “Jump to spot” link and “Landing place” text, then saved the tiddler.\nConfirmed that the saved tiddler and its requested content were visible.\nClicked “Jump to spot”; the page ended at the link target after the requested wait.",
+          "credits": 33.088503,
+          "seconds": 347,
+          "testUrl": "https://test-manager.lambdatest.com/projects/01M7PA9D5BYEMMWR2EC2NM7JZW/test-cases/01M89ZN6DAG5ZHMNJ54PS7CN0P/dashboard/share/US_0PSYDBK8WKF6LKVJ6N20GUPYMPGVHMI5PGCFSJOCS8072ELDM1VLPMJO4OB10SGB?type=summary&agentView=true&fqdn=summary-page"
+        }
+      ]
+    }
+  ],
+  "credits": 140.1,
+  "minutes": 1174.9,
+  "checkUnchanged": true,
+  "testsBefore": {
+    "exit": 1,
+    "tail": [
+      "Failures:",
+      "1404 specs, 72 failures, 2 pending specs",
+      "\u001b[1;31mError: Tests failed with code 1\u001b[0m"
+    ]
+  },
+  "testsAfter": {
+    "exit": 1,
+    "tail": [
+      "Failures:",
+      "1404 specs, 72 failures, 2 pending specs",
+      "\u001b[1;31mError: Tests failed with code 1\u001b[0m"
+    ]
+  },
+  "test": {
+    "file": "kane-tests/tiddlywiki-9592_test.md",
+    "green": {
+      "exit": 0,
+      "status": "passed",
+      "credits": 42.5,
+      "seconds": 182
+    },
+    "red": {
+      "exit": 1,
+      "status": "failed",
+      "credits": 21.5,
+      "seconds": 173
+    }
+  }
+}

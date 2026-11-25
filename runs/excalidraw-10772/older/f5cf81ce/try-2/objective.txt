@@ -1,0 +1,5 @@
+Do these steps in order.
+1. 1. Click the three-lines menu button at the top left. 2. In the open menu, find the row of colour squares under 'Canvas background' near the bottom. Click the last square at the right end of that row, the one after the thin divider line that shows the current colour. A colour picker popup opens. 3. In the popup, find the text field under 'Hex code', next to the # sign. Click in it and press Ctrl+A to select its text. Do not type anything yet, and leave the popup open.
+2. Is this true right now: "A colour picker popup is open with a Hex code text field next to a # sign, and the canvas is still white."? If it is true, store the word yes as 'ready'. If it is not true, store the word no as 'ready'.
+3. In the Hex code text field, replace the selected text by typing ff000080 (eight characters, with no # sign). Wait 2 seconds. Do not press Enter and do not click anything else. The popup must stay open.
+Then stop.

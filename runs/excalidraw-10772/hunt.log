@@ -13,3 +13,4 @@
 2026-11-25T18:30:04.452Z DRAFT 1: When an 8-digit hex colour that includes transparency is typed without a leading # into the canvas background colour field, the canvas takes that semi-transparent colour.
 2026-11-25T18:30:04.454Z   on the reported version: bad
 2026-11-25T18:30:06.400Z OLDER 817d8c55 2025-03-11: unsure
+2026-11-25T18:41:10.196Z OLDER f5cf81ce 2026-01-28: unsure

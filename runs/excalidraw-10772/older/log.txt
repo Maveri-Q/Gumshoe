@@ -2,3 +2,10 @@
 2026-11-25T18:27:00.585Z   => UNSURE build failed (10s) 0 credits, 10s
 2026-11-25T18:30:11.845Z COMMIT f5cf81ce feat: prevent pasting excalidraw into textarea & paste element text if avail (#10710)
 2026-11-25T18:31:03.138Z   built in 51s
+2026-11-25T18:34:42.138Z   try 1: unsure (Kane did not get the app ready) ready=no look[broken,working]=[true,false] screenSaysBroken=true 45.6 credits 219s
+2026-11-25T18:37:48.126Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 31.4 credits 186s
+2026-11-25T18:41:09.945Z   try 3: unsure (Kane did not get the app ready) ready=no look[broken,working]=[true,false] screenSaysBroken=true 38.2 credits 202s
+2026-11-25T18:41:09.948Z   => UNSURE  115.3 credits, 658s
+2026-11-25T18:41:14.348Z COMMIT e95222ed fix: add constants and side methods to packages (#10418)
+2026-11-25T18:41:46.013Z   built in 32s
+2026-11-25T18:44:40.269Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.8 credits 174s

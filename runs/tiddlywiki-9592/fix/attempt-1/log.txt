@@ -4,3 +4,5 @@
 2026-11-25T18:25:44.606Z COMMIT 8bd35579 attempt 1
 2026-11-25T18:25:48.451Z   built in 4s
 2026-11-25T18:31:49.844Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 43.0 credits 361s
+2026-11-25T18:37:36.374Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 33.1 credits 347s
+2026-11-25T18:37:36.376Z   => GOOD  76.1 credits, 712s
