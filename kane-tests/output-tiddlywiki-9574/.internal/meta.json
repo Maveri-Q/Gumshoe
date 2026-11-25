@@ -1,0 +1,25 @@
+{
+  "commit_id": "7477c60e-c755-4505-b554-08ae089fcf04",
+  "test_id": "48ce6951-9c7b-4b13-911c-b419f5e2573e",
+  "testcase_id": "01M8A91AJDDYZDJMQWG7BEDM7W",
+  "project_id": "01M7PA9D5BYEMMWR2EC2NM7JZW",
+  "folder_id": "01M7PA9F0S2XEXTFZSRX5XBB1F",
+  "org_id": "3438576",
+  "session_name": "tiddlywiki-9574",
+  "executions": [
+    {
+      "execution_id": "45ccf43d-33f2-42a2-ad46-c9399462ddc2",
+      "run_kind": "author",
+      "status": "passed",
+      "valid": true,
+      "at": "2026-11-25T22:00:52.331Z"
+    },
+    {
+      "execution_id": "4f51030e-5464-4143-b4c9-4d7ce6549c84",
+      "run_kind": "replay",
+      "status": "broken",
+      "valid": true,
+      "at": "2026-11-25T22:03:24.938Z"
+    }
+  ]
+}

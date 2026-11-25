@@ -1,0 +1,83 @@
+{
+  "id": "tiddlywiki-9574",
+  "at": "855d8a963884082ec300f4da23a28d5fe4fd7403",
+  "outcome": "fixed",
+  "attempts": [
+    {
+      "n": 1,
+      "verdict": "good",
+      "credits": 5.9,
+      "seconds": 171,
+      "sha": "9b99244c284a2a6aa4c915185b572af82bc5b67b",
+      "said": "The tag name input's `$keyboard` widget caught Ctrl+Enter (the `input-accept-variant` shortcut) and stopped it from propagating even though the tag picker has no action for it, so the editor's save shortcut never fired. In `core/wiki/macros/keyboard-driven-input.tid:137` I made the single widget listen for the accept, accept-variant and cancel shortcuts only when the caller supplies actions for them, which lets Ctrl+Enter through to save, also covers the field name input, and keeps the un-nested structure from #9235; I haven't run the app or the tests.\n",
+      "tries": [
+        {
+          "try": 1,
+          "verdict": "good",
+          "why": "Kane and the saved screen agree",
+          "ready": "yes",
+          "look": [
+            false,
+            true
+          ],
+          "lookStatus": "passed",
+          "screenSaysBroken": false,
+          "kaneStatus": "passed",
+          "credits": 2.5711899999999996,
+          "how": "replay",
+          "seconds": 89
+        },
+        {
+          "try": 2,
+          "verdict": "good",
+          "why": "Kane and the saved screen agree",
+          "ready": "yes",
+          "look": [
+            false,
+            true
+          ],
+          "lookStatus": "passed",
+          "screenSaysBroken": false,
+          "kaneStatus": "passed",
+          "credits": 3.3188899999999997,
+          "how": "replay",
+          "seconds": 80
+        }
+      ]
+    }
+  ],
+  "credits": 18.2,
+  "minutes": 11.2,
+  "checkUnchanged": true,
+  "testsBefore": {
+    "exit": 1,
+    "tail": [
+      "Failures:",
+      "1404 specs, 72 failures, 2 pending specs",
+      "\u001b[1;31mError: Tests failed with code 1\u001b[0m"
+    ]
+  },
+  "testsAfter": {
+    "exit": 1,
+    "tail": [
+      "Failures:",
+      "1404 specs, 72 failures, 2 pending specs",
+      "\u001b[1;31mError: Tests failed with code 1\u001b[0m"
+    ]
+  },
+  "test": {
+    "file": "kane-tests/tiddlywiki-9574_test.md",
+    "green": {
+      "exit": 0,
+      "status": "passed",
+      "credits": 12.3,
+      "seconds": 157
+    },
+    "red": {
+      "exit": 1,
+      "status": "failed",
+      "credits": 0,
+      "seconds": 115
+    }
+  }
+}

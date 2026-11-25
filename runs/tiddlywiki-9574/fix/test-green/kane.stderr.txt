@@ -1,0 +1,7 @@
+
+Update available: 0.10.6 → 0.10.9 — run `npm install -g @testmuai/kane-cli@latest` to update
+
+Skill update available: not installed → 0.1.4 — run `kane-cli install skill`
+
+[lock] heartbeat failed (48ce6951-9c7b-4b13-911c-b419f5e2573e): session expired; continuing run
+evidence: view locally with `kane-cli evidence serve C:\Users\admin\.testmuai\kaneai\sessions\7477c60e-c755-4505-b554-08ae089fcf04\evidence\45ccf43d-33f2-42a2-ad46-c9399462ddc2.evidence`

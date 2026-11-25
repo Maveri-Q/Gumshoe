@@ -95,6 +95,14 @@ for (const id of existsSync(join(root, "runs")) ? readdirSync(join(root, "runs")
   }
   hunts.push(h);
 }
+// The same hunt a second time in cheap mode (validation/cheap-9592). It has to end on the same commit.
+{
+  const base = join(root, "validation/cheap-9592"), judged = commitDirs(join(base, "bisect")).map(replayCommit), first = read(join(root, "runs/tiddlywiki-9592/result.json"));
+  const c = culpritFrom(read(join(root, "runs/tiddlywiki-9592/commits.json")), first.good, judged);
+  if (c?.sha !== first.culprit) problems.push(`cheap 9592 ends on ${c?.sha.slice(0, 8)}`);
+  console.log(`9592 again, cheap mode: ${c?.sha.slice(0, 8)}, ${sum(judged, "credits")} credits, ${(sum(judged, "totalSeconds") / 60).toFixed(0)} min
+`);
+}
 function sum(l: any[], k: string) { return Math.round(l.reduce((a, x) => a + (x[k] ?? 0), 0) * 10) / 10; }
 /** Same commit as the maintainers? undefined when they never named one. */
 export const sameCulprit = (h: any) => h.truth?.culprit ? !!h.culprit?.startsWith(h.truth.culprit.slice(0, 8)) : undefined;

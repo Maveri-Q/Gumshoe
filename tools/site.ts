@@ -78,7 +78,7 @@ export function renderSite(hunts: any[], root: string): string {
   const board = hunts.map(h => `<tr>
 <th scope="row"><a href="${esc(h.issue)}">${esc(h.app)} ${esc(h.issue.split("/").pop())}</a><span>${esc(h.title)}</span></th>
 <td>${h.outcome === "found" ? `<code>${short(h.culprit)}</code>` : esc(h.outcome)}</td>
-<td>${h.truth?.culprit ? `<code>${esc(short(h.truth.culprit))}</code>` : "No commit named"}</td>
+<td>${h.truth?.culprit ? `<code>${esc(short(h.truth.culprit))}</code>` : esc(h.truth?.label ?? "No commit named")}</td>
 <td>${h.same === undefined ? (h.outcome === "found" ? `<b class="na">Nothing to compare</b>` : `<b class="no">Not found</b>`) : h.same ? `<b class="yes">Same</b>` : `<b class="no">Different</b>`}</td>
 <td>${h.range ?? ""}</td><td>${h.tries}${h.refused ? ` <small>(${h.refused} refused)</small>` : ""}</td><td>${mins(h.minutes)}</td><td>${Math.round(h.credits)}</td>
 <td>${esc(h.truth?.took ?? "Not known")}</td>

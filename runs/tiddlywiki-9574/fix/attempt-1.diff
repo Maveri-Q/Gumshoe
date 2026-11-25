@@ -1,0 +1,13 @@
+diff --git a/core/wiki/macros/keyboard-driven-input.tid b/core/wiki/macros/keyboard-driven-input.tid
+index 633ceda..09bfb08 100644
+--- a/core/wiki/macros/keyboard-driven-input.tid
++++ b/core/wiki/macros/keyboard-driven-input.tid
+@@ -134,7 +134,7 @@ tags: $:/tags/Macro
+ <%endif%>
+ \end keyboard-driven-input-actions
+ 
+-<$keyboard key="((input-accept)) ((input-accept-variant)) ((input-up)) ((input-down)) ((input-cancel))" actions=<<keyboard-driven-input-actions>>>
++<$keyboard key={{{ [<inputAcceptActions>!is[blank]then[((input-accept))]] [<inputAcceptVariantActions>!is[blank]then[((input-accept-variant))]] [[((input-up))]] [[((input-down))]] [<inputCancelActions>!is[blank]then[((input-cancel))]] +[join[ ]] }}} actions=<<keyboard-driven-input-actions>>>
+ 	<$edit-text
+ 		tiddler=<<tiddler>> field=<<field>> index=<<index>>
+ 		inputActions=<<keyboard-input-actions>> tag=<<tag>> class=<<class>>

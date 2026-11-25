@@ -1,0 +1,6 @@
+{
+ "label": "Not settled",
+ "note": "No commit was settled on in the report. One person there suspected 23f0a9bf, then wrote that undoing it did not help. Our plain script, with no AI, agrees with Gumshoe: the commit before 3889a2a0 works, and 3889a2a0 is broken.",
+ "source": "https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574#issuecomment-3769486600",
+ "script": "validation/9574-script/result.json"
+}

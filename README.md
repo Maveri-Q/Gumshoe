@@ -20,11 +20,11 @@ This reads Kane's own recorded output for every commit again, works out every ve
 npm test
 ```
 
-To run a live hunt you need Kane (`kane-cli login`), Claude Code, git and Chrome. It costs about 400 to 1,000 Kane credits and 1 to 2 hours:
+To run a live hunt you need Kane (`kane-cli login`), Claude Code, git and Chrome. With `--cheap` it costs about 120 Kane credits and about 35 minutes. Without it, 400 to 1,500 credits and 1 to 2.5 hours:
 
 ```bash
 git clone --filter=blob:none https://github.com/TiddlyWiki/TiddlyWiki5.git clones/tiddlywiki
-npm run hunt -- https://github.com/TiddlyWiki/TiddlyWiki5/issues/9592 --app tiddlywiki
+npm run hunt -- https://github.com/TiddlyWiki/TiddlyWiki5/issues/9592 --app tiddlywiki --cheap
 npm run fix -- tiddlywiki-9592
 ```
 
@@ -40,20 +40,52 @@ npm run fix -- tiddlywiki-9592
 - The saved test, [kane-tests/tiddlywiki-9592_test.md](kane-tests/tiddlywiki-9592_test.md), passes on the fix and fails on the broken version.
 - TiddlyWiki's own tests give the same result before and after the fix: 72 of 1,404 fail here on Windows both times.
 
+## The newest one: TiddlyWiki issue 9574
+
+- The report is one sentence: Ctrl+Enter no longer saves when the cursor is in the tags box.
+- Gumshoe named `3889a2a0`, "Fix nested span.tc-keyboard element in core (#9235)". 161 commits, 121 credits, first draft of the check.
+- We looked up the answer afterwards. Nobody in the report had settled on a commit. Seven days in, one person [suspected 23f0a9bf](https://github.com/TiddlyWiki/TiddlyWiki5/issues/9574#issuecomment-3769486600), a change to dragging links, and wrote that undoing it did not help.
+- We settled it with a plain script, no Kane and no AI ([check.mjs](validation/9574-script/check.mjs), [result](validation/9574-script/result.json)):
+
+| Commit | Ctrl+Enter |
+|---|---|
+| 34737f4e, just before Gumshoe's commit | works |
+| **3889a2a0, Gumshoe's commit** | **broken** |
+| 40cc62f7, just before the suspect | already broken |
+| 23f0a9bf, the suspect | broken |
+| bad87c40, the commit the suspect was compared with | works |
+
+The commit it was compared with is on a side branch that doesn't have #9235. That explains the mix-up. `git bisect` doesn't have this problem, because it only compares commits on one line of history.
+
+- Claude Code fixed it on the first attempt. Kane's look says it works, and the saved test passes on the fix and fails on the broken version. TiddlyWiki's own tests: 72 of 1,404 fail before and after.
+- One thing to know: while choosing this bug, we saw a different report (9323) that mentions #9235. We did not link the two, and Gumshoe was not given it.
+
+## Cheap mode
+
+Most of the cost was Kane working out the same clicks again on every commit. So now Kane does the steps once and saves a recording. Every other commit replays that recording. Kane's AI is used only for the look at the end. If a recording doesn't fit an older version, Kane does the steps itself.
+
+We ran the 9592 bisect again this way, with the same check and the same two ends:
+
+| | Guilty commit | Tries (refused) | Time | Credits |
+|---|---|---|---|---|
+| First time | 48eeb460 | 15 | 59 min | 531 |
+| Cheap mode | 48eeb460 | 14 (0) | 20 min | 46, plus 42 once for the recording |
+
 ## Scoreboard
 
 | Report | Gumshoe says | Maintainers say | Commits searched | Tries (refused) | Time | Credits |
 |---|---|---|---|---|---|---|
 | TiddlyWiki 9592 | 48eeb460 | same | 168 | 22 (3) | 83 min | 790 |
+| TiddlyWiki 9574, cheap mode | 3889a2a0 | not settled, a script agrees | 161 | 19 (1) | 33 min | 121 |
 | TiddlyWiki 9678 | c305eb01 | same, through a linked report | 234 | 27 (4) | 93 min | 972 |
 | TiddlyWiki 9760 | c305eb01 | same | 262 | 31 (10) | 146 min | 1,526 |
 | Excalidraw 10772 | 63e11482 | same | 48 | 19 (2) | 65 min | 664 |
 | Excalidraw 10772, by hand | 63e11482 | same | 56 | 17 (1) | 35 min | 369 |
 | Excalidraw 12053, by hand | e1bb9ff8 | same | 70 | 18 (0) | 35 min | 356 |
 
-6 hunts, 5 reports, 4 different guilty commits. Only 9592 was run without us having looked for the answer first. We knew the answer for 9760 and 10772, and a likely one for 9678. Gumshoe itself was not told any of them, except that 10772's own title names #10578.
+7 hunts, 6 reports, 5 different guilty commits. In 6 of 6 where the maintainers named a commit, it is the same one. Only 9592 and 9574 were run without us having looked for the answer first. We knew the answer for 9760 and 10772, and a likely one for 9678. Gumshoe itself was not told any of them, except that 10772's own title names #10578.
 
-Time counts the commits in the final result. Our real spend on the whole project was about 6,460 credits, including failed drafts, calibrations and tries cut off by sleep.
+Time counts the commits in the final result. Our real spend on the whole project was about 6,740 credits, including failed drafts, calibrations and tries cut off by sleep.
 
 More on the report page (`site/index.html`), or run `npm run replay`.
 
@@ -96,7 +128,7 @@ All the decisions are plain code in [tools/verdict.ts](tools/verdict.ts).
 - A handful of bugs in two apps is a small sample. Two of the TiddlyWiki reports come from the same commit.
 - Each app needs a short build file ([apps](apps)), written once by a person.
 - The fix is made on the version in the report, because these bugs are already fixed in the newest one.
-- It is slow and costs credits. If a script can check the bug, plain `git bisect` is faster. On 9760 a maintainer did that in about 80 minutes.
+- It is slow and costs credits, even in cheap mode. Kane's own credit count per run is a bit lower than what our balance shows for saved tests. If a script can check the bug, plain `git bisect` is faster. On 9760 a maintainer did that in about 80 minutes.
 
 ## Prior work
 Kane wrapper code ([tools/kane.ts](tools/kane.ts), [tools/browsers.ts](tools/browsers.ts)) was first written for our earlier hackathon projects, Fessup and Screenplay. The rest was written for Gumshoe.

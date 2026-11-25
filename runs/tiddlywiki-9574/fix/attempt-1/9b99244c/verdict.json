@@ -1,0 +1,44 @@
+{
+  "finishedAt": "2026-11-25T21:58:05.148Z",
+  "sha": "9b99244c284a2a6aa4c915185b572af82bc5b67b",
+  "subject": "attempt 1",
+  "verdict": "good",
+  "note": "",
+  "buildSeconds": 2,
+  "totalSeconds": 171,
+  "credits": 5.9,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 2.5711899999999996,
+      "how": "replay",
+      "seconds": 89
+    },
+    {
+      "try": 2,
+      "verdict": "good",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        false,
+        true
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": false,
+      "kaneStatus": "passed",
+      "credits": 3.3188899999999997,
+      "how": "replay",
+      "seconds": 80
+    }
+  ]
+}
