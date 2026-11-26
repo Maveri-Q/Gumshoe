@@ -9,9 +9,14 @@ const short = (s?: string) => (s ?? "").slice(0, 8);
 const mins = (m: number) => `${Math.round(m)} min`;
 
 // The part of the screen where each bug shows: x, y, width, height on a 1920x1080 page.
+// A short name for each report, in plain words, for the buttons at the top of the page.
+const NAME: Record<string, string> = {
+  "tiddlywiki-9574": "Ctrl+Enter stopped saving", "tiddlywiki-9592": "Anchor links open a blank page", "tiddlywiki-9678": "A settings menu shows nothing",
+  "tiddlywiki-9760": "Buttons lost their labels", "excalidraw-10772": "See-through colours ignored", "excalidraw-alpha-hex": "See-through colours, by hand", "excalidraw-menu": "Menu won't close, by hand",
+};
 const CROP: Record<string, string> = {
   "tiddlywiki-9592": "800:400:30:28", "tiddlywiki-9678": "1000:500:20:560", "tiddlywiki-9760": "1000:500:560:110",
-  "excalidraw-10772": "1200:600:0:350", "excalidraw-alpha-hex": "1200:600:0:350", "excalidraw-menu": "1000:500:0:0",
+  "excalidraw-10772": "1200:600:0:350", "excalidraw-alpha-hex": "1200:600:0:350", "excalidraw-menu": "1000:500:0:0", "tiddlywiki-9574": "1600:800:0:0",
 };
 function picture(root: string, from: string, name: string, crop?: string) {
   const to = join(root, "site", "img", name + ".jpg");
@@ -62,10 +67,11 @@ function pair(h: any, root: string) {
 export function renderSite(hunts: any[], root: string): string {
   const found = hunts.filter(h => h.outcome === "found");
   const known = found.filter(h => h.same !== undefined), same = known.filter(h => h.same);
-  const hero = found.find(h => h.fix?.outcome === "fixed" && h.same) ?? found.find(h => h.by === "issue" && h.same) ?? found[0];
-  const data = [hero, ...found.filter(h => h !== hero)].map(h => ({
-    app: h.app, no: h.issue.split("/").pop() + (h.by === "hand" ? " (by hand)" : ""), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
-    commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.note, took: h.truth?.took,
+  // Lead with the newest hunt that was fixed and checked against an answer we did not give it.
+  const hero = found.filter(h => h.fix?.outcome === "fixed" && (h.same || h.truth?.script)).sort((a, b) => String(b.finishedAt).localeCompare(String(a.finishedAt)))[0] ?? found.find(h => h.by === "issue" && h.same) ?? found[0];
+  const data = [hero, ...found.filter(h => h !== hero && h.by !== "hand"), ...found.filter(h => h !== hero && h.by === "hand")].map(h => ({
+    name: NAME[h.id] ?? h.title, app: h.app, no: h.issue.split("/").pop() + (h.by === "hand" ? " (by hand)" : ""), issue: h.issue, title: h.title, sentence: h.sentence, range: h.range, culprit: short(h.culprit), subject: h.culpritSubject,
+    commitUrl: `${h.issue.replace(/\/(issues|pull)\/.*/, "")}/commit/${h.culprit}`, same: h.same, who: h.truth?.who, note: h.truth?.short ?? h.truth?.note, script: h.truth?.script, by: h.by, cheap: h.cheap, took: h.truth?.took,
     minutes: Math.round(h.minutes), credits: Math.round(h.credits), n: h.commits.length, at: h.commits.findIndex((c: any) => c.sha === h.culprit), files: h.commits.map((c: any) => c.files ?? 1), from: h.commits[0]?.date.slice(0, 10), to: h.commits.at(-1)?.date.slice(0, 10), pair: pair(h, root), working: h.working, broken: h.broken, rows: rows(h, root), diff: h.diff,
     fix: h.fix && {
       outcome: h.fix.outcome, green: h.fix.test?.green.status, red: h.fix.test?.red.status, file: h.fix.test?.file,
@@ -75,15 +81,14 @@ export function renderSite(hunts: any[], root: string): string {
       })),
     },
   }));
-  const board = hunts.map(h => `<tr>
-<th scope="row"><a href="${esc(h.issue)}">${esc(h.app)} ${esc(h.issue.split("/").pop())}</a><span>${esc(h.title)}</span></th>
+  const title = (t: string) => t.replace(/^(\[[^\]]*\]\s*)+/, "").replace(/^(BUG|Bug|Regression):\s*/, "");
+  const order = [...hunts].sort((x, y) => (x.by === "hand" ? 1 : 0) - (y.by === "hand" ? 1 : 0) || String(y.finishedAt ?? "").localeCompare(String(x.finishedAt ?? "")));
+  const board = order.map(h => `<tr>
+<th scope="row"><a href="${esc(h.issue)}">${esc(h.app)} ${esc(h.issue.split("/").pop())}</a><span>${esc(title(h.title))}</span>${h.by === "hand" ? "<small>Steps written by us</small>" : ""}</th>
 <td>${h.outcome === "found" ? `<code>${short(h.culprit)}</code>` : esc(h.outcome)}</td>
-<td>${h.truth?.culprit ? `<code>${esc(short(h.truth.culprit))}</code>` : esc(h.truth?.label ?? "No commit named")}</td>
-<td>${h.same === undefined ? (h.outcome === "found" ? `<b class="na">Nothing to compare</b>` : `<b class="no">Not found</b>`) : h.same ? `<b class="yes">Same</b>` : `<b class="no">Different</b>`}</td>
-<td>${h.range ?? ""}</td><td>${h.tries}${h.refused ? ` <small>(${h.refused} refused)</small>` : ""}</td><td>${mins(h.minutes)}</td><td>${Math.round(h.credits)}</td>
-<td>${esc(h.truth?.took ?? "Not known")}</td>
-<td>${h.by === "hand" ? "By hand" : "By Gumshoe"}</td>
-<td>${h.fix ? (h.fix.outcome === "fixed" ? `<b class="yes">Attempt ${h.fix.attempts.length}</b>` : `<b class="no">${esc(h.fix.outcome)}</b>`) : "Not tried"}</td></tr>`).join("\n");
+<td>${h.same === true ? `<b class="yes">Same commit</b>` : h.same === false ? `<b class="no">A different one</b>` : h.truth?.script ? `<b class="na">Didn't settle on one. Our script agrees with Gumshoe</b>` : `<b class="na">Didn't name one</b>`}</td>
+<td>${h.range ?? ""}</td><td>${mins(h.minutes)}</td><td>${Math.round(h.credits)}${h.cheap ? " <small>cheap mode</small>" : ""}</td>
+<td>${h.fix ? (h.fix.outcome === "fixed" ? `<b class="yes">Fixed on attempt ${h.fix.attempts.length}</b>` : `<b class="no">${esc(h.fix.outcome)}</b>`) : "<span class=na>Not tried</span>"}</td></tr>`).join("\n");
   const total = hunts.reduce((a, h) => a + h.tries, 0), refused = hunts.reduce((a, h) => a + h.refused, 0);
   const page = readFileSync(join(root, "tools", "site.html"), "utf8");
   const fill: Record<string, string> = {

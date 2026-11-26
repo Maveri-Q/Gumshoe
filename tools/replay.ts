@@ -61,7 +61,7 @@ for (const [bugName, bisect, cal] of [["excalidraw-menu", "excalidraw-bisect", "
   const commits = read(join(base, "commits.json")), c = culpritFrom(commits, b.good, judged);
   if (!c) problems.push(`${bugName}: the verdicts don't lead to one commit`);
   const all = [...ends, ...judged];
-  hunts.push({ id: bugName, by: "hand", app: "Excalidraw", issue: b.source, title: b.title, sentence: b.sentence, outcome: "found", culprit: c?.sha, culpritSubject: c?.subject, range: commits.length, commits, judged, ends,
+  hunts.push({ id: bugName, working: b.working, broken: b.broken, by: "hand", app: "Excalidraw", issue: b.source, title: b.title, sentence: b.sentence, outcome: "found", culprit: c?.sha, culpritSubject: c?.subject, range: commits.length, commits, judged, ends,
     credits: sum(all, "credits"), minutes: sum(all, "totalSeconds") / 60, tries: all.flatMap(x => x.tries).length, refused: all.flatMap(x => x.tries).filter((t: any) => t.verdict === "unsure").length,
     truth: { culprit: b.maintainersCulprit, who: "the maintainers", source: b.source, took: b.took } });
 }
@@ -71,7 +71,8 @@ for (const id of existsSync(join(root, "runs")) ? readdirSync(join(root, "runs")
   const r = read(join(base, "result.json")), app = read(join(root, "apps", id.replace(/-\d+$/, ""), "app.json"));
   const ends = readdirSync(base).filter(x => /^(reported-\d|older)$/.test(x)).sort((a, b) => (a === "older" ? 1 : 0) - (b === "older" ? 1 : 0)).flatMap(x => commitDirs(join(base, x)).map(d => ({ ...replayCommit(d), part: x })));
   const judged = commitDirs(join(base, "bisect")).map(replayCommit).sort(byTime);
-  const h: any = { ...r, by: "issue", app: app.name ?? app.repo.split("/")[1], commits: [], judged, ends, drafts: readdirSync(base).filter(x => /^check-\d/.test(x)).length };
+  const bug = read(join(base, "bug.json"));
+  const h: any = { ...r, working: bug.working, broken: bug.broken, by: "issue", app: app.name ?? app.repo.split("/")[1], commits: [], judged, ends, drafts: readdirSync(base).filter(x => /^check-\d/.test(x)).length };
   if (existsSync(join(base, "commits.json"))) {
     h.commits = read(join(base, "commits.json"));
     const c = culpritFrom(h.commits, r.good, [...ends.filter(e => !/^reported/.test(e.part)), ...judged]);
