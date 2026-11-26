@@ -60,6 +60,17 @@ The commit it was compared with is on a side branch that doesn't have #9235. Tha
 - Claude Code fixed it on the first attempt. Kane's look says it works, and the saved test passes on the fix and fails on the broken version. TiddlyWiki's own tests: 72 of 1,404 fail before and after.
 - One thing to know: while choosing this bug, we saw a different report (9323) that mentions #9235. We did not link the two, and Gumshoe was not given it.
 
+## Does the check give the same answer every time?
+
+We ran the saved 9574 check 10 times on the last commit that works and 10 times on the guilty one. Every run was kept ([results](validation/steady-9574/result.json)).
+
+| Commit | Runs | Answer |
+|---|---|---|
+| 34737f4e, just before | 10 | works, 10 of 10 |
+| 3889a2a0, the guilty one | 10 | broken, 10 of 10 |
+
+All 20 replayed the recording, none fell back to Kane doing the steps. Cost: 59 credits, 26 minutes. Run it again with `sh validation/steady-9574/run.sh`.
+
 ## Cheap mode
 
 Most of the cost was Kane working out the same clicks again on every commit. So now Kane does the steps once and saves a recording. Every other commit replays that recording. Kane's AI is used only for the look at the end. If a recording doesn't fit an older version, Kane does the steps itself.

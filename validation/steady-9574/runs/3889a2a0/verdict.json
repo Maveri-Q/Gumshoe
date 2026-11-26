@@ -1,0 +1,172 @@
+{
+  "finishedAt": "2026-11-26T03:20:26.726Z",
+  "sha": "3889a2a0d0f38bd09ad156353d016061fcd7a72f",
+  "subject": "Fix nested `span.tc-keyboard` element in core (#9235)",
+  "verdict": "bad",
+  "note": "",
+  "buildSeconds": 3,
+  "totalSeconds": 758,
+  "credits": 27.8,
+  "tries": [
+    {
+      "try": 1,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.7801299999999998,
+      "how": "replay",
+      "seconds": 76
+    },
+    {
+      "try": 2,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.07797,
+      "how": "replay",
+      "seconds": 69
+    },
+    {
+      "try": 3,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 3.98796,
+      "how": "replay",
+      "seconds": 87
+    },
+    {
+      "try": 4,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.6673299999999998,
+      "how": "replay",
+      "seconds": 84
+    },
+    {
+      "try": 5,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.8442499999999997,
+      "how": "replay",
+      "seconds": 71
+    },
+    {
+      "try": 6,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 1.9309800000000001,
+      "how": "replay",
+      "seconds": 75
+    },
+    {
+      "try": 7,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 3.61074,
+      "how": "replay",
+      "seconds": 78
+    },
+    {
+      "try": 8,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.67731,
+      "how": "replay",
+      "seconds": 71
+    },
+    {
+      "try": 9,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.5968099999999996,
+      "how": "replay",
+      "seconds": 72
+    },
+    {
+      "try": 10,
+      "verdict": "bad",
+      "why": "Kane and the saved screen agree",
+      "ready": "yes",
+      "look": [
+        true,
+        false
+      ],
+      "lookStatus": "passed",
+      "screenSaysBroken": true,
+      "kaneStatus": "passed",
+      "credits": 2.63757,
+      "how": "replay",
+      "seconds": 74
+    }
+  ]
+}

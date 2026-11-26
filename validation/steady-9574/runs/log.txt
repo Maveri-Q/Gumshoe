@@ -1,0 +1,26 @@
+2026-11-26T02:54:55.326Z COMMIT 34737f4e Improve ARIA support for link widget (#9167)
+2026-11-26T02:54:58.492Z   built in 3s
+2026-11-26T02:56:47.244Z   try 1: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 5.5 credits 109s
+2026-11-26T02:58:03.306Z   try 2: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 76s
+2026-11-26T02:59:17.243Z   try 3: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.7 credits 74s
+2026-11-26T03:00:27.379Z   try 4: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.5 credits 70s
+2026-11-26T03:01:32.722Z   try 5: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.3 credits 65s
+2026-11-26T03:02:45.699Z   try 6: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.9 credits 73s
+2026-11-26T03:03:56.414Z   try 7: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.4 credits 71s
+2026-11-26T03:05:14.628Z   try 8: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 2.6 credits 78s
+2026-11-26T03:06:33.684Z   try 9: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.5 credits 79s
+2026-11-26T03:07:47.853Z   try 10: good (Kane and the saved screen agree) ready=yes look[broken,working]=[false,true] screenSaysBroken=false 3.6 credits 74s
+2026-11-26T03:07:47.855Z   => GOOD  31.5 credits, 773s
+2026-11-26T03:07:48.291Z COMMIT 3889a2a0 Fix nested `span.tc-keyboard` element in core (#9235)
+2026-11-26T03:07:50.816Z   built in 3s
+2026-11-26T03:09:06.586Z   try 1: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.8 credits 76s
+2026-11-26T03:10:15.867Z   try 2: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.1 credits 69s
+2026-11-26T03:11:42.504Z   try 3: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 4.0 credits 87s
+2026-11-26T03:13:06.567Z   try 4: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.7 credits 84s
+2026-11-26T03:14:17.203Z   try 5: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.8 credits 71s
+2026-11-26T03:15:32.287Z   try 6: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 1.9 credits 75s
+2026-11-26T03:16:49.978Z   try 7: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 3.6 credits 78s
+2026-11-26T03:18:00.600Z   try 8: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.7 credits 71s
+2026-11-26T03:19:12.316Z   try 9: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.6 credits 72s
+2026-11-26T03:20:26.725Z   try 10: bad (Kane and the saved screen agree) ready=yes look[broken,working]=[true,false] screenSaysBroken=true 2.6 credits 74s
+2026-11-26T03:20:26.726Z   => BAD  27.8 credits, 758s

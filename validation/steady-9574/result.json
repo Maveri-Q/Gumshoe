@@ -1,0 +1,43 @@
+{
+  "what": "The frozen 9574 check, run 10 times on the last working commit and 10 times on the guilty one. Single tries, every one kept.",
+  "results": [
+    {
+      "sha": "34737f4e289b8ae2720ed5b7dd4d0548324e1d14",
+      "subject": "Improve ARIA support for link widget (#9167)",
+      "verdict": "good",
+      "tries": [
+        "good",
+        "good",
+        "good",
+        "good",
+        "good",
+        "good",
+        "good",
+        "good",
+        "good",
+        "good"
+      ],
+      "credits": 31.5,
+      "seconds": 773
+    },
+    {
+      "sha": "3889a2a0d0f38bd09ad156353d016061fcd7a72f",
+      "subject": "Fix nested `span.tc-keyboard` element in core (#9235)",
+      "verdict": "bad",
+      "tries": [
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad"
+      ],
+      "credits": 27.8,
+      "seconds": 758
+    }
+  ]
+}
