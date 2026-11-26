@@ -1,240 +1,249 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Gumshoe: which commit broke it?</title>
-<meta name="description" content="Give Gumshoe a bug report. It tests older versions of the app in a real browser until one commit is left.">
-<meta name="theme-color" content="#ffd60a">
+<meta name="description" content="Paste a bug report. Gumshoe finds the commit that broke it, testing older versions of the app in a real browser. No test needed.">
+<meta name="theme-color" content="#f3f4f6">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
-:root{--tape:#ffd60a;--page:#ececed;--card:#fff;--well:#f5f5f6;--ink:#111214;--soft:#64676d;--faint:#9a9da3;--line:#e3e4e6;--bad:#d92d20;--badbg:#fde8e6;--good:#0f7a55;--goodbg:#e2f4ec;--skip:#b7791f;--r:22px;--shadow:0 1px 2px rgba(17,18,20,.04),0 18px 40px -18px rgba(17,18,20,.18);color-scheme:light}
+:root{--paper:#f3f4f6;--card:#fff;--ink:#000;--mute:#5d6168;--faint:#9a9ea5;--line:#dadce0;--tape:#ffd60a;--bad:#e5322d;--good:#11845b;--skip:#c07a12;--show:"Big Shoulders Display",Impact,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--page);color:var(--ink);font:400 17px/1.55 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
-h1,h2,h3{font-weight:600;letter-spacing:-.03em;margin:0;text-wrap:balance}
-h1{font-size:clamp(40px,5.4vw,70px);line-height:.98;letter-spacing:-.045em}
-h2{font-size:clamp(30px,4vw,44px);line-height:1.08}
-h3{font-size:19px;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;text-wrap:balance}
+h2{font:800 clamp(44px,6.2vw,84px)/.92 var(--show);letter-spacing:-.005em}
+h3{font-size:19px;font-weight:600;letter-spacing:-.015em}
 p{text-wrap:pretty}
 code,.mono{font-family:"Geist Mono",ui-monospace,Consolas,monospace}
 code{font-size:.9em;overflow-wrap:anywhere}
-.in{max-width:1120px;margin:0 auto;padding:0 24px}
 button{font:inherit;color:inherit;cursor:pointer}
-.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow)}
-.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--card);box-shadow:0 0 0 1px var(--line) inset;font-weight:500;text-decoration:none;white-space:nowrap}
-.pill:hover{background:var(--well)}
-.pill.dark{background:var(--ink);color:#fff;box-shadow:0 8px 18px -8px rgba(17,18,20,.6)}
-.pill.dark:hover{background:#2a2c30}
-.pill svg{width:16px;height:16px;flex:none}
-.soft{color:var(--soft)}
-.yes{color:var(--good)}.no{color:var(--bad)}.na{color:var(--soft);font-weight:400}
+.in{max-width:1200px;margin:0 auto;padding:0 28px}
+.mute{color:var(--mute)}
+.yes{color:var(--good)}.no{color:var(--bad)}.na{color:var(--mute);font-weight:400}
+mark{background:var(--tape);color:#000;padding:0 .12em;border-radius:3px}
 
-nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
-.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:19px;letter-spacing:-.02em;text-decoration:none}
-.logo svg{width:23px;height:34px;flex:none}
-nav .links{display:flex;gap:6px}
-nav .links a{text-decoration:none;color:rgba(0,0,0,.62);padding:10px 14px;border-radius:999px;font-size:15px}
-nav .links a:hover{color:#000;background:rgba(0,0,0,.07)}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
+.logo{display:flex;align-items:center;gap:10px;font:800 28px/1 var(--show);text-decoration:none;letter-spacing:.01em}
+.logo svg{width:22px;height:32px}
+nav .links{display:flex;gap:4px}
+nav .links a{text-decoration:none;color:var(--mute);padding:8px 12px;border-radius:8px;font-size:15px}
+nav .links a:hover{color:#000;background:#e6e7ea}
 
-.band{background:var(--tape);color:#000;padding-bottom:44px}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding:40px 0 0}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:0;padding:40px 0 0}
-.facts div{border-left:3px solid #000;padding-left:18px}
-.facts b{display:block;font-size:clamp(26px,3vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.05}
-.facts span{display:block;color:var(--soft);font-size:15px;margin-top:8px;max-width:22em}
-.tag{display:inline-block;background:#000;color:var(--tape);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500;margin-bottom:24px}
-.hero p.lead{font-size:clamp(18px,1.7vw,20px);color:rgba(0,0,0,.72);max-width:32em;margin:22px 0 0}
-.ask{display:flex;gap:8px;max-width:560px;margin:30px 0 0;background:#fff;border-radius:999px;padding:6px;box-shadow:0 0 0 2px #000}
-.ask .url{flex:1;min-width:0;display:flex;align-items:center;padding:0 18px;font:400 15px "Geist Mono",monospace;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
-.try{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:40px 0 0}
-.try span{font-size:14px;color:var(--soft);margin-right:2px;flex-basis:100%;margin-bottom:2px}
-.try button{border:0;background:rgba(255,255,255,.5);border-radius:999px;padding:6px 13px;min-height:36px;font-size:14px}
-.try button:hover{background:#fff}
-.try button[aria-pressed=true]{background:#000;color:var(--tape)}
-.note{font-size:13px;color:rgba(0,0,0,.55);margin:12px 0 0}
+.hero{padding:28px 0 26px}
+.pitch{font-size:clamp(18px,1.6vw,21px);margin:0 0 22px;max-width:34em}
+.pitch b{font-weight:600}
+h1{font:900 clamp(58px,9.4vw,136px)/.86 var(--show);letter-spacing:-.01em;margin:0}
+h1 .n{font-variant-numeric:tabular-nums}
+.case{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;justify-content:space-between;margin:28px 0 0}
+.case p{margin:0;font-size:18px;max-width:40em}
+.case .go{font-size:15px;color:var(--mute)}
+.cases{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;padding:0;list-style:none}
+.cases button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;min-height:36px;font-size:14px}
+.cases button:hover{border-color:#000}
+.cases button[aria-pressed=true]{background:#000;border-color:#000;color:#fff}
 
-.answer{background:#000;color:#fff;padding:28px 30px 30px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
-.answer .pill{background:#1d1e20;color:#fff;box-shadow:none}.answer .pill:hover{background:#2b2c2f}
-.answer .pill.dark{background:var(--tape);color:#000}.answer .pill.dark:hover{background:#ffe14d}
-.answer :focus-visible{outline-color:var(--tape)}
-.answer .top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:#a3a6ab}
-.state{border-radius:999px;padding:5px 12px;background:#1d1e20;font-size:13px;color:#c9cbcf;white-space:nowrap}
-.state.done{background:#ff4d3d;color:#000;font-weight:500}
-.label{font-size:14px;color:#a3a6ab;margin:24px 0 6px}
-.hash{font:500 clamp(46px,8vw,76px)/1 "Geist Mono",monospace;letter-spacing:-.04em;min-height:1em}
-.hash.wait{color:#45474b}
-.subject{margin:10px 0 0;font-size:16px;min-height:3.1em;color:#d4d6da}
-.track{height:8px;border-radius:99px;background:#1d1e20;margin:24px 0 0;overflow:hidden}
-.track i{display:block;height:100%;width:100%;background:var(--tape);border-radius:99px;transition:width .5s cubic-bezier(.3,.7,.2,1)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 0}
-.stats div{background:#141516;border-radius:16px;padding:12px 16px}
-.stats b{display:block;font-size:22px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stats span{font-size:13px;color:#a3a6ab}
-.acts{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 0}
-
-section{padding:100px 0 0}
-.head{max-width:40em;margin-bottom:34px}
-.head p{color:var(--soft);font-size:18px;margin:14px 0 0}
-.hunt{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start}
-.gridcard{padding:26px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(15px,1fr));gap:4px}
-.tiles i{aspect-ratio:1;border-radius:4px;background:#b9bbc0;transition:background .35s,transform .35s,opacity .35s}
-.tiles i.out{background:#eeeff1;opacity:1}
-.tiles i.g{background:var(--good);opacity:1}.tiles i.b{background:var(--bad);opacity:1}.tiles i.u{background:var(--skip);opacity:1}
-.tiles i.now{outline:2px solid var(--ink);outline-offset:2px}
-.tiles i.hit{background:#000;outline:3px solid var(--tape);transform:scale(1.9);border-radius:3px;position:relative;z-index:2;box-shadow:0 0 0 2px #fff,0 6px 14px rgba(0,0,0,.35);opacity:1}
-.key{display:flex;flex-wrap:wrap;gap:6px 16px;margin:20px 0 0;font-size:13px;color:var(--soft)}
+/* The barcode: one bar per commit, height = files it touched. */
+.rail{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 14px;box-shadow:0 1px 0 var(--line)}
+.status{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:10px}
+.count{display:flex;align-items:baseline;gap:12px}
+.count b{font:900 clamp(40px,5vw,64px)/.8 var(--show);font-variant-numeric:tabular-nums;min-width:1.6em}
+.count span{font-size:15px;color:var(--mute);line-height:1.25}
+.key{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 14px;font-size:13px;color:var(--mute)}
 .key span{display:inline-flex;align-items:center;gap:6px}
-.key i{width:11px;height:11px;border-radius:3px;background:#b9bbc0;display:inline-block}
-.key .o{background:#eeeff1;box-shadow:0 0 0 1px var(--line) inset}.key .g{background:var(--good)}.key .b{background:var(--bad)}.key .h{background:var(--ink)}
-.range{font-size:13px;color:var(--faint);margin:6px 0 0}
-.steps{padding:10px}
-.steps ol{list-style:none;margin:0;padding:0;max-height:520px;overflow:auto;position:relative}
-.steps li button{display:grid;grid-template-columns:22px 1fr;gap:12px;width:100%;text-align:left;background:none;border:0;border-radius:18px;padding:12px 14px}
-.steps li button:hover{background:var(--well)}
-.steps li.on button{background:var(--well)}
-.steps li.later{opacity:.45}
-.dot{width:12px;height:12px;border-radius:4px;margin-top:6px;background:#d8d9dc}
-.dot.g{background:var(--good)}.dot.b{background:var(--bad)}.dot.u{background:var(--skip)}.dot.h{background:var(--ink)}
-.steps b{font-weight:500}.steps small{display:block;color:var(--soft);font-size:14px;line-height:1.4}
-.ctl{display:flex;gap:8px;padding:10px 4px 4px}
-.ctl .pill{min-height:44px;padding:0 18px;font-size:15px}
+.key i{width:10px;height:10px;border-radius:2px;display:inline-block;background:#000}
+.key .t{background:var(--tape)}.key .o{background:#c4c7cc}.key .g{background:var(--good)}.key .b{background:var(--bad)}
+.code{position:relative;height:clamp(96px,15vh,150px)}
+.band{position:absolute;top:-4px;bottom:0;background:var(--tape);border-radius:5px;transition:left .7s cubic-bezier(.3,.7,.2,1),width .7s cubic-bezier(.3,.7,.2,1)}
+.code svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.code rect{fill:#000;transition:fill .4s}
+.code rect.out{fill:#c4c7cc}.code rect.g{fill:var(--good)}.code rect.b{fill:var(--bad)}.code rect.u{fill:var(--skip)}
+.code rect.hit{fill:var(--bad)}
+.steps-row{position:relative;height:30px;margin-top:6px}
+.foot{position:absolute;top:2px;width:14px;height:22px;margin-left:-7px;color:#000;transition:opacity .3s,transform .3s}
+.foot.g{color:var(--good)}.foot.b{color:var(--bad)}.foot.u{color:var(--skip)}
+.foot.l{transform:rotate(-12deg)}.foot.r{transform:rotate(12deg) translateY(3px)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:2px}
+.pin{position:absolute;bottom:calc(100% + 8px);transform:translateX(-50%);background:var(--bad);color:#fff;font:600 13px "Geist Mono",monospace;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .4s}
+.pin.on{opacity:1}
+.pin:after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--bad)}
 
-.sentence{font-size:clamp(22px,2.6vw,30px);line-height:1.3;letter-spacing:-.02em;font-weight:500;max-width:30em;margin:0}
-.from{color:var(--soft);margin:12px 0 30px}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.shot{padding:12px 12px 20px;margin:0}
-.shot img{width:100%;display:block;aspect-ratio:2/1;object-fit:cover;object-position:top left;border-radius:18px;background:var(--well)}
-.shot figcaption{padding:16px 10px 0}
-.badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 12px;font-size:14px;font-weight:500}
-.badge.g{background:var(--goodbg);color:var(--good)}.badge.b{background:var(--badbg);color:var(--bad)}
-.shot p{margin:10px 0 0;font-size:15px;color:var(--soft)}.shot p.says{color:var(--ink);font-size:16px}
-.agree{display:flex;gap:16px;align-items:flex-start;padding:22px 26px;margin:20px 0 0}
-.agree svg{flex:none;width:26px;height:26px;margin-top:2px}
-.agree p{margin:0}
-details{margin:14px 0 0;background:var(--card);border-radius:22px;box-shadow:var(--shadow)}
-summary{cursor:pointer;font-weight:500;padding:18px 24px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+/* The story beside the barcode */
+.story{padding:6vh 0 10vh}
+.step{min-height:72vh;display:flex;align-items:center}
+.step:nth-child(even){justify-content:flex-end}
+.box{background:var(--card);border-radius:18px;padding:22px 22px 24px;width:min(560px,100%);box-shadow:0 1px 0 var(--line),0 24px 50px -30px rgba(0,0,0,.35)}
+.box .k{font-size:14px;color:var(--mute);margin:0}
+.box .h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 0}
+.box .sha{font:600 22px "Geist Mono",monospace}
+.box .subj{margin:4px 0 0;color:var(--mute);font-size:15px}
+.stamp{display:inline-block;font:900 34px/1 var(--show);letter-spacing:.02em;padding:6px 12px 4px;border:3px solid currentColor;border-radius:8px;transform:rotate(-3deg);margin:16px 0 4px}
+.stamp.g{color:var(--good)}.stamp.b{color:var(--bad)}.stamp.u{color:var(--skip)}
+.box .left{font-size:17px;margin:12px 0 0}
+.box img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top left;border-radius:10px;margin:16px 0 0;background:#eceef1;border:1px solid var(--line)}
+.box small{display:block;color:var(--mute);font-size:13px;margin-top:10px}
+.box.end{background:#000;color:#fff}
+.box.end .k{color:#a6a9ae}
+.box.end .big{font:600 clamp(48px,8vw,88px)/1 "Geist Mono",monospace;letter-spacing:-.04em;margin:10px 0 6px;color:#fff}
+
+/* The answer */
+.verdict{background:#000;color:#fff;padding:90px 0}
+.verdict .lab{font:800 28px/1 var(--show);color:var(--bad);margin:0 0 10px;letter-spacing:.02em}
+.verdict .big{font:600 clamp(64px,15vw,210px)/.9 "Geist Mono",monospace;letter-spacing:-.05em;margin:0}
+.verdict .subj{font-size:clamp(18px,2vw,24px);margin:18px 0 0;color:#d6d8dc;max-width:36em}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:46px 0 0;border-top:1px solid #2a2b2e}
+.facts div{padding:18px 18px 0 0}
+.facts b{display:block;font:900 clamp(36px,4.4vw,58px)/.9 var(--show);font-variant-numeric:tabular-nums}
+.facts span{display:block;color:#a6a9ae;font-size:14px;margin-top:6px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:500;text-decoration:none;border:0;background:#1e1f22;color:#fff}
+.btn:hover{background:#2c2d31}
+.btn.y{background:var(--tape);color:#000}.btn.y:hover{background:#ffe24d}
+.agree{display:flex;gap:14px;align-items:flex-start;margin:40px 0 0;padding:20px 22px;border:1px solid #2a2b2e;border-radius:14px;max-width:820px}
+.agree svg{flex:none;width:24px;height:24px;margin-top:2px}
+.agree p{margin:0;color:#d6d8dc}.agree b{color:#fff}
+.agree a{color:#fff}
+
+section.part{padding:110px 0 0}
+.head{max-width:44em;margin-bottom:36px}
+.head p{color:var(--mute);font-size:18px;margin:16px 0 0}
+.sentence{font:500 clamp(24px,3vw,38px)/1.22 Geist,sans-serif;letter-spacing:-.025em;max-width:28em;margin:0}
+.sentence:before{content:"“"}.sentence:after{content:"”"}
+.from{color:var(--mute);margin:14px 0 32px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.shot{margin:0;background:var(--card);border-radius:18px;padding:10px 10px 18px;box-shadow:0 1px 0 var(--line)}
+.shot img{width:100%;display:block;aspect-ratio:2/1;object-fit:cover;object-position:top left;border-radius:10px;background:#eceef1}
+.shot figcaption{padding:14px 8px 0}
+.shot .stamp{font-size:26px;margin:0 0 6px;border-width:2px}
+.shot p{margin:8px 0 0;font-size:15px;color:var(--mute)}.shot p.says{color:#000;font-size:16px}
+details{margin:14px 0 0;background:var(--card);border-radius:14px;box-shadow:0 1px 0 var(--line)}
+summary{cursor:pointer;font-weight:500;padding:16px 22px;list-style:none;display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
-summary:after{content:"+";font-size:22px;color:var(--soft);font-weight:400}
+summary:after{content:"+";font-size:22px;color:var(--mute);font-weight:400}
 details[open] summary:after{content:"–"}
-details>div{padding:0 24px 22px}
-pre{background:#16181b;color:#d8dbe0;padding:18px;border-radius:16px;overflow:auto;max-height:420px;font:13px/1.55 "Geist Mono",Consolas,monospace;margin:0}
+details>div{padding:0 22px 20px}
+pre{background:#111214;color:#d8dbe0;padding:18px;border-radius:12px;overflow:auto;max-height:420px;font:13px/1.55 "Geist Mono",Consolas,monospace;margin:0}
 pre .a{color:#7ee2a8}pre .d{color:#ff9b91}
 .scroll{overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:15px}
-td{white-space:nowrap}td:nth-child(3){white-space:normal}th,td{text-align:left;padding:14px 16px 14px 0;border-top:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}
-thead th{border-top:0;font-weight:400;color:var(--soft);font-size:14px;vertical-align:bottom}
-tbody th{font-weight:500}tbody th span,tbody th small{display:block;font-weight:400;color:var(--soft);font-size:14px}
-small{color:var(--soft);font-size:13px}
+td{white-space:nowrap}td:nth-child(3){white-space:normal}th,td{text-align:left;padding:13px 16px 13px 0;border-top:1px solid var(--line);vertical-align:top;font-variant-numeric:tabular-nums}
+thead th{border-top:0;font-weight:400;color:var(--mute);font-size:14px;vertical-align:bottom}
+tbody th{font-weight:500}tbody th span,tbody th small{display:block;font-weight:400;color:var(--mute);font-size:14px}
+small{color:var(--mute);font-size:13px}
 
-.fix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
-.fixlist{padding:26px 28px}
+.fix{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.fixlist{background:var(--card);border-radius:18px;padding:22px 24px;box-shadow:0 1px 0 var(--line)}
 .fixlist ol{list-style:none;margin:0;padding:0}
-.fixlist li{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
-.fixlist li:first-child{border-top:0;padding-top:4px}
-.fixlist li .badge{flex:none;min-width:92px;justify-content:center}
+.fixlist li{display:flex;gap:16px;align-items:center;padding:14px 0;border-top:1px solid var(--line)}
+.fixlist li:first-child{border-top:0;padding-top:2px}
+.fixlist .stamp{font-size:22px;margin:0;flex:none;min-width:104px;text-align:center;border-width:2px}
 
-.how{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:s}
-.how li{list-style:none;padding:24px 22px 26px;counter-increment:s}
-.how li:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:var(--tape);font-weight:600;margin-bottom:18px}
-.how p{color:var(--soft);font-size:15px;margin:8px 0 0}
-.how{padding:0;margin:0}
-.board{padding:10px 28px 18px}
-.board table{min-width:820px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.two .card{padding:28px 30px}
-.two ul{margin:14px 0 0;padding-left:20px;color:var(--soft)}.two li{margin:8px 0}
-.two p{color:var(--soft);margin:12px 0 0}
-footer{padding:90px 0 60px;color:var(--soft);font-size:15px}
+/* Case files: every hunt as its own small barcode */
+.files{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.file{display:block;width:100%;text-align:left;background:var(--card);border:0;border-radius:18px;padding:20px 20px 18px;box-shadow:0 1px 0 var(--line);transition:transform .2s,box-shadow .2s}
+.file:hover{transform:translateY(-2px);box-shadow:0 1px 0 var(--line),0 18px 40px -26px rgba(0,0,0,.45)}
+.file .top{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--mute)}
+.file h3{margin:8px 0 14px;font:800 30px/1 var(--show);letter-spacing:.005em}
+.file svg{display:block;width:100%;height:44px}
+.file svg rect{fill:#c4c7cc}.file svg rect.hit{fill:var(--bad)}
+.file .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:12px 0 0;font-size:14px}
+.file .row code{font-size:15px;font-weight:600}
+.file .who{margin:10px 0 0;font-size:14px}
+.file .nums{display:flex;gap:16px;margin:10px 0 0;font-size:13px;color:var(--mute)}
+
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:s;padding:0;margin:0;border-top:3px solid #000}
+.how li{list-style:none;padding:20px 22px 0 0;counter-increment:s}
+.how li:before{content:counter(s);display:block;font:900 64px/.8 var(--show);margin-bottom:16px}
+.how p{color:var(--mute);font-size:15px;margin:8px 0 0}
+.cheap{display:flex;gap:16px;align-items:flex-start;margin:40px 0 0;background:var(--tape);border-radius:14px;padding:20px 22px}
+.cheap p{margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.two>div{background:var(--card);border-radius:18px;padding:26px 28px;box-shadow:0 1px 0 var(--line)}
+.two ul{margin:12px 0 0;padding-left:20px;color:var(--mute)}.two li{margin:8px 0}
+.two p{color:var(--mute);margin:12px 0 0}
+footer{padding:100px 0 60px;color:var(--mute);font-size:15px}
 footer p{max-width:46em;margin:0}
 
 @media(max-width:900px){
-.hero{grid-template-columns:minmax(0,1fr);gap:32px}.facts{grid-template-columns:1fr;gap:22px}
-.hunt,.fix,.two,.pair{grid-template-columns:minmax(0,1fr)}
-.how{grid-template-columns:1fr 1fr}
-.steps ol{max-height:360px}}
+.fix,.two,.pair{grid-template-columns:minmax(0,1fr)}
+.how{grid-template-columns:1fr 1fr;row-gap:28px}
+.facts{grid-template-columns:1fr 1fr;row-gap:20px}
+.step,.step:nth-child(even){justify-content:center}
+.key{display:none}}
 @media(max-width:600px){
 .in{padding:0 16px}
 nav .links a:not(:last-child){display:none}
-.hero{padding-top:22px}.band{padding-bottom:32px}
-.ask{flex-direction:column;border-radius:26px}.ask .url{padding:12px 14px}.ask .pill{width:100%}
-.answer{padding:22px 20px 24px}
-.stats b{font-size:18px}.stats div{padding:10px 12px}
-.acts .pill{flex:1}
+.hero{padding-top:20px}
+.cases{flex-wrap:nowrap;overflow-x:auto;margin-right:-16px;padding-right:16px;scrollbar-width:none}.cases li{flex:none}
+.step{min-height:64vh}
 .how{grid-template-columns:1fr}
-section{padding-top:80px}
-.gridcard{padding:18px}.board{padding:6px 18px 12px}
-.tiles{grid-template-columns:repeat(auto-fill,minmax(12px,1fr));gap:3px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.track i,.tiles i{transition:none}}
+section.part{padding-top:80px}
+.verdict{padding:64px 0}
+.files{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style></head><body>
-<div class="band"><div class="in">
-<nav><a class="logo" href="#"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -6 88 128"><g transform="rotate(-9 36 58)"><g fill="#000"><rect x="19.5" y="0" width="33" height="6" rx="3"/><rect x="9.5" y="9" width="53" height="6" rx="3"/><rect x="4.5" y="18" width="63" height="6" rx="3"/><rect x="2.5" y="27" width="67" height="6" rx="3"/><rect x="2.5" y="36" width="67" height="6" rx="3"/><rect x="9.5" y="54" width="53" height="6" rx="3"/><rect x="19.5" y="63" width="33" height="6" rx="3"/><rect x="17" y="80" width="38" height="6" rx="3"/><rect x="11.5" y="89" width="49" height="6" rx="3"/><rect x="12" y="98" width="48" height="6" rx="3"/><rect x="18" y="107" width="36" height="6" rx="3"/></g><rect x="4.5" y="45" width="63" height="6" rx="3" fill="#ff4d3d"/></g></svg>Gumshoe</a>
-<div class="links"><a href="#search">The search</a><a href="#proof">Proof</a><a href="#how">How it works</a><a href="#results">Results</a></div></nav>
-
-<header class="hero"><div>
-<span class="tag">For bugs in things that used to work</span>
-<h1>Paste a bug report. Get the commit that broke it.</h1>
-<p class="lead">No test needed. Gumshoe turns the report into one plain sentence. Kane checks it in a real browser on older and older versions. Each check rules out half the suspects, until one commit is left.</p>
-<div class="ask"><div class="url" id="url"></div><button class="pill dark" id="find">Find the commit</button></div>
-</div>
-
-<div class="card answer" aria-live="polite">
-<div class="top"><span id="where"></span><span class="state" id="state"></span></div>
-<div class="label" id="label">Searching</div>
-<div class="hash mono" id="hash"></div>
-<p class="subject" id="subject"></p>
-<div class="track" aria-hidden="true"><i id="bar"></i></div>
-<div class="stats"><div><b id="s1"></b><span>commits searched</span></div><div><b id="s2"></b><span>of testing</span></div><div><b id="s3"></b><span>Kane credits</span></div></div>
-<div class="acts"><a class="pill dark" id="gh" href="#"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg>See the commit</a><a class="pill" href="#proof">See the proof</a><a class="pill" href="#search">How it got there</a></div>
-</div>
-</header>
-<div class="try" role="group" aria-label="Real bug reports"><span>Try another real report:</span></div>
-<p class="note">This page replays runs we recorded. New hunts run from the command line.</p>
-</div></div>
 <div class="in">
-<div class="facts">
-<div><b>%%SAME%% of %%KNOWN%%</b><span>times it named the same commit as the maintainers</span></div>
-<div><b>%%REPORTS%% real reports</b><span>from %%APPS%% open-source apps. No bug was planted.</span></div>
-<div><b>No test to start</b><span>Only the words in the report. It ends with a saved Kane test.</span></div>
+<nav><a class="logo" href="#"><svg viewBox="-8 -6 88 128" aria-hidden="true"><g transform="rotate(-9 36 58)"><g fill="#000"><rect x="19.5" y="0" width="33" height="6" rx="3"/><rect x="9.5" y="9" width="53" height="6" rx="3"/><rect x="4.5" y="18" width="63" height="6" rx="3"/><rect x="2.5" y="27" width="67" height="6" rx="3"/><rect x="2.5" y="36" width="67" height="6" rx="3"/><rect x="9.5" y="54" width="53" height="6" rx="3"/><rect x="19.5" y="63" width="33" height="6" rx="3"/><rect x="17" y="80" width="38" height="6" rx="3"/><rect x="11.5" y="89" width="49" height="6" rx="3"/><rect x="12" y="98" width="48" height="6" rx="3"/><rect x="18" y="107" width="36" height="6" rx="3"/></g><rect x="4.5" y="45" width="63" height="6" rx="3" fill="#e5322d"/></g></svg>Gumshoe</a>
+<div class="links"><a href="#story">The search</a><a href="#proof">Proof</a><a href="#cases">Cases</a><a href="#how">How it works</a></div></nav>
+
+<header class="hero">
+<p class="pitch"><b>Paste a bug report. Gumshoe finds the commit that broke it.</b> No test needed. It tests older versions of the app in a real browser, and each test rules out half the suspects.</p>
+<h1 id="h1"></h1>
+<div class="case"><p id="case"></p><span class="go">Scroll to watch the search, or <a href="#verdict">skip to the answer</a>.</span></div>
+<ul class="cases" id="picks" aria-label="Real bug reports"></ul>
+</header>
 </div>
 
-<main>
-<section id="search"><div class="head"><h2>How it got there</h2><p>Each square is one commit, oldest first. The bug is broken in the newest and works in the oldest, so the cause is somewhere between. Gumshoe tests the middle one, then keeps the half that must hold the cause.</p></div>
-<div class="hunt">
-<div class="card gridcard"><div class="tiles" id="tiles" role="img"></div>
-<p class="range" id="range"></p>
-<div class="key"><span><i></i>Still a suspect</span><span><i class="o"></i>Ruled out</span><span><i class="g"></i>Tested: works</span><span><i class="b"></i>Tested: broken</span><span><i class="h"></i>Broke it</span></div></div>
-<div class="card steps"><ol id="steps"></ol><div class="ctl"><button class="pill" id="prev">Back</button><button class="pill" id="next">Next test</button><button class="pill" id="replay">Watch again</button></div></div>
+<section id="story">
+<div class="rail"><div class="in">
+<div class="status"><div class="count" aria-live="polite"><b id="left"></b><span id="leftTxt"></span></div>
+<div class="key"><span><i class="t"></i>Still a suspect</span><span><i class="o"></i>Ruled out</span><span><i class="g"></i>Works</span><span><i class="b"></i>Broken</span></div></div>
+<div class="code" id="code"><div class="band" id="band"></div><svg id="bars" preserveAspectRatio="none" role="img"></svg><div class="pin" id="pin"></div></div>
+<div class="steps-row" id="feet" aria-hidden="true"></div>
+<div class="ends"><span id="from"></span><span id="to"></span></div>
+</div></div>
+<div class="in story" id="steps"></div>
+</section>
+
+<section class="verdict" id="verdict"><div class="in">
+<p class="lab">Broke it</p>
+<p class="big" id="vhash"></p>
+<p class="subj" id="vsubj"></p>
+<div class="facts"><div><b id="f1"></b><span>commits searched</span></div><div><b id="f2"></b><span>tests in the browser</span></div><div><b id="f3"></b><span>of testing</span></div><div><b id="f4"></b><span>Kane credits</span></div></div>
+<div class="acts"><a class="btn y" id="gh" href="#">See the commit on GitHub</a><a class="btn" href="#proof">See the proof</a></div>
+<div class="agree" id="agree"></div>
 </div></section>
 
-<section id="proof"><div class="head"><h2>See it for yourself</h2><p>Gumshoe turned the report into one plain sentence. Kane, a testing agent, followed it in a real browser on every version.</p></div>
-<p class="sentence" id="sentence"></p><p class="from" id="from"></p>
+<main class="in">
+<section class="part" id="proof"><div class="head"><h2>See it for yourself</h2><p>Gumshoe turned the report into one plain sentence. Kane, a testing agent, followed it in a real browser on every version.</p></div>
+<p class="sentence" id="sentence"></p><p class="from" id="src"></p>
 <div class="pair" id="pair"></div>
-<div class="card agree" id="agree"></div>
 <div id="more"></div>
 </section>
 
-<section id="fixed"><div class="head"><h2>Then it got fixed</h2><p>Claude Code got the code and the guilty commit. It couldn't see the maintainers' fix, and it wasn't allowed to change the test.</p></div>
+<section class="part" id="fixed"><div class="head"><h2>Then it got fixed</h2><p>Claude Code got the code and the guilty commit. It couldn't see the maintainers' fix, and it wasn't allowed to change the test.</p></div>
 <div class="fix" id="fix"></div></section>
 
-<section id="how"><div class="head"><h2>How it works</h2><p>It's <code>git bisect</code>, the tool developers use to find a bad commit, with a browser test written from the bug report.</p></div>
-<ol class="how">
-<li class="card"><h3>Read the report</h3><p>The title and first post. Comments are left out, because they can hold the answer.</p></li>
-<li class="card"><h3>Write one sentence</h3><p>Claude writes what should happen, as one sentence, plus the steps to get there. No code names, so the test still works on old versions.</p></li>
-<li class="card"><h3>Test old versions</h3><p>Each version is built and opened in Chrome. Kane follows the steps, then a separate look says works or broken.</p></li>
-<li class="card"><h3>Fix and keep</h3><p>A coding agent fixes it. Kane checks the fix with the same sentence. The sentence is saved as a Kane test.</p></li>
-</ol>
-<div class="card agree" style="margin-top:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M13 3 4 14h7l-1 7 9-11h-7l1-7Z"/></svg><p><b>Cheap mode.</b> Kane does the clicks once and saves a recording. Every older version replays it, and Kane's AI only looks at the end. The same search on report 9592 went from 531 credits and 59 minutes to 46 credits and 20 minutes, and found the same commit.</p></div>
+<section class="part" id="cases"><div class="head"><h2>Every case so far</h2><p>%%HUNTS%% searches, %%REPORTS%% real public reports, %%APPS%% apps. Where the maintainers named a commit, Gumshoe found the same one %%SAME%% times out of %%KNOWN%%. No bug was planted. Tap a case to watch its search.</p></div>
+<div class="files" id="files"></div>
+<details><summary>The full table</summary><div><div class="scroll" tabindex="0" role="region" aria-label="Every case"><table><thead><tr><th>Bug report</th><th>Gumshoe found</th><th>Maintainers</th><th>Commits</th><th>Time</th><th>Credits</th><th>Fix</th></tr></thead><tbody>%%BOARD%%</tbody></table></div></div></details>
 </section>
 
-<section id="results"><div class="head"><h2>Every bug we tried</h2><p>%%HUNTS%% searches, %%REPORTS%% real public reports, %%APPS%% apps. Where the maintainers named a commit, Gumshoe found the same one %%SAME%% times out of %%KNOWN%%. No bug was planted.</p></div>
-<div class="card board"><div class="scroll" tabindex="0" role="region" aria-label="Every bug we tried"><table><thead><tr><th>Bug report</th><th>Gumshoe found</th><th>Maintainers</th><th>Commits</th><th>Time</th><th>Credits</th><th>Fix</th></tr></thead><tbody>%%BOARD%%</tbody></table></div></div></section>
+<section class="part" id="how"><div class="head"><h2>How it works</h2><p>It's <code>git bisect</code>, the tool developers use to find a bad commit, with a browser test written from the bug report.</p></div>
+<ol class="how">
+<li><h3>Read the report</h3><p>The title and first post. Comments are left out, because they can hold the answer.</p></li>
+<li><h3>Write one sentence</h3><p>Claude writes what should happen, plus the steps to get there. No code names, so the test still works on old versions.</p></li>
+<li><h3>Test old versions</h3><p>Each version is built and opened in Chrome. Kane follows the steps, then a separate look says works or broken.</p></li>
+<li><h3>Fix and keep</h3><p>A coding agent fixes it. Kane checks the fix with the same sentence. The sentence is saved as a Kane test.</p></li>
+</ol>
+<div class="cheap"><p><b>Cheap mode.</b> Kane does the clicks once and saves a recording. Every older version replays it, and Kane's AI only looks at the end. The same search on report 9592 went from 531 credits and 59 minutes to 46 credits and 20 minutes, and found the same commit.</p></div>
+</section>
 
-<section><div class="two">
-<div class="card"><h3>How it avoids wrong answers</h3><p>A result only counts when three things agree: Kane's look, a second look that must not say both "works" and "broken", and a second reader that sees only the screenshot. Each version is tested twice, and both tests must agree. If they don't, the version is skipped, never guessed. %%REFUSED%% of %%TOTAL%% tests were thrown out this way.</p></div>
-<div class="card"><h3>What it can't do yet</h3><ul>
+<section class="part"><div class="two">
+<div><h3>How it avoids wrong answers</h3><p>A result only counts when Kane's look and a second reader agree. The second reader sees only the screenshot. Each version is tested twice, and both tests must agree. If they don't, the version is skipped, never guessed. %%REFUSED%% of %%TOTAL%% tests were thrown out this way.</p></div>
+<div><h3>What it can't do yet</h3><ul>
 <li>Old versions must still build. If one doesn't, it's skipped.</li>
 <li>The report has to say what should happen.</li>
 <li>Kane and the second reader can both misread a screen.</li>
@@ -243,54 +252,73 @@ section{padding-top:80px}
 <li>Each app needs a short build file, written once by a person.</li></ul></div>
 </div></section>
 </main>
-<footer class="in"><p>Every picture and number here comes from a recorded run. <code>npm run replay</code> rebuilds this page from those recordings and stops if anything differs. Made for the KaneCLI hackathon.</p></footer>
-</div>
+<footer class="in"><p>Every picture and number here comes from a recorded run. This page replays those runs; new hunts run from the command line. <code>npm run replay</code> rebuilds it from the recordings and stops if anything differs. Made for the KaneCLI hackathon.</p></footer>
+
 <script>
 const D=%%DATA%%;
 const $=s=>document.getElementById(s),e=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const calm=matchMedia("(prefers-reduced-motion:reduce)").matches,W={good:"works",bad:"broken",unsure:"skipped"},C={good:"g",bad:"b",unsure:"u"};
+const W={good:"Works",bad:"Broken",unsure:"Skipped"},C={good:"g",bad:"b",unsure:"u"};
 const clean=t=>String(t).replace(/^(\[[^\]]*\]\s*)+/,"").replace(/^(BUG|Bug|Regression):\s*/,"").replace(/^(v?\d[\w.-]*|prerelease)\s*[:-]\s*/i,"");
 const diff=d=>"<pre>"+d.split("\n").map(l=>l[0]=="+"?"<span class=a>"+e(l)+"</span>":l[0]=="-"?"<span class=d>"+e(l)+"</span>":e(l)).join("\n")+"</pre>";
-let cur,k=0,timer,tiles=[];
-const tryBox=document.querySelector(".try");
-D.forEach((c,i)=>{const b=document.createElement("button");b.textContent=c.name;b.title=c.app+" report "+c.no;b.onclick=()=>{show(i);play()};tryBox.append(b)});
-function line(r,i){const left=r.hi-r.lo;
-  if(r.what=="reported")return["The version in the report","Tested: "+W[r.verdict]+". "+cur.n+" commits could be to blame."];
-  if(r.what=="older")return["An older version","Tested: "+W[r.verdict]+". So the cause is one of these "+cur.n+" commits."];
-  return["Test "+(i-1)+": "+r.sha,W[r.verdict][0].toUpperCase()+W[r.verdict].slice(1)+". "+(left==1?"One commit left.":left+" still to blame.")]}
-function go(n){k=Math.max(0,Math.min(cur.rows.length-1,n));const r=cur.rows[k],last=k==cur.rows.length-1,left=r.hi-r.lo;
-  const tested={};cur.rows.slice(0,k+1).forEach(x=>{if(x.at>=0)tested[x.at]=x.verdict});
-  tiles.forEach((t,i)=>{t.className=last&&i==cur.at?"hit":(tested[i]?C[tested[i]]:(i>r.lo&&i<=r.hi?"":"out"))+(!last&&i==r.at?" now":"")});
-  [...$("steps").children].forEach((li,i)=>{li.className=i==k?"on":i>k?"later":""});
-  const on=$("steps").children[k];if(on){const ol=$("steps");if(on.offsetTop<ol.scrollTop||on.offsetTop+on.offsetHeight>ol.scrollTop+ol.clientHeight)ol.scrollTop=on.offsetTop-ol.clientHeight/2}
-  $("bar").style.width=(last?Math.max(1.2,100/cur.n):100*left/cur.n)+"%";
-  $("state").textContent=last?"Found":"Testing";$("state").className="state"+(last?" done":"");
-  $("label").textContent=last?"Broke it":"Searching. Still to blame: "+left;
-  $("hash").textContent=last?cur.culprit:"········";$("hash").className="hash mono"+(last?"":" wait");
-  $("subject").textContent=last?cur.subject:line(r,k).join(". ");
-  $("tiles").setAttribute("aria-label",cur.n+" commits. "+(last?"The one that broke it is "+cur.culprit:left+" still to blame"));
-  $("prev").disabled=k==0;$("next").disabled=last}
-function play(){clearTimeout(timer);timer=0;if(calm)return go(99);go(0);const step=()=>{if(k<cur.rows.length-1){go(k+1);timer=setTimeout(step,850)}else timer=0};timer=setTimeout(step,900)}
-$("next").onclick=()=>{clearTimeout(timer);timer=0;go(k+1)};$("prev").onclick=()=>{clearTimeout(timer);timer=0;go(k-1)};
-$("replay").onclick=play;
-$("find").onclick=()=>{play();document.querySelector(".answer").scrollIntoView({behavior:calm?"auto":"smooth",block:"center"})};
-function show(i){cur=D[i];[...tryBox.querySelectorAll("button")].forEach((b,j)=>b.setAttribute("aria-pressed",i==j));
-  $("url").textContent=cur.issue.replace("https://","");
-  $("where").textContent=cur.app+" · report "+cur.no;
-  $("s1").textContent=cur.n;$("s2").textContent=cur.minutes+" min";$("s3").textContent=cur.credits;$("gh").href=cur.commitUrl;
-  $("tiles").innerHTML="";tiles=cur.files.map(()=>{const t=document.createElement("i");$("tiles").append(t);return t});
-  $("range").textContent="From "+cur.from+" (left) to "+cur.to+" (right).";
-  $("steps").innerHTML=cur.rows.map((r,i)=>{const [a,b]=line(r,i),last=i==cur.rows.length-1;return'<li><button data-i="'+i+'"><span class="dot '+C[r.verdict]+'"></span><span><b>'+e(a)+"</b><small>"+e(b)+"</small></span></button></li>"}).join("")+'<li><button data-i="'+(cur.rows.length-1)+'"><span class="dot h"></span><span><b>Broke it: '+e(cur.culprit)+"</b><small>"+e(cur.subject)+"</small></span></button></li>";
-  $("steps").querySelectorAll("button").forEach(b=>b.onclick=()=>{clearTimeout(timer);timer=0;go(+b.dataset.i)});
-  $("sentence").textContent="“"+cur.sentence+"”";
-  $("from").innerHTML=(cur.no.includes("hand")?"We wrote this one by hand, from ":"Written by Gumshoe from ")+'<a href="'+e(cur.issue)+'">the bug report</a>: '+e(clean(cur.title));
-  const fig=(p,c,t,says)=>p?'<figure class="card shot"><img src="'+p.img+'" alt="The app at commit '+p.sha+', as Kane left it after the steps" loading="lazy"><figcaption><span class="badge '+c+'">'+t+'</span>'+(says?'<p class="says">'+e(says)+"</p>":"")+'<p><code>'+p.sha+"</code> "+e(p.subject)+(p.link?' · <a href="'+e(p.link)+'">Kane\'s record</a>':"")+"</p></figcaption></figure>":"";
-  $("pair").innerHTML=fig(cur.pair.before,"g","Works just before",cur.working)+fig(cur.pair.guilty,"b","Broken from this commit on",cur.broken);
-  const ok='<svg viewBox="0 0 24 24" fill="none" stroke="#0f7a55" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6"/></svg>',info='<svg viewBox="0 0 24 24" fill="none" stroke="#64676d" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7.5v.5"/></svg>';
+const sole='<svg viewBox="0 0 12 20" fill="currentColor"><ellipse cx="6" cy="6.5" rx="5.2" ry="6.3"/><ellipse cx="6" cy="16.3" rx="3.8" ry="3.4"/></svg>';
+const heights=f=>{const m=Math.max(...f);return f.map(x=>16+84*Math.sqrt(x/m))};
+let cur,bars=[],obs;
+
+// Case buttons and case files
+D.forEach((c,i)=>{const li=document.createElement("li");li.innerHTML='<button>'+e(c.name)+"</button>";li.firstChild.onclick=()=>{show(i);$("story").scrollIntoView()};$("picks").append(li)});
+$("files").innerHTML=D.map((c,i)=>{const h=heights(c.files);
+  return'<button class="file" data-i="'+i+'"><div class="top"><span>'+e(c.app)+" report "+e(c.no)+"</span><span>"+(c.cheap?"cheap mode":"")+"</span></div><h3>"+e(c.name)+'</h3><svg viewBox="0 0 '+c.n+' 100" preserveAspectRatio="none" aria-hidden="true">'+h.map((y,j)=>'<rect x="'+(j+.15)+'" width=".7" y="'+(100-y)+'" height="'+y+'"'+(j==c.at?' class="hit"':"")+"/>").join("")+'</svg><div class="row"><span class="mute">Broke it</span><code>'+e(c.culprit)+'</code></div><p class="who">'+(c.same===true?'<b class="yes">Same commit as the maintainers</b>':c.script?'<b class="yes">Maintainers didn\'t settle. A script agrees</b>':'<span class="na">The maintainers didn\'t name one</span>')+'</p><div class="nums"><span>'+c.n+" commits</span><span>"+c.minutes+" min</span><span>"+c.credits+" credits</span></div></button>"}).join("");
+$("files").querySelectorAll(".file").forEach(b=>b.onclick=()=>{show(+b.dataset.i);$("story").scrollIntoView()});
+
+function words(r,i){
+  if(r.what=="reported")return{k:"The version in the report",left:"So the cause is one of the "+cur.n+" commits before it."};
+  if(r.what=="older")return{k:"An older version",left:"The bug wasn't there yet. "+cur.n+" commits are suspects."};
+  const left=r.hi-r.lo;return{k:"Test "+(i-1),left:left==1?"One commit left.":left+" commits still suspects."}}
+
+function show(i){cur=D[i];
+  [...$("picks").querySelectorAll("button")].forEach((b,j)=>b.setAttribute("aria-pressed",i==j));
+  $("h1").innerHTML='<span class="n">'+cur.n+"</span> commits.<br>One of them broke it.";
+  $("case").innerHTML="The bug: <mark>"+e(cur.name)+'</mark>. <a href="'+e(cur.issue)+'">'+e(cur.app)+" report "+e(cur.no)+"</a>.";
+  $("from").textContent=cur.from+", older version";$("to").textContent=cur.to+", the report";
+  const h=heights(cur.files),svg=$("bars");svg.setAttribute("viewBox","0 0 "+cur.n+" 100");
+  svg.innerHTML=h.map((y,j)=>'<rect x="'+(j+.14)+'" width=".72" y="'+(100-y)+'" height="'+y+'"/>').join("");bars=[...svg.children];
+  svg.setAttribute("aria-label",cur.n+" commits, oldest on the left");
+  // The story: one panel per test, then the answer.
+  const last=cur.rows.length;
+  $("steps").innerHTML=cur.rows.map((r,j)=>{const w=words(r,j);return'<div class="step" data-k="'+j+'"><div class="box"><p class="k">'+w.k+'</p><div class="h"><span class="sha">'+e(r.sha)+'</span></div><p class="subj">'+e(r.subject)+'</p><span class="stamp '+C[r.verdict]+'">'+W[r.verdict]+'</span><p class="left">'+w.left+"</p>"+(r.img?'<img src="'+r.img+'" alt="The app at '+e(r.sha)+', as Kane left it" loading="lazy">':"")+"<small>"+(r.tries.every(t=>t.v==r.verdict)?r.tries.length+" tests, all agreed.":r.tries.filter(t=>t.v=="unsure").length+" of "+r.tries.length+" tests thrown out, the rest agreed.")+(r.link?' <a href="'+e(r.link)+'">Kane\'s record</a>':"")+"</small></div></div>"}).join("")
+    +'<div class="step" data-k="'+last+'"><div class="box end"><p class="k">One commit left. This one broke it.</p><p class="big">'+e(cur.culprit)+'</p><p class="subj" style="color:#d6d8dc">'+e(cur.subject)+"</p></div></div>";
+  // The answer
+  $("vhash").textContent=cur.culprit;$("vsubj").textContent=cur.subject;$("gh").href=cur.commitUrl;
+  $("f1").textContent=cur.n;$("f2").textContent=cur.rows.length;$("f3").textContent=cur.minutes+" min";$("f4").textContent=cur.credits;
+  const ok='<svg viewBox="0 0 24 24" fill="none" stroke="#3ccf91" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-6"/></svg>',info='<svg viewBox="0 0 24 24" fill="none" stroke="#a6a9ae" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7.5v.5"/></svg>';
   $("agree").innerHTML=cur.same===true?ok+"<p><b>The maintainers found the same commit.</b> "+(cur.took?e(cur.took)+". ":"")+"Gumshoe was not told the answer.</p>":cur.same===false?info+"<p><b>The maintainers named a different commit.</b></p>":(cur.script?ok:info)+"<p>"+e(cur.note||"Nobody named a commit to compare with.")+(cur.script?' <a href="https://github.com/Maveri-Q/Gumshoe/blob/main/'+e(cur.script.replace("result.json","check.mjs"))+'">The script</a>.':"")+"</p>";
-  $("more").innerHTML=(cur.diff?"<details><summary>What that commit changed</summary><div>"+diff(cur.diff)+"</div></details>":"")+"<details><summary>Every test Kane ran</summary><div class=scroll tabindex=0 role=region aria-label='Every test'><table><tbody>"+cur.rows.map(r=>"<tr><th><code>"+e(r.sha)+"</code><span>"+e(r.subject)+"</span></th><td><b class="+(r.verdict=="good"?"yes":r.verdict=="bad"?"no":"na")+">"+W[r.verdict]+"</b></td><td>"+r.tries.map((t,i)=>"Test "+(i+1)+": "+(t.v=="unsure"?"thrown out. "+e(t.why):W[t.v])).join("<br>")+"</td><td>"+(r.link?'<a href="'+e(r.link)+'">Kane\'s record</a>':"Didn't build")+"</td></tr>").join("")+"</tbody></table></div></details>";
+  // Proof
+  $("sentence").textContent=cur.sentence;
+  $("src").innerHTML=(cur.by=="hand"?"We wrote this one by hand, from ":"Written by Gumshoe from ")+'<a href="'+e(cur.issue)+'">the bug report</a>: '+e(clean(cur.title));
+  const fig=(p,c,t,says)=>p?'<figure class="shot"><img src="'+p.img+'" alt="The app at commit '+p.sha+', as Kane left it after the steps" loading="lazy"><figcaption><span class="stamp '+c+'">'+t+"</span>"+(says?'<p class="says">'+e(says)+"</p>":"")+"<p><code>"+p.sha+"</code> "+e(p.subject)+(p.link?' · <a href="'+e(p.link)+'">Kane\'s record</a>':"")+"</p></figcaption></figure>":"";
+  $("pair").innerHTML=fig(cur.pair.before,"g","Works just before",cur.working)+fig(cur.pair.guilty,"b","Broken from here",cur.broken);
+  $("more").innerHTML=(cur.diff?"<details><summary>What that commit changed</summary><div>"+diff(cur.diff)+"</div></details>":"")+"<details><summary>Every test Kane ran</summary><div class=scroll tabindex=0 role=region aria-label='Every test'><table><tbody>"+cur.rows.map(r=>"<tr><th><code>"+e(r.sha)+"</code><span>"+e(r.subject)+"</span></th><td><b class="+(r.verdict=="good"?"yes":r.verdict=="bad"?"no":"na")+">"+W[r.verdict]+"</b></td><td>"+r.tries.map((t,i)=>"Test "+(i+1)+": "+(t.v=="unsure"?"thrown out. "+e(t.why):W[t.v].toLowerCase())).join("<br>")+"</td><td>"+(r.link?'<a href="'+e(r.link)+'">Kane\'s record</a>':"Didn't build")+"</td></tr>").join("")+"</tbody></table></div></details>";
+  // Fix
   const x=cur.fix,a=x&&x.attempts.at(-1);$("fixed").hidden=!x;
-  if(x)$("fix").innerHTML='<div class="card fixlist"><ol>'+x.attempts.map(t=>'<li><span class="badge '+(t.verdict=="good"?"g":"b")+'">'+(t.verdict=="good"?"Works":e(W[t.verdict]||t.verdict))+"</span><span>Fix attempt "+t.n+", tested by Kane with the same sentence. Two tests agreed.</span></li>").join("")+(x.file?'<li><span class="badge '+(x.green=="passed"?"g":"b")+'">'+(x.green=="passed"?"Passes":e(x.green))+'</span><span>The sentence, saved as a <a href="https://github.com/Maveri-Q/Gumshoe/blob/main/'+e(x.file)+'">Kane test</a>, on the fixed app</span></li><li><span class="badge '+(x.red=="failed"?"g":"b")+'">'+(x.red=="failed"?"Fails":e(x.red))+"</span><span>The same test on the broken app. That's what it should do.</span></li>":"")+"</ol>"+(a.diff?"<details style='box-shadow:none;background:var(--well);margin-top:16px'><summary>The fix</summary><div>"+diff(a.diff)+"</div></details>":"")+"</div>"+(a.img?'<figure class="card shot"><img src="'+a.img+'" alt="The app after the fix, as Kane left it" loading="lazy"><figcaption><span class="badge g">After the fix</span><p>As Kane left it after the same steps.</p></figcaption></figure>':"");
+  if(x)$("fix").innerHTML='<div class="fixlist"><ol>'+x.attempts.map(t=>'<li><span class="stamp '+(t.verdict=="good"?"g":"b")+'">'+(t.verdict=="good"?"Works":e(W[t.verdict]||t.verdict))+"</span><span>Fix attempt "+t.n+", checked by Kane with the same sentence. Two tests agreed.</span></li>").join("")+(x.file?'<li><span class="stamp '+(x.green=="passed"?"g":"b")+'">'+(x.green=="passed"?"Passes":e(x.green))+'</span><span>The sentence, saved as a <a href="https://github.com/Maveri-Q/Gumshoe/blob/main/'+e(x.file)+'">Kane test</a>, on the fixed app.</span></li><li><span class="stamp '+(x.red=="failed"?"g":"b")+'">'+(x.red=="failed"?"Fails":e(x.red))+"</span><span>The same test on the broken app. That's what it should do.</span></li>":"")+"</ol>"+(a.diff?"<details style='box-shadow:none;background:#f3f4f6;margin-top:16px'><summary>The fix</summary><div>"+diff(a.diff)+"</div></details>":"")+"</div>"+(a.img?'<figure class="shot"><img src="'+a.img+'" alt="The app after the fix, as Kane left it" loading="lazy"><figcaption><span class="stamp g">After the fix</span><p>As Kane left it after the same steps.</p></figcaption></figure>':"");
+  // Scroll drives the barcode.
+  if(obs)obs.disconnect();
+  obs=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)step(+x.target.dataset.k)}),{rootMargin:"-45% 0px -45% 0px"});
+  $("steps").querySelectorAll(".step").forEach(s=>obs.observe(s));
+  step(-1);
 }
-show(0);play();
+
+function step(k){const rows=cur.rows,n=cur.n,end=k>=rows.length;
+  let lo=-1,hi=n-1;const tested={},feet=[];
+  rows.slice(0,Math.min(k+1,rows.length)).forEach(r=>{if(r.at>=0){tested[r.at]=r.verdict;feet.push(r)}});
+  if(k>=0&&!end){lo=rows[k].lo;hi=rows[k].hi}
+  if(end){lo=cur.at-1;hi=cur.at}
+  bars.forEach((b,i)=>b.setAttribute("class",end&&i==cur.at?"hit":tested[i]?C[tested[i]]:(i>lo&&i<=hi?"":"out")));
+  $("band").style.left=100*(lo+1)/n+"%";$("band").style.width=end?0:100*(hi-lo)/n+"%";
+  $("feet").innerHTML=feet.map((r,j)=>'<span class="foot '+C[r.verdict]+" "+(j%2?"r":"l")+'" style="left:'+100*(r.at+.5)/n+'%">'+sole+"</span>").join("");
+  const pin=$("pin");pin.textContent=cur.culprit;pin.style.left=100*(cur.at+.5)/n+"%";pin.classList.toggle("on",end);
+  const left=hi-lo;$("left").textContent=left;
+  $("leftTxt").innerHTML=end?"commit left.<br>This one broke it.":(left==1?"commit":"commits")+" still<br>suspects, of "+n;
+}
+show(0);
 </script></body></html>
