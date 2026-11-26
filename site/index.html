@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap">
 <style>
-:root{--paper:#f3f4f6;--card:#fff;--ink:#000;--mute:#5d6168;--faint:#9a9ea5;--line:#dadce0;--tape:#ffd60a;--bad:#e5322d;--good:#11845b;--skip:#c07a12;--show:"Big Shoulders Display",Impact,sans-serif;color-scheme:light}
+:root{--paper:#f3f4f6;--card:#fff;--ink:#000;--mute:#5d6168;--faint:#9a9ea5;--line:#dadce0;--tape:#ffd60a;--wall:#b7c2c7;--bad:#e5322d;--good:#11845b;--skip:#c07a12;--show:"Big Shoulders Display",Impact,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.55 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
@@ -23,7 +23,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .in{max-width:1200px;margin:0 auto;padding:0 28px}
 .mute{color:var(--mute)}
 .yes{color:var(--good)}.no{color:var(--bad)}.na{color:var(--mute);font-weight:400}
-mark{background:var(--tape);color:#000;padding:0 .12em;border-radius:3px}
+mark{background:var(--wall);color:#000;padding:0 .12em;border-radius:3px}
 
 nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0}
 .logo{display:flex;align-items:center;gap:10px;font:800 28px/1 var(--show);text-decoration:none;letter-spacing:.01em}
@@ -32,43 +32,54 @@ nav .links{display:flex;gap:4px}
 nav .links a{text-decoration:none;color:var(--mute);padding:8px 12px;border-radius:8px;font-size:15px}
 nav .links a:hover{color:#000;background:#e6e7ea}
 
-.hero{padding:28px 0 26px}
-.pitch{font-size:clamp(18px,1.6vw,21px);margin:0 0 22px;max-width:34em}
-.pitch b{font-weight:600}
-h1{font:900 clamp(58px,9.4vw,136px)/.86 var(--show);letter-spacing:-.01em;margin:0}
-h1 .n{font-variant-numeric:tabular-nums}
-.case{display:flex;flex-wrap:wrap;gap:8px 28px;align-items:baseline;justify-content:space-between;margin:28px 0 0}
-.case p{margin:0;font-size:18px;max-width:40em}
-.case .go{font-size:15px;color:var(--mute)}
-.cases{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 0;padding:0;list-style:none}
-.cases button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px;min-height:36px;font-size:14px}
+.hero{padding:30px 0 40px}
+h1{font:900 clamp(46px,6.6vw,96px)/.9 var(--show);letter-spacing:-.005em;margin:0;max-width:11em}
+/* The paste box is the first thing to use on the page. */
+.ask{margin:30px 0 0;max-width:820px}
+.ask label{display:block;font-weight:600;font-size:17px;margin:0 0 10px}
+.field{display:flex;background:#fff;border:3px solid #000;border-radius:14px;padding:6px;gap:6px;box-shadow:6px 6px 0 #000}
+.field:focus-within{box-shadow:6px 6px 0 var(--bad)}
+.field input{flex:1;min-width:0;border:0;background:none;font:500 18px "Geist Mono",monospace;padding:0 14px;height:54px;color:#000;outline:none}
+.field input::placeholder{color:#8d9197}
+.field button{border:0;background:#000;color:#fff;border-radius:9px;padding:0 24px;font-weight:600;font-size:17px;white-space:nowrap}
+.field button:hover{background:var(--bad)}
+.reply{margin:18px 0 0;padding:16px 18px;border-radius:12px;background:#fff;border:2px solid #000;font-size:16px}
+.reply.bad{border-color:var(--bad)}
+.reply p{margin:0}.reply p+p,.reply pre{margin-top:10px}
+.reply .copy{margin-top:10px;border:2px solid #000;background:#fff;border-radius:8px;padding:6px 14px;font-weight:600;font-size:14px}
+.tryrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:22px 0 0}
+.tryrow>span{font-size:15px;color:var(--mute)}
+.cases{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.cases button{border:1px solid #b9bcc1;background:var(--card);border-radius:999px;padding:6px 14px;min-height:36px;font-size:14px}
 .cases button:hover{border-color:#000}
 .cases button[aria-pressed=true]{background:#000;border-color:#000;color:#fff}
 
-/* The barcode: one bar per commit, height = files it touched. */
-.rail{position:sticky;top:0;z-index:5;background:var(--paper);padding:12px 0 14px;box-shadow:0 1px 0 var(--line)}
-.status{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:10px}
+/* The lineup: every commit is a suspect standing against a height chart.
+   Taller means the commit changed more files. */
+.rail{position:sticky;top:0;z-index:5;background:var(--wall);padding:14px 0 12px;border-top:3px solid #000;border-bottom:3px solid #000}
+.status{display:flex;justify-content:space-between;align-items:flex-end;gap:10px 24px;flex-wrap:wrap;margin-bottom:8px}
 .count{display:flex;align-items:baseline;gap:12px}
 .count b{font:900 clamp(40px,5vw,64px)/.8 var(--show);font-variant-numeric:tabular-nums;min-width:1.6em}
-.count span{font-size:15px;color:var(--mute);line-height:1.25}
-.key{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:4px 14px;font-size:13px;color:var(--mute)}
-.key span{display:inline-flex;align-items:center;gap:6px}
-.key i{width:10px;height:10px;border-radius:2px;display:inline-block;background:#000}
-.key .t{background:var(--tape)}.key .o{background:#c4c7cc}.key .g{background:var(--good)}.key .b{background:var(--bad)}
-.code{position:relative;height:clamp(96px,15vh,150px)}
-.band{position:absolute;top:-4px;bottom:0;background:var(--tape);border-radius:5px;transition:left .7s cubic-bezier(.3,.7,.2,1),width .7s cubic-bezier(.3,.7,.2,1)}
+.count span{font-size:15px;line-height:1.25}
+.case{margin:0;font-size:15px;text-align:right;max-width:34em}
+.code{position:relative;height:clamp(110px,18vh,176px)}
+.marks{position:absolute;inset:0;pointer-events:none}
+.marks div{position:absolute;left:0;right:0;border-top:2px solid rgba(0,0,0,.5)}
+.marks span{position:absolute;left:0;bottom:2px;font:800 13px/1 var(--show);letter-spacing:.03em;color:rgba(0,0,0,.6)}
+.band{position:absolute;top:0;bottom:0;background:rgba(255,255,255,.55);transition:left .7s cubic-bezier(.3,.7,.2,1),width .7s cubic-bezier(.3,.7,.2,1)}
+.spot{position:absolute;top:-14px;bottom:0;width:120px;margin-left:-60px;background:radial-gradient(ellipse 50% 70% at 50% 100%,rgba(255,255,255,.95),rgba(255,255,255,0));opacity:0;transition:opacity .6s}
+.spot.on{opacity:1}
 .code svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.code rect{fill:#000;transition:fill .4s}
-.code rect.out{fill:#c4c7cc}.code rect.g{fill:var(--good)}.code rect.b{fill:var(--bad)}.code rect.u{fill:var(--skip)}
-.code rect.hit{fill:var(--bad)}
+#bars g{fill:#000;transition:fill .4s,opacity .4s}
+#bars g.out{opacity:.16}#bars g.g{fill:var(--good)}#bars g.b{fill:var(--bad)}#bars g.u{fill:var(--skip)}
+#bars g.hit{fill:var(--bad)}
 .steps-row{position:relative;height:30px;margin-top:6px}
 .foot{position:absolute;top:2px;width:14px;height:22px;margin-left:-7px;color:#000;transition:opacity .3s,transform .3s}
 .foot.g{color:var(--good)}.foot.b{color:var(--bad)}.foot.u{color:var(--skip)}
 .foot.l{transform:rotate(-12deg)}.foot.r{transform:rotate(12deg) translateY(3px)}
-.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--faint);margin-top:2px}
-.pin{position:absolute;bottom:calc(100% + 8px);transform:translateX(-50%);background:var(--bad);color:#fff;font:600 13px "Geist Mono",monospace;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;transition:opacity .4s}
+.ends{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:rgba(0,0,0,.65);margin-top:2px}
+.pin{position:absolute;top:4px;transform:translateX(-50%);background:#000;color:#fff;font:600 13px "Geist Mono",monospace;padding:4px 8px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .4s;z-index:2}
 .pin.on{opacity:1}
-.pin:after{content:"";position:absolute;left:50%;top:100%;margin-left:-5px;border:5px solid transparent;border-top-color:var(--bad)}
 
 /* The story beside the barcode */
 .story{padding:6vh 0 10vh}
@@ -89,22 +100,23 @@ h1 .n{font-variant-numeric:tabular-nums}
 .box.end .big{font:600 clamp(48px,8vw,88px)/1 "Geist Mono",monospace;letter-spacing:-.04em;margin:10px 0 6px;color:#fff}
 
 /* The answer */
-.verdict{background:#000;color:#fff;padding:90px 0}
-.verdict .lab{font:800 28px/1 var(--show);color:var(--bad);margin:0 0 10px;letter-spacing:.02em}
-.verdict .big{font:600 clamp(64px,15vw,210px)/.9 "Geist Mono",monospace;letter-spacing:-.05em;margin:0}
-.verdict .subj{font-size:clamp(18px,2vw,24px);margin:18px 0 0;color:#d6d8dc;max-width:36em}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:46px 0 0;border-top:1px solid #2a2b2e}
-.facts div{padding:18px 18px 0 0}
+/* The answer: the last suspect, held up against the height chart like a booking photo. */
+.verdict{background:var(--wall) repeating-linear-gradient(to top,transparent 0 78px,rgba(0,0,0,.42) 78px 80px);color:#000;padding:90px 0;border-bottom:3px solid #000}
+.placard{display:inline-block;max-width:100%;background:#000;color:#fff;border-radius:8px;padding:26px 32px 30px;box-shadow:10px 10px 0 rgba(0,0,0,.25)}
+.verdict .lab{font:800 28px/1 var(--show);color:#ff5a4f;margin:0 0 10px;letter-spacing:.02em}
+.verdict .big{font:600 clamp(60px,14vw,196px)/.9 "Geist Mono",monospace;letter-spacing:-.05em;margin:0}
+.verdict .subj{font-size:clamp(17px,2vw,22px);margin:16px 0 0;color:#d6d8dc;max-width:36em}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:40px 0 0;border-top:3px solid #000}
+.facts div{padding:16px 18px 0 0}
 .facts b{display:block;font:900 clamp(36px,4.4vw,58px)/.9 var(--show);font-variant-numeric:tabular-nums}
-.facts span{display:block;color:#a6a9ae;font-size:14px;margin-top:6px}
-.acts{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 0}
-.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:500;text-decoration:none;border:0;background:#1e1f22;color:#fff}
-.btn:hover{background:#2c2d31}
-.btn.y{background:var(--tape);color:#000}.btn.y:hover{background:#ffe24d}
-.agree{display:flex;gap:14px;align-items:flex-start;margin:40px 0 0;padding:20px 22px;border:1px solid #2a2b2e;border-radius:14px;max-width:820px}
+.facts span{display:block;font-size:15px;margin-top:6px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 0}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid #000;background:#fff;color:#000}
+.btn:hover{background:#000;color:#fff}
+.btn.y{background:#000;color:#fff}.btn.y:hover{background:var(--bad);border-color:var(--bad)}
+.agree{display:flex;gap:14px;align-items:flex-start;margin:36px 0 0;padding:18px 20px;background:#fff;border-radius:12px;max-width:820px}
 .agree svg{flex:none;width:24px;height:24px;margin-top:2px}
-.agree p{margin:0;color:#d6d8dc}.agree b{color:#fff}
-.agree a{color:#fff}
+.agree p{margin:0}
 
 section.part{padding:110px 0 0}
 .head{max-width:44em;margin-bottom:36px}
@@ -157,7 +169,7 @@ small{color:var(--mute);font-size:13px}
 .how li{list-style:none;padding:20px 22px 0 0;counter-increment:s}
 .how li:before{content:counter(s);display:block;font:900 64px/.8 var(--show);margin-bottom:16px}
 .how p{color:var(--mute);font-size:15px;margin:8px 0 0}
-.cheap{display:flex;gap:16px;align-items:flex-start;margin:40px 0 0;background:var(--tape);border-radius:14px;padding:20px 22px}
+.cheap{display:flex;gap:16px;align-items:flex-start;margin:40px 0 0;background:var(--wall);border-radius:14px;padding:20px 22px}
 .cheap p{margin:0}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .two>div{background:var(--card);border-radius:18px;padding:26px 28px;box-shadow:0 1px 0 var(--line)}
@@ -171,12 +183,15 @@ footer p{max-width:46em;margin:0}
 .how{grid-template-columns:1fr 1fr;row-gap:28px}
 .facts{grid-template-columns:1fr 1fr;row-gap:20px}
 .step,.step:nth-child(even){justify-content:center}
-.key{display:none}}
+.case{text-align:left}}
 @media(max-width:600px){
 .in{padding:0 16px}
 nav .links a:not(:last-child){display:none}
 .hero{padding-top:20px}
-.cases{flex-wrap:nowrap;overflow-x:auto;margin-right:-16px;padding-right:16px;scrollbar-width:none}.cases li{flex:none}
+.rail .case{display:none}
+.field{flex-direction:column;box-shadow:4px 4px 0 #000}.field input{height:48px;font-size:16px;padding:0 8px}.field button{min-height:48px}
+.tryrow{flex-direction:column;align-items:flex-start}.cases{flex-wrap:nowrap;overflow-x:auto;max-width:calc(100vw - 16px);margin-right:-16px;padding-right:16px;scrollbar-width:none}.cases li{flex:none}
+.verdict{background-size:auto}.placard{padding:20px 20px 22px}
 .step{min-height:64vh}
 .how{grid-template-columns:1fr}
 section.part{padding-top:80px}
@@ -189,18 +204,21 @@ section.part{padding-top:80px}
 <div class="links"><a href="#story">The search</a><a href="#proof">Proof</a><a href="#cases">Cases</a><a href="#how">How it works</a></div></nav>
 
 <header class="hero">
-<p class="pitch"><b>Paste a bug report. Gumshoe finds the commit that broke it.</b> No test needed. It tests older versions of the app in a real browser, and each test rules out half the suspects.</p>
-<h1 id="h1"></h1>
-<div class="case"><p id="case"></p><span class="go">Scroll to watch the search, or <a href="#verdict">skip to the answer</a>.</span></div>
-<ul class="cases" id="picks" aria-label="Real bug reports"></ul>
+<h1>Paste a bug report. Get the commit that broke it.</h1>
+<form class="ask" id="ask" novalidate>
+<label for="url">Link to a GitHub bug report</label>
+<div class="field"><input id="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://github.com/owner/repo/issues/123"><button>Find the commit</button></div>
+<div class="reply" id="reply" aria-live="polite" hidden></div>
+</form>
+<div class="tryrow"><span>Or try one we solved:</span><ul class="cases" id="picks" aria-label="Bug reports we solved"></ul></div>
 </header>
 </div>
 
 <section id="story">
 <div class="rail"><div class="in">
 <div class="status"><div class="count" aria-live="polite"><b id="left"></b><span id="leftTxt"></span></div>
-<div class="key"><span><i class="t"></i>Still a suspect</span><span><i class="o"></i>Ruled out</span><span><i class="g"></i>Works</span><span><i class="b"></i>Broken</span></div></div>
-<div class="code" id="code"><div class="band" id="band"></div><svg id="bars" preserveAspectRatio="none" role="img"></svg><div class="pin" id="pin"></div></div>
+<p class="case" id="case"></p></div>
+<div class="code" id="code"><div class="band" id="band"></div><div class="spot" id="spot"></div><div class="marks" id="marks" aria-hidden="true"></div><svg id="bars" role="img"></svg><div class="pin" id="pin"></div></div>
 <div class="steps-row" id="feet" aria-hidden="true"></div>
 <div class="ends"><span id="from"></span><span id="to"></span></div>
 </div></div>
@@ -208,9 +226,9 @@ section.part{padding-top:80px}
 </section>
 
 <section class="verdict" id="verdict"><div class="in">
-<p class="lab">Broke it</p>
+<div class="placard"><p class="lab">Broke it</p>
 <p class="big" id="vhash"></p>
-<p class="subj" id="vsubj"></p>
+<p class="subj" id="vsubj"></p></div>
 <div class="facts"><div><b id="f1"></b><span>commits searched</span></div><div><b id="f2"></b><span>tests in the browser</span></div><div><b id="f3"></b><span>of testing</span></div><div><b id="f4"></b><span>Kane credits</span></div></div>
 <div class="acts"><a class="btn y" id="gh" href="#">See the commit on GitHub</a><a class="btn" href="#proof">See the proof</a></div>
 <div class="agree" id="agree"></div>
@@ -303,13 +321,28 @@ const clean=t=>String(t).replace(/^(\[[^\]]*\]\s*)+/,"").replace(/^(BUG|Bug|Regr
 const diff=d=>"<pre>"+d.split("\n").map(l=>l[0]=="+"?"<span class=a>"+e(l)+"</span>":l[0]=="-"?"<span class=d>"+e(l)+"</span>":e(l)).join("\n")+"</pre>";
 const sole='<svg viewBox="0 0 12 20" fill="currentColor"><ellipse cx="6" cy="6.5" rx="5.2" ry="6.3"/><ellipse cx="6" cy="16.3" rx="3.8" ry="3.4"/></svg>';
 const heights=f=>{const m=Math.max(...f);return f.map(x=>16+84*Math.sqrt(x/m))};
-let cur,bars=[],obs;
+let cur,bars=[],obs,lastK=-1;
 
 // Case buttons and case files
-D.forEach((c,i)=>{const li=document.createElement("li");li.innerHTML='<button>'+e(c.name)+"</button>";li.firstChild.onclick=()=>{show(i);$("story").scrollIntoView()};$("picks").append(li)});
+D.forEach((c,i)=>{const li=document.createElement("li");li.innerHTML='<button>'+e(c.name)+"</button>";li.firstChild.onclick=()=>{$("url").value=c.issue;solved(i)};$("picks").append(li)});
 $("files").innerHTML=D.map((c,i)=>{const h=heights(c.files);
   return'<button class="file" data-i="'+i+'"><div class="top"><span>'+e(c.app)+" report "+e(c.no)+"</span><span>"+(c.cheap?"cheap mode":"")+"</span></div><h3>"+e(c.name)+'</h3><svg viewBox="0 0 '+c.n+' 100" preserveAspectRatio="none" aria-hidden="true">'+h.map((y,j)=>'<rect x="'+(j+.15)+'" width=".7" y="'+(100-y)+'" height="'+y+'"'+(j==c.at?' class="hit"':"")+"/>").join("")+'</svg><div class="row"><span class="mute">Broke it</span><code>'+e(c.culprit)+'</code></div><p class="who">'+(c.same===true?'<b class="yes">Same commit as the maintainers</b>':c.script?'<b class="yes">Maintainers didn\'t settle. A script agrees</b>':'<span class="na">The maintainers didn\'t name one</span>')+'</p><div class="nums"><span>'+c.n+" commits</span><span>"+c.minutes+" min</span><span>"+c.credits+" credits</span></div></button>"}).join("");
 $("files").querySelectorAll(".file").forEach(b=>b.onclick=()=>{show(+b.dataset.i);$("story").scrollIntoView()});
+
+// The paste box. This page can only replay searches we ran. A new report gets the command to run it.
+const APPS={"tiddlywiki/tiddlywiki5":["tiddlywiki","clones/tiddlywiki"],"excalidraw/excalidraw":["excalidraw","work/excalidraw"],"1j01/jspaint":["jspaint","clones/jspaint"]};
+const reply=(cls,html)=>{const r=$("reply");r.className="reply "+cls;r.innerHTML=html;r.hidden=false;const b=r.querySelector(".copy");if(b)b.onclick=()=>navigator.clipboard.writeText(r.querySelector("pre").textContent).then(()=>b.textContent="Copied",()=>b.textContent="Select the text to copy")};
+function solved(i){show(i);const c=D[i];reply("","<p><b>We already solved this one.</b> Gumshoe lined up "+c.n+" commits and named <code>"+e(c.culprit)+"</code>, “"+e(c.subject)+"”. <a href=\"#story\">Watch the search below</a>.</p>")}
+$("ask").onsubmit=ev=>{ev.preventDefault();
+  const v=$("url").value.trim(),m=v.match(/^(?:https?:\/\/)?(?:www\.)?github\.com\/([\w.-]+)\/([\w.-]+)\/issues\/(\d+)/i);
+  if(!v){reply("bad","<p>Paste a link first. It looks like <code>https://github.com/owner/repo/issues/123</code>.</p>");return $("url").focus()}
+  if(!m){reply("bad","<p>That isn't a link to a GitHub bug report. It should look like <code>https://github.com/owner/repo/issues/123</code>.</p>");return $("url").focus()}
+  const repo=m[1]+"/"+m[2],url="https://github.com/"+repo+"/issues/"+m[3],i=D.findIndex(c=>c.issue.toLowerCase()==url.toLowerCase());
+  if(i>=0)return solved(i);
+  const a=APPS[repo.toLowerCase()];
+  const cmd=a?"git clone --filter=blob:none https://github.com/"+repo+".git "+a[1]+"\nnpm run hunt -- "+url+" --app "+a[0]+" --cheap":"npm run hunt -- "+url+" --app <your app> --cheap";
+  reply("","<p><b>This one is new, so it runs on your computer.</b> This page only replays searches we already ran. A new search needs Kane and Chrome. Our last one took 32 minutes and 120 Kane credits.</p>"+(a?"":"<p>Gumshoe can build TiddlyWiki, Excalidraw and JS Paint so far. For "+e(repo)+", first add a short build file to the <code>apps</code> folder.</p>")+"<p>In the Gumshoe folder, run:</p><pre>"+e(cmd)+"</pre><button type=button class=copy>Copy</button>");
+};
 
 function words(r,i){
   if(r.what=="reported")return{k:"The version in the report",left:"So the cause is one of the "+cur.n+" commits before it."};
@@ -318,12 +351,11 @@ function words(r,i){
 
 function show(i){cur=D[i];
   [...$("picks").querySelectorAll("button")].forEach((b,j)=>b.setAttribute("aria-pressed",i==j));
-  $("h1").innerHTML='<span class="n">'+cur.n+"</span> commits.<br>One of them broke it.";
-  $("case").innerHTML="The bug: <mark>"+e(cur.name)+'</mark>. <a href="'+e(cur.issue)+'">'+e(cur.app)+" report "+e(cur.no)+"</a>.";
+  $("case").innerHTML="The bug: "+e(cur.name)+'. <a href="'+e(cur.issue)+'">'+e(cur.app)+" report "+e(cur.no)+'</a>. <a href="#verdict">Skip to the answer</a>';
   $("from").textContent=cur.from+", older version";$("to").textContent=cur.to+", the report";
-  const h=heights(cur.files),svg=$("bars");svg.setAttribute("viewBox","0 0 "+cur.n+" 100");
-  svg.innerHTML=h.map((y,j)=>'<rect x="'+(j+.14)+'" width=".72" y="'+(100-y)+'" height="'+y+'"/>').join("");bars=[...svg.children];
-  svg.setAttribute("aria-label",cur.n+" commits, oldest on the left");
+  $("bars").setAttribute("aria-label",cur.n+" commits in a line, oldest on the left. Taller ones changed more files.");
+  const m=Math.max(...cur.files);$("marks").innerHTML=[40,60,80,100].map(p=>{const f=Math.max(1,Math.round(m*((p-16)/84)**2));return'<div style="bottom:'+p+'%"><span>'+f+(f==1?" FILE":" FILES")+"</span></div>"}).join("");
+  draw();
   // The story: one panel per test, then the answer.
   const last=cur.rows.length;
   $("steps").innerHTML=cur.rows.map((r,j)=>{const w=words(r,j);return'<div class="step" data-k="'+j+'"><div class="box"><p class="k">'+w.k+'</p><div class="h"><span class="sha">'+e(r.sha)+'</span></div><p class="subj">'+e(r.subject)+'</p><span class="stamp '+C[r.verdict]+'">'+W[r.verdict]+'</span><p class="left">'+w.left+"</p>"+(r.img?'<img src="'+r.img+'" alt="The app at '+e(r.sha)+', as Kane left it" loading="lazy">':"")+"<small>"+(r.tries.every(t=>t.v==r.verdict)?r.tries.length+" tests, all agreed.":r.tries.filter(t=>t.v=="unsure").length+" of "+r.tries.length+" tests thrown out, the rest agreed.")+(r.link?' <a href="'+e(r.link)+'">Kane\'s record</a>':"")+"</small></div></div>"}).join("")
@@ -349,7 +381,17 @@ function show(i){cur=D[i];
   step(-1);
 }
 
-function step(k){const rows=cur.rows,n=cur.n,end=k>=rows.length;
+// Each suspect is a small figure: a head and shoulders. Very narrow lineups fall back to plain bars.
+function draw(){const svg=$("bars"),W=svg.clientWidth,H=svg.clientHeight;if(!W)return;
+  const n=cur.n,slot=W/n,h=heights(cur.files);svg.setAttribute("viewBox","0 0 "+W+" "+H);
+  svg.innerHTML=h.map((y,j)=>{const t=H*y/100,w=Math.max(1,slot*.84),x=j*slot+(slot-w)/2,top=H-t;
+    if(slot<4.5)return'<g><rect x="'+x+'" y="'+top+'" width="'+w+'" height="'+t+'"/></g>';
+    const r=Math.min(w*.47,t*.2),cx=x+w/2,by=top+2*r+.5,sr=Math.min(w*.4,7);
+    return'<g><circle cx="'+cx+'" cy="'+(top+r)+'" r="'+r+'"/><path d="M'+x+" "+H+"V"+(by+sr)+"Q"+x+" "+by+" "+(x+sr)+" "+by+"H"+(x+w-sr)+"Q"+(x+w)+" "+by+" "+(x+w)+" "+(by+sr)+"V"+H+'Z"/></g>'}).join("");
+  bars=[...svg.children];step(lastK)}
+new ResizeObserver(()=>cur&&draw()).observe($("code"));
+
+function step(k){lastK=k;const rows=cur.rows,n=cur.n,end=k>=rows.length;
   let lo=-1,hi=n-1;const tested={},feet=[];
   rows.slice(0,Math.min(k+1,rows.length)).forEach(r=>{if(r.at>=0){tested[r.at]=r.verdict;feet.push(r)}});
   if(k>=0&&!end){lo=rows[k].lo;hi=rows[k].hi}
@@ -357,9 +399,9 @@ function step(k){const rows=cur.rows,n=cur.n,end=k>=rows.length;
   bars.forEach((b,i)=>b.setAttribute("class",end&&i==cur.at?"hit":tested[i]?C[tested[i]]:(i>lo&&i<=hi?"":"out")));
   $("band").style.left=100*(lo+1)/n+"%";$("band").style.width=end?0:100*(hi-lo)/n+"%";
   $("feet").innerHTML=feet.map((r,j)=>'<span class="foot '+C[r.verdict]+" "+(j%2?"r":"l")+'" style="left:'+100*(r.at+.5)/n+'%">'+sole+"</span>").join("");
-  const pin=$("pin");pin.textContent=cur.culprit;pin.style.left=100*(cur.at+.5)/n+"%";pin.classList.toggle("on",end);
+  const pin=$("pin");pin.textContent=cur.culprit;pin.style.left=100*(cur.at+.5)/n+"%";pin.classList.toggle("on",end);$("spot").style.left=pin.style.left;$("spot").classList.toggle("on",end);
   const left=hi-lo;$("left").textContent=left;
-  $("leftTxt").innerHTML=end?"commit left.<br>This one broke it.":(left==1?"commit":"commits")+" still<br>suspects, of "+n;
+  $("leftTxt").innerHTML=end?"suspect left.<br>This commit broke it.":(left==1?"suspect":"suspects")+" still in<br>the lineup, of "+n+" commits";
 }
 show(0);
 </script></body></html>
