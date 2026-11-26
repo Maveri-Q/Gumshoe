@@ -1,76 +1,69 @@
-# Launch posts
+# Launch posts (X only)
 
-You post these yourself, from your own accounts. The hackathon needs at least two public posts.
+The rule is at least two public posts. We use X for all of them. You post them yourself, from your own account.
 
 Before posting:
-1. Make the GitHub repo public. The posts link to it, and judges need it.
-2. Check the hackathon page for the official hashtag and the TestMu AI account to tag. Add them where it says [tag].
-3. Attach the demo video or a short screen recording of the page. Posts with a video get far more views.
+1. Make the GitHub repo public. Post 1's reply links to it.
+2. Check the hackathon page for the official hashtag and the TestMu AI account to tag. Put them where it says [tag].
+3. Attach the demo video to post 1. For posts 2 to 4, a screenshot of the page works.
 
-Best order: X and LinkedIn first (today), then Show HN, then Reddit.
+Plan for today (the deadline is 18:29 UTC):
+- Post 1 first, with the video. Pin it to your profile.
+- Posts 2, 3 and 4 a couple of hours apart, each as a new post (not replies), so they count as separate posts.
+- Reply to everyone who comments. Engagement earns extra points.
+
+Each post is under 280 characters. X counts a link as 23.
 
 ---
 
-## X
+## Post 1: the launch (attach the demo video)
 
 Paste a GitHub bug report. Gumshoe finds the commit that broke it.
 
 Kane CLI checks the bug in a real browser on older and older versions until one commit is left. Then a coding agent fixes it.
 
-Real bugs, no planted ones. 6 of 6 matched the maintainers.
+6 of 6 matched the maintainers.
 
 https://gumshoe-puce.vercel.app [tag]
 
-(Reply to your own post with the second part:)
+**Reply to your own post 1:**
 
-The one I like most: TiddlyWiki 9574. Nobody in the report agreed on a cause. Gumshoe named a commit. A plain script then checked it: works just before, broken from there.
+Real open-source bugs from TiddlyWiki and Excalidraw. None planted. Every run is recorded, and `npm run replay` checks them all again.
 
-Repo: https://github.com/Maveri-Q/Gumshoe
-
----
-
-## LinkedIn
-
-I built Gumshoe for the KaneCLI hackathon by TestMu AI. [tag]
-
-The problem: a feature that used to work breaks. Somewhere in hundreds of commits is the one that broke it. Finding it by hand takes hours.
-
-Gumshoe starts from the bug report. No test needed.
-1. It turns the report into one plain sentence, like "Ctrl+Enter in the tags box saves the tiddler".
-2. Kane CLI checks that sentence in a real browser, on older and older versions of the app.
-3. git bisect halves the suspects each time, until one commit is left.
-4. A coding agent fixes it, and the sentence is saved as a Kane test.
-
-What happened on real open-source bugs:
-- 6 of 6 times it named the same commit as the maintainers.
-- On one TiddlyWiki bug, the people in the report hadn't settled on a cause. Gumshoe named a commit, and a plain script agreed.
-- Run 10 times on each side of that commit, the check gave the same answer 20 of 20 times.
-
-What it can't do yet: old versions must still build, and it costs Kane credits.
-
-Try it: https://gumshoe-puce.vercel.app
 Code: https://github.com/Maveri-Q/Gumshoe
 
 ---
 
-## Hacker News (Show HN)
+## Post 2: the case nobody had settled
 
-Title: Show HN: Gumshoe: paste a bug report, get the commit that broke it
+A TiddlyWiki bug: Ctrl+Enter stopped saving in the tags box.
 
-Link: https://github.com/Maveri-Q/Gumshoe
+Nobody in the report settled which change caused it. The one suspect named didn't hold up.
 
-First comment (post it yourself right after):
+Gumshoe searched 161 commits and named 3889a2a0. A plain script checked it: works just before, broken from there.
 
-I built this for a hackathon around Kane CLI, a browser testing agent. Gumshoe reads a GitHub issue, writes one sentence about what should happen, and uses it as the test for git bisect. Each commit is built, opened in Chrome, and checked by Kane plus a second reader that only sees the screenshot. If they disagree, the commit is skipped, never guessed.
-
-I ran it on 6 real reports from TiddlyWiki and Excalidraw. Where the maintainers named a commit, it found the same one 6 of 6 times. It's slow (20 to 150 minutes per search) and costs credits, and the README lists where it went wrong. `npm run replay` checks every recorded verdict without a Kane account.
-
-Live page: https://gumshoe-puce.vercel.app
+[tag]
 
 ---
 
-## Reddit (r/SideProject)
+## Post 3: can you trust it
 
-Title: I made a tool that reads a bug report and finds the commit that broke it
+Can you trust an AI test to find the commit that broke something?
 
-Body: use the LinkedIn text. Add a screen recording of the page. Check the subreddit's rules on self-promotion before posting.
+Gumshoe only counts a result when Kane and a second reader agree. If not, the commit is skipped, never guessed.
+
+We ran one check 10 times on each side of the guilty commit. Same answer 20 of 20 times.
+
+[tag]
+
+---
+
+## Post 4: cheap mode
+
+Kane does the clicks once and saves a recording. Every older version replays it, and Kane's AI only looks at the end.
+
+Same search, same answer:
+531 credits down to 46, plus 42 once to record.
+59 minutes down to 20.
+
+https://gumshoe-puce.vercel.app [tag]
