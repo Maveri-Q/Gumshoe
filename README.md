@@ -2,7 +2,9 @@
 
 **Paste a bug report. Get the commit that broke it. No test needed.**
 
-**Live:** https://gumshoe-puce.vercel.app · Built for the KaneCLI Online Hackathon by TestMu AI.
+**Live:** https://gumshoe-puce.vercel.app · **Demo video (2 min):** https://youtu.be/hvrBPxGIbes
+
+Built for the KaneCLI Online Hackathon by TestMu AI.
 
 ![Gumshoe mid-search: 20 suspects left, Kane CLI says commit 810ac428 works, so the bug came after it](docs/launch/kickoff.png)
 
