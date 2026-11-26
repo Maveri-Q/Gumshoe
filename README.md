@@ -2,7 +2,7 @@
 
 **Paste a bug report. Get the commit that broke it. No test needed.**
 
-**Live:** https://gumshoe-puce.vercel.app · **Demo video (2 min):** https://youtu.be/hvrBPxGIbes
+**Live:** https://gumshoe-puce.vercel.app · **Demo video (3 min):** https://youtu.be/rB-APBY7JPs
 
 Built for the KaneCLI Online Hackathon by TestMu AI.
 
