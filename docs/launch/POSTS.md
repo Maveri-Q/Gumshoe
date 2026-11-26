@@ -6,7 +6,8 @@ Tags from the hackathon page: @kane_cli, @testmuai, #KaneCLIHackathon, #KaneCLI.
 Today's plan (the deadline is 18:29 UTC):
 1. **Now:** the kickoff post. It needs nothing attached.
 2. **When the video is ready:** make the repo public, then post the launch thread. Attach the video to post 1.
-   A free X account takes videos up to 2 minutes 20 seconds, so attach the short clip there. The full demo goes on YouTube.
+   The demo is 1 minute 52 seconds, under the 2 minutes 20 seconds a free X account allows.
+   So the same video goes on X and on YouTube.
 3. **Then submit the form.** Paste the links to the kickoff post and to post 1 of the thread under "Launch buzz".
    To copy a link on X: tap the share icon on the post, then "Copy link".
 4. Reply to people who comment. Each post and reply counts.

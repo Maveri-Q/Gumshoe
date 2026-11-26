@@ -1,7 +1,7 @@
 // Records video/film.html frame by frame into an MP4. Every frame is set by seek(t), so nothing is dropped.
 //   node video/render.mjs assets              take the live-site pictures used at the end
 //   node video/render.mjs stills 5 60 92      save single frames to video/out/still-<t>.png
-//   node video/render.mjs video 0 190 out.mp4 [fps]
+//   node video/render.mjs video 0 190 out.mp4 [fps]   (with WARP=video/out/voice/plan.json, times are on the re-timed film)
 // Needs playwright-core (PW env var points at it) and ffmpeg on PATH.
 import { createServer } from "node:http";
 import { readFileSync, existsSync, statSync, mkdirSync } from "node:fs";
@@ -20,6 +20,9 @@ const server = createServer((q, r) => {
 
 const browser = await chromium.launch({ executablePath: process.env.CHROME });
 const [mode, ...args] = process.argv.slice(2);
+// The re-timed film: new time -> film time, straight lines between the [new, old] pairs in plan.json.
+const warp = process.env.WARP ? JSON.parse(readFileSync(process.env.WARP, "utf8")).warp : null;
+const filmTime = t => { if (!warp) return t; for (let k = 1; k < warp.length; k++) { const [n0, o0] = warp[k - 1], [n1, o1] = warp[k]; if (t <= n1) return o0 + (o1 - o0) * (t - n0) / (n1 - n0); } return warp.at(-1)[1]; };
 try {
   if (mode === "assets") {
     // Our own live page, read only. Type a solved report into the box, then show the search mid-way.
@@ -41,7 +44,7 @@ try {
       const [a, b, name, fps = "30"] = args, n = Math.round((b - a) * fps);
       const ff = spawn("ffmpeg", ["-y", "-f", "image2pipe", "-framerate", fps, "-c:v", "mjpeg", "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart", join(out, name)], { stdio: ["pipe", "inherit", "inherit"] });
       for (let i = 0; i < n; i++) {
-        await p.evaluate(t => seek(t), +a + i / fps);
+        await p.evaluate(t => seek(t), filmTime(+a + i / fps));
         const buf = await p.screenshot({ type: "jpeg", quality: 92 });
         if (!ff.stdin.write(buf)) await new Promise(r => ff.stdin.once("drain", r));
         if (i % 300 === 0) console.log(`frame ${i} of ${n}`);
