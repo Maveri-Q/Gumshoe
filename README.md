@@ -21,6 +21,14 @@ A feature that worked last month is broken. Somewhere in hundreds of commits is 
 
 All tests were on **real bugs in real open-source apps** (TiddlyWiki, Excalidraw). None were planted. In 6 of 6 cases where the maintainers had named a commit, Gumshoe named the same one.
 
+## How Kane and the agent talk to each other
+
+Kane CLI's answer decides every step, and when something fails, Kane's result goes back to the agent:
+
+- **Writing the check.** If Kane can't show the bug on the version in the report, Kane's notes go back to Claude, which rewrites the check. Three drafts at most. ([tools/hunt.ts](tools/hunt.ts))
+- **The search.** Kane's verdict becomes git's answer: works, broken, or skip this commit when it can't be settled. ([tools/step.mjs](tools/step.mjs))
+- **The fix.** After each Claude Code attempt, Kane runs the same check. If it still fails, Kane's verdict and notes go back to Claude Code for the next attempt. Three attempts at most, then a human. ([tools/fix.ts](tools/fix.ts))
+
 ## Look around in 2 minutes
 
 1. Open https://gumshoe-puce.vercel.app. No sign-up.
