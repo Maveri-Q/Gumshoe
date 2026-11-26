@@ -1,24 +1,44 @@
 # Gumshoe
 
-**Live:** https://gumshoe-puce.vercel.app
-
 **Paste a bug report. Get the commit that broke it. No test needed.**
 
-Gumshoe turns a GitHub issue into one plain sentence. [Kane CLI](https://www.npmjs.com/package/@testmuai/kane-cli) checks that sentence in a real browser, on older and older versions of the app, driven by `git bisect`. One commit is left at the end. A coding agent fixes it, Kane proves the fix with the same sentence, and the sentence is saved as a Kane test.
+**Live:** https://gumshoe-puce.vercel.app · Built for the KaneCLI Online Hackathon by TestMu AI.
 
-## For judges
+![Gumshoe mid-search: 20 suspects left, Kane CLI says commit 810ac428 works, so the bug came after it](docs/launch/kickoff.png)
 
-No Kane account, no Claude, no network needed:
+## The problem
+
+A feature that worked last month is broken. Somewhere in hundreds of commits is the one change that did it. Finding it by hand means building old versions and clicking through each one. That takes hours.
+
+## What Gumshoe does
+
+1. You give it a link to a GitHub bug report.
+2. Claude turns the report into one plain sentence, like "Ctrl+Enter in the tags box saves the tiddler."
+3. [Kane CLI](https://www.npmjs.com/package/@testmuai/kane-cli) checks that sentence in a real browser on old versions of the app. `git bisect` picks which version to test next, halving the suspects each time.
+4. One commit is left. Claude Code fixes it, Kane checks the same sentence on the fix, and the sentence is saved as a Kane test.
+
+All tests were on **real bugs in real open-source apps** (TiddlyWiki, Excalidraw). None were planted. In 6 of 6 cases where the maintainers had named a commit, Gumshoe named the same one.
+
+## Look around in 2 minutes
+
+1. Open https://gumshoe-puce.vercel.app. No sign-up.
+2. Click **Find the commit** (a solved report is already in the box), or tap one of the other solved reports.
+3. Scroll down to watch the search: each test, the screenshot Kane saw, and its answer, until one commit is left.
+
+## Run it yourself
+
+Check every recorded result again on your own computer. No Kane account, no AI, no network, nothing to install (Node 22.18 or newer):
 
 ```bash
+git clone https://github.com/Maveri-Q/Gumshoe.git
+cd Gumshoe
 npm run replay
-```
-
-This reads Kane's own recorded output for every commit again, works out every verdict with the same code the live run used, walks the bisects again, and rebuilds the report page. It stops with an error if anything differs from what was recorded. One thing is taken as recorded: the second reader's answer about each saved screen. Needs Node 22.18 or newer. The pictures are already in `site/img`.
-
-```bash
 npm test
 ```
+
+`npm run replay` reads Kane's own recorded output for every commit again, works out every verdict with the same code the live run used, walks the bisects again, and rebuilds the report page. It stops with an error if anything differs from what was recorded. One thing is taken as recorded: the second reader's answer about each saved screen. The pictures are already in `site/img`.
+
+### A live hunt
 
 To run a live hunt you need Kane (`kane-cli login`), Claude Code, git and Chrome. With `--cheap` it costs about 120 Kane credits and about 35 minutes. Without it, 400 to 1,500 credits and 1 to 2.5 hours:
 
