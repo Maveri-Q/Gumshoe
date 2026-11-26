@@ -1,0 +1,98 @@
+[
+  {
+    "at": 0.8,
+    "text": "This is a real bug report from TiddlyWiki. Press Ctrl+Enter in the tags box, and your note should save. It stopped working."
+  },
+  {
+    "at": 9.6,
+    "text": "Somewhere in a hundred and sixty-one commits, one change broke it. Finding it by hand means building old versions, one by one."
+  },
+  {
+    "at": 18.8,
+    "text": "Seven days in, one person suspected a commit, a change to dragging links. Undoing it didn't help. Nobody had settled on the cause."
+  },
+  {
+    "at": 28,
+    "text": "Gumshoe reads only the title and the first post, because comments can hold the answer. It writes one plain sentence to test. No test code. No selectors. It can't see the git history."
+  },
+  {
+    "at": 41.4,
+    "text": "Kane CLI opens the app in a real browser, and tries the sentence. An older version works. The version in the report is broken. So the bug is somewhere in between."
+  },
+  {
+    "at": 52.4,
+    "text": "Git bisect picks the commit in the middle."
+  },
+  {
+    "at": 56.8,
+    "text": "Broken. Eighty left."
+  },
+  {
+    "at": 58.6,
+    "text": "Kane does the steps, and looks at the screen, the way a person would."
+  },
+  {
+    "at": 63.8,
+    "text": "Broken again. Forty left."
+  },
+  {
+    "at": 69.6,
+    "text": "This one works. Twenty left."
+  },
+  {
+    "at": 74.6,
+    "text": "Works. Ten left."
+  },
+  {
+    "at": 78.9,
+    "text": "Works. Five left."
+  },
+  {
+    "at": 82.9,
+    "text": "Works. Three left."
+  },
+  {
+    "at": 86.9,
+    "text": "Works. One left."
+  },
+  {
+    "at": 91.6,
+    "text": "Found it."
+  },
+  {
+    "at": 93.4,
+    "text": "One commit, out of a hundred and sixty-one. Seven tests. Thirty-two minutes, and about a hundred and twenty Kane credits."
+  },
+  {
+    "at": 100.8,
+    "text": "Then we checked it without any AI. A plain script opens the editor and presses Ctrl+Enter. The commit just before works. Gumshoe's commit is broken. And the commit people suspected? The bug was already there before it."
+  },
+  {
+    "at": 114.6,
+    "text": "We ran the same check twenty more times. Ten on the last commit that works, and ten on the guilty one. Ten works. Ten broken. Every single time."
+  },
+  {
+    "at": 124.8,
+    "text": "Claude Code writes the fix. It can't see the maintainers' fix, and it can't touch the test. Gumshoe checks the test file's hash to make sure."
+  },
+  {
+    "at": 131.6,
+    "text": "Kane runs the same sentence on the fix. It works. The sentence is saved as a Kane test, that fails on the broken version and passes on the fix."
+  },
+  {
+    "at": 140.8,
+    "text": "Kane doesn't get the last word. A second Kane run only looks at the screen, and a second reader sees only the screenshot. If they disagree, the test is thrown out. Never guessed. Twenty-one of a hundred and fifty-three tests were thrown out this way."
+  },
+  {
+    "at": 152.8,
+    "text": "Seven searches, on real bugs. Four in TiddlyWiki, three in Excalidraw. None planted. Every time the maintainers named a commit, Gumshoe found the same one. Six out of six."
+  },
+  {
+    "at": 166.8,
+    "text": "And you can watch every search on the live page. Every test, with the screenshot Kane saw. The code is open, and you can check every recorded result again, with no AI at all."
+  },
+  {
+    "at": 183.4,
+    "text": "Gumshoe. Paste a bug report. Get the commit that broke it."
+  }
+]

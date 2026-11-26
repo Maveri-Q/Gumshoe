@@ -8,9 +8,10 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { execFileSync } from "node:child_process";
 
-const root = resolve(import.meta.dirname, ".."), dir = join(root, "video", "out", "voice");
-const lines = JSON.parse(readFileSync(join(root, "video", "voice.json"), "utf8"));
-const FILM = 190, LEAD = 0.8, GAP = 0.45, COUNT_GAP = 0.75, END_HOLD = 2.2, MAXSPEED = 2.5;
+// CUT=long uses video/voice-long.json and video/out/voice-long/ (the 3-minute version for YouTube).
+const cut = process.env.CUT, root = resolve(import.meta.dirname, ".."), dir = join(root, "video", "out", cut ? `voice-${cut}` : "voice");
+const lines = JSON.parse(readFileSync(join(root, "video", cut ? `voice-${cut}.json` : "voice.json"), "utf8"));
+const FILM = 190, LEAD = 0.8, GAP = 0.45, COUNT_GAP = 0.75, END_HOLD = 2.2, MAXSPEED = +(process.env.MAXSPEED ?? 2.5);
 const [mode, ...args] = process.argv.slice(2);
 mkdirSync(dir, { recursive: true });
 const take = join(dir, "take.mp3"), align = join(dir, "take.json"), planF = join(dir, "plan.json");
@@ -35,14 +36,32 @@ if (mode === "take") {
   console.log(`one take, ${text.length} characters, ${out.at(-1).end.toFixed(1)} s of speech`);
 }
 
+if (mode === "redo") {
+  // Re-record only some lines (numbers after the voice id), each a full sentence, so no clip is chopped.
+  const key = (readFileSync(join(root, ".env"), "utf8").match(/^ELEVENLABS_API_KEY=(.+)$/m) ?? [])[1]?.trim();
+  for (const i of args.slice(1).map(Number)) {
+    const r = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${args[0]}/with-timestamps?output_format=mp3_44100_128`, {
+      method: "POST", headers: { "xi-api-key": key, "content-type": "application/json" },
+      body: JSON.stringify({ text: lines[i].text, model_id: "eleven_multilingual_v2", previous_text: lines[i - 1]?.text, next_text: lines[i + 1]?.text,
+        voice_settings: { stability: 0.55, similarity_boost: 0.8, style: 0.2, use_speaker_boost: true } }) });
+    if (!r.ok) throw new Error(`line ${i}: ${r.status} ${await r.text()}`);
+    const j = await r.json(), n = String(i).padStart(2, "0"), a = j.alignment;
+    writeFileSync(join(dir, `redo-${n}.mp3`), Buffer.from(j.audio_base64, "base64"));
+    writeFileSync(join(dir, `redo-${n}.json`), JSON.stringify({ start: a.character_start_times_seconds[0], end: a.character_end_times_seconds.at(-1) }));
+    console.log(`re-recorded ${i}: ${lines[i].text.slice(0, 50)}`);
+  }
+}
+
 if (mode === "plan") {
   const t = JSON.parse(readFileSync(align, "utf8")), total = +execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", take], { encoding: "utf8" });
   // Cut each line out of the take halfway through the pause after it, so no word is cut.
   const plan = lines.map((l, i) => {
-    const a = Math.max(0, t[i].start - 0.08), b = i < lines.length - 1 ? (t[i].end + t[i + 1].start) / 2 : Math.min(total, t[i].end + 0.5);
-    const f = join(dir, `line-${String(i).padStart(2, "0")}.wav`);
-    ff(["-i", take, "-ss", a.toFixed(3), "-to", b.toFixed(3), "-af", "afade=t=in:d=0.02,areverse,afade=t=in:d=0.04,areverse", "-ar", "44100", f]);
-    return { i, old: l.at, speech: t[i].end - t[i].start + 0.08, file: f };
+    const n = String(i).padStart(2, "0"), redo = join(dir, `redo-${n}.json`), r = existsSync(redo) && JSON.parse(readFileSync(redo, "utf8"));
+    const src = r ? join(dir, `redo-${n}.mp3`) : take, tt = r || t[i];
+    const a = Math.max(0, tt.start - 0.08), b = r ? r.end + 0.3 : i < lines.length - 1 ? (t[i].end + t[i + 1].start) / 2 : Math.min(total, t[i].end + 0.5);
+    const f = join(dir, `line-${n}.wav`);
+    ff(["-i", src, "-ss", a.toFixed(3), "-to", b.toFixed(3), "-af", "afade=t=in:d=0.02,areverse,afade=t=in:d=0.04,areverse", "-ar", "44100", f]);
+    return { i, old: l.at, speech: tt.end - tt.start + 0.08, file: f };
   });
   // New start of each line: right after the one before (plus a pause), but never more than MAXSPEED times faster than the film.
   let now = LEAD;
