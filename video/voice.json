@@ -1,0 +1,98 @@
+[
+  {
+    "at": 0.8,
+    "text": "This is a real bug report. In TiddlyWiki, Ctrl+Enter stopped saving your work."
+  },
+  {
+    "at": 9.6,
+    "text": "Somewhere in a hundred and sixty-one commits, one change broke it."
+  },
+  {
+    "at": 18.8,
+    "text": "One person in the thread suspected a commit. Undoing it didn't help."
+  },
+  {
+    "at": 28,
+    "text": "Gumshoe reads the report, and writes one plain sentence to test. No test code. No selectors."
+  },
+  {
+    "at": 41.4,
+    "text": "Kane CLI opens the app in a real browser. An older version works. The version in the report is broken."
+  },
+  {
+    "at": 52.4,
+    "text": "So Gumshoe tests the commit in the middle."
+  },
+  {
+    "at": 56.8,
+    "text": "Eighty left."
+  },
+  {
+    "at": 58.6,
+    "text": "Kane does the steps, and looks at the screen, the way a person would."
+  },
+  {
+    "at": 63.8,
+    "text": "Forty."
+  },
+  {
+    "at": 69.6,
+    "text": "Twenty."
+  },
+  {
+    "at": 74.6,
+    "text": "Ten."
+  },
+  {
+    "at": 78.9,
+    "text": "Five."
+  },
+  {
+    "at": 82.9,
+    "text": "Three."
+  },
+  {
+    "at": 86.9,
+    "text": "One."
+  },
+  {
+    "at": 91.6,
+    "text": "Found it."
+  },
+  {
+    "at": 93.4,
+    "text": "One commit, out of a hundred and sixty-one. Seven tests. Thirty-two minutes."
+  },
+  {
+    "at": 100.8,
+    "text": "Then we checked it without any AI. A plain script agrees. And the commit people suspected? The bug was already there before it."
+  },
+  {
+    "at": 114.6,
+    "text": "We ran the same check twenty more times. Ten works. Ten broken. Every single time."
+  },
+  {
+    "at": 124.8,
+    "text": "Claude Code writes the fix. It can't see the maintainers' fix, and it can't touch the test."
+  },
+  {
+    "at": 131.6,
+    "text": "Kane runs the same sentence. It works. And the sentence is saved as a Kane test."
+  },
+  {
+    "at": 140.8,
+    "text": "Kane doesn't get the last word. A second reader sees only the screenshot. If they disagree, the test is thrown out. Never guessed."
+  },
+  {
+    "at": 152.8,
+    "text": "Seven searches, on real bugs. None planted. Every time the maintainers named a commit, Gumshoe found the same one."
+  },
+  {
+    "at": 166.8,
+    "text": "And you can watch every search on the live page."
+  },
+  {
+    "at": 183.4,
+    "text": "Gumshoe. Paste a bug report. Get the commit that broke it."
+  }
+]
