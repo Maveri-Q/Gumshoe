@@ -63,7 +63,11 @@ const objective = [
 let missed = 0;
 const tries: any[] = [], verdicts: Verdict[] = [];
 let final: Verdict | undefined;
-while (!(final = combine(verdicts))) {
+// Steadiness check: GUMSHOE_STEADY=10 runs exactly 10 single tries and keeps every one.
+// The commit only counts as good or bad if all of them agree. Normal hunts never set it.
+const steady = Number(process.env.GUMSHOE_STEADY ?? 0);
+const more = () => steady ? (tries.length < steady || ((final = verdicts.every(v => v === verdicts[0]) ? verdicts[0] : "unsure"), false)) : !(final = combine(verdicts));
+while (more()) {
   missed = 0;
   const n = tries.length + 1, tdir = join(dir, `try-${n}`), t0 = Date.now();
   let br = await launchRole(`t${sha.slice(0, 8)}-${n}-${t0}`, 9700 + (port - 4300) * 10 + n, join(root, ".kane-profiles"));

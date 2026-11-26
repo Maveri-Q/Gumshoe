@@ -2,7 +2,7 @@
 
 **Live:** https://gumshoe-puce.vercel.app
 
-**Which commit broke it? Give Gumshoe a bug report and it finds out.**
+**Paste a bug report. Get the commit that broke it. No test needed.**
 
 Gumshoe turns a GitHub issue into one plain sentence. [Kane CLI](https://www.npmjs.com/package/@testmuai/kane-cli) checks that sentence in a real browser, on older and older versions of the app, driven by `git bisect`. One commit is left at the end. A coding agent fixes it, Kane proves the fix with the same sentence, and the sentence is saved as a Kane test.
 
